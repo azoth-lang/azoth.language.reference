@@ -117,7 +117,7 @@ Swift uses convenience constructors to allow constructor inheritance. I might be
 
 ## Copy Constructors
 
-Copy constructors are special constructors used to make a copy of the class. They have the unique property of being virtual on the type of object being copied, even though that it passed as a parameter. They are declared with the special `copy` constructor name and take an argument of type `Self` or `mut Self`.
+Copy constructors are special constructors used to make a copy of the class. They have the unique property of being virtual on the type of object being copied, even though it is passed as a parameter. They are declared with the special `copy` constructor name and take an argument of type `Self` or `mut Self`.
 
 ```azoth
 public new copy(mut self, value: Self)

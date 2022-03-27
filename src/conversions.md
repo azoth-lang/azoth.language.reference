@@ -1,6 +1,6 @@
 # Conversions
 
-A *conversion* is a transformation of values from one type to another that allows expressions of the first type to used as the second type. Conversions can be *implicit* or *explicit*. Explicit conversions require an explicit conversion expression. For example, the type "`int32`" can be implicitly converted to "`int64`", so expressions of type "`int32`" can implicitly be treated as "`int64`". The opposite conversion, from "`int64`" to "`int32`, is explicit, so ane explicit conversion is required.
+A *conversion* is a transformation of values from one type to another that allows expressions of the first type to used as the second type. Conversions can be *implicit* or *explicit*. Explicit conversions require an explicit conversion expression. For example, the type "`int32`" can be implicitly converted to "`int64`", so expressions of type "`int32`" can implicitly be treated as "`int64`". The opposite conversion, from "`int64`" to "`int32`, is explicit, so an explicit conversion is required.
 
 ```azoth
 let a: int32 = 123;

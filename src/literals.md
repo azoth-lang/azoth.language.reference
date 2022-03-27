@@ -109,7 +109,7 @@ escape_sequence
     ;
 
 simple_escape_sequence
-    : "\" delimiter ["]  // Double Quote U+0022
+    : "\" delimiter ["]     // Double Quote U+0022
     | "\" delimiter "'"     // Single Quote U+0027
     | "\" delimiter "\"     // Backslash U+005C
     | "\" delimiter "n"     // Newline U+000A
