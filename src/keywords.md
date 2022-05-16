@@ -69,6 +69,7 @@ keyword
     | "size"
     | "struct"
     | "throw"
+    | "trait"
     | "true"
     | "Tuple"
     | "Type"

@@ -23,4 +23,4 @@ When multiple lexical rules match, the processing always forms the longest match
 
 Historically, languages were designed using only characters from the ASCII character set even if they used Unicode encoding and allow Unicode values in strings and character literals. Azoth intentionally makes use of Unicode characters in some places when they improve readability. However, due to the difficulty of using Unicode characters on standard keyboards, these are always an alternative to more traditional ASCII notations.
 
-Note: the current version of Azoth does not have a preprocessor. When one is added, it will be handled similarly to the C# preprocessor by including it in the lexical grammar.
+Note: the current version of Azoth does not have a preprocessor. If one is added, it will be handled similarly to the C# preprocessor by including it in the lexical grammar.

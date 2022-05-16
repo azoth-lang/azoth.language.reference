@@ -258,3 +258,13 @@ balanced_text_character
     : [^'"(){}\[\]]
     ;
 ```
+
+### None Literal
+
+The none literal is the literal value for optional types representing the lack of a standard value. The none literal has the type `never?`.
+
+```grammar
+none_literal
+    : "none"
+    ;
+```

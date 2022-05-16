@@ -34,11 +34,9 @@ operator
     | "<"
     | "<="
     | "≤"  // U+2264
-    | "</="
     | ">"
     | ">="
     | "≥"  // U+2265
-    | ">/="
     | "+="
     | "-="
     | "*="
@@ -58,8 +56,7 @@ The following symbols are used as symbolic connectors.
 
 ```grammar
 punctuator
-    : "$" // was used for lifetimes, will likely be removed
-    | "::."
+    : "::."
     | "?"
     | "{"
     | "}"

@@ -1,6 +1,6 @@
 ## Identifiers
 
-Identifiers are used as the names of types, variables, functions etc. in Azoth programs. There are three kind of identifiers. *Simple identifiers* are identifiers whose names are unambiguous in the Azoth syntax. In many languages, these are the only kinds of identifiers. *Escaped identifiers* allow the use of keywords and numbers as identifiers. Finally, *identifier strings* allow arbitrary text to be used as an identifier. When determining what a name refers to, the kind of identifier is not used, only the value. For example, an escaped identifier and an identifier string with the same value are the same identifier. Additionally, identifier values are converted to Normalization Form C (NFC) before comparison.
+Identifiers are used as the names of types, variables, functions etc. in Azoth programs. There are three kind of identifiers. *Simple identifiers* are identifiers whose names are unambiguous in the Azoth syntax. In many languages, these are the only kinds of identifiers. *Escaped identifiers* allow the use of keywords and names starting with digits as identifiers. Finally, *identifier strings* allow arbitrary text to be used as an identifier. When determining what a name refers to, the kind of identifier is not used, only the value. For example, an escaped identifier and an identifier string with the same value are the same identifier. Additionally, identifier values are converted to Normalization Form C (NFC) before comparison.
 
 ```grammar
 identifier
