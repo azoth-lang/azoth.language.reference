@@ -15,14 +15,13 @@ type
     ;
 ```
 
-The value types can be further divided into a number of subcategories. Most value types are *struct types*. The *simple types* are predefined value types identified with keywords. The *tuple type* is a predefined type for tuples of values. *Class value types* are value types for each of the non-trait object types. *Pointer types* allow unsafe code to directly use pointers to addresses in memory.
+The value types can be further divided into a number of subcategories. Most value types are *struct types*. The *simple types* are predefined value types identified with keywords. The *tuple type* is a predefined type for tuples of values. *Pointer types* allow unsafe code to directly use pointers to addresses in memory.
 
 ```grammar
 value_type
     : struct_type
     | simple_type
     | tuple_type
-    | class_value_type
     | pointer_type
     ;
 ```
