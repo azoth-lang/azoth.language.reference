@@ -10,7 +10,7 @@ optional_type
 
 ### Subtyping
 
-For all reference types `T` and `U` where `T <: U`, `T <: U?`. However, given value type `S` and reference type `T`, the type `S` is not a subtype of `T?`. However, there is an implicit conversion.
+For all reference types `T` and `U` if `T <: U` then `T <: T? <: U?`. However, given value type `S` and reference type `T`, the type `S` is not a subtype of `T?`. However, there is an implicit conversion.
 
 ### The "`none`" Value
 

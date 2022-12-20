@@ -18,6 +18,7 @@ This appendix lists various languages and papers that have influenced the design
   * Comparison operator chaining
   * Type Inference
 * Project Midori
+  * Reference Capabilities
   * Effect Typing
   * Error Handling
 * C#
