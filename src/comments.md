@@ -12,7 +12,7 @@ single_line_comment
     : "//" non_newline_character*
     ;
 
-input_character // every character that is not a newline character
+non_newline_character
     : [^] - newline
     ;
 

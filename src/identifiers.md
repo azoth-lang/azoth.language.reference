@@ -14,6 +14,8 @@ identifier
 
 Simple identifiers start with a letter or underscore and may be followed by a letters, underscores, and digits. However, a reserved word or keyword may not be used as a simple identifier. Additionally, all identifiers containing double underscore characters are reserved for use by the implementation and may not be used as simple identifiers. Identifier strings can be used to create an identifier containing double underscore.
 
+**TODO:** reserving double underscore in simple identifiers but allowing them in identifier strings is inconsistent with treating all identifiers with the same value as the same identifier.
+
 ```grammar
 simple_identifier
     : identifier_or_keyword - keyword - reserved_word - reserved_identifier

@@ -39,7 +39,7 @@ namespace ::.bar.baz
 
 namespace ::
 {
-    // declarations direction in the global namespace
+    // declarations directly in the global namespace
 }
 ```
 
