@@ -25,7 +25,7 @@ else_clause
     ;
 ```
 
-The else clause is associated with the lexically closest if expression. Thus "`if x => if y => F() else => G()`" is equvalent to:
+The else clause is associated with the lexically closest if expression. Thus "`if x => if y => F() else => G()`" is equivalent to:
 
 ```azoth
 if x
