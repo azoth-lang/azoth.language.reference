@@ -58,7 +58,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * Methods
     * Properties
     * [Operator Overloading](operator-overloading.md)
-    * Partial Classes
+    * [Partial Classes](partial-classes.md)
 11. [Structs](structs.md)
     * [Struct Initializers](struct-initializers.md)
     * [Struct Constructors](struct-constructors.md)
