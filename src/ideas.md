@@ -205,7 +205,7 @@ public fn function()    {
 
 ### `set` Expressions/Statements
 
-Instead of allowing assignment expressions anywhere. Use a set expression "`set x = 5`". This makes a set as long as a redeclaration with "`let`". It allows the single equals sign "`=`" to be used as both assignment and comparison operations. Finally, it prevents any ambiguity for destructuring assignments "`set #(x, y) = function()`".
+Instead of allowing assignment expressions anywhere. Use a set expression "`set x = 5`". This makes a set as long as a redeclaration with "`let`". It allows the single equals sign "`=`" to be used as both assignment and comparison operations. Finally, it prevents any ambiguity for destructuring assignments "`set #(x, y) = function()`". If this was done, then `/=` could be used for the not equal operator since it would be distinct from divide assign, though that could still be confusing to users.
 
 ### No Implicit Boxing
 
@@ -393,3 +393,7 @@ Note that the "`at`" method can't be a meta-function because it must return a re
 ### Default Value Constructors
 
 Fields whose type is optional can be implicitly initialized with the value `none`. Perhaps there should be a special constructor that, if present, the compiler calls to implicitly initialize a field. This would allow developers to create their own types like optional types which can be implicitly initialized.
+
+### Use `read` and `write` for Properties
+
+Instead of using `get` and `set` for properties, use `read` and `write`. This corrects what Kevlin Henny talks about that "get" is side-effecting in English and isn't the opposite of "set". Alternatively, "assign" could be used. If assignment were turned into a set statement, then set might make sense again.
