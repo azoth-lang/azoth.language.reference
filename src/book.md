@@ -56,6 +56,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Constructors](class-constructors.md)
     * Destructors
     * Methods
+    * [Associated Functions](associated-functions.md)
     * Properties
     * [Operator Overloading](operator-overloading.md)
     * [Partial Classes](partial-classes.md)

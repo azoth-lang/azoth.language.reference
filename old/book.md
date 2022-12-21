@@ -15,7 +15,6 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Patterns](patterns.md)
 * Classes
   * Methods (including `open`)
-  * [Associated Functions](associated-functions.md)
   * [Destructors](destructors.md)
   * [Object Literals](object-literals.md)
   * [Extensions](extensions.md)
