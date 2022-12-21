@@ -7,8 +7,6 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Variable Bindings](variable-bindings.md)
 * [Functions](functions.md)
   * [Anonymous Functions](anonymous-functions.md)
-* Standard Types
-  * [Composite Initializers](composite-initializers.md)
 * [Ownership](ownership.md)
   * [Reference Types and Borrowing](reference-types.md)
   * [Value Types and Copy](value-types.md)
@@ -35,12 +33,10 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Results](result.md)
   * [Out of Memory and Stack Overflow](out-of-memory.md)
   * [Effects](effects.md)
-  * Error Model Summary
 * [Generics](generics.md)
 * Const and Static
-* Params and List Initializers
 * [Casting with `as`](casting.md)
-* Testing
+* Unit Testing
 * Standard Library
   * Reflection
 * [Version Number Scheme](version-numbers.md)

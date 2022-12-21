@@ -1,4 +1,4 @@
-# Composite Initializers
+# Initializers
 
 Azoth supports three different forms of composite initializers. Similar user defined literals, these initializers do not determine the type being constructed. The type constructed is inferred. These composite initializers are named after the type they are generally used to construct, but they actually could be used to construct any type. All of them are prefixed with a pound sign that is followed by a comma separated list of values, the difference it simply in what those values are bracketed with. The three types of initializers are:
 

@@ -44,6 +44,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Bitwise Operations](bitwise-operations.md)
    * [Boolean Expression](boolean-expression.md)
    * [Interpolated Strings](interpolated-strings.md)
+   * [Initializers](initializers.md)
 7. [Statements](statements.md)
 8. [Namespaces](namespaces.md)
 9. [Functions](functions.md)
@@ -56,6 +57,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * Methods
     * Properties
     * [Operator Overloading](operator-overloading.md)
+    * Partial Classes
 11. [Structs](structs.md)
     * [Struct Initializers](struct-initializers.md)
     * [Struct Constructors](struct-constructors.md)
@@ -64,14 +66,18 @@ Note: This is the new version of the reference. Sections are being moved from th
     * Enumeration Structs
     * Enumeration Classes
 14. Generics
-15. Exceptions
-16. Attributes
-17. Patterns
-18. [Unsafe Code](unsafe.md)
+15. Structured Concurrency
+16. Design by Contract
+17. Error Handling
+    * Exceptions
+    * Out of Memory and Stack Overflow
+18. Attributes
+19. Patterns
+20. [Unsafe Code](unsafe.md)
     * [Pointers](pointers.md)
-19. [External Declarations](external.md)
-20. [Documentation Comments](documentation-comments.md)
-21. Standard Library
+21. [External Declarations](external.md)
+22. [Documentation Comments](documentation-comments.md)
+23. Standard Library
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`system` Namespace](system.md)
@@ -81,8 +87,8 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`system.math` Namespace](system.math.md)
     * [`system.memory` Namespace](system.memory.md)
     * [`system.text` Namespace](system.text.md)
-22. [Conventions](conventions.md)
-23. [Planned Features](planned-features.md)
+24. [Conventions](conventions.md)
+25. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
     * [Aliases](planned-aliases.md)
