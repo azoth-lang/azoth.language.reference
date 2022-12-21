@@ -5,7 +5,6 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Introduction](introduction.md)
 * [Target](target.md)
 * [Variable Bindings](variable-bindings.md)
-* [Functions](functions.md)
 * [Ownership](ownership.md)
   * [Reference Types and Borrowing](reference-types.md)
   * [Value Types and Copy](value-types.md)
