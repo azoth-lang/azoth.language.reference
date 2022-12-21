@@ -67,7 +67,7 @@ Exceptions can be caught and transformed into `Result<T>` values.
     let z = try foo() catch?; // makes catch seem optional
     let x = catch foo();
 
-Alternatively, you can panic when an exception occurs.
+Alternatively, you can abort when an exception occurs.
 
     // Note: the syntax for the return type has been changed to `never` so bang may not make sense
     // Note sure on syntax for this
@@ -77,9 +77,9 @@ Alternatively, you can panic when an exception occurs.
     // Better to be explicit about the exception type
     let z = try foo() catch! NetworkException;
     // This makes it easy to search code for this
-    let a = try foo() catch NetworkException => panic!();
+    let a = try foo() catch NetworkException => abort!();
 
-Note: Swift has prefix expressions with `try` to allow them to throw. `try?` turns their result into a nullable rather than throwing. `try!` makes them panic if an exception is thrown. Midori had `try <exp> else catch` that returned Result<T>. You could also do `try <exp> else <value>` that would use value if an exception was thrown. My concern about those is that they don't specify the exception. So if a new exception is added, they could swallow it too.
+Note: Swift has prefix expressions with `try` to allow them to throw. `try?` turns their result into a nullable rather than throwing. `try!` makes them abort if an exception is thrown. Midori had `try <exp> else catch` that returned Result<T>. You could also do `try <exp> else <value>` that would use value if an exception was thrown. My concern about those is that they don't specify the exception. So if a new exception is added, they could swallow it too.
 
 **TODO:** can you combine try and return result with catch? For example `try? foo() catch e: NetworkException => throw e` would rethrow `NetworkException` but otherwise return Result.
 

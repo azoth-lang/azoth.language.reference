@@ -10,6 +10,6 @@ All destructors implicitly are `no throw`. This is because destructors are calle
 
 Alternatives:
 
-  1. Allow destructors to throw, but panic if this happens during stack unwinding
+  1. Allow destructors to throw, but abort if this happens during stack unwinding
   2. Allow destructors to throw, but give them a way to tell if it is during stack unwinding (i.e. std::uncaught_exception()) and choose what happens. This seems to be discouraged even in C++
   3. Allow destructors to throw, but enforce something about try catch blocks so that types with destructors that throw can never be destructed by stack unwinding. This seems very restrictive
