@@ -45,6 +45,8 @@ The implicit numeric conversions are:
 
 Given a value type `S` and reference type `T` such that `S <: T`, there are implicit boxing conversions from "`S?`" to "`T?`" and from "`S`" to "`T?`". There is also an implicit conversion from `S` to `S?`.
 
+**TODO:** maybe boxing should be an explicit operation. Not a conversion but box some kind of `box x` expression.
+
 ### Implicit Constant Expression Conversions
 
 A constant expression of the types "`int8`", "`byte`", "`int16`", "`uint16`", "`int32`", "`uint32`", "`int64`", "`uint64`", "`int`", "`uint`", "`size`", "`offset`", "`float32`", or "`float64`" can be implicitly converted to any other type in the list if the value of the constant expression is within the range of the destination type and can be represented without loss of precision. Thus for conversion to "`float32`" and "`float64`" the value must not have more significant bits than be represented by the type.
@@ -62,7 +64,7 @@ The following conversions are explicit conversions:
 * Explicit reference conversions
 * User-defined explicit conversions
 
-Explicit conversions can be performed with the "`as!`" or "`as?`" operators. The former causes abandonment when the conversion fails at runtime, the latter produces the value "`none`".
+Explicit conversions can be performed with the "`as!`" or "`as?`" operators. The former causes an abort when the conversion fails at runtime, the latter produces the value "`none`".
 
 ### Explicit Numeric Conversions
 
@@ -73,6 +75,8 @@ Conversions from any integer numeric type including "`size`" and "`offset`" to "
 ### Explicit Reference Conversions
 
 Given reference types "`S`" and "`T`", there is an explicit conversion from "`S`" to "`T`" unless it can be proven that there does not exist a type "`U`" where `U <: S` such that `U <: T`.
+
+**TODO:** maybe this should require a `cast[T](v)` instead to be more explicit?
 
 ### User-defined Explicit Conversions
 

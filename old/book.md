@@ -33,7 +33,6 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Effects](effects.md)
 * [Generics](generics.md)
 * Const and Static
-* [Casting with `as`](casting.md)
 * Unit Testing
 * Standard Library
   * Reflection
