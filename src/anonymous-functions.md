@@ -26,7 +26,7 @@ let repeat_n = fn(n, func)
 
 ## Closures
 
-Anonymous functions are closures, thus they have access to the variable values in the surrounding function.
+Anonymous functions are closures, thus they have access to the variables in the surrounding function.
 
 ```azoth
 make_adder(n: int) -> (int) -> int
@@ -35,4 +35,4 @@ make_adder(n: int) -> (int) -> int
 }
 ```
 
-**TODO:** explain the complexities of closures in a language with a borrow checker
+**TODO:** document how closures work with reference capabilities

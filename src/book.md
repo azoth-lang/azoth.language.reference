@@ -48,6 +48,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 7. [Statements](statements.md)
 8. [Namespaces](namespaces.md)
 9. [Functions](functions.md)
+   * [Anonymous Functions](anonymous-functions.md)
 10. Classes
     * Declarations
     * Members
