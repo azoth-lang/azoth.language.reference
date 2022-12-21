@@ -60,6 +60,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * Properties
     * [Operator Overloading](operator-overloading.md)
     * [Partial Classes](partial-classes.md)
+    * [Object Literals](object-literals.md)
 11. [Structs](structs.md)
     * [Struct Initializers](struct-initializers.md)
     * [Struct Constructors](struct-constructors.md)
