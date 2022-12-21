@@ -14,7 +14,6 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Formal Description](borrow-checker.md)
 * [Patterns](patterns.md)
 * Classes
-  * [Fields](fields.md)
   * Methods (including `open`)
   * [Associated Functions](associated-functions.md)
   * [Destructors](destructors.md)

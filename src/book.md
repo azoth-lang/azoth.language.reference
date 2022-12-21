@@ -52,7 +52,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 10. Classes
     * Declarations
     * Members
-    * Fields
+    * [Fields](fields.md)
     * [Constructors](class-constructors.md)
     * Destructors
     * Methods
