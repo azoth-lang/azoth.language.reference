@@ -17,7 +17,7 @@ public mut struct Channel_Receiver
     }
 }
 
-// In Main
+// In main
 let a = new Channel_Receiver(83);
 let b = a; // implicit move
 console.write_line("b.buffer_size = \(b.buffer_size)");
@@ -49,7 +49,7 @@ public struct complex
     }
 }
 
-// In Main
+// In main
 let a = new complex(6, 4);
 let b = a;
 
@@ -103,7 +103,7 @@ It doesn't make sense to give copy semantics to some structs, but we still want 
         }
     }
 
-    // In Main
+    // In main
     let a = mut new Complex(6, 4);
     let b = new copy(ref a); // explicit copy
     a.X = 4;

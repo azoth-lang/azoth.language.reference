@@ -2,7 +2,7 @@
 
 Every Azoth program has at least one function, the main function:
 
-    public Main() -> void
+    public main() -> void
     {
     }
 
@@ -10,7 +10,7 @@ This is the simplest possible function. It is public, meaning it is visible ever
 
 So how to take arguments?  Here is a main function that takes the console as an argument, so it can print hello world.
 
-    public Main(console: mut Console) -> void
+    public main(console: mut Console) -> void
     {
         console.WriteLine("Hello World");
     }

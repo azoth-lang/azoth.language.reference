@@ -12,7 +12,7 @@ public absolute_value(x: ref complex) -> float
     return sqrt(p.real*p.real + p.imaginary*p.imaginary);
 }
 
-// In Main
+// In main
 let a = new complex(6, 4);
 let abs = absolute_value(ref a);
 
@@ -51,7 +51,7 @@ public double(x: ref var complex) -> void
     x = new complex(x.real*2, x.imaginary*2);
 }
 
-// In Main
+// In main
 var a = new complex(6, 4);
 console.write_line("a = \(a.real)+\(a.imaginary)i");
 double(ref var a);

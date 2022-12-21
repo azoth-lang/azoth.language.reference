@@ -2,7 +2,7 @@
 
 Almost all programs require variables. The standard form of variable binding is the `let` statement.
 
-    public Main() -> void
+    public main() -> void
     {
         let x = 5;
     }

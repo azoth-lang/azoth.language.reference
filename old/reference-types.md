@@ -41,7 +41,7 @@ public distance_from_origin(p: Point) -> float
     return sqrt(p.x*p.x + p.y*p.y);
 }
 
-// In Main
+// In main
 let a = new Point(4, 3);
 console.write_line("a = (\(a.x), \(a.y))");
 let distance = distance_from_origin(a);
@@ -86,7 +86,7 @@ public consume(console: mut Console, p: Point$owned) -> void
     console.WriteLine("consumed (\(p.x), \(p.y))");
 }
 
-// In Main
+// In main
 let a = new Point(4, 5);
 consume(mut console, move a);
 ```
@@ -113,7 +113,7 @@ public transform(p:  mut Point$owned) -> Point$owned
     return move p;
 }
 
-// In Main
+// In main
 let a = new Point(4, 5);
 let b = mut transform(move a);
 b.x -= 1;

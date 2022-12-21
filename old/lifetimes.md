@@ -7,7 +7,7 @@ In discussing the ownership system so far we have glossed over one very importan
 Before we get to lifetimes, it is necessary to review scopes as they are the scaffolding that lifetimes fit into. Every variable has a lexically defined scope in which it can be used.
 
 ```azoth
-public Main(console: mut Console) -> void     // -+ `console` comes into scope
+public main(console: mut Console) -> void     // -+ `console` comes into scope
 {                                             //  |
     console.WriteLine("Beginning Execution"); //  |
     let x = 42;                               // -+ `x` comes into scope
@@ -23,7 +23,7 @@ A variable comes into scope when it is declared and goes out of scope at the end
 In Azoth, values and references have lifetimes. Lifetimes are grounded in the scopes of the variables that hold them, but are more flexible.
 
 ```azoth
-public Main(console: mut Console) -> void     // -+ `console` reference lifetime begins
+public main(console: mut Console) -> void     // -+ `console` reference lifetime begins
 {                                             //  |
     console.WriteLine("Beginning Execution"); //  |
     let x = 42;                               // -+ `x` value lifetime begins
@@ -112,7 +112,7 @@ public consume(console: mut Console, p: Point$owned) -> void
     console.write_;ine("consumed (\(p.x), \(p.y))");
 }
 
-// In Main
+// In main
 let a = new Point(4, 5);
 consume(mut console, move a);
 ```
