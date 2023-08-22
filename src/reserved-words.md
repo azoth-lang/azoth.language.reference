@@ -1,4 +1,4 @@
-## Reserved Words
+# Reserved Words
 
 Reserved words are identifier like character sequences that are reserved for possible future use as keywords. They can't be used as identifiers except by escaping them. Some reserved words are specifically reserved as types because they follow the pattern of existing types.
 
@@ -51,7 +51,7 @@ reserved_word
 
 Note: The "`then`" keyword would allow for "`while condition { } then { } else { }`". The "else" block would be executed if the condition is false the first time it is evaluated. The "then" block would be executed if control flow left the end of the loop body (i.e. the loop body executed at least once and wasn't exited with a "`break`" expression). It is unclear if the semantics should be that a "`then`" without an "`else`" would execute even if the loop never did. (see also `unless break`)
 
-### Reserved Types
+## Reserved Types
 
 Some identifiers are reserved for use as type names. They generally follow the pattern of existing types. However, the `fixed`, `ufixed`, and `real` types include a period which no identifier does. Note that even patterns where the digit portion starts with zero are reserved.
 

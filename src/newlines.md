@@ -1,4 +1,4 @@
-## Newlines
+# Newlines
 
 Newlines divide an Azoth program into lines. For the purposes of viewing a source file as a sequences of lines, the end of file terminates the last line.
 

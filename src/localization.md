@@ -1,4 +1,4 @@
-## Localization
+# Localization
 
 The standard library relies on a concept of locals for all formatting and parsing.
 
@@ -19,11 +19,11 @@ Many applications are developed without regard for internalization. For these ap
 
 Note: .NET uses the term "culture", but "locale" seems to be both the more standard term and more precise.
 
-### Debug Formatting
+## Debug Formatting
 
 When converting a value to a string for debug purposes the display locale is used by default. However, there should be a way to override this for a developer wishing to test the app in a separate locale from their testing. That probably means there is a debug display locale.
 
-### Conventions
+## Conventions
 
 The names below are used throughout the standard library for converting to strings. In these, the "`FormatEnum`" is specific to the type being formatted. Overloads with a "`FormatEnum`" may not be provided in cases where formatting can't be controlled.
 

@@ -1,4 +1,4 @@
-## Whitespace
+# Whitespace
 
 Whitespace is not significant except in that it may separate tokens. Whitespace includes all code points in the Unicode class Zs which includes the standard space character (U+20).
 

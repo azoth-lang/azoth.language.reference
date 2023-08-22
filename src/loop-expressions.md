@@ -1,4 +1,4 @@
-## Loop Expressions
+# Loop Expressions
 
 Azoth has three loop constructs. They are "`loop`", "`while`" and "`foreach`". All loop bodies must be block statements.
 
@@ -10,7 +10,7 @@ loop_expression
     ;
 ```
 
-### `loop`
+## `loop`
 
 The simplest kind of loop is an infinite loop. Infinite loops are created with the "`loop`" keyword.
 
@@ -29,7 +29,7 @@ loop
 }
 ```
 
-### `while`
+## `while`
 
 ```grammar
 while_expression
@@ -58,7 +58,7 @@ loop
 }
 ```
 
-### `foreach`
+## `foreach`
 
 Foreach loops allow something to be done a set number of times or for a set of values.
 
@@ -88,7 +88,7 @@ foreach _ in 1..10
 }
 ```
 
-### Controlling Loop Iteration
+## Controlling Loop Iteration
 
 You can use `break` and `next` expressions to control loop iteration. Both "`break`" and "`next`" expressions have the type "`never`".
 
@@ -102,7 +102,7 @@ next_expression
     ;
 ```
 
-### `break` Values
+## `break` Values
 
 The "`break`" expression can have a value. This value then becomes the value of the loop expression. All break expressions must have values of compatible types. The type of a "`loop`" expression is the type of the values.
 
@@ -131,7 +131,7 @@ let x = foreach y in items
         } ?? foo;
 ```
 
-### Loop Labels
+## Loop Labels
 
 When using break or next it may be necessary to indicate which loop you are controlling. This can be done by labeling the loop.
 

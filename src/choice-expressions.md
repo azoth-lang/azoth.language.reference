@@ -1,4 +1,4 @@
-## Choice Expressions
+# Choice Expressions
 
 There are two constructs which allow the choice of which code to execute. They are "`if`" and "`match`".
 

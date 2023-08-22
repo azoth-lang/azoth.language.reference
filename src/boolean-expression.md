@@ -1,4 +1,4 @@
-## Boolean Expression
+# Boolean Expression
 
 A boolean expression is an embedded expression whose type is "`bool`".
 

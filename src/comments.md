@@ -1,4 +1,4 @@
-## Comments
+# Comments
 
 Both single line and delimited comments are supported. Single-line comments start with the characters "`//`" and extend to the end of the source line. Delimited comments start with the characters "`/*`" and end with the characters "`*/`". Delimited comments may span multiple lines. Comments starting with "`///`" are used for documentation (see [Documentation Comments](documentation-comments.md))
 

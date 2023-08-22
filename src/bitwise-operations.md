@@ -1,4 +1,4 @@
-## Bitwise Operations
+# Bitwise Operations
 
 Bitwise operations are provided on all the integer numeric types including "`size`" and "`offset`". However, they are not operators. Instead they are methods. However, they will always be inlined and their use does not involve the overhead of a method call.
 

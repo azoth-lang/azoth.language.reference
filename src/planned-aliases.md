@@ -1,4 +1,4 @@
-## Aliases
+# Aliases
 
 The keyword "`alias`" introduces an alias for a type name. It does not create a separate type.
 

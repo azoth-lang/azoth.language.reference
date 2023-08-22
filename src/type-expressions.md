@@ -1,4 +1,4 @@
-## Type Expressions
+# Type Expressions
 
 Type expressions allow other data types to be composed into further types. All type operators have the same precedence. The order of type operations can be controlled using parenthesized expressions.
 
@@ -10,7 +10,7 @@ type_expression
     ;
 ```
 
-### Domains
+## Domains
 
 For any type expression, all the types operated on must be from a single domain. There are two ways type domains are formed.
 
@@ -20,7 +20,7 @@ For any type expression, all the types operated on must be from a single domain.
 
 It is important to note that for the reference types, a single domain contains them all. Whereas for the enum struct types, each enum struct creates two separate domains, one for the optional variant and one for the non-optional variant.
 
-### Union Types
+## Union Types
 
 Union types are the union of other data types. That is, a value of any of the types being unioned is a legal value for the union type. Methods and properties common to all types in the union type can be directly accessed on a value of the union type. Other methods and properties require that the value be destructured to the specific type using `match` etc.
 
@@ -30,7 +30,7 @@ union_type
     ;
 ```
 
-### Intersection Types
+## Intersection Types
 
 Intersection types are the intersection of other data types. For a value to be of the intersection type, it must be a subtype of all the types being intersected. Instances of an intersection type have all the methods and properties of all the types being intersected.
 

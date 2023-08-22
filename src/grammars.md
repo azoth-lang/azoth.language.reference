@@ -1,8 +1,8 @@
-## Grammars
+# Grammars
 
 This reference presents the syntax of Azoth using two grammars. The *lexical grammar* defines how characters combine to define tokens. The *syntactic grammar* defines how the tokens resulting from the lexical grammar are combined to form Azoth programs.
 
-### Grammar Notation
+## Grammar Notation
 
 The grammars in this reference use a variant of [BNF](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). They are not formal and may be ambiguous or have a structure which is not supported by certain parsing algorithms. Ambiguity in the grammar may be resolved by additional restrictions stated alongside the grammar. The notation used is summarized in the table below. Lexical grammars operate over unicode scalar values, thus whitespace cannot occur between nonterminals. When matching strings, i.e. in lexical grammars, the longest match is taken. Syntactic grammars operate over tokens and nonterminals may be separated by whitespace.
 
