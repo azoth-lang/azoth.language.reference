@@ -23,6 +23,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * Signatures and Overloading
    * Scopes
    * [Execution Order](execution-order.md)
+   * [Compiler Diagnostics](compiler-diagnostics.md)
 4. [Types](types.md)
    * [Empty Types](empty-types.md)
    * [Struct Types](struct-types.md)
