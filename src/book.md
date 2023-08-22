@@ -3,6 +3,7 @@
 Note: This is the new version of the reference. Sections are being moved from the old version to the new version. If something is missing, it may be documented in the [old version](../old/book.md).
 
 1. Introduction
+   * [Simplifying Decisions](simplifying-decisions.md)
 2. Lexical Structure
    * [Packages](packages.md)
    * [Grammars](grammars.md)
@@ -31,6 +32,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Tuple Types](tuple-types.md)
    * [Pointer Types](pointer-types.md)
    * [Reference Types](reference-types.md)
+   * Reference Capabilities
    * Type Parameters
    * [Optional Types](optional-types.md)
    * [Type Expressions](type-expressions.md)

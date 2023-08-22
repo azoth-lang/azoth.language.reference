@@ -6,5 +6,5 @@ Roughly speaking, an Azoth package is compiled in the following steps:
 
 1. Lexical analysis translates Unicode code points into a stream of tokens.
 2. Syntactic analysis translates tokens into a structured representation of Azoth code.
-3. Semantic analysis validates that structured representation for semantic rules like being well typed.
+3. Semantic analysis validates that structured representation for semantic rules such as type checking.
 4. Code generation translates the structured representation into executable code.
