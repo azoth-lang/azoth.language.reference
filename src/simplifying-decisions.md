@@ -33,9 +33,23 @@ whose assignment couldn't be changed but whose mutability could be chosen. For s
 not be supported. `var T` will be mutable and `let T` will not. However, note that is T is
 inherently not mutable then of course `var T` will only allow assignment not mutation.
 
+Since structs can contain references, it will still be necessary to know how they interact with
+reference capabilities. For that, I believe it will still be necessary to give each struct a
+reference capability at declaration. This will limit what kinds of references can be stored in it
+and just how it acts as a reference when passed to or returned from a function.
+
 ## Heap References Can Always be Internal
 
 Once could imagine that a reference to a struct or variable on the heap could be either a reference
 to the inside of an object or to the beginning of the object. The difference matters for the garbage
 collector. However, internal references are much more common and are also inclusive of both
 possibilities. To keep the language simply, only internal references will be supported for now.
+
+## No Automatic Reference Restriction
+
+Classes will be marked with a reference capability at declaration that can restrict how they can
+reference other things. For example, a `const class T` will always be constant. One could imagine
+that a read only reference `T` should be treated as `const T` in that case. This isn't always
+possible because a subtype of `T` could be non-constant. It might be possible to imagine that sealed
+classes could still have their reference capability automatically restricted. However, for
+simplicity, this will not be done for now.
