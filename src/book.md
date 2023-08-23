@@ -33,6 +33,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Pointer Types](pointer-types.md)
    * [Reference Types](reference-types.md)
    * Reference Capabilities
+   * [Variable References](variable-references.md)
    * Type Parameters
    * [Optional Types](optional-types.md)
    * [Type Expressions](type-expressions.md)
@@ -49,10 +50,15 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Interpolated Strings](interpolated-strings.md)
    * [Initializers](initializers.md)
 7. [Statements](statements.md)
+   * Local Variable Declarations
+   * Local Constant Declarations
 8. [Namespaces](namespaces.md)
-9. [Functions](functions.md)
+9. Declarations
+   * Constant Declarations
+   * Type Aliases
+10. [Functions](functions.md)
    * [Anonymous Functions](anonymous-functions.md)
-10. Classes
+11. Classes
     * Declarations
     * Members
     * [Fields](fields.md)
@@ -64,26 +70,26 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Operator Overloading](operator-overloading.md)
     * [Partial Classes](partial-classes.md)
     * [Object Literals](object-literals.md)
-11. [Structs](structs.md)
+12. [Structs](structs.md)
     * [Struct Initializers](struct-initializers.md)
     * [Struct Constructors](struct-constructors.md)
-12. [Traits](traits.md)
-13. [Enumerations](enumerations.md)
+13. [Traits](traits.md)
+14. [Enumerations](enumerations.md)
     * Enumeration Structs
     * Enumeration Classes
-14. Generics
-15. Structured Concurrency
-16. Design by Contract
-17. Error Handling
+15. Generics
+16. Structured Concurrency
+17. Design by Contract
+18. Error Handling
     * Exceptions
     * Out of Memory and Stack Overflow
-18. Attributes
-19. Patterns
-20. [Unsafe Code](unsafe.md)
+19. Attributes
+20. Patterns
+21. [Unsafe Code](unsafe.md)
     * [Pointers](pointers.md)
-21. [External Declarations](external.md)
-22. [Documentation Comments](documentation-comments.md)
-23. Standard Library
+22. [External Declarations](external.md)
+23. [Documentation Comments](documentation-comments.md)
+24. Standard Library
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`system` Namespace](system.md)
@@ -93,8 +99,8 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`system.math` Namespace](system.math.md)
     * [`system.memory` Namespace](system.memory.md)
     * [`system.text` Namespace](system.text.md)
-24. [Conventions](conventions.md)
-25. [Planned Features](planned-features.md)
+25. [Conventions](conventions.md)
+26. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
     * [Aliases](planned-aliases.md)

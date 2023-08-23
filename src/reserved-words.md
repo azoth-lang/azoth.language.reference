@@ -66,6 +66,7 @@ reserved_type
     | "ufixed" [0-9]+ "." [0-9]+
     | "decimal"
     | "decimal" [0-9]+
+    | "decimal." [0-9]+
     | "real"
     | "real." [0-9]+
     ;
