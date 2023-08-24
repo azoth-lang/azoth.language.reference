@@ -57,7 +57,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * Constant Declarations
    * Type Aliases
 10. [Functions](functions.md)
-   * [Anonymous Functions](anonymous-functions.md)
+    * [Anonymous Functions](anonymous-functions.md)
 11. Classes
     * Declarations
     * Members

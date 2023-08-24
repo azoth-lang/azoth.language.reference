@@ -12,7 +12,7 @@ Azoth is meant to be high performance with fixed, low overhead for common operat
 
 An additional wrinkle is added by allowing method implementation on interfaces. In that case it is possible to end up in a diamond inheritance with two different implementations for a given method. The language would then error on an ambiguous call to that method. However, we must support calling the method after casting to one of the two interfaces.
 
-## Vtables
+### Vtables
 
 Because any class can implement the traits of any other class, there is not a simple class hierarchy that lends itself to having one or even a few vtable pointers in objects. C++ style vtables would cause all inheritance to effectively be what C++ calls virtual inheritance which is far less efficient.
 
@@ -22,9 +22,9 @@ Another vtable approach that could work is a method coloring approach. Essential
 
 The fact that structs can implement traits also poses a problem. The struct would not normally have a vtable pointer in it, but a reference to the struct on the stack could be converted to a reference to a trait it implements. Where would the vtable pointer come from then?
 
-## Fat Pointers
+### Fat Pointers
 
-Instead of using a complicated vtable schemes, the preferred implementation is probably fat pointers. All objects in memory are stored without a vtable or type descriptor pointer. Instead references to objects are "fat". Meaning references are actually a pair of a pointer to the data and a pointer to a vtable like structure with the type descriptor. We will call this structure the *trait table*. Casting therefore involves changing the trait table portion of the reference.
+Instead of using a complicated vtable scheme, the preferred implementation is probably fat pointers. All objects in memory are stored without a vtable or type descriptor pointer. Instead references to objects are "fat". Meaning references are actually a pair of a pointer to the data and a pointer to a vtable like structure with the type descriptor. We will call this structure the *trait table*. Casting therefore involves changing the trait table portion of the reference.
 
 Whenever the compiler is able to determine the concrete type of a value, it can use a regular pointer rather than a fat pointer. Then if it calls a function needing a fat pointer, it can use a constant value for the trait table pointer. This applies to all structs since they can't be inherited from, nor can their interfaces be implemented.
 
@@ -32,17 +32,17 @@ One concern about fat pointers is that they increase total memory usage when the
 
 Note: Rust uses fat pointers for trait objects. Swift uses 40 byte fat pointers for all protocol references. Go uses fat pointers for all interface references.
 
-## Pointer Types
+### Pointer Types
 
 Pointer types have been restricted to point to value types because nothing can subtype them and so their size and methods are known at compile time. Thus all pointer types do not need to be fat pointers. They are instead regular pointers the size of addresses on the given platform.
 
-## Trait Tables
+### Trait Tables
 
-Trait tables will need to contain both function pointers to the various methods, but also information about the type and its relation to any base class trait tables. One possible structure for this would be that at address zero of the trait table would be a pointer to the type object of the type. This would be used for reflection. At address one could be the address of the destructor function since all objects will have a destructor even if it is supplied by the compiler. If a type truly has no destructor, this pointer could point to a no-op function or simply be null. This would then be followed by slots for all the virtual methods of the type and its base classes starting from the base class an moving down. For subtype relationships that form a directed acyclic graph (DAG), multiple traits may expect their methods to be in the same slot. Thus, it may be necessary to use a separate trait table when accessing this type from a reference of the trait type. Thus when upcasting, the trait table pointer of the object reference will need to be changed. This can be easily supported by placing pointers to alternate trait tables for the type and negative offsets from the trait table pointer (i.e. before the pointer to the type object).
+Trait tables will need to contain both function pointers to the various methods, but also information about the type and its relation to any base class trait tables. One possible structure for this would be that at address zero of the trait table would be a pointer to the type object of the type. This would be used for reflection. At address one could be the address of the destructor function since all objects will have a destructor even if it is supplied by the compiler. If a type truly has no destructor, this pointer could point to a no-op function or simply be null. This would then be followed by slots for all the virtual methods of the type and its base classes starting from the base class an moving down. For subtype relationships that form a directed acyclic graph (DAG), multiple traits may expect their methods to be in the same slot. Thus, it may be necessary to use a separate trait table when accessing this type from a reference of the trait type. Thus when upcasting, the trait table pointer of the object reference will need to be changed. This can be easily supported by placing pointers to alternate trait tables for the type at negative offsets from the trait table pointer (i.e. before the pointer to the type object).
 
 ## Optimize to Value
 
-The borrow checker will automatically provide escape analysis and will encourage a programming style where most objects do not escape. References that never escape do not need to be allocated on the heap, but can instead be allocated on the stack. Likewise, for owned references in objects that never escape. Rather than being allocated as a separate object on the heap, they can be allocated as part of the owing object. Not that these optimizations may occur in one function/type but not another.
+Reference capabilities will automatically provide escape analysis and will encourage a programming style where most objects do not escape. References that never escape do not need to be allocated on the heap, but can instead be allocated on the stack. Likewise, for owned references in objects that never escape. Rather than being allocated as a separate object on the heap, they can be allocated as part of the owing object. Note that these optimizations may occur in one function/type but not another.
 
 ## Generics
 
