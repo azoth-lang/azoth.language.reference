@@ -40,6 +40,28 @@ Pointer types have been restricted to point to value types because nothing can s
 
 Trait tables will need to contain both function pointers to the various methods, but also information about the type and its relation to any base class trait tables. One possible structure for this would be that at address zero of the trait table would be a pointer to the type object of the type. This would be used for reflection. At address one could be the address of the destructor function since all objects will have a destructor even if it is supplied by the compiler. If a type truly has no destructor, this pointer could point to a no-op function or simply be null. This would then be followed by slots for all the virtual methods of the type and its base classes starting from the base class an moving down. For subtype relationships that form a directed acyclic graph (DAG), multiple traits may expect their methods to be in the same slot. Thus, it may be necessary to use a separate trait table when accessing this type from a reference of the trait type. Thus when upcasting, the trait table pointer of the object reference will need to be changed. This can be easily supported by placing pointers to alternate trait tables for the type at negative offsets from the trait table pointer (i.e. before the pointer to the type object).
 
+### Avoiding Memory Zeroing
+
+Zeroing memory on allocation is something many safe languages do. It plays well with exact garbage
+collection. However, it can represent a significant overhead. Furthermore, it is not necessary for
+safety in Azoth. The Azoth language enforces strict initialization before use in safe contexts.
+Unsafe contexts are severally restricted to ensure that they are trusted. This removes the need for
+zeroing for the language. While zeroing may still be necessary for the garbage collector, but Azoth
+has been designed to make it not necessary. If zeroing can be avoided, then Azoth will be ready for
+it.
+
+For regular objects, it seems like zeroing may be necessary. There is simply no other good way
+ensure that the GC doesn't trace uninitialized references in fields during object construction. A
+scheme of delaying tracing objects while object are being initialized would require convoluted stack
+management to keep all references live. Indeed, it would require special handling when calling base
+class constructors as those would return when the object is half initialized.
+
+While there seem to be limited options for base class constructors, there are much better options
+for memory buffers. The basic memory buffer that `List[T]` is built on is a fixed capacity buffer
+with a variable size. Only elements within the size will be traced by the GC. Thus elements can be
+left uninitialized until a value is assigned into them and then the buffer size can be increased to
+include them in GC tracing.
+
 ## Optimize to Value
 
 Reference capabilities will automatically provide escape analysis and will encourage a programming style where most objects do not escape. References that never escape do not need to be allocated on the heap, but can instead be allocated on the stack. Likewise, for owned references in objects that never escape. Rather than being allocated as a separate object on the heap, they can be allocated as part of the owing object. Note that these optimizations may occur in one function/type but not another.
