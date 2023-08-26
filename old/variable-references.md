@@ -34,6 +34,7 @@ console.write_line("x = \(x.real)+\(x.imaginary)i");
 ```
 
 Outputs:
+
 ```console
 x = 6+4i
 x = 7+2i

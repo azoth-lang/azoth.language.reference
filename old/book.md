@@ -11,8 +11,6 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Summary of Ownership](ownership-summary.md)
   * [Formal Description](borrow-checker.md)
 * [Patterns](patterns.md)
-* Classes
-  * [Extensions](extensions.md)
 * [Enums](enums.md)
 * [Generators](generators.md)
 * [Async and Await](async.md)

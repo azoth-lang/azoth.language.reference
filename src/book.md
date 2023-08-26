@@ -77,22 +77,23 @@ Note: This is the new version of the reference. Sections are being moved from th
 14. [Enumerations](enumerations.md)
     * Enumeration Structs
     * Enumeration Classes
-15. Generics
-16. Structured Concurrency
-17. [Design by Contract](contracts.md)
-18. [Error Handling](error-handling.md)
+15. [Extensions](extensions.md)
+16. Generics
+17. Structured Concurrency
+18. [Design by Contract](contracts.md)
+19. [Error Handling](error-handling.md)
     * [Aborting](aborting.md)
     * [Exceptions](exceptions.md)
     * [Out of Memory and Stack Overflow](memory-exhaustion.md)
     * [Assertions](assertions.md)
-19. Attributes
-20. Patterns
-21. Unit Testing
-22. [Unsafe Code](unsafe.md)
+20. Attributes
+21. Patterns
+22. Unit Testing
+23. [Unsafe Code](unsafe.md)
     * [Pointers](pointers.md)
-23. [External Declarations](external.md)
-24. [Documentation Comments](documentation-comments.md)
-25. Standard Library
+24. [External Declarations](external.md)
+25. [Documentation Comments](documentation-comments.md)
+26. Standard Library
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`system` Namespace](system.md)
@@ -102,10 +103,10 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`system.math` Namespace](system.math.md)
     * [`system.memory` Namespace](system.memory.md)
     * [`system.text` Namespace](system.text.md)
-26. Reflection
-27. [Conventions](conventions.md)
-28. [Version Number Scheme](version-numbers.md)
-29. [Planned Features](planned-features.md)
+27. Reflection
+28. [Conventions](conventions.md)
+29. [Version Number Scheme](version-numbers.md)
+30. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
     * [Aliases](planned-aliases.md)
