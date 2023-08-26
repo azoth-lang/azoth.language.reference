@@ -2,7 +2,7 @@
 
 Note: This is the new version of the reference. Sections are being moved from the old version to the new version. If something is missing, it may be documented in the [old version](../old/book.md).
 
-1. Introduction
+1. [Introduction](introduction.md)
    * [Simplifying Decisions](simplifying-decisions.md)
 2. Lexical Structure
    * [Packages](packages.md)
@@ -82,7 +82,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 17. [Design by Contract](contracts.md)
 18. [Error Handling](error-handling.md)
     * [Aborting](aborting.md)
-    * Exceptions
+    * [Exceptions](exceptions.md)
     * [Out of Memory and Stack Overflow](memory-exhaustion.md)
     * [Assertions](assertions.md)
 19. Attributes
