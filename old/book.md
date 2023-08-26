@@ -18,16 +18,11 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Generators](generators.md)
 * [Async and Await](async.md)
 * [Error Handling](error-handling.md)
-  * [Contracts and Assertions](contracts-assertions.md)
   * [Exceptions](exceptions.md)
   * [Results](result.md)
   * [Out of Memory and Stack Overflow](out-of-memory.md)
   * [Effects](effects.md)
 * [Generics](generics.md)
-* Const and Static
-* Unit Testing
-* Standard Library
-  * Reflection
 * [Version Number Scheme](version-numbers.md)
 * Feature Ideas
   * [Considering](ideas-considering.md)

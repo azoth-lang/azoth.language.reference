@@ -79,17 +79,20 @@ Note: This is the new version of the reference. Sections are being moved from th
     * Enumeration Classes
 15. Generics
 16. Structured Concurrency
-17. Design by Contract
-18. Error Handling
+17. [Design by Contract](contracts.md)
+18. [Error Handling](error-handling.md)
+    * [Aborting](aborting.md)
     * Exceptions
     * Out of Memory and Stack Overflow
+    * [Assertions](assertions.md)
 19. Attributes
 20. Patterns
-21. [Unsafe Code](unsafe.md)
+21. Unit Testing
+22. [Unsafe Code](unsafe.md)
     * [Pointers](pointers.md)
-22. [External Declarations](external.md)
-23. [Documentation Comments](documentation-comments.md)
-24. Standard Library
+23. [External Declarations](external.md)
+24. [Documentation Comments](documentation-comments.md)
+25. Standard Library
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`system` Namespace](system.md)
@@ -99,8 +102,9 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`system.math` Namespace](system.math.md)
     * [`system.memory` Namespace](system.memory.md)
     * [`system.text` Namespace](system.text.md)
-25. [Conventions](conventions.md)
-26. [Planned Features](planned-features.md)
+26. Reflection
+27. [Conventions](conventions.md)
+28. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
     * [Aliases](planned-aliases.md)
