@@ -1,6 +1,6 @@
-## `system.collections` Namespace
+# `system.collections` Namespace
 
-### `system.collections.specialized.Array[n: size, T]`
+## `system.collections.specialized.Array[n: size, T]`
 
 A fixed size safe array type.
 

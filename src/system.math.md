@@ -1,5 +1,5 @@
-## `system.math` Namespace
+# `system.math` Namespace
 
-### `integer` and `uinteger`
+## `integer` and `uinteger`
 
 The `integer` and `uinteger` structs are arbitrary precision signed and unsigned integers respectively.

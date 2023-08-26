@@ -1,10 +1,10 @@
-## `system` Namespace
+# `system` Namespace
 
-### `system.Iterable`
+## `system.Iterable`
 
-### `system.Iterator`
+## `system.Iterator`
 
-#### Enumerate
+### Enumerate
 
 The standard library provides an `enumerate()` method for counting. This provides the index of each value in the iterator sequence.
 
@@ -26,7 +26,7 @@ i = 4, x = 9
 i = 5, x = 10
 ```
 
-### Ranges
+## Ranges
 
 *Note:* The exact range API has not been determined. There may need to be a distinction between ranges of continous types and ranges of descrete types. See Swift 3 ranges and Stridable for an example https://oleb.net/blog/2016/09/swift-3-ranges/.
 

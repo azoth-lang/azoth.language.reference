@@ -1,4 +1,4 @@
-## `system.collections.specialized` Namespace
+# `system.collections.specialized` Namespace
 
 # `system.collections.specialized.Raw_Array`
 
