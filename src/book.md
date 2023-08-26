@@ -49,6 +49,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Boolean Expression](boolean-expression.md)
    * [Interpolated Strings](interpolated-strings.md)
    * [Initializers](initializers.md)
+   * [Generators](generators.md)
 7. [Statements](statements.md)
    * [Variable Declarations](variable-declarations.md)
    * Local Constant Declarations
