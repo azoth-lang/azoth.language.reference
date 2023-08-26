@@ -63,7 +63,7 @@ namespace example1
 
 namespace example2
 {
-    using system.collections; // Without this, references to List[T] would search up to the global namespace and be ambiguous.
+    using azoth.collections; // Without this, references to List[T] would search up to the global namespace and be ambiguous.
 
 }
 ```

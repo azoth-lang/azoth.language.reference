@@ -44,7 +44,7 @@ The "`int`" and "`uint`" types are arbitrary size integers. These are sometimes 
 * `size`
 * `offset`
 
-The bit sizes of these are system dependent. "`size`" is an unsigned number large enough to hold the maximum size of an array on the system. The size type is used to index into collections. "`offset`" is a signed number, with the same number of bits as "`size`", used to represent differences between array indexes and pointers.
+The bit sizes of these are system dependent. "`size`" is an unsigned number large enough to hold the maximum size of an array on the azoth. The size type is used to index into collections. "`offset`" is a signed number, with the same number of bits as "`size`", used to represent differences between array indexes and pointers.
 
 ### Floating Point Types
 

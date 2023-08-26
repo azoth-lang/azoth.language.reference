@@ -1,4 +1,4 @@
-# `system.math` Namespace
+# `azoth.math` Namespace
 
 ## `integer` and `uinteger`
 

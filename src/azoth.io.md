@@ -1,4 +1,4 @@
-# `system.io` Namespace
+# `azoth.io` Namespace
 
 Package for file and network IO
 

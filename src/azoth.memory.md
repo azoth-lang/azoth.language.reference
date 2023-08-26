@@ -1,4 +1,4 @@
-# `system.memory` Namespace
+# `azoth.memory` Namespace
 
 The standard library provides functions for allocating memory directly. These don't normally need to be used. Consistent with the limitations that pointers can only point to value types, these functions restrict the types they are allocating for to value types.
 
@@ -32,7 +32,7 @@ free(x);
 
 ## Allocating Structs on the Heap
 
-Structs can be allocated on the heap using the `system.memory.Boxed[T]` type. `Boxed[T]` is a move type and will automatically free the memory when it goes out of scope.
+Structs can be allocated on the heap using the `azoth.memory.Boxed[T]` type. `Boxed[T]` is a move type and will automatically free the memory when it goes out of scope.
 
 ```azoth
 let x = new Boxed[Struct_Type]();

@@ -1,6 +1,6 @@
-# `system.collections` Namespace
+# `azoth.collections` Namespace
 
-## `system.collections.specialized.Array[n: size, T]`
+## `azoth.collections.specialized.Array[n: size, T]`
 
 A fixed size safe array type.
 
@@ -24,7 +24,7 @@ Arrays as other collections have a `Count`. Length might apply but seems over sp
 
 What if arrays were not at all primitive but just another type. That fits well with how `List<T>` is the primary collection in C# and `Vec<T>` the primary collection in Rust.
 
-Then the challenge is how to represent multi-dimensional arrays. The rank (i.e. number of dimensions) could be another type param. Then it becomes confusing how to write the methods that need to deal with the dimensions as separate params. Still, if we could do that in the type system, it would mean there was a really cool and powerful type system. Another question is, if rank is a type param, what about arrays of known exact size, can we easily handle them?
+Then the challenge is how to represent multi-dimensional arrays. The rank (i.e. number of dimensions) could be another type param. Then it becomes confusing how to write the methods that need to deal with the dimensions as separate params. Still, if we could do that in the type system, it would mean there was a really cool and powerful type azoth. Another question is, if rank is a type param, what about arrays of known exact size, can we easily handle them?
 
     public class Array<T, Rank:size=1>
     {
@@ -186,7 +186,7 @@ We imagine there are a number of types:
 
 ---------------------  new idea
 
-System.Runtime defines a type UnsafeArray<T> which represents a block of Ts that can be uninitialized and for which no bounds checking is performed. You can then borrow portions of it. Do to the fact that the compiler my optimize references out of existence and optimize values into the stack. And unsafe array could end up with any of the following representations:
+azoth.Runtime defines a type UnsafeArray<T> which represents a block of Ts that can be uninitialized and for which no bounds checking is performed. You can then borrow portions of it. Do to the fact that the compiler my optimize references out of existence and optimize values into the stack. And unsafe array could end up with any of the following representations:
 
     1. A reference to UnsafeArray<T> is a pointer to a block of pointers to T
     2. A reference to UnsafeArray<T> is a pointer to a block of T
