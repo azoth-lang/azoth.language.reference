@@ -64,7 +64,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Fields](fields.md)
     * [Constructors](class-constructors.md)
     * [Destructors](destructors.md)
-    * Methods
+    * [Methods](methods.md)
     * [Associated Functions](associated-functions.md)
     * Properties
     * [Operator Overloading](operator-overloading.md)

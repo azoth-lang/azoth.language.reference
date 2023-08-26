@@ -13,7 +13,6 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Formal Description](borrow-checker.md)
 * [Patterns](patterns.md)
 * Classes
-  * Methods (including `open`)
   * [Extensions](extensions.md)
 * [Enums](enums.md)
 * [Generators](generators.md)
