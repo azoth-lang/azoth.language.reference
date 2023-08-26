@@ -83,7 +83,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 18. [Error Handling](error-handling.md)
     * [Aborting](aborting.md)
     * Exceptions
-    * Out of Memory and Stack Overflow
+    * [Out of Memory and Stack Overflow](memory-exhaustion.md)
     * [Assertions](assertions.md)
 19. Attributes
 20. Patterns

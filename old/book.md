@@ -20,7 +20,6 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Error Handling](error-handling.md)
   * [Exceptions](exceptions.md)
   * [Results](result.md)
-  * [Out of Memory and Stack Overflow](out-of-memory.md)
   * [Effects](effects.md)
 * [Generics](generics.md)
 * [Version Number Scheme](version-numbers.md)
