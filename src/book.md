@@ -104,7 +104,8 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`system.text` Namespace](system.text.md)
 26. Reflection
 27. [Conventions](conventions.md)
-28. [Planned Features](planned-features.md)
+28. [Version Number Scheme](version-numbers.md)
+29. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
     * [Aliases](planned-aliases.md)
