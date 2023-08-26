@@ -87,14 +87,15 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Structured Error Handling](structured-errors.md)
     * [Out of Memory and Stack Overflow](memory-exhaustion.md)
     * [Assertions](assertions.md)
-20. Attributes
-21. Patterns
-22. Unit Testing
-23. [Unsafe Code](unsafe.md)
+20. [Effects](effects.md)
+21. Attributes
+22. Patterns
+23. Unit Testing
+24. [Unsafe Code](unsafe.md)
     * [Pointers](pointers.md)
-24. [External Declarations](external.md)
-25. [Documentation Comments](documentation-comments.md)
-26. Standard Library
+25. [External Declarations](external.md)
+26. [Documentation Comments](documentation-comments.md)
+27. Standard Library
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`azoth` Namespace](azoth.md)
@@ -104,10 +105,10 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`azoth.math` Namespace](azoth.math.md)
     * [`azoth.memory` Namespace](azoth.memory.md)
     * [`azoth.text` Namespace](azoth.text.md)
-27. Reflection
-28. [Conventions](conventions.md)
-29. [Version Number Scheme](version-numbers.md)
-30. [Planned Features](planned-features.md)
+28. Reflection
+29. [Conventions](conventions.md)
+30. [Version Number Scheme](version-numbers.md)
+31. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
     * [Aliases](planned-aliases.md)

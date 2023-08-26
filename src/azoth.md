@@ -1,12 +1,30 @@
 # `system` Namespace
 
+## `azoth.Exception`
+
+Exception is a base class that provides basic functionality for exceptions. Note that a type does
+not need to inherit from `Exception` to be throwable. It is just a base class that it is recommended
+that all reference types meant for throwing inherit from.
+
+Exception provides two primary benefits. First, it includes and inner exception for use when
+catching an exception of one type and wrapping it to throw an exception of another type. Second, it
+provides and exception message that interacts well with structured logging. Exception messages may
+contain references to properties of the exception. These messages play well with structured logging
+so that when an exception is logged, there is a distinction between the template of the exception
+message and the actual message with values filled in. Also, exception properties referenced in the
+message can be logged as associated data.
+
+Note that `Exception` does not have any associated stack trace information like it does in languages
+such as C# or Java.
+
 ## `azoth.Iterable`
 
 ## `azoth.Iterator`
 
 ### Enumerate
 
-The standard library provides an `enumerate()` method for counting. This provides the index of each value in the iterator sequence.
+The standard library provides an `enumerate()` method for counting. This provides the index of each
+value in the iterator sequence.
 
 ```azoth
 foreach #(i, x) in (5..10).enumerate()
@@ -28,9 +46,16 @@ i = 5, x = 10
 
 ## Ranges
 
-*Note:* The exact range API has not been determined. There may need to be a distinction between ranges of continous types and ranges of descrete types. See Swift 3 ranges and Stridable for an example https://oleb.net/blog/2016/09/swift-3-ranges/.
+*Note:* The exact range API has not been determined. There may need to be a distinction between
+ranges of continuous types and ranges of discrete types. See Swift 3 ranges and `Strideable` for an
+example https://oleb.net/blog/2016/09/swift-3-ranges/.
 
-Any type `T where T: Integral` implements the range operator `X..Y` so that is returns a `Range[T, 1]` inclusive of `X` and `Y`. If `X > Y` then the range returned is the empty range. Note the type of `Range` is `Range[T, Step:T=1] where T: number`. This needs to fit in with an `Interval` type defined in `azoth.math`. To construct a range exclusive of the end value use the `..<` operator. Likewise the `<..` and `<..<` operators are used to construct ranges exclusive of the start and exclusive of both the start and end respectively.
+Any type `T where T: Integral` implements the range operator `X..Y` so that is returns a `Range[T,
+1]` inclusive of `X` and `Y`. If `X > Y` then the range returned is the empty range. Note the type
+of `Range` is `Range[T, Step:T=1] where T: number`. This needs to fit in with an `Interval` type
+defined in `azoth.math`. To construct a range exclusive of the end value use the `..<` operator.
+Likewise the `<..` and `<..<` operators are used to construct ranges exclusive of the start and
+exclusive of both the start and end respectively.
 
 Related types:
 
@@ -42,3 +67,13 @@ Related types:
 * StepBy? - a way to represent stepping ranges
 * Interval
 * Distribution used by random etc.
+
+## Abort
+
+`abort(message: string) -> never` can be used to cause a program abort.
+
+## Unreachable
+
+`unreachable(message: string? = none) -> never` can be used to to indicate a point in the program
+that ought to be logically unreachable. If at execution time, it is reached then a program abort
+happens.

@@ -14,7 +14,6 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Enums](enums.md)
 * [Async and Await](async.md)
 * [Error Handling](error-handling.md)
-  * [Exceptions](exceptions.md)
   * [Effects](effects.md)
 * [Generics](generics.md)
 * Feature Ideas

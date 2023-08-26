@@ -23,7 +23,10 @@ The following naming conventions are enforced by compiler warnings.
 
 ## Curly Brace Placement
 
-Curly braces should almost always be on their own line, never K&R style with the open brace on the same line. However, for control flow statements with a single statement, the braces and statement can appear on a single line indented. If the single statement is short it may appear on the same line as the control flow. For `break`, `continue` and `return` this should be an if expression.
+Curly braces should almost always be on their own line, never K&R style with the open brace on the
+same line. However, for control flow statements with a single statement, the braces and statement
+can appear on a single line indented. If the single statement is short it may appear on the same
+line as the control flow. For `break`, `continue` and `return` this should be a result expression.
 
 ```azoth
 for x in 1..10
@@ -40,7 +43,11 @@ for x in 1..10
 
 ## Parameter placements
 
-Function parameters should all be on one line or each on a separate line. If on separate lines, the left parenthesis is on the line with the function and the first parameter goes on the line after. The close parenthesis goes on the line with the last parameter. The exception is the self parameter which stays on the line with the function unless it doesn't fit. When parameters are on separate lines the return type is on its own line starting with `->`.
+Function parameters should all be on one line or each on a separate line. If on separate lines, the
+left parenthesis is on the line with the function and the first parameter goes on the line after.
+The close parenthesis goes on the line with the last parameter. The exception is the self parameter
+which stays on the line with the function unless it doesn't fit. When parameters are on separate
+lines the return type is on its own line starting with `->`.
 
 ```azoth
 
@@ -61,6 +68,8 @@ Stay within 80 characters most of the time, never go beyond 100. This is not bec
 
 ## Other
 
-* Prefer named constructors to a method that makes an instance (for example making a child node, copy or converted value)
-* In constructors, always use self or implicit self to access fields and properties, in methods, use only when necessary. (There should be compiler warnings for this).
+* Prefer named constructors to a method that makes an instance (for example making a child node,
+  copy or converted value)
+* In constructors, always use self or implicit self to access fields and properties, in methods, use
+  only when necessary. (There should be compiler warnings for this).
 * Use spaces instead of tabs (need compiler warning for this).
