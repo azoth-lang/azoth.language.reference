@@ -63,7 +63,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * Members
     * [Fields](fields.md)
     * [Constructors](class-constructors.md)
-    * Destructors
+    * [Destructors](destructors.md)
     * Methods
     * [Associated Functions](associated-functions.md)
     * Properties

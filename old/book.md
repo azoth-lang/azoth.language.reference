@@ -14,7 +14,6 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Patterns](patterns.md)
 * Classes
   * Methods (including `open`)
-  * [Destructors](destructors.md)
   * [Extensions](extensions.md)
 * [Enums](enums.md)
 * [Generators](generators.md)
