@@ -3,7 +3,6 @@
 Note: This is the old version of the reference. Sections are being moved from the old version to the new version. If something is missing, it may be documented in the [new version](../src/book.md).
 
 * [Introduction](introduction.md)
-* [Variable Bindings](variable-bindings.md)
 * [Ownership](ownership.md)
   * [Reference Types and Borrowing](reference-types.md)
   * [Value Types and Copy](value-types.md)

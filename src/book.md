@@ -50,7 +50,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Interpolated Strings](interpolated-strings.md)
    * [Initializers](initializers.md)
 7. [Statements](statements.md)
-   * Local Variable Declarations
+   * [Variable Declarations](variable-declarations.md)
    * Local Constant Declarations
 8. [Namespaces](namespaces.md)
 9. Declarations
