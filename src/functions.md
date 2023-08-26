@@ -43,6 +43,12 @@ public fn add_two(x: int) -> int
 
 To return from a function whose return type is `void`, use a return statement without a value, as `return;`.
 
+## Ignoring Function Return Values
+
+By default values returned from functions cannot be ignored. They must be explicitly discarded with
+`_ = ...`. However, functions can be marked with an attribute that indicates the return value can be
+ignored.
+
 ## Diverging Functions
 
 Azoth has special syntax for [diverging functions](https://en.wikipedia.org/wiki/Divergence_(computer_science)). Those are functions that never return by normal means. That could be because they always cause an abort (terminate the program), throw an exception, or loop forever.

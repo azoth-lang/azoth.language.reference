@@ -59,7 +59,7 @@ internal Function2() -> void
 }
 ```
 
-For more information see [Exceptions](exceptions.md).
+For more information see [Structured Error Handling](structured-errors.md).
 
 ### Interfaces of Classes
 

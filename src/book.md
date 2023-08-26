@@ -84,7 +84,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 18. [Design by Contract](contracts.md)
 19. [Error Handling](error-handling.md)
     * [Aborting](aborting.md)
-    * [Exceptions](exceptions.md)
+    * [Structured Error Handling](structured-errors.md)
     * [Out of Memory and Stack Overflow](memory-exhaustion.md)
     * [Assertions](assertions.md)
 20. Attributes

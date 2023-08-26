@@ -85,6 +85,8 @@ Note: Swift has prefix expressions with `try` to allow them to throw. `try?` tur
 
 ### Catch Patterns
 
+**TODO:** I am no longer sure this is a good idea
+
 You can only catch declared exceptions, not specific subtypes of declare exceptions because then you are depending on knowledge about the implementation of the method and are hiding a runtime type check. Not allowing this means exceptions don't have to carry runtime type info.
 
 Note: This idea comes from Midori.
@@ -102,14 +104,6 @@ Note: This idea comes from Midori.
         catch e => "value"; // e: Exception
 
     let x = try foo catch _ => "value";
-
-## Throwing an Error `Result<T>`
-
-If a function returns `Result<T>`, the error case can be converted to an exception.
-
-    // Not sure of syntax here
-    let x: T = try bar(); // bar doesn't throw, it returns Result<T>
-    let y = throw? bar(); // Throw on error
 
 ## Try/Catch Statements
 
