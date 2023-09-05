@@ -32,7 +32,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Tuple Types](tuple-types.md)
    * [Pointer Types](pointer-types.md)
    * [Reference Types](reference-types.md)
-   * Reference Capabilities
+   * [Reference Capabilities](reference-capabailities.md)
    * [Variable References](variable-references.md)
    * Type Parameters
    * [Optional Types](optional-types.md)
@@ -43,6 +43,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Expression Blocks](expression-blocks.md)
    * [Choice Expressions](choice-expressions.md)
    * [Loop Expressions](loop-expressions.md)
+   * [Capability Expressions](capability-expressions.md)
    * Operators
      * Logical Operators
    * [Bitwise Operations](bitwise-operations.md)

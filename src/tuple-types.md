@@ -1,8 +1,11 @@
 # Tuple Types
 
-The tuple types are a family of generic types. Like the simple types, they are identified by the keyword "`Tuple`". A tuple is an ordered list of values that can be of different types.
+The tuple types are a family of generic types. Like the simple types, they are identified by the
+keyword "`Tuple`". A tuple is an ordered list of values that can be of different types.
 
-Tuples are value types. If all the type parameters are implicitly copyable, then the tuple is implicitly copyable. If all the type parameters are implicitly *or explicitly copyable* then the tuple is explicitly copyable. If any type parameter is not copyable, the tuple is a move type.
+Tuples are value types. If all the type parameters are implicitly copyable, then the tuple is
+implicitly copyable. If all the type parameters are implicitly *or explicitly copyable* then the
+tuple is explicitly copyable. If any type parameter is not copyable, the tuple is a move type.
 
 ```grammar
 tuple_type
@@ -33,7 +36,9 @@ console.WriteLine("x = \(x)");
 
 ## Indexing Tuples
 
-Tuple fields are accessed by a zero based index. This is consistent with arrays which are zero based and makes more sense for the "`at`" method. Tuple values can be directly accessed as fields by escaping the index name.
+Tuple fields are accessed by a zero based index. This is consistent with arrays which are zero based
+and makes more sense for the "`at`" method. Tuple values can be directly accessed as fields by
+escaping the index name.
 
 ```azoth
 let t = #(1, 2, 3);

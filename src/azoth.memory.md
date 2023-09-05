@@ -1,17 +1,20 @@
 # `azoth.memory` Namespace
 
-The standard library provides functions for allocating memory directly. These don't normally need to be used. Consistent with the limitations that pointers can only point to value types, these functions restrict the types they are allocating for to value types.
+The standard library provides functions for allocating memory directly. These don't normally need to
+be used. Consistent with the limitations that pointers can only point to value types, these
+functions restrict the types they are allocating for to value types.
 
 ## Allocating Raw Memory
 
-The `allocate()` and `free()` provide manual memory management. The memory contents are not initialized.
+The `allocate()` and `free()` provide manual memory management. The memory contents are not
+initialized.
 
 ```azoth
 let x: @byte = allocate(45); // allocates 45 bytes
 unsafe free(x);
 ```
 
-# Allocating Memory For Arrays
+## Allocating Memory For Arrays
 
 The memory contents are not initialized.
 
@@ -20,7 +23,7 @@ let x: @Struct_Type = allocate[Struct_Type](10); // allocates enough memory for 
 unsafe free(x); // free memory, does not destruct the points
 ```
 
-# Resizing Memory
+## Resizing Memory
 
 ```azoth
 var x: @mut Point = allocate[Point](2);
@@ -32,7 +35,8 @@ free(x);
 
 ## Allocating Structs on the Heap
 
-Structs can be allocated on the heap using the `azoth.memory.Boxed[T]` type. `Boxed[T]` is a move type and will automatically free the memory when it goes out of scope.
+Structs can be allocated on the heap using the `azoth.memory.Boxed[T]` type. `Boxed[T]` is a move
+type and will automatically free the memory when it goes out of scope.
 
 ```azoth
 let x = new Boxed[Struct_Type]();

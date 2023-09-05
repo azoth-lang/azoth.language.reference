@@ -10,7 +10,7 @@ that type. Additionally, there are enum structs documented in a separate section
 
 | Struct Type              | Declaration Syntax | Semantics                                                              |
 | ------------------------ | ------------------ | ---------------------------------------------------------------------- |
-| Move Structs             | `move struct`      | Struct values "move" when assigned so that they are no longer be used. |
+| Move Structs             | `move struct`      | Struct values "move" when assigned so that they can no longer be used. |
 | Copy Structs             | `copy struct`      | Struct values are implicitly copied when assigned.                     |
 | Pseudo-reference Structs | `ref[P] struct`    | Appear to behave like references.                                      |
 
