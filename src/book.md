@@ -33,7 +33,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Pointer Types](pointer-types.md)
    * [Reference Types](reference-types.md)
    * [Reference Capabilities](reference-capabailities.md)
-   * [Variable References](variable-references.md)
+   * [Stack References](stack-references.md)
    * Type Parameters
    * [Optional Types](optional-types.md)
    * [Type Expressions](type-expressions.md)
