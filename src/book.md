@@ -27,13 +27,14 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Compiler Diagnostics](compiler-diagnostics.md)
 4. [Types](types.md)
    * [Empty Types](empty-types.md)
-   * [Struct Types](struct-types.md)
    * [Simple Types](simple-types.md)
+   * [Struct Types](struct-types.md)
    * [Tuple Types](tuple-types.md)
    * [Pointer Types](pointer-types.md)
    * [Reference Types](reference-types.md)
    * [Reference Capabilities](reference-capabailities.md)
    * [Stack References](stack-references.md)
+   * [Internal References](interal-references.md)
    * Type Parameters
    * [Optional Types](optional-types.md)
    * [Type Expressions](type-expressions.md)
@@ -75,6 +76,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 12. [Structs](structs.md)
     * [Struct Initializers](struct-initializers.md)
     * [Struct Constructors](struct-constructors.md)
+    * [Ref Structs](ref-structs.md)
 13. [Traits](traits.md)
 14. [Enumerations](enumerations.md)
     * Enumeration Structs

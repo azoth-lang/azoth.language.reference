@@ -19,8 +19,8 @@ The value types can be further divided into a number of subcategories. Most valu
 
 ```grammar
 value_type
-    : struct_type
-    | simple_type
+    : simple_type
+    | struct_type
     | tuple_type
     | pointer_type
     ;

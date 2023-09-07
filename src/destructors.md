@@ -11,7 +11,7 @@ acquisition is initialization (RAII) pattern.
 Any class or struct with a field whose type has a constructor gets a default constructor and thus be
 a move type itself.
 
-```grammer
+```grammar
 destructor
     : "public" "delete" "(" "iso" "self" ")" expression_block // reference types
     | "public" "delete" "(" "move" "self" ")" expression_block // value types
