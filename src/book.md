@@ -62,7 +62,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 10. [Functions](functions.md)
     * [Anonymous Functions](anonymous-functions.md)
 11. Classes
-    * Declarations
+    * [Class Declarations](class-declarations.md)
     * Members
     * [Fields](fields.md)
     * [Constructors](class-constructors.md)
@@ -78,6 +78,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Struct Constructors](struct-constructors.md)
     * [Ref Structs](ref-structs.md)
 13. [Traits](traits.md)
+    * [Move Traits](move-traits.md)
 14. [Enumerations](enumerations.md)
     * Enumeration Structs
     * Enumeration Classes
