@@ -41,20 +41,11 @@ explicitly cause the other behavior.
 These kinds are independent of whether the struct is a `ref struct` (see [Ref
 Structs](ref-structs.md)).
 
-## Struct Capabilities
+## Const Structs
 
-Similar to classes, structs can be declared with one of three different reference capabilities
-`mut`, `const`, or read-only which is indicated by the absence of a reference capability. These
-determine what reference capabilities fields of the struct may have by the same rules applied to
-classes. Since structs are inherently `sealed`, there cannot be subtypes that do not respect the
-struct capability. Thus the compiler can use the struct capability in recovering isolation and
-const. That is, it will know that a `const struct` passed into a method can contain only constant
-references and thus does not break the isolation of another reference.
-
-One wrinkle is that a `mut copy struct` that contains an `iso` reference requires a custom copy
-constructor. This is because the compiler is unable to make a copy of the reference while
-maintaining isolation. However, the `iso` reference is still allowed because the copy constructor
-could be implemented by making a clone of the isolated data for example.
+Similar to classes, structs can be declared with the `const` modifier. This indicates that all
+references inside of it must be `const` and that any field bindings are immutable (i.e. `let`). The
+compiler can then assume that values of this type will not break the isolation of a reference.
 
 ## Pseudo-Reference Structs
 
@@ -71,6 +62,4 @@ capability that is made available within the the struct as the capability *C*.
 Pseudo-reference structs may have all the other standard struct modifiers. Most pseudo-references
 should be `copy` structs, but a `move` struct allows for the pseudo-reference to act as if it were a
 `move class` and have a destructor or reference a `move class`. A `ref` pseudo-reference confines
-the pseudo-reference to the stack and allows it to contain stack references. Most pseudo-references
-will be `mut struct` and allow the capability parameter to determine their behavior, but if desired,
-this can be further restricted by declaring them `const` or read-only.
+the pseudo-reference to the stack and allows it to contain stack references.

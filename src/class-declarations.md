@@ -1,40 +1,22 @@
 # Class Declarations
 
-## Class Capabilities
+## Const Classes
 
-A class is declared with one of three reference capabilities `mut`, `const`, or read-only which is
-indicated by the absence of a reference capability. These capabilities dictate which kind of
-reference capabilities may be applied to the fields of the class. Note that while the class
-capability determines which capabilities may be applied to fields of the class, it does not limit
-which capabilities may be used with references to that type. This is because subtypes may be
-declared with a different class capability and thus contain fields that would not be allowed bye the
-by the base class capability.
+Marking a class `const` indicates that all instances of this type will be constant. It constrains
+all constructors to return a `const` reference. Consequently it constrains all field bindings to be
+immutable (i.e. `let`) and have `const` reference types. The compiler will then treat all references
+to that type has `const` except for a few special cases like the `self` reference of the
+constructor.
 
-### Const Classes
+**TODO:** should it be an error to use `const T` with a `const type`? That would avoid debates about
+whether one should use `const`. However, it also means changing a type to `const` requires updating
+any existing `const T` uses.
 
-A const class can contain only constant references and read-only value types. However, during the
-constructor of the class, the fields can still be mutated to allow for initialization.
-
-### Read-Only Classes
-
-A read only class can contain only read-only and constant references and read-only value types.
-However, during the constructor of the class, the fields can still be mutated to allow for
-initialization.
-
-**TODO:** consider requiring a `readonly` keyword for read-only classes to avoid them being the
-default. Generally, classes should be `const` if possible.
-
-### Mutable Classes
-
-A mutable class may contain references with any capability and mutable value types. This includes
-even isolated references. For users of the class, a hidden isolated reference is indistinguishable
-from a `mut` reference.
+Constantness is inherited. All subtypes of a constant type are required to be `const` themselves.
 
 ## Move Classes
 
-It might be thought that `iso` should be allowed as a class capability, but it is not. As described
-in the section about mutable classes, they are permitted to contain `iso` references. Instead,
-classes can be declared a movable classes. A movable class is allowed to contain fields whose types
+Classes can be declared a movable classes. A movable class is allowed to contain fields whose types
 are movable value types and movable reference types. A movable class can have a destructor. The
 compiler ensures that for all moveable classes, isolation is recovered before the last reference
 leaves scope and that the destructor is called. Thus, while multiple references to a moveable
