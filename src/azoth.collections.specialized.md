@@ -41,22 +41,22 @@ stack rather than the heap when it can determine the array is small enough for t
 beneficial. The effective declarations of `Raw_Array[T]` and `Raw_Array[Count: size, T]` are:
 
 ```azoth
-public mut class Raw_Array[T]
+published class Raw_Array[T]
     where T: unmanaged
 {
-    public new(.count, ensureZeroed: bool) {...}
-    public let count: size;
-    public unsafe fn at(mut self, index: size) -> iref var T {...};
-    public unsafe fn at(self, index: size) -> iref T {...};
+    published new(.count, ensureZeroed: bool) {...}
+    published let count: size;
+    published unsafe fn at(mut self, index: size) -> iref var T {...};
+    published unsafe fn at(self, index: size) -> iref T {...};
 }
 
-public mut class Raw_Array[Count: size, T]
+published class Raw_Array[Count: size, T]
 {
-    public new(ensureZeroed: bool) {...}
+    published new(ensureZeroed: bool) {...}
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
-    public get count() => Count;
-    public unsafe fn at(mut self, index: size) -> iref var T {...};
-    public unsafe fn at(self, index: size) -> iref T {...};
+    published get count() => Count;
+    published unsafe fn at(mut self, index: size) -> iref var T {...};
+    published unsafe fn at(self, index: size) -> iref T {...};
 }
 ```
 
@@ -72,14 +72,14 @@ the stack or in the containing object and then call the initializer on it by pas
 reference to the allocated memory.
 
 ```azoth
-public mut move struct Raw_Array_Struct[Count: size, T]
+published move struct Raw_Array_Struct[Count: size, T]
 {
-    public init(ensureZeroed: bool) {...}
+    published init(ensureZeroed: bool) {...}
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
-    public get count() => Count;
+    published get count() => Count;
     // TODO how does it determine these should be `ref` instead of `iref` when on the stack?
-    public unsafe fn at(mut self, index: size) -> iref var T {...};
-    public unsafe fn at(self, index: size) -> iref T {...};
+    published unsafe fn at(mut self, index: size) -> iref var T {...};
+    published unsafe fn at(self, index: size) -> iref T {...};
 }
 ```
 
@@ -95,43 +95,43 @@ beyond the capacity, then the result is undefined. It may caused the garbage col
 keep invalid memory "live".
 
 ```azoth
-public mut class Raw_Bounded_List[T]
+published class Raw_Bounded_List[T]
 {
-    public new(.capacity) {...}
-    public let capacity: size;
-    public get count() => size;
-    public unsafe fn shorten(count: size); // unsafe because there may be iref to them
-    public unsafe fn at(mut self, index: size) -> iref var T {...};
-    public unsafe fn at(self, index: size) -> iref T {...};
-    public fn add(mut self, value: T);
+    published new(.capacity) {...}
+    published let capacity: size;
+    published get count() => size;
+    published unsafe fn shorten(count: size); // unsafe because there may be iref to them
+    published unsafe fn at(mut self, index: size) -> iref var T {...};
+    published unsafe fn at(self, index: size) -> iref T {...};
+    published fn add(mut self, value: T);
 }
 
-public mut class Raw_Bounded_List[Capacity: size, T]
+published class Raw_Bounded_List[Capacity: size, T]
 {
-    public new() {...}
+    published new() {...}
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
-    public get capacity() => Capacity;
-    public get count() => size;
-    public unsafe fn shorten(count: size); // unsafe because there may be iref to them
-    public unsafe fn at(mut self, index: size) -> iref var T {...};
-    public unsafe fn at(self, index: size) -> iref T {...};
-    public fn add(mut self, value: T);
+    published get capacity() => Capacity;
+    published get count() => size;
+    published unsafe fn shorten(count: size); // unsafe because there may be iref to them
+    published unsafe fn at(mut self, index: size) -> iref var T {...};
+    published unsafe fn at(self, index: size) -> iref T {...};
+    published fn add(mut self, value: T);
 }
 ```
 
 ## `Raw_Bounded_List_Struct[Capacity: size, T]`
 
 ```azoth
-public mut move struct Raw_Bounded_List_Struct[Capacity: size, T]
+published move struct Raw_Bounded_List_Struct[Capacity: size, T]
 {
-    public init() {...}
+    published init() {...}
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
-    public get capacity() => Capacity;
-    public get count() => size;
-    public unsafe fn shorten(count: size); // unsafe because there may be iref to them
+    published get capacity() => Capacity;
+    published get count() => size;
+    published unsafe fn shorten(count: size); // unsafe because there may be iref to them
     // TODO how does it determine these should be `ref` instead of `iref` when on the stack?
-    public unsafe fn at(mut self, index: size) -> iref var T {...};
-    public unsafe fn at(self, index: size) -> iref T {...};
-    public fn add(mut self, value: T);
+    published unsafe fn at(mut self, index: size) -> iref var T {...};
+    published unsafe fn at(self, index: size) -> iref T {...};
+    published fn add(mut self, value: T);
 }
 ```
