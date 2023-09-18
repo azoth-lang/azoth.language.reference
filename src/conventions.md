@@ -64,12 +64,12 @@ public fn example(self,
 
 ## Code Width
 
-Stay within 80 characters most of the time, never go beyond 100. This is not because of what fits on screen, but rather, what humans can easily read and which parts of text humans focus on.
+Stay within 80 characters most of the time, never go beyond 100. This is not because of what fits on
+screen, but rather, what humans can easily read and which parts of text humans focus on.
 
 ## Other
 
 * Prefer named constructors to a method that makes an instance (for example making a child node,
   copy or converted value)
-* In constructors, always use self or implicit self to access fields and properties, in methods, use
-  only when necessary. (There should be compiler warnings for this).
+* Use implicit self whenever possible and explicit self only when necessary.
 * Use spaces instead of tabs (need compiler warning for this).
