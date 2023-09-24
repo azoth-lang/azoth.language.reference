@@ -92,7 +92,7 @@ conversion doesn't exist. An explicit numeric conversion fails if the value bein
 in the range of the target type.
 
 Conversions from any integer numeric type including "`size`" and "`offset`" to "`float32`" or
-"`float`" will not fail but may cause a loss of precision. These can be performed using the "`as`"
+"`float64`" will not fail but may cause a loss of precision. These can be performed using the "`as`"
 operator.
 
 ### Explicit Boolean Conversions
