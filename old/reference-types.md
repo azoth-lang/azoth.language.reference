@@ -33,6 +33,8 @@ Here the `a` variable owns the reference to the `Point` object. When `a` goes ou
 
 ## Borrowing
 
+**TODO:** borrowing now allows mutation without the `mut` keyword.
+
 When a reference is passed to another variable or function, it is *borrowed*. A borrowed reference is not responsible for releasing the value it references.
 
 ```azoth
@@ -48,9 +50,11 @@ let distance = distance_from_origin(a);
 console.WriteLine("distance from origin \(distance)");
 ```
 
-Here the `distance_from_origin` borrows a reference to point referenced by `a`. By default, borrowed references are immutable. They can't be used to mutate the object being referenced. If we tried to insert `p.x *= 2` as the first line of `distance_from_origin` we would get a compile error saying that `p` can't be mutated.
+Here the `distance_from_origin` borrows a reference to point referenced by `a`. By default, borrowed references are read only. They can't be used to mutate the object being referenced. If we tried to insert `p.x *= 2` as the first line of `distance_from_origin` we would get a compile error saying that `p` can't be mutated.
 
 ## Mutable Borrowing
+
+**TODO:** this is no longer required.
 
 It is also possible to borrow a reference to a mutable object. To do this use the `mut` keyword when passing the value. If taking a mutable borrow with a function parameter, simply declare the parameter as `mut`.
 

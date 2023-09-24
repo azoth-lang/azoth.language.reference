@@ -34,18 +34,6 @@ freeze_expression
     ;
 ```
 
-## Mutate Expression
-
-By default when passing a reference from a variable for field, the passed reference will not be
-mutable. To pass a mutable reference, a `mut` expression must be used.
-
-```grammar
-mutate_expression
-    : "mut" identifier
-    | "mut" embedded_expression "." identifier
-    ;
-```
-
 ## Id Expression
 
 Typically, conversion to `id T` is implicit. However, it can be helpful to explicitly get an
@@ -59,8 +47,7 @@ id_expression
     ;
 ```
 
-## Implicit Move and Mutate
+## Implicit Move
 
 When calling a method, the self parameter can cause an implicit move or mutate. If the self
-parameter is `iso self` then an implicit move can occur when calling the method. If the self
-parameter is `mut self` then an implicit mutate can occur when calling the method.
+parameter is `iso self` then an implicit move can occur when calling the method.
