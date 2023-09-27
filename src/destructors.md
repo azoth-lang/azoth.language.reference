@@ -1,12 +1,12 @@
 # Destructors
 
-Classes and structs declared as `move` types may have a destructor. Because there they are move
-types the compiler enforces that there is either one owning reference for reference types or a
-single copy of the value for value types. Thus the compiler can determine when that instance goes
-out of scope and call the destructor on it. Note that this does not mean that the memory of an
-object or those referenced is immediately freed. That is still the responsibility of the garbage
-collector. Rather, destructors provide a means of managing other resources via the resources
-acquisition is initialization (RAII) pattern.
+Classes and structs declared as `move` types may have a destructor. Because they are move types the
+compiler enforces that there is either one owning reference for reference types or a single copy of
+the value for value types. Thus the compiler can determine when that instance goes out of scope and
+call the destructor on it. Note that this does not mean that the memory of an object or those
+referenced is immediately freed. That is still the responsibility of the garbage collector. Rather,
+destructors provide a means of managing other resources via the resources acquisition is
+initialization (RAII) pattern.
 
 Any class or struct with a field whose type has a constructor gets a default constructor and thus be
 a move type itself.

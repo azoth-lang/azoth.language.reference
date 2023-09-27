@@ -268,11 +268,11 @@ is inferred by context and may be restricted by a match pattern.
 public struct Example
 {
     public let count: size;
-    public let bytes: @byte;
+    public let bytes: Raw_Bounded_List[byte];
 
     public init(.value, .bytes) { }
 
-    public implicit operator "_"(count: size, bytes: @byte) -> const Example
+    public implicit operator "_"(count: size, bytes: Raw_Bounded_List[byte]) -> const Example
     {
         return Example(count, bytes);
     }
