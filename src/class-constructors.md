@@ -21,7 +21,7 @@ An empty, unnamed constructor definition is equivalent to the default constructo
 ```azoth
 public class Example
 {
-    public new()
+    public new(mut self)
     {
     }
 }
@@ -40,7 +40,7 @@ associated function, except prefixed by the `new` keyword.
 ```azoth
 public class Example
 {
-    public new named()
+    public new named(mut self)
     {
     }
 }
@@ -58,13 +58,32 @@ constructor is declared in, nor a subtype or unrelated type.
 ```azoth
 public class Example: Base_Example
 {
-    public new() -> Base_Example
+    public new(mut self) -> Base_Example
     {
     }
 }
 ```
 
 It is illegal to simply repeat the class name or to use a subtype or unrelated type.
+
+## Self Parameter
+
+Constructors like methods have a self parameter. This is typically `mut self` regardless of the
+return reference capability or whether the class is a `const` class. This is because typically
+mutation is needed during the construction of the object. However, for types that are used as both
+mutable and constant, it is sometimes necessary to have constructors that take a read only reference
+to self. The reason for this is that when constructing from constant data, it must be possible to
+store references to constant data into fields of the instance that would be mutable if the
+constructor were `mut self`.
+
+The constructor `self` parameter has special reference capabilities. As described in the sections
+below, it doesn't allow passing a non-fully initialized `self` to another method or function.
+Additionally, a read only self parameter still treats var fields as assignable during the first
+phase of construction (the not fully initialized section).
+
+The reference capability of the return type of a constructor is constrained by the reference
+capability of the self parameter. Thus a read only self constructor cannot return a mutable
+reference.
 
 ## Default Constructors
 
@@ -91,7 +110,7 @@ Fields can be directly initialized from constructor arguments. This is done by p
 parameter name with `.` and omitting the type. The type is determined by the type of the field.
 
 ```azoth
-public new(.field)
+public new(mut self, .field)
 {
 }
 ```
@@ -208,7 +227,7 @@ parameter. They are declared with the special `copy` constructor name and take a
 `Self` or `mut Self`.
 
 ```azoth
-public new copy(value: Self)
+public new copy(mut self, value: Self)
 {
     // copy fields
 }
