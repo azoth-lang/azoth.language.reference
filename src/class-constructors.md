@@ -88,10 +88,11 @@ reference.
 ## Default Constructors
 
 If a class has no constructor declarations, then a default constructor is created for it. This
-constructor is a `published` unnamed constructor that takes no parameters. If the class has a base class,
-the default constructor will call the base class constructor that is unnamed with no parameters. If
-no such base class constructor exists, it is an error. No further field initialization is done
-beyond running the field initializers. If this would leave a field unassigned, that is an error.
+constructor is a `published` unnamed constructor that takes no parameters. If the class has a base
+class, the default constructor will call the base class constructor that is unnamed with no
+parameters. If no such base class constructor exists, it is an error. No further field
+initialization is done beyond running the field initializers. If this would leave a field
+unassigned, that is an compile error.
 
 ## Calling Other Constructors
 
