@@ -104,7 +104,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Global Namespace](std-lib-global-namespace.md)
     * [`azoth` Namespace](azoth.md)
     * [`azoth.collections` Namespace](azoth.collections.md)
-    * [`azoth.collections.specialized` Namespace](azoth.collections.specialized.md)
+    * [`azoth.collections.specialized.raw` Namespace](azoth.collections.specialized.raw.md)
     * [`azoth.io` Namespace](azoth.io.md)
     * [`azoth.math` Namespace](azoth.math.md)
     * [`azoth.memory` Namespace](azoth.memory.md)
