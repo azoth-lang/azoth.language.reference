@@ -13,5 +13,6 @@ expression
 embedded_expression
     : choice_expression
     | loop_expression
+    | pattern_match_expression
     ;
 ```

@@ -42,8 +42,7 @@ for checking reference equality (i.e. `id x == id y`).
 
 ```grammar
 id_expression
-    : "id" identifier
-    | "id" embedded_expression "." identifier
+    | "id" embedded_expression
     ;
 ```
 

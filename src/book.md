@@ -50,6 +50,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Bitwise Operations](bitwise-operations.md)
    * [Boolean Expression](boolean-expression.md)
    * [Interpolated Strings](interpolated-strings.md)
+   * [Pattern Match Expressions](pattern-match-expressions.md)
    * [Initializers](initializers.md)
    * [Generators](generators.md)
 7. [Statements](statements.md)
@@ -93,7 +94,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Assertions](assertions.md)
 20. [Effects](effects.md)
 21. Attributes
-22. Patterns
+22. [Patterns](patterns.md)
 23. [Unit Testing](unit-testing.md)
 24. [Unsafe Code](unsafe.md)
     * [Pointers](pointers.md)
