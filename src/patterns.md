@@ -112,8 +112,16 @@ none_pattern
 
 ## Optional Pattern
 
+A modifier to identifier binding patterns that matches only if the value is not `none`.
+
+```grammar
+pattern<binding=true>
+  : identifier "?"
+  ;
+```
+
 ```azoth
-if let x? = value
+if value is let x?
 {
     // x is value
 }
