@@ -30,7 +30,7 @@ One could imagine that `var` only provides the ability to assign a new value to 
 that mutability is fully independent of that. So `var mut T` would be needed for a mutable struct.
 This would also mean that `let T` and `let mut T` where `T` was a struct would allow for variables
 whose assignment couldn't be changed but whose mutability could be chosen. For simplicity, this will
-not be supported. `var T` will be mutable and `let T` will not. However, note that is T is
+not be supported. `var T` will be mutable and `let T` will not. However, note that if `T` is
 inherently not mutable then of course `var T` will only allow assignment not mutation.
 
 Since structs can contain references, it will still be necessary to know how they interact with
@@ -40,10 +40,10 @@ and just how it acts as a reference when passed to or returned from a function.
 
 ## Heap References Can Always be Internal
 
-Once could imagine that a reference to a struct or variable on the heap could be either a reference
+One could imagine that a reference to a struct or variable on the heap could be either a reference
 to the inside of an object or to the beginning of the object. The difference matters for the garbage
 collector. However, internal references are much more common and are also inclusive of both
-possibilities. To keep the language simply, only internal references will be supported for now.
+possibilities. To keep the language simple, only internal references will be supported for now.
 
 ## No Automatic Reference Restriction
 

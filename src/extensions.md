@@ -36,12 +36,12 @@ This even allows extension properties and operators! (Though operators should pe
 functions instead.)
 
 ```azoth
-public fn get property(self: Example) -> int
+public get property(self: Example) -> int
 {
     return self.field * 2;
 }
 
-public fn operator +(self: int, x: Example) -> int
+public operator +(self: int, x: Example) -> int
 {
     // ...
 }
