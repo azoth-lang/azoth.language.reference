@@ -1,26 +1,29 @@
 # External Declarations
 
-The `external` keyword declares blocks of functions, structs and global variables that are implemented externally. Use compiler attributes and compiler settings to control this.
+The `external` keyword declares blocks of functions, structs and global variables that are
+implemented externally. Use compiler attributes and compiler settings to control this.
 
 ## External Structs
 
-Structs declared in external block follow the layout rules of the target language.
+Structs declared in external blocks follow the layout rules of the target language.
 
 ## External Function Example
 
 All parameters and returns from C external functions must be one of:
 
-* A simple numeric type (i.e. `int`, `float` etc.)
+* A simple numeric type (i.e. `int32`, `float` etc.)
 * An external struct
 * A pointer to one of the above
 
 ```azoth
-#link("libc") // Less generic attribute name
+#Link("libc")
 external // by default, changes to 'C' ABI
 {
     public fn function() -> int;
 }
 ```
+
+**TODO:** switch to a less generic attribute name than `Link`
 
 ## Exporting Example
 

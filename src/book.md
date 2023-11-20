@@ -62,6 +62,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * Type Aliases
 10. [Functions](functions.md)
     * [Anonymous Functions](anonymous-functions.md)
+    * [Optional Arguments](optional-arguments.md)
 11. Classes
     * [Class Declarations](class-declarations.md)
     * Members
@@ -85,7 +86,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * Enumeration Classes
 15. [Extensions](extensions.md)
 16. Generics
-17. Structured Concurrency
+17. [Structured Concurrency](structured-concurrency.md)
 18. [Design by Contract](contracts.md)
 19. [Error Handling](error-handling.md)
     * [Aborting](aborting.md)
