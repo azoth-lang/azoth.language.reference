@@ -8,8 +8,8 @@ referenced is immediately freed. That is still the responsibility of the garbage
 destructors provide a means of managing other resources via the resources acquisition is
 initialization (RAII) pattern.
 
-Any class or struct with a field whose type has a constructor gets a default constructor and thus be
-a move type itself.
+Any class or struct with a field whose type has a destructor gets a default destructor and thus must
+be a move type itself.
 
 ```grammar
 destructor
