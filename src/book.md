@@ -44,6 +44,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Expression Blocks](expression-blocks.md)
    * [Choice Expressions](choice-expressions.md)
    * [Loop Expressions](loop-expressions.md)
+   * [With Expression](with-expression.md)
    * [Capability Expressions](capability-expressions.md)
    * Operators
      * Logical Operators

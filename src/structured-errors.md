@@ -207,13 +207,13 @@ allow efficient error processing without type checks by using enumerated value t
 
 ## Defer
 
-Azoth does not have finally blocks as C# and Java do. Instead, it takes inspiration had has `defer`
-statements. A defer statement specifies an expression to be run any time the current scope is
-exited. This allows for cleanup operations to be preformed. It has the advantage over finally blocks
-that it has access to any values created so far in the scope. Often with finally blocks it is
-necessary to place some code outside of the try block to enable it to be accessed from the finally
-block. They can also necessitate initializing to null to allow the finally block to handle a case
-when the full variable isn't assigned before the finally block runs.
+Azoth does not have finally blocks as C# and Java do. Instead, it takes inspiration from Swift and
+has `defer` statements. A defer statement specifies an expression to be run any time the current
+scope is exited. This allows for cleanup operations to be preformed. It has the advantage over
+finally blocks that it has access to any values created so far in the scope. Often with finally
+blocks it is necessary to place some code outside of the try block to enable it to be accessed from
+the finally block. They can also necessitate initializing to null to allow the finally block to
+handle a case when the full variable isn't assigned before the finally block runs.
 
 **TODO:** defer statements may be unnecessary given the RAII pattern support provided by move types
 with destructors. If all resources are managed that way then defer may be so rarely needed that it

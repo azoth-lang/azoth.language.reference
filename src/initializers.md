@@ -36,4 +36,6 @@ public class Example
 
 ## Typed Construction Syntax
 
-If needed or desired for clarity, the type of an initializer can be specified as `new Example #{x, y}` (or one of the other two initializer types). If the constructor is declared implicit, it can be called without specifying the type. If it is not implicit, the type must be stated.
+If needed or desired for clarity, the type of an initializer can be specified as `new Example #{x,
+y}` (or one of the other two initializer types). If the constructor is declared implicit, it can be
+called without specifying the type. If it is not implicit, the type must be stated.

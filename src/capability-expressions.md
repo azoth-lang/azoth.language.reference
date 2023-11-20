@@ -3,6 +3,14 @@
 The [reference capability types](reference-capabailities.md) require some special expressions to
 work with them. However, these also find use with movable types.
 
+```grammar
+capability_expression
+    : move_expression
+    | freeze_expression
+    | id_expression
+    ;
+```
+
 ## Move Expression
 
 A move expression allows for moving the value out of a variable or field. This is useful both for
@@ -46,7 +54,8 @@ id_expression
     ;
 ```
 
-## Implicit Move
+## Implicit Move and Freeze
 
-When calling a method, the self parameter can cause an implicit move or mutate. If the self
-parameter is `iso self` then an implicit move can occur when calling the method.
+When calling a method, the self parameter can cause an implicit move or freeze. If the self
+parameter is `iso self` then an implicit move can occur when calling the method. If the self
+parameter is `const self` then an implicit freeze can occur when calling the method.

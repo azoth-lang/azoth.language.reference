@@ -14,14 +14,17 @@ statement
 
 ## Expressions Statements
 
-Expression statements are statements that are simply expressions. Choice and loop expressions can be
-used without a closing semicolon because their extent is delimitated by curly braces. Other
-expression statements require a semicolon terminator to delimit the end of the statement.
+Expression statements are statements that are simply expressions. Block, choice, loop and `with`
+expressions can be used without a closing semicolon because their extent is delimitated by curly
+braces. Other expression statements require a semicolon terminator to delimit the end of the
+statement.
 
 ```grammar
 expression_statement
-    : choice_expression
+    : block
+    | choice_expression
     | loop_expression
+    | with_expression
     | expression ";"
     ;
 ```

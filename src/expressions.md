@@ -13,6 +13,8 @@ expression
 embedded_expression
     : choice_expression
     | loop_expression
+    | with_expression
+    | capability_expression
     | pattern_match_expression
     ;
 ```

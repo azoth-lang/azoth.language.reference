@@ -24,12 +24,6 @@ recursive generator.
 **TODO:** see https://github.com/dotnet/csharplang/discussions/378 for possible ways to implement
 efficiently. Could we just use a sort of continuation passing style?
 
-## Void Generators
-
-For certain types like `Iterator[void]` there is no value to be yielded. In this case, the `yield`
-expression takes no value (e.g. `yield;`). This would be useful it one was trying to implement
-coroutines on top of generator functions.
-
 ## Generator Start Control
 
 By default the body of a generator function does not start running until the first item is request.
@@ -40,6 +34,11 @@ generator. This means other yield expressions cannot be used before it.
 
 **TODO:** should it switch to `init yield` if
 
+## Generator Destruction
+
+Generators create move types. When the generator is destructed, the current `yield` expression acts
+as if it were a `yield return;`. That is, any `yield` expression can be a return point.
+
 ## Generator Method Builders
 
 The compiler transforms generator functions similar to how the C# compiler accomplishes this by
@@ -47,3 +46,70 @@ creating a class with a state machine in it. However, this process is controlled
 async transform is controlled in C#. An attribute with a type can be placed either on the generator
 function itself or on the type being generated and it specifies the type the compiler uses during
 the transform. This allows generator functions to be used with types besides just `Iterator[T]`.
+
+The method builder adapts the state machine to the type returned by the generator method. It does
+this via a factory method generic over the state machine type and by providing associated functions
+to adapt the yield expressions to the type.
+
+```azoth
+/// The generator method builder parameterized on the type of the compiler generated state machine
+/// the type parameter of the return type (e.g. `T` in `Iterator[T]`) and the throws type of the
+/// generator function (i.e. the type in the `throws` clause).
+/// For non-generic return types, there is a builder overload without the `T` type parameter.
+published trait Generator_Method_Builder[State_Machine, T, Throws]
+    where State_Machine : struct <: Generator_State_Machine[Yield_Input, Yield_Input_Throws, Yield_Output, Yield_Output_Throws]
+{
+    /// The type that the yield expression returns from the caller
+    published type Yield_Input; // e.g. `void` for iterators
+
+    /// The type that the yield expression throws from the caller
+    published type Yield_Input_Throws; // e.g. `never` for iterators
+
+    /// The type that the yield expression outputs to the caller
+    published type Yield_Output; // e.g. `T?` for iterators
+
+    /// The type that the yield expression throws to the caller
+    published type Yield_Output_Throws; // e.g. `never` for iterators
+
+    /// The type generators using this method builder generate
+    published type Generator_Type; // e.g. `Iterator[T]` for iterators
+
+    /// Create the value returned from the generator function
+    published fn \new(state_machine: State_Machine) -> Generator_Type;
+
+    /// Called to prepare the output of a `yield` expression
+    published fn \yield(state_machine: ref var State_Machine, value: T) -> Yield_Output;
+
+    /// Called to produce the output of a `yield return` expression
+    published fn \return(state_machine: ref var State_Machine) -> Yield_Output;
+}
+
+published move trait Generator_State_Machine[Yield_Input, Yield_Input_Throws, Yield_Output, Yield_Output_Throws]
+{
+    /// `Yield_Input` of `void` indicates that no values are input and `never` indicates that this
+    /// method cannot be called.
+    published fn \yield(mut self, input: Yield_Input) -> Yield_Output
+        throws Yield_Output_Throws;
+
+    /// The yield expression should throw the given error. `Yield_Input_Throws` of `never` indicates
+    /// this method cannot be called.
+    published fn \throw(mut self, error: Yield_Input_Throws) -> Yield_Output
+        throws Yield_Output_Throws;
+
+    published delete(move self)
+        throws Yield_Output_Throws;
+}
+```
+
+## Void Generators
+
+For certain types there is no value to be yielded. In this case, the `Yield_Output` is `void` and
+the  `yield` expression takes no value (e.g. `yield;`). This may be useful it one was trying to
+implement coroutines on top of generator functions.
+
+## Generators as Coroutines
+
+Similar to [PEP 342 – Coroutines via Enhanced Generators](https://peps.python.org/pep-0342/), the
+generator method builders allow generator functions to be used as basically coroutines. This is why
+the generator state machine has both input and output yield types and error types. This is also why
+the `\throw()` method exist on the state machine.
