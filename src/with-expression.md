@@ -2,7 +2,7 @@
 
 A when expression provides two benefits. It introduces a contextual value. See [contextual
 arguments](optional-arguments.md#contextual-arguments) for more information on contextual values.
-And it helps to manage resources.
+It also helps to manage resources.
 
 With expressions come in two forms. An anonymous with expression and a named with expression that
 declares a name for the context object.
@@ -36,6 +36,10 @@ block is exited via an exception. If the type has a destructor it will be called
 method whenever the block exits.
 
 **TODO:** is this the best way to do this? Perhaps they should be overloads of a `with` operator?
+
+**TODO:** what about handling different kinds of error types? Overloads of exit_errored?
+
+**TODO:** maybe destructors should support parameters and be used instead?
 
 ## Use Cases
 
@@ -112,6 +116,19 @@ published class Database
             throw;
         }
     }
+}
+```
+
+### Cancellation Scopes
+
+While async blocks can establish cancellation contexts, a `with` statement can also be used in cases
+where simple cancellation is desired instead without the need for async execution.
+
+```azoth
+with Cancellation.after(5 s)
+{
+    var result = Http.get(url);
+    // ...
 }
 ```
 
