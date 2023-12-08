@@ -12,7 +12,7 @@ operations to enforce the rules of structured concurrency.
 
 An asynchronous block is introduced with the `async` keyword. The compiler enforces that all
 asynchronous operations started within an async block are complete before exiting the block. To
-provide flexibility, it allows an asynchronous scope object to be provided to managed the the async
+provide flexibility, it allows an asynchronous scope object to be provided to manage the async
 block. The asynchronous scope object can be given a name via a `let` declaration.
 
 ```grammar
@@ -24,7 +24,7 @@ async_block
 ```
 
 The async scope cannot be declared with `var` because assigning a new value would invalidate the
-structured concurrency rules. The async scope object must conform the the pattern for async scopes.
+structured concurrency rules. The async scope object must conform to the pattern for async scopes.
 For convenience, that pattern is defined mirrored in the `Async_Scope[Promise]` trait.
 
 **TODO:** proper trait for async scope and how to handle optional cancellation context?
@@ -100,7 +100,7 @@ operations failing.
 ## Async Parameters
 
 While async blocks provide the fundamentals for async operations, sometimes it is necessary to start
-and async operation which will outlive the current function. To do this, an async scope must be
+an async operation which will outlive the current function. To do this, an async scope must be
 passed from a scope higher up the call stack and used to start async operations. To do this, use
 async parameters.
 
@@ -128,16 +128,17 @@ await_expression
 ```
 
 Await expressions can appear anywhere, not just inside of async blocks. When an incomplete promise
-is awaited, it does not block the current thread. The behavior depends on the nearest whether the
-nearest async start expression on the call stack is a `go` or `do`. If it is a `go` then execution
-of the current async operation is suspended until the promise is complete. If it is a `do` then
-execution continues from the `do` expression. If there is no `go` or `do` above the await expression
-on the call stack, then the main operation is suspended. Effectively, it is as if `main()` is called
-from inside an async block using a `do` expression.
+is awaited, it does not block the current thread. The behavior depends on the whether the nearest
+async start expression on the call stack is a `go` or `do`. If it is a `go` then execution of the
+current async operation is suspended until the promise is complete. If it is a `do` then execution
+continues from the `do` expression. If there is no `go` or `do` above the await expression on the
+call stack, then the main operation is suspended. Effectively, it is as if `main()` is called from
+inside an async block using a `do` expression.
 
 ### Awaiting Callback
 
-Sometimes when adapting external APIs it is necessary to adapt an async callback into an await. This can be done using the `Async_Callback` type.
+Sometimes when adapting external APIs it is necessary to adapt an async callback into an await. This
+can be done using the `Async_Callback` type.
 
 ```azoth
 async
@@ -156,7 +157,7 @@ async
 }
 ```
 
-**TODO:** Should the function run all the callback thread or the thread pool?
+**TODO:** Should the function run on the callback thread or the thread pool?
 
 ### Awaiting Blocking APIs
 
