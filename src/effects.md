@@ -18,17 +18,16 @@ Generics over effects. For example (Code from Midori, syntax may differ):
 Effects are written after the return type. Any given effect is marked as `may` or `no`. Omitted
 effects are inferred. Throws clauses are effects. The effects supported are:
 
-  * unsafe - whether unsafe blocks can be executed
-  * abandon - whether a function can cause abandonment, note that since contracts and assertions
-    could cause abandonment, this requires that the compiler be able to prove that the contracts are
-    satisfied. (What if you could distinguish different kinds of abandonment?  Like contracts vs
-    arithmetic overflow?)
-  * allocate? - whether memory can be allocated (besides the stack?)
-  * io? - separate for network, file and console? other graphics?
-  * init? - prevent constructors from calling other methods? see [No Leaky
-    Abstractions](http://joeduffyblog.com/2016/11/30/15-years-of-concurrency/)
-  * pure?
-  * out of memory and stack overflow
+* unsafe - whether unsafe blocks can be executed
+* abort - whether a function can cause abort, note that since contracts and assertions could cause
+  abort, this requires that the compiler be able to prove that the contracts are satisfied. (What if
+  you could distinguish different kinds of abort? Like contracts vs arithmetic overflow?)
+* allocate? - whether memory can be allocated (besides the stack?)
+* io? - separate for network, file and console? other graphics?
+* init? - prevent constructors from calling other methods? see [No Leaky
+  Abstractions](http://joeduffyblog.com/2016/11/30/15-years-of-concurrency/)
+* pure?
+* out of memory and stack overflow
 
 ---
 
@@ -43,15 +42,15 @@ exception2` are the same.
 
 Effects:
 
-  * throw
-  * abort - preconditions and post conditions could cause abort. So I need to prove that they hold
-    to be able to say something won't abort
-  * out of memory - separate because it seems more pervasive
-  * arithmetic overflow cause abandonment
-  * unsafe - even functions marked safe that call unsafe code would be `may unsafe`
-  * is trusted an effect?
+* throw
+* abort - preconditions and post conditions could cause abort. So I need to prove that they hold to
+  be able to say something won't abort
+* out of memory - separate because it seems more pervasive
+* arithmetic overflow cause abandonment
+* unsafe - even functions marked safe that call unsafe code would be `may unsafe`
+* is trusted an effect?
 
-Do effects have a hierarchy?  How fine grained are effects. For example, a method that aborts could
+Do effects have a hierarchy? How fine grained are effects? For example, a method that aborts could
 do so because of overflow or precondition. Are there effects for IO? Is there a different effect for
 file and network IO. Given pervasive async/await, it seems like blocking shouldn't be an effect.
 However, a long running computation could kind of be like blocking.
