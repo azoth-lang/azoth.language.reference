@@ -4,8 +4,8 @@
 
 ## Async Values
 
-An async value is a value whose type follows the async scope pattern and is either declared within
-an async block is in an async parameter. Async values are used to restrict the starting of async
+An async value is a value whose type follows the async scope pattern and is either declared with an
+async block or is in an async parameter. Async values are used to restrict the starting of async
 operations to enforce the rules of structured concurrency.
 
 ## Async Blocks
