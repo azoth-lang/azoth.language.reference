@@ -253,7 +253,10 @@ Azoth has sum types (`|`) and intersection types (`&`). For consistency with tho
 
 ### Unify Union Types and Enum Classes
 
-Enum classes are very similar to union types where all the types implement/inherit a single class. Rather than having two separate features, perhaps union types should be the only way of declaring enum classes. This may make them more verbose so perhaps the syntax for union classes should reflect the syntax for union types instead.
+Enum classes are very similar to union types where all the types implement/inherit a single class.
+Rather than having two separate features, perhaps union types should be the only way of declaring
+enum classes. This may make them more verbose so perhaps the syntax for union classes should reflect
+the syntax for union types instead.
 
 The Ceylon language has something like this:
 

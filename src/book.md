@@ -34,7 +34,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Reference Types](reference-types.md)
    * [Reference Capabilities](reference-capabailities.md)
    * [Stack References](stack-references.md)
-   * [Internal References](interal-references.md)
+   * [Internal References](internal-references.md)
    * Type Parameters
    * [Optional Types](optional-types.md)
    * [Type Expressions](type-expressions.md)

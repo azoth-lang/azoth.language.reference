@@ -48,9 +48,6 @@ public class Example
 let x = new Example.named();
 ```
 
-Constructors implicitly have a mutable self parameter. The `self` parameter has special restrictions
-on its use to avoid leaking of uninitialized references out of constructors (`init`?).
-
 Constructors can optionally be given a return type. This type must be a base type or must have at
 least one type parameter specified. That is, the return type may not be the type of the class the
 constructor is declared in, nor a subtype or unrelated type.

@@ -3,9 +3,9 @@
 In addition regular reference types that allow values to reference objects on the heap and stack
 reference which reference values on the stack or heap from the stack, there are also internal
 references. These allow for an object to reference a value inside of another object on the heap. In
-many ways the operate like stack references, but because they reference into the heap no tracking is
-necessary to ensure they don't refer to invalid memory and they can be stored inside the fields of
-classes and structs. These are distinguished from standard reference types because of their
+many ways they operate like stack references, but because they reference into the heap no tracking
+is necessary to ensure they don't refer to invalid memory and they can be stored inside the fields
+of classes and structs. These are distinguished from standard reference types because of their
 performance impact. Because an internal reference can point into the middle of an object, it can
 cause the garbage collector to need to do more work to determine which object is being referenced.
 However, internal references are incredibly valuable in enabling the implementation of slices
@@ -55,4 +55,4 @@ and for assigning a new reference.
 
 Internal references are implicitly convertible to stack references. When this is done, the compiler
 will infer that the resulting stack reference is safe to return from the function as it refers to a
-value on the heap that will be kept live as long as the reference exists.
+value on the heap that will be kept alive as long as the reference exists.
