@@ -146,7 +146,7 @@ not_pattern
 ## Multiple Patterns
 
 These can be used to combine multiple patterns. Note that they match the syntax for type
-expressions. This also distinguishes them for logical operators so that an `and` or `or` indicates
+expressions. This also distinguishes them from logical operators so that an `and` or `or` indicates
 the end of a pattern expression.
 
 ```grammar
@@ -208,9 +208,13 @@ Can be used to ignore sub-parts.
 
 ## Unexpected Values
 
-There should be a syntax similar to `_` that serves as a catch all for match expressions, but generates a warning if the compiler detects something will match it. This would be useful for libraries that contain open types where you must have a `_` but don't want to accidentally match added types. But is this different than `_ => NOT_IMPLEMENTED!()"?
+There should be a syntax similar to `_` that serves as a catch all for match expressions, but
+generates a warning if the compiler detects something will match it. This would be useful for
+libraries that contain open types where you must have a `_` but don't want to accidentally match
+added types. But is this different than `_ => NOT_IMPLEMENTED!()"?
 
-Should you really be required to have a default case for matches on open types? If the library is changed, you should deal with it.
+Should you really be required to have a default case for matches on open types? If the library is
+changed, you should deal with it.
 
 ## Unused Variables
 

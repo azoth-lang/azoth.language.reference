@@ -15,7 +15,7 @@ that they need to be declared `no throw` so there was no risk of exceptions bein
 It still seems to make sense to indicate that some actions are expected to be async and that should
 be dealt with.
 
-There really needs to be back-pressure and throttling in async operations.
+There really needs to be **back-pressure and throttling in async operations.**
 
 There are different kinds of functions:
 
