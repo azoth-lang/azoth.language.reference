@@ -52,7 +52,7 @@ it.
 
 For regular objects, it seems like zeroing may be necessary. There is simply no other good way
 ensure that the GC doesn't trace uninitialized references in fields during object construction. A
-scheme of delaying tracing objects while object are being initialized would require convoluted stack
+scheme of delaying tracing while an object is being initialized would require convoluted stack
 management to keep all references live. Indeed, it would require special handling when calling base
 class constructors as those would return when the object is half initialized.
 
