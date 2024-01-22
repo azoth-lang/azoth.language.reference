@@ -5,7 +5,7 @@ compiler and form the basis of memory allocations for all kinds of collections. 
 allocation of many values in contiguous chunks both on the heap and the stack.
 
 **TODO:** it would be neat to allow array structs and bounded list structs to be dynamically sized
-similar to how C# can `stackalloc` and array whose size is determined by a variable or expression or
+similar to how C# can `stackalloc` an array whose size is determined by a variable or expression or
 C has flexible array members. However, there are serious challenges with how these would be declared
 and initialized because the compiler would need to determine the size of the containing object
 during allocation. Thus the size could not be a simple initializer parameter. Instead there would
