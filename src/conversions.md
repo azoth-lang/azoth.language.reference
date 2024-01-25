@@ -48,6 +48,7 @@ The implicit numeric conversions are:
 | `uint32`  | `int64`, `int`, `uint`,`uint64`, `float64`                                                   |
 | `int64`   | `int`                                                                                        |
 | `uint64`  | `int`, `uint`                                                                                |
+| `uint`    | `int`                                                                                        |
 | `float32` | `float64`                                                                                    |
 
 ### Implicit Optional conversions

@@ -61,7 +61,7 @@ remove the special classness of type constructors by allowing other functions ov
 parameters. A meta function is a function with no runtime parameters that would always be evaluated
 at compile time. These would be declared by omitting the parentheses (i.e. `fn foo[n: size] ->
 Type`). They would be called without parentheses (i.e. `foo[45]`). There are some potential issues
-with meta functions though. They can't be generic in the types the operate on. For example, it
+with meta functions though. They can't be generic in the types they operate on. For example, it
 wouldn't be possible to create a function that evaluated something as a const expression by passing
 it as a parameter (i.e. `constant[some_function()]`). That would not be possible because the
 function can't be generic in the type of its parameter. It might seem that meta functions would be

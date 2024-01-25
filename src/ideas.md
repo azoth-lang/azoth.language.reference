@@ -596,7 +596,7 @@ list concatenation could be `fn concat(x: List[_T], y: List[_T]) -> List[_T]`. T
 relationship between the types. However, a change of implementation might require that a variable of
 that type be declared. As such, if there were a short simple way of declaring existential types it
 would be better to consistently use it. If it weren't hard to type, "∃" could be used as `fn
-concat(x: List[∃T], y: List[∃T]) -> List[∃T]`. However, it seems wierd to repeat the there exists,
+concat(x: List[∃T], y: List[∃T]) -> List[∃T]`. However, it seems weird to repeat the there exists,
 one expects something more like `∃T fn concat(x: List[T], y: List[T]) -> List[T]`. As a straw man
 syntax, if tilde were used it would be `fn concat(x: List[~T], y: List[~T]) -> List[~T]`. A fully
 anonymous existential parameter could then be `Array[~, T]`. Notice here that we have used it for a

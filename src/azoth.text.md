@@ -25,8 +25,8 @@ it exposes iterators of grapheme clusters, `scalar_value` and `bytes`. It does n
 index, but instead encourages properly slicing a string at textually appropriate positions.
 
 To enable strings to represent both constant strings and mutable strings in a very efficient way,
-the `String` type has a more complex implementation that usual. It is a psuedo reference struct that
-wraps and enum struct with three cases. The first case is an empty string with no reference to data.
+the `String` type has a more complex implementation that usual. It is a pseudo reference struct that
+wraps an enum struct with three cases. The first case is an empty string with no reference to data.
 The second case is a non-zero length and a constant internal reference to the string data. This is
 used for constant strings and slices. The third case is a mutable reference to the sealed private
 `String_Builder` class. The compiler should be able to optimize this into a struct that only
