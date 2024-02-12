@@ -1,6 +1,6 @@
 # Internal References
 
-In addition regular reference types that allow values to reference objects on the heap and stack
+In addition to regular reference types that allow values to reference objects on the heap and stack
 reference which reference values on the stack or heap from the stack, there are also internal
 references. These allow for an object to reference a value inside of another object on the heap. In
 many ways they operate like stack references, but because they reference into the heap no tracking

@@ -1,7 +1,9 @@
 # Reference Capabilities
 
 * `const`
+* `temp const`
 * `mut`
 * `iso`
-* (readonly)
+* `temp iso`
+* (read)
 * `id`
