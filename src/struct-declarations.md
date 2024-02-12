@@ -22,7 +22,8 @@ stack based value. However, it might make sense to allow them to optionally be `
 actually called via the interface will be called on boxed values for which `iref` is valid.
 
 **NOTE**: `lent` is not a replacement for `ref` because a lent reference can be passed up the
-stack past the original declaration in a way that `ref` can't.
+stack past the original declaration in a way that `ref` can't. Also, `lent` can apply to a copy
+struct that contains references to restrict how those references can be used.
 
 **NOTE:** `ref const self` makes sense since you can declare constants like `const x: usize = 5`. If
 you take a reference to that, it could just be `ref usize`. However, by symmetry with `ref var`, a

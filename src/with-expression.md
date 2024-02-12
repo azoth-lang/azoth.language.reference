@@ -1,6 +1,6 @@
 # With Expression
 
-A when expression provides two benefits. It introduces a contextual value. See [contextual
+A with expression provides two benefits. It introduces a contextual value. See [contextual
 arguments](optional-arguments.md#contextual-arguments) for more information on contextual values.
 It also helps to manage resources.
 
@@ -9,8 +9,8 @@ declares a name for the context object.
 
 ```grammar
 with_expression
-    : "with" embedded_expression block
-    | "with" "let" identifier (":" type)? "=" embedded_expression block
+    : "with" embedded_expression expression_block
+    | "with" "let" identifier (":" type)? "=" embedded_expression expression_block
     ;
 ```
 

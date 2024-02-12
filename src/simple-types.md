@@ -36,6 +36,8 @@ integer_type
     | "uint64"
     | "size"
     | "offset"
+    | "nint"
+    | "nuint"
     ;
 ```
 
@@ -57,6 +59,14 @@ maximum size of an array in Azoth. The size type is used to index into collectio
 signed number, with the same range as "`size`", used to represent differences between array indexes
 and pointers. Generally the size type on an N-bit machine has the range 0 to 2^(N-1)+1. The offset
 type then has the range -2^(N-1) to 2^(N-1).
+
+### "`nint`" and "`nuint`" Types
+
+* `nint`
+* `nuint`
+
+The bit sizes of these are system dependent. Each has the native bit length N of system. Thus the
+`nint` has the range -2^(N-1) to 2(N-1)-1 and the `nuint` has the range 0 to 2^N-1.
 
 ## Floating Point Types
 
