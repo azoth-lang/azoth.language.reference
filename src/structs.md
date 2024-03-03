@@ -11,8 +11,7 @@ struct
     ;
 
 struct_capability
-    : "mut"
-    | "const"
+    : "const"
     | // epsilon
     ;
 

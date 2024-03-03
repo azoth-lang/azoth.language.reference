@@ -66,7 +66,7 @@ type then has the range -2^(N-1) to 2^(N-1).
 * `nuint`
 
 The bit sizes of these are system dependent. Each has the native bit length N of system. Thus the
-`nint` has the range -2^(N-1) to 2(N-1)-1 and the `nuint` has the range 0 to 2^N-1.
+`nint` has the range -2^(N-1) to 2^(N-1)-1 and the `nuint` has the range 0 to 2^N.
 
 ## Floating Point Types
 

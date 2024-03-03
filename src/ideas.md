@@ -517,7 +517,7 @@ for named parameters and dictionary initializers, here are some options:
 ```azoth
 // Separator
 #{x=:5, y=:6}
-#{x:=5, y:=6}
+#{x:=5, y:=6} // Looks like a declaration with the type omitted
 #{x<-5, y<-6} // Direction feels wrong, a set maps from keys to values
 #{x~5, y~6}
 #{x~>5, y~>6} // Gives another meaning to ~>
