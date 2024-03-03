@@ -10,11 +10,11 @@ An initializer may be named or unnamed. They are declared using the `init` keywo
 ```azoth
 public move struct Example
 {
-    public init()
+    public init(ref mut self)
     {
     }
 
-    public init named()
+    public init named(ref mut self)
     {
     }
 }
@@ -23,12 +23,8 @@ let x = Example();
 let y = Example.named();
 ```
 
-Like constructors, initializers have an implicit self parameter. However, this parameter is passed
-`ref var self` so no copying or initialization is necessary to invoke the initializer.
-
-**TODO:** This is an example where the distinction between `var` and `mut` may make sense on struct
-types. It might make sense to have the parameter type be `ref mut self` so you can mutate self, but
-not assign it a new value. However, C# allows assignment to `this` in struct constructors.
+Like constructors, initializers have a self parameter. However, this parameter is passed `ref mut
+self` so no copying or initialization is necessary to invoke the initializer.
 
 ## Default Initializers
 
@@ -39,7 +35,7 @@ A struct without any initializers will have a default constructor generated for 
 Just like constructors, there is a shorthand for initializing fields.
 
 ```azoth
-public init(.field)
+public init(ref mut self, .field)
 {
 }
 ```
