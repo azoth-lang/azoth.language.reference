@@ -1,12 +1,12 @@
 # Literals
 
-Literals is a representation of a value in source code. A portion of literals are simply keywords.
+Literals are representations of values in source code. A portion of literals are simply keywords.
 
 ```grammar
 literal
     : boolean_literal
     | integer_literal
-    | real_literal
+    | decimal_literal
     | user_literal
     | string_literal
     | none_literal
@@ -27,7 +27,7 @@ boolean_literal
 
 ## Integer Literals
 
-Integer literals represent integer values for types like `int` and `unit`. There are no negative
+Integer literals represent integer values for types like `int` and `uint`. There are no negative
 integer literals. Instead, negative values are represented by constant expressions using the
 negation operator on an integer literal. Integer literals can be written in decimal, hexadecimal, or
 binary.
@@ -85,18 +85,18 @@ Integer literals do not in of themselves determine the type for the value. Inste
 arbitrary precision integer constants which provide a value for integer types inferred by the
 context.
 
-## Real Literals
+## Decimal Literals
 
-Real literals represent floating point values for types like `float` and `float32`. Like integer
-literals, digit separators can be used in real literals to group digits. The integer portion,
-decimal portion and exponent may not start or end with a digit separator. This implies a separator
-cannot appear to either side of the decimal point, nor to either side of the letter "e" which
-introduces the exponent. A real literal also may not contain consecutive digit separators. The
-integer and exponent portions of a real literal may not begin with a zero digit except for when the
-integer portion is the value "0".
+Decimal literals represent floating point values for types like `float`, `float32` and `decimal`.
+Like integer literals, digit separators can be used in decimal literals to group digits. The integer
+portion, decimal portion and exponent may not start or end with a digit separator. This implies a
+separator cannot appear to either side of the decimal point, nor to either side of the letter "e"
+which introduces the exponent. A decimal literal also may not contain consecutive digit separators.
+The integer and exponent portions of a decimal literal may not begin with a zero digit except for
+when that portion is the value "0".
 
 ```grammar
-real_literal
+decimal_literal
     : decimal_digit_or_separator+ "." decimal_digit_or_separator+ exponent_part?
     | decimal_digit_or_separator+ exponent_part?
     ;
@@ -111,7 +111,7 @@ sign
     ;
 ```
 
-Note: A real literal requires a digit before the decimal sign even if this is only the value zero.
+Note: A decimal literal requires a digit before the decimal sign even if this is only the value zero.
 Also, if present, a decimal point must be followed by at least one digit.
 
 ## Escape Sequences
@@ -189,7 +189,8 @@ user_literal_character
 ### User Literal Construction
 
 User literal values are constructed by calling the user literal operator. The resulting object must
-be `const`. This operator must be an implicit pure function.
+be `const`. This operator must be an implicit operator. See the section on this operator for more
+information on what parameter types it can accept.
 
 ```azoth
 public struct Example
@@ -262,17 +263,17 @@ string_character
 
 String literals are constructed with an operator overload. The resulting object must be `const`.
 This operator must be an implicit pure function. As with user literals, the type of a string literal
-is inferred by context and may be restricted by a match pattern.
+is inferred by context and may be restricted by a match pattern. See the section on this operator
+for more information on what parameter types it can accept.
 
 ```azoth
 public struct Example
 {
-    public let count: size;
-    public let bytes: Raw_Bounded_List[byte];
+    public let bytes: const Raw_Bounded_List[byte];
 
     public init(.value, .bytes) { }
 
-    public implicit operator "_"(count: size, bytes: Raw_Bounded_List[byte]) -> const Example
+    public implicit operator "_"(bytes: const Raw_Bounded_List[byte]) -> const Example
     {
         return Example(count, bytes);
     }

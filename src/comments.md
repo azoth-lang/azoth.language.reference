@@ -1,6 +1,10 @@
 # Comments
 
-Both single line and delimited comments are supported. Single-line comments start with the characters "`//`" and extend to the end of the source line. Delimited comments start with the characters "`/*`" and end with the characters "`*/`". Delimited comments may span multiple lines. Comments starting with "`///`" are used for documentation (see [Documentation Comments](documentation-comments.md))
+Both single line and delimited comments are supported. Single-line comments start with the
+characters "`//`" and extend to the end of the source line. Delimited comments start with the
+characters "`/*`" and end with the characters "`*/`". Delimited comments may span multiple lines.
+Comments starting with "`///`" are used for documentation (see [Documentation
+Comments](documentation-comments.md))
 
 ```grammar
 comment
@@ -26,7 +30,9 @@ delimited_comment_section
     ;
 ```
 
-Comments do not nest. The character sequences "`/*`" and "`*/`" have no special meaning within a single-line comment, and the character sequences "`//`" and "`/*`" have no special meaning within a delimited comment.
+Comments do not nest. The character sequences "`/*`" and "`*/`" have no special meaning within a
+single-line comment, and the character sequences "`//`" and "`/*`" have no special meaning within a
+delimited comment.
 
 Comments are not processed within string literals or user defined literals.
 

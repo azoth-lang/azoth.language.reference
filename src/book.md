@@ -4,7 +4,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 
 1. [Introduction](introduction.md)
    * [Simplifying Decisions](simplifying-decisions.md)
-2. Lexical Structure
+2. [Lexical Structure](lexical-structure.md)
    * [Packages](packages.md)
    * [Grammars](grammars.md)
    * [Lexical Analysis](lexical-analysis.md)

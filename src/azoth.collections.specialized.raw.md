@@ -20,7 +20,7 @@ library may wish to declare similar types with the `Unsafe` prefix that are more
 still expose specific unsafe functionality. For example, `Unsafe_Array` might expose an array that
 may be uninitialized but prevents accessing outside of the array bounds.
 
-## `Raw_Array[Count: size, T]`
+## `Raw_Inline_Array[Count: size, T]`
 
 This allows arrays of values to be allocated directly on the stack or in another object.
 
@@ -30,37 +30,41 @@ the containing object and then call the initializer on it by passing a stack ref
 allocated memory.
 
 ```azoth
-published move struct Raw_Array_Struct[Count: size, T]
+published move struct Raw_Inline_Array[Count: size, T]
 {
     published init(mut self, ensureZeroed: bool) {...}
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
     published get count() => Count;
-    // TODO how does it determine these should be `ref` instead of `iref` when on the stack?
-    published unsafe fn at(mut self, index: size) -> iref var T {...};
-    published unsafe fn at(self, index: size) -> iref T {...};
+    // Overloading `self` on `ref` vs `iref` allows for determining the proper return type
+    published unsafe fn at(ref mut self, index: size) -> ref var T {...};
+    published unsafe fn at(iref mut self, index: size) -> iref var T {...};
+    published unsafe fn at(iref self, index: size) -> iref T {...};
+    published unsafe fn at(ref self, index: size) -> ref T {...};
 }
 ```
 
-## `Raw_Bounded_List[Capacity: size, T]`
+## `Raw_Inline_Bounded_List[Capacity: size, T]`
 
-This allows a list whose size can grow within a bounded limit to be allocated direction on the stack or in another object.
-Initialization of this is possible because the constructor self parameter is implicitly `ref var
-self` and the size is known at compile time. Thus the compiler can allocate the space directly on
-the stack or in the containing object and then call the initializer on it by passing a stack
-reference to the allocated memory.
+This allows a list whose size can grow within a bounded limit to be allocated directly on the stack
+or in another object. Initialization of this is possible because the constructor self parameter is
+implicitly `ref var self` and the size is known at compile time. Thus the compiler can allocate the
+space directly on the stack or in the containing object and then call the initializer on it by
+passing a stack reference to the allocated memory.
 
 ```azoth
-published move struct Raw_Bounded_List_Struct[Capacity: size, T]
+published move struct Raw_Inline_Bounded_List[Capacity: size, T]
 {
     published init(mut self) {...}
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
     published get capacity() => Capacity;
     published get count() => size;
-    published unsafe fn shorten(count: size); // unsafe because there may be iref to them
-    // TODO how does it determine these should be `ref` instead of `iref` when on the stack?
-    published unsafe fn at(mut self, index: size) -> iref var T {...};
-    published unsafe fn at(self, index: size) -> iref T {...};
-    published fn add(mut self, value: T);
+    published fn add(ref mut self, value: T);
+    published unsafe fn shorten(ref temp iso self, count: size); // temp iso to prevent a reference to the removed items(s)
+    // Overloading `self` on `ref` vs `iref` allows for determining the proper return type
+    published unsafe fn at(ref mut self, index: size) -> ref var T {...};
+    published unsafe fn at(iref mut self, index: size) -> iref var T {...};
+    published unsafe fn at(iref self, index: size) -> iref T {...};
+    published unsafe fn at(ref self, index: size) -> ref T {...};
 }
 ```
 
@@ -118,7 +122,7 @@ allowing elements to be effectively "freed" and no longer referenced by the list
 the basis of an efficient implementation of `List[T]`. No bounds checking is performed when indexing
 into the list. Thus it would be possible to access uninitialized elements. This type also does not
 limit `count <= capacity`. If the size is increased beyond the capacity, then the result is
-undefined. It may caused the garbage collector to crash or keep invalid memory "live".
+undefined. It may cause the garbage collector to crash or keep invalid memory "live".
 
 ```azoth
 published class Raw_Hybrid_Bounded_List[F, T]

@@ -26,10 +26,10 @@ The following naming conventions are enforced by compiler warnings.
 Curly braces should almost always be on their own line, never K&R style with the open brace on the
 same line. However, for control flow statements with a single statement, the braces and statement
 can appear on a single line indented. If the single statement is short it may appear on the same
-line as the control flow. For `break`, `continue` and `return` this should be a result expression.
+line as the control flow. For `break`, `next` and `return` this should be a result expression.
 
 ```azoth
-for x in 1..10
+foreach x in 1..10
 {
     if f(x)
     {
@@ -70,6 +70,8 @@ screen, but rather, what humans can easily read and which parts of text humans f
 ## Other
 
 * Prefer named constructors to a method that makes an instance (for example making a child node,
-  copy or converted value)
+  copy or converted value).
 * Use implicit self whenever possible and explicit self only when necessary.
 * Use spaces instead of tabs (need compiler warning for this).
+* Use the preferred line ending of the platform you are developing on or `\n` (i.e. Unix) line
+  endings if developing on multiple platforms
