@@ -440,7 +440,8 @@ several interfaces about structural equality.
 ### Product Types for Tuples
 
 Azoth has sum types (`|`) and intersection types (`&`). For consistency with those, it may make
-sense to make tuple types be product types. These could be constructed with the `*` operator.
+sense to make tuple types be product types. These could be constructed with the `*` operator. The
+issue with that is how would tuples of one item and empty tuples work?
 
 ### Unify Union Types and Enum Classes
 
@@ -543,7 +544,7 @@ for named parameters and dictionary initializers, here are some options:
 Looking through these, it really seems that `=>` and prefix `%` are the only reasonable options.
 
 ```azoth
-fn func(arg_1=> x: int, =>arg_2: int) { ... }
+fn func(arg_1=> x: int, arg_2=>: int) { ... }
 fn func(%arg_1 x: int, %arg_2: int) { ... }
 func(arg_2=>5, arg_1=>6);
 func(%arg_2 5, %arg_1 6);
@@ -588,10 +589,10 @@ generic parameters can get really cluttered and confusing.
 
 ### Existential Types
 
-Existential types should be cleaner that the `forSome` keyword used in Scala. Simple existential
+Existential types should be cleaner than the `forSome` keyword used in Scala. Simple existential
 types could be handled with something like Java wildcards using the `_`. However, in other places
 that means infer this type. The two meanings need to be compatible. For more complicated situations,
-named wildcards `_T` could allow for existential types that are further constrained. For example, an
+named wildcards `_T` could allow for existential types that are further constrained. For example, a
 list concatenation could be `fn concat(x: List[_T], y: List[_T]) -> List[_T]`. That expresses the
 relationship between the types. However, a change of implementation might require that a variable of
 that type be declared. As such, if there were a short simple way of declaring existential types it
