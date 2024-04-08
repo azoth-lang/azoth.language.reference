@@ -27,12 +27,12 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Compiler Diagnostics](compiler-diagnostics.md)
 4. [Types](types.md)
    * [Empty Types](empty-types.md)
+   * [Capability Types](capability-types.md)
    * [Simple Types](simple-types.md)
    * [Struct Types](struct-types.md)
    * [Tuple Types](tuple-types.md)
    * [Pointer Types](pointer-types.md)
    * [Reference Types](reference-types.md)
-   * [Reference Capabilities](reference-capabailities.md)
    * [Stack References](stack-references.md)
    * [Internal References](internal-references.md)
    * Type Parameters
