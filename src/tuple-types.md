@@ -36,8 +36,7 @@ console.WriteLine("x = \(x)");
 
 ## Indexing Tuples
 
-Tuple fields are accessed by a zero based index. This is consistent with arrays which are zero based
-and makes more sense for the "`at`" method. Tuple values can be directly accessed as fields by
+Tuple fields are accessed by a zero based index. This is consistent with arrays which are zero based. Tuple values can be directly accessed as fields by
 escaping the index name.
 
 ```azoth

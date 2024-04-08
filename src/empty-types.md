@@ -15,8 +15,8 @@ The `never` type is the bottom type in Azoth. That is, it is a subtype of all ot
 function returning `never` or an expression of type `never` can't return a value. Instead it must
 either throw an exception, cause program abandonment, or never terminate. The never type is useful
 for functions which are known to never return. It is also the type of various expressions like
-`return`, `break`, `continue`, and `throw` which don't evaluate to a value. This allows for their
-use in boolean or coalescing expressions.
+`return`, `break`, `next`, and `throw` which don't evaluate to a value. This allows for their use in
+boolean or coalescing expressions.
 
 The `never` type can be useful in cases where a type is expected but can't occur. For example, a
 function expecting a "`Result[T, Error]`" type which is either a value of type "`T`" or an error of
@@ -41,7 +41,7 @@ of a generic type is actually of type `void` and assigned into a variable of the
 This is not an error. Effectively, the assignment is not performed.
 
 Functions declared without a return arrow (`->`) and return type are defaulted to returning `void`.
-Explicitly declaring a function as returning void is a non-fatal error.
+Explicitly declaring a function as returning `void` is a non-fatal error.
 
 For purposes of covariance and contravariance, "`void`" acts like a top type. For example, if a base
 class function returns "`void`" then it can be overridden with a function returning any type.

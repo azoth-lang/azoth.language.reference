@@ -5,8 +5,7 @@
 Marking a class `const` indicates that all instances of this type will be constant. It constrains
 all constructors to return a `const` reference. Consequently it constrains all field bindings to be
 immutable (i.e. `let`) and have `const` reference types. The compiler will then treat all references
-to that type has `const` except for a few special cases like the `self` reference of the
-constructor.
+to that type as `const` except for a few special cases like the `self` reference of the constructor.
 
 **TODO:** should it be an error to use `const T` with a `const type`? That would avoid debates about
 whether one should use `const`. However, it also means changing a type to `const` requires updating
