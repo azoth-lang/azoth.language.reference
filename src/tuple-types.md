@@ -36,8 +36,8 @@ console.WriteLine("x = \(x)");
 
 ## Indexing Tuples
 
-Tuple fields are accessed by a zero based index. This is consistent with arrays which are zero based. Tuple values can be directly accessed as fields by
-escaping the index name.
+Tuple fields are accessed by a zero based index. This is consistent with arrays which are zero
+based. Tuple values can be directly accessed as fields by escaping the index name.
 
 ```azoth
 let t = #(1, 2, 3);

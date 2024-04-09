@@ -21,25 +21,11 @@ types* and *internal reference types*, and *pointer types*.
 type
     : empty_type
     | capability_type
-    | value_type
-    | reference_type
+    | capability_viewpoint_type
     | type_parameter
     | optional_type
+    | function_type
     | type_expression
-    | pointer_type
-    ;
-```
-
-The value types can be further divided into a number of subcategories. Most value types are *struct
-types*. The *simple types* are predefined value types identified with keywords. The *tuple type* is
-a predefined type for tuples of values. *Pointer types* allow unsafe code to directly use pointers
-to addresses in memory.
-
-```grammar
-value_type
-    : simple_type
-    | struct_type
-    | tuple_type
     | pointer_type
     ;
 ```
