@@ -195,7 +195,7 @@ ordering is supported.
 
 When used as a binary operator "`^`" should be a right associative exponentiation operator. I had
 thought this could be confusing with caret as the dereference operator. However, C makes use of `*`
-as both the multiply and dereference operator. Exponents are much rarer than multiply and pointers
+as both the multiply and dereference operator. Exponents are much rarer than multiply, and pointers
 in Azoth are much rarer than in C. So it shouldn't be an issue.
 
 ### Dot Product and Cross Product Operators
@@ -515,6 +515,9 @@ func(5 for arg_2, 6 for arg_1);
 The same syntax could also be used to create dictionary initializers. Looking at possible syntaxes
 for named parameters and dictionary initializers, here are some options:
 
+NOTE: both the key and the value could be arbitrary expressions. Thus the separator must be fairly
+clear and unique.
+
 ```azoth
 // Separator
 #{x=:5, y=:6}
@@ -522,8 +525,12 @@ for named parameters and dictionary initializers, here are some options:
 #{x<-5, y<-6} // Direction feels wrong, a set maps from keys to values
 #{x~5, y~6}
 #{x~>5, y~>6} // Gives another meaning to ~>
-#{x=>5, y=>6} // Is this 100% consistent with the result syntax? Is it ambiguous?
+#{x=>5, y=>6} // Is this 100% consistent with the result syntax? Is it ambiguous? Too much like a function or pattern match
 #{x: 5, y: 6} // Really should reserve : as a typing operator allowing explicit typing in expressions
+#{x\=5, y\=6}
+#{x~=5, y~=6}
+#{x#>5, y#>6}
+#{x+>5, y+>6}
 #{5@x, 6@y}
 #{5#=x, 6#=y}
 
@@ -539,6 +546,7 @@ for named parameters and dictionary initializers, here are some options:
 // Other
 #{:x: 5, :y: 6}
 #{%x: 5, %y: 6}
+#{%x=5, %y=6}
 ```
 
 Looking through these, it really seems that `=>` and prefix `%` are the only reasonable options.

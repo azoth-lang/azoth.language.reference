@@ -59,7 +59,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 7. [Statements](statements.md)
    * [Variable Declarations](variable-declarations.md)
    * Local Constant Declarations
-8. [Namespaces](namespaces.md)
+8. [Namespaces and Using Directives](namespaces.md)
 9. Declarations
    * Constant Declarations
    * Type Aliases

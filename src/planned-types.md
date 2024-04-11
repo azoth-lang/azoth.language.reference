@@ -1,17 +1,5 @@
 # Additional Types
 
-## Native Integer Types
-
-Native sized integer types.
-
-```grammar
-integer_type
-    : ...
-    | "nint"
-    | "nuint"
-    ;
-```
-
 ## 128-bit Integer Types
 
 Additional integer types for signed and unsigned 128-bit integers.

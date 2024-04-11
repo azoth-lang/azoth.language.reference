@@ -52,7 +52,7 @@ Given that async will be more pervasive in my language. Perhaps it makes sense t
 
 ## Use `|` as Remainder Operator
 
-Now that it isn't taken up by "or", the pipe could be used as the remainder operator, fitting the mathematical usage. However, that still seems a pretty rare operator. Perhaps it should be used for something else more common
+Now that it isn't taken up by "or", the pipe could be used as the remainder operator, fitting the mathematical usage. However, that still seems a pretty rare operator. Perhaps it should be used for something else more common.
 
 ## Use `_` or `*` for Wild Card Types
 
