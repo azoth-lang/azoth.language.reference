@@ -24,9 +24,9 @@ directory does not represent the global namespace, but the specified root namesp
 
 ### Namespace Declarations
 
-Further namespaces can be created both by directories and by a *namespace declaration*. A namespace
-declaration scopes the declarations inside it within one or more namespaces. Without the global
-namespace qualifier, these namespaces are nested inside the file namespace and any containing
+Further namespaces can be created both by directories and by a *namespace block definition*. A
+namespace declaration scopes the declarations inside it within one or more namespaces. Without the
+global namespace qualifier, these namespaces are nested inside the file namespace and any containing
 namespace declarations. A namespace declaration cannot have attributes or access modifiers.
 
 ```azoth
