@@ -531,6 +531,9 @@ clear and unique.
 #{x~=5, y~=6}
 #{x#>5, y#>6}
 #{x+>5, y+>6}
+#{x==>5, y==>6}
+
+// Reverse Separator
 #{5@x, 6@y}
 #{5#=x, 6#=y}
 
