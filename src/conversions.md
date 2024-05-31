@@ -66,7 +66,7 @@ A constant expression of the types "`int8`", "`byte`", "`int16`", "`uint16`", "`
 "`int64`", "`uint64`", "`int`", "`uint`", "`size`", "`offset`", "`float32`", or "`float64`" can be
 implicitly converted to any other type in the list if the value of the constant expression is within
 the range of the destination type and can be represented without loss of precision. Thus for
-conversion to "`float32`" and "`float64`" the value must not have more significant bits than be
+conversion to "`float32`" and "`float64`" the value must not have more significant bits than can be
 represented by the type.
 
 ### User-defined Implicit Conversions
