@@ -1,6 +1,7 @@
 # The Azoth Programming Language Reference
 
-Note: This is the new version of the reference. Sections are being moved from the old version to the new version. If something is missing, it may be documented in the [old version](../old/book.md).
+Note: This is the new version of the reference. Sections are being moved from the old version to the
+new version. If something is missing, it may be documented in the [old version](../old/book.md).
 
 1. [Introduction](introduction.md)
    * [Simplifying Decisions](simplifying-decisions.md)
