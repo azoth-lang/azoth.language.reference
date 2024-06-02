@@ -24,6 +24,11 @@ It is important to note that for the reference types, a single domain contains t
 the enum struct types, each enum struct creates two separate domains, one for the optional variant
 and one for the non-optional variant.
 
+**TODO:** Do not include optional types here. Make that have to be done to the union or
+intersection. Also clarify that reference capabilities apply across the whole type (e.g. `mut Foo |
+const Foo` isn't valid, instead `mut (Foo | Bar)`). This implies that there is no union of other
+types like function types etc.
+
 ## Union Types
 
 Union types are the union of other data types. That is, a value of any of the types being unioned is

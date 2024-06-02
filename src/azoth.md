@@ -14,9 +14,9 @@ Exception is a base class that provides basic functionality for exceptions. Note
 not need to inherit from `Exception` to be throwable. It is just a base class that it is recommended
 that all reference types meant for throwing inherit from.
 
-Exception provides two primary benefits. First, it includes and inner exception for use when
+Exception provides two primary benefits. First, it includes an inner exception for use when
 catching an exception of one type and wrapping it to throw an exception of another type. Second, it
-provides and exception message that interacts well with structured logging. Exception messages may
+provides an exception message that interacts well with structured logging. Exception messages may
 contain references to properties of the exception. These messages play well with structured logging
 so that when an exception is logged, there is a distinction between the template of the exception
 message and the actual message with values filled in. Also, exception properties referenced in the
@@ -82,6 +82,6 @@ Related types:
 
 ## Unreachable
 
-`unreachable(message: string? = none) -> never` can be used to to indicate a point in the program
-that ought to be logically unreachable. If at execution time, it is reached then a program abort
-happens.
+`unreachable(message: string) -> never` or `unreachable() -> never` can be used to to indicate a
+point in the program that ought to be logically unreachable. If at execution time, it is reached
+then a program abort happens.
