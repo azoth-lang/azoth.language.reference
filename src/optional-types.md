@@ -22,14 +22,14 @@ value "`none`" has the type "`never?`" thus it can be assigned into any optional
 
 ## Conditioning on a Value
 
-To conditionally operate on an optional value, use an "`if let`" expression. Other ways of checking
-for "`none`" are possible but not preferred.
+To conditionally operate on an optional value, use a pattern match expression. Other ways of
+checking for "`none`" are possible but not preferred.
 
 ```azoth
 let x: int? = ...;
 
 // Idiomatic way of checking for `none`
-if let y? = x
+if x is let y?
 {
     // y is the value of x
 }
