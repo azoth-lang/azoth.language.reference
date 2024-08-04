@@ -1,6 +1,7 @@
 # Choice Expressions
 
-There are two constructs which allow the choice of which code to execute. They are "`if`" and "`match`".
+There are two constructs which allow the choice of which code to execute. They are "`if`" and
+"`match`".
 
 ```grammar
 choice_expression
@@ -11,7 +12,14 @@ choice_expression
 
 ## `if` Expression
 
-An if expression evaluates a condition. If that condition is true, the first expression block is executed. If that condition evaluates to false, then the else clause is evaluated if it is present. The type of an if expression with no else clause and expression block type "`T`" is "`T?`" unless "`T`" is "`void`" in which case the if expression has type "`void`". When the condition is true, the value of the expression is the value of the expression block. When the condition is false, the value is "`none`". The type of an if expression with an else clause is the type both the expression block type and else clause type can be assigned to. If the condition is true, the value of the if expression is the value of the expression block, otherwise it is the value of the else clause.
+An if expression evaluates a condition. If that condition is true, the first expression block is
+executed. If that condition evaluates to false, then the else clause is evaluated if it is present.
+The type of an if expression with no else clause and expression block type "`T`" is "`T?`" unless
+"`T`" is "`void`" in which case the if expression has type "`void`". When the condition is true, the
+value of the expression is the value of the expression block. When the condition is false, the value
+is "`none`". The type of an if expression with an else clause is the type both the expression block
+type and else clause type can be assigned to. If the condition is true, the value of the if
+expression is the value of the expression block, otherwise it is the value of the else clause.
 
 ```grammar
 if_expression
@@ -25,7 +33,8 @@ else_clause
     ;
 ```
 
-The else clause is associated with the lexically closest if expression. Thus "`if x => if y => F() else => G()`" is equivalent to:
+The else clause is associated with the lexically closest if expression. Thus "`if x => if y => F()
+else => G()`" is equivalent to:
 
 ```azoth
 if x
@@ -84,8 +93,6 @@ let x = if condition
         DoSomethingElse();
         => "false";
     }; // semi-colon ends let statement
-
-
 ```
 
 ## `match` Expressions
@@ -108,7 +115,8 @@ match v
 
 The compiler checks that the conditions are exhaustive.
 
-Like "`if`", "`match`" is an expression of type "`void`" by default, but can be given an expression value using expression blocks.
+Like "`if`", "`match`" is an expression of type "`void`" by default, but can be given an expression
+value using expression blocks.
 
 ```azoth
 let z = match v

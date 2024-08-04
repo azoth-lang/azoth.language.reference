@@ -122,6 +122,8 @@ However, Azoth follows the tradition of C# in not allowing shadowing within the 
 variables of a function. This avoids programmer confusion and prevents bugs while almost never
 causing inconvenience.
 
+**TODO:** shadowing rules are more complex than stated here. Document proper rules.
+
 ## Patterns?
 
 A section about destructuring patterns?

@@ -86,8 +86,9 @@ Any symbol sequences not defined as operators or punctuators are errors. Thus th
 not technically reserved, but are available for future language features. However, the following
 symbols are "reserved" for the below uses:
 
-| Symbol  | Use                                             |
-| ------- | ----------------------------------------------- |
-| `^`     | Raise to power (when used as a binary operator) |
-| `` ` `` | Reserved for code expressions and blocks        |
-| `##`    | Preprocessor                                    |
+| Symbol    | Use                                                                    |
+| --------- | ---------------------------------------------------------------------- |
+| `^`       | Raise to power (when used as a binary operator)                        |
+| `` ` ``   | Reserved for code expressions and blocks                               |
+| `##`      | Preprocessor                                                           |
+| `~>` `<~` | Reachable from (more powerful than `lent` for parameter relationships) |
