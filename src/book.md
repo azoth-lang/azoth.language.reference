@@ -60,7 +60,7 @@ new version. If something is missing, it may be documented in the [old version](
 7. [Statements](statements.md)
    * [Variable Declarations](variable-declarations.md)
    * Local Constant Declarations
-8. [Namespaces and Using Directives](namespaces.md)
+8. [Namespaces and Import Directives](namespaces.md)
 9. Declarations
    * Constant Declarations
    * Type Aliases

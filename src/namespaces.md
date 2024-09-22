@@ -1,8 +1,8 @@
-# Namespaces and Using Directives
+# Namespaces and Import Directives
 
 *Namespaces* provide a way of organizing types and functions to avoid conflicts caused by declaring
 items with the same name. When references to names are ambiguous, they can be disambiguated by
-qualifying them, or with *using directives*.
+qualifying them, or with *import directives*.
 
 ## Compilation Units
 
@@ -62,10 +62,10 @@ namespace ::
 
 Namespaces do not have a declared visibility (no access modifier). Within a package all namespaces
 are visible to all code. It is the declarations within those namespaces that are restricted. For
-example, a using directive can be declared to use a namespace that contains no visible members. Only
-namespaces with "`published`" declarations or published namespaces inside of them are published from
-a package. Thus a using directive referring to a namespace with no members published from a package
-would be invalid.
+example, an import directive can be declared to use a namespace that contains no visible members.
+Only namespaces with "`published`" declarations or published namespaces inside of them are published
+from a package. Thus an import directive referring to a namespace with no members published from a
+package would be invalid.
 
 ## Name Resolution
 
@@ -77,16 +77,16 @@ to the containing namespace. This means that all declarations will be visible in
 namespace. If a declaration with the same name whose type doesn't match the usage is found, name
 resolution continues.
 
-## Using Directives
+## Import Directives
 
-Using directives can appear at the top of a source code file before any other declarations, or
+Import directives can appear at the top of a source code file before any other declarations, or
 inside a namespace declaration before any other declarations. As namespaces are searched inside out,
-using directives are searched before the containing namespace. Using directives pull in names for
-the given namespace from all packages. Note that using directives must always use fully qualified
-names starting from the global namespace. If a using directive references a namespace, it brings
+import directives are searched before the containing namespace. Import directives pull in names for
+the given namespace from all packages. Note that import directives must always use fully qualified
+names starting from the global namespace. If an import directive references a namespace, it brings
 into scope only declarations directly in the namespace, not in namespaces nested inside it. The
-order of using directives doesn't matter. All the names brought into scope by using directives are
-searched simultaneously. Thus if two using directives bring in the same name uses of that name will
+order of import directives doesn't matter. All the names brought into scope by import directives are
+searched simultaneously. Thus if two import directives bring in the same name uses of that name will
 be ambiguous.
 
 ```azoth
@@ -97,20 +97,20 @@ namespace example1
 
 namespace example2
 {
-    using azoth.collections; // Without this, references to List[T] would search up to the global namespace and be ambiguous.
+    import azoth.collections; // Without this, references to List[T] would search up to the global namespace and be ambiguous.
 
 }
 ```
 
 ## Summary of Name Resolution
 
-Name resolution is package aware. Using directives bring into scope names from that namespace across
-all packages. However, namespaces searched because they contain the current declaration only bring
-into scope names in that namespace from the current package. This allows a package to intentionally,
-declare types and functions with the same name and namespace as referenced package and have them
-take precedence over those in the referenced package. It also ensures that updates to referenced
-packages won't break builds by introducing names matching those already in the current package. Only
-as a final step are names from referenced packages considered.
+Name resolution is package aware. Import directives bring into scope names from that namespace
+across all packages. However, namespaces searched because they contain the current declaration only
+bring into scope names in that namespace from the current package. This allows a package to
+intentionally, declare types and functions with the same name and namespace as referenced package
+and have them take precedence over those in the referenced package. It also ensures that updates to
+referenced packages won't break builds by introducing names matching those already in the current
+package. Only as a final step are names from referenced packages considered.
 
 Name resolution proceeds based on lexical scope from the scope a usage is in outward. When searching
 outward through namespaces, a compound namespace declaration (e.g. `namespace foo.bar`) is treated
@@ -139,7 +139,7 @@ In summary, the name resolution searches lexical scopes according to the followi
 2. Declarations the current declaration is nested inside (i.e. a class containing a nested class),
    going from innermost to outermost.
 3. For each containing namespace from inside out including the global namespace, search:
-    1. Using directives: bring in all names in a namespace regardless of package, do not bring in
+    1. Import directives: bring in all names in a namespace regardless of package, do not bring in
        names in nested namespaces
     2. Declarations in the namespace in the current package
     3. Declarations in nested namespaces in the current package that are visible from the current

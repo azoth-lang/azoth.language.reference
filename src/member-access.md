@@ -37,7 +37,7 @@ File visibility is good for code generation and local aliases.
 ## File Visibility
 
 Declarations visible within a file should not have name conflicts with other files? That allows you
-to use type alias features (e.g. `alias X = Foo;`) to pull in types equivalent of C# using alias
+to use type alias features (e.g. `alias X = Foo;`) to pull in types equivalent to C# using alias
 directive (e.g. `using X = Foo;`).
 
 ## Namespace Dependencies

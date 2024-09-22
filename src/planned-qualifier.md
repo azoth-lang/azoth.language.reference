@@ -22,14 +22,14 @@ To start name resolution from the global namespace, a name can be prefixed with 
 "`::.`". This is the same operator used for qualifying names with a package, but no package name is
 specified.
 
-## Package Qualified Using Directives
+## Package Qualified Import Directives
 
-A using directive can qualify the namespace with a package qualifier. This restricts the using
+An import directive can qualify the namespace with a package qualifier. This restricts the import
 statement to bring in names inside that package only. Package qualifiers are either the official
 package name or if an alias for the package is specified, the alias for the package. Note the dot
-after the double colon. Use of the global qualifier in using directives is not supported because
+after the double colon. Use of the global qualifier in import directives is not supported because
 names are always fully qualified starting from the global namespace.
 
 ```azoth
-using my.package::.foo.bar;
+import my.package::.foo.bar;
 ```
