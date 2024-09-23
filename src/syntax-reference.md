@@ -6,17 +6,17 @@ A brief statement of the syntax for easy reference.
 
 | Syntax            | Identifier Kind                                                       |
 | ----------------- | --------------------------------------------------------------------- |
-| `Name`            | Identifer                                                             |
+| `Name`            | Identifier                                                            |
 | `\class`          | Escaped Identifier (keywords, contextual keywords and reserved words) |
 | `\"Hello World!"` | String Identifier                                                     |
 
 ## Comments
 
-| Syntax             | Meaning               |
-| ------------------ | --------------------- |
-| `// something`     | Line Comment          |
-| `/* something */`  | Multiline Comment     |
-| `/// Markdown text | Documentation Comment |
+| Syntax              | Meaning               |
+| ------------------- | --------------------- |
+| `// something`      | Line Comment          |
+| `/* something */`   | Multiline Comment     |
+| `/// Markdown text` | Documentation Comment |
 
 ## Literals
 

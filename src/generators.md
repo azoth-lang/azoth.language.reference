@@ -32,7 +32,7 @@ is called. This can be done with the optional `new yield` statement. When this s
 Any code before it is run when the function is initially called and code after it is part of the
 generator. This means other yield expressions cannot be used before it.
 
-**TODO:** should it switch to `init yield` if
+**TODO:** should it switch to `init yield` if the iterator type is a struct?
 
 ## Generator Destruction
 
@@ -104,7 +104,7 @@ published move trait Generator_State_Machine[Yield_Input, Yield_Input_Throws, Yi
 ## Void Generators
 
 For certain types there is no value to be yielded. In this case, the `Yield_Output` is `void` and
-the  `yield` expression takes no value (e.g. `yield;`). This may be useful it one was trying to
+the `yield` expression takes no value (e.g. `yield;`). This may be useful if one was trying to
 implement coroutines on top of generator functions.
 
 ## Generators as Coroutines
