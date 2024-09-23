@@ -21,7 +21,7 @@ types* and *internal reference types*, and *pointer types*.
 type
     : empty_type
     | capability_type
-    | capability_viewpoint_type
+    | viewpoint_type
     | type_parameter
     | optional_type
     | function_type

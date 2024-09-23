@@ -68,33 +68,37 @@ capabilities cannot be directly used for member access. Whenever a variable with
 is used, a second temporary alias is created and the variable is no longer `iso`. Typically it is
 now `mut`. At key moments isolation can be recovered if the compiler can verify that no references
 that could violate isolation could exist. This typically occurs when returning an `iso` type and
-with the `move` expression. However, an implicit `move` can also occur when calling a method.
+with the `move` expression. However, an implicit `move` can also occur on the `self` parameter when
+calling a method.
 
 When a value is moved, what is left behind is a value with the `id` capability.
 
 Another way that capabilities can change is via `freeze`. After a value has been frozen, all
 references to it and objects reachable from it will be `const`.
 
-## Capability Viewpoint Types
+## Viewpoint Types
 
 Sometimes, it is necessary to express the type that would result from a member access. This is what
 viewpoint types are for. They produce a new type with the capability that would result from
 accessing a member of a given type from an object with a given capability. The source of the
-capability is listed first, followed by an open triangle arrow and then the type of the member. If
-the member type is not a generic parameter, then it is usually not necessary to use a basic
-capability viewpoint type because one knows exactly the capability that would result. But if the
-type is a generic parameter or contains a generic parameter that would be affected by the type, then
+capability is listed first, followed by an open triangle arrow and then the type of the member.
+
+The first form of of viewpoint type is the basic capability viewpoint type. This produces the type
+that would result when accessing a member from a value with a standard capability. If the member
+type is not a generic parameter, then it is usually not necessary to use a basic capability
+viewpoint type because one knows exactly the capability that would result. But if the type is a
+generic parameter or contains a generic parameter that would be affected by the type, then
 capability viewpoint types can become indispensable. For capability viewpoint types, the read-only
 capability is expressed by the `read` keyword to avoid ambiguity and confusion.
 
-The second form of capability viewpoint type uses `self` as the source of the capability. This form
+The second form of viewpoint type uses `self` as the source of the capability. This form
 of capability viewpoint type can become necessary when `self` is constrained to a capability set
 rather than to a specific capability. To express the return type of such methods, it is often
 necessary to use a self capability viewpoint type since the capability returned depends on the
 capability of `self`.
 
 ```grammar
-capability_viewpoint_type
+viewpoint_type
     : explicit_capability capability_arrow type
     | "self" capability_arrow type
     ;
