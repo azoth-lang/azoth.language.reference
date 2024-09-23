@@ -51,6 +51,9 @@ All destructors implicitly are `no throw`. This is because destructors are calle
 are unwinding the stack. Thus if an exception were to be thrown from a destructor it might hide the
 original exception that is leading to the destructor being called.
 
+**TODO:** Allow the destructor to receive info about an in progress error and allow destructors
+definitions to override the default of `no throw`
+
 ## Base Class Destructors
 
 A base class destructor can be called similar to other base class methods with the `base.delete()`

@@ -42,21 +42,6 @@ freeze_expression
     ;
 ```
 
-## Id Expression
-
-**TODO:** remove since this is no longer the idiom for reference equality (`id` could be applied to
-structs but they still shouldn't be compared for reference equality).
-
-Typically, conversion to `id T` is implicit. However, it can be helpful to explicitly get an
-identity reference to something. The `id` expression allows this. This is used as part of the idiom
-for checking reference equality (i.e. `id x == id y`).
-
-```grammar
-id_expression
-    | "id" embedded_expression
-    ;
-```
-
 ## Implicit Move and Freeze
 
 When calling a method, the self parameter can cause an implicit move or freeze. If the self
