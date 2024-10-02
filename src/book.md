@@ -90,7 +90,9 @@ new version. If something is missing, it may be documented in the [old version](
     * Enumeration Structs
     * Enumeration Classes
 15. [Extensions](extensions.md)
-16. Generics
+16. Type Variables
+    * Generics
+    * [Associated types](associated-types.md)
 17. [Structured Concurrency](structured-concurrency.md)
 18. [Design by Contract](contracts.md)
 19. [Error Handling](error-handling.md)
