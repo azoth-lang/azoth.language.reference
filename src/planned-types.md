@@ -12,7 +12,7 @@ integer_type
     ;
 ```
 
-## 128-bit Floating Point Type
+## 128-bit and 256-bit Floating Point Type
 
 Additional floating point type for IEEE 754 binary128 floating point math.
 
