@@ -413,16 +413,6 @@ cause overflow if the address pointed to is outside of what the relative pointer
 versions of JAI used "`*~s32 Node`" for a 32-bit relative pointer to a node. Notice a signed int is
 used. It may be possible to implement relative pointers in the standard library using structs.
 
-### Reference Counted References
-
-If reference counted references are built into the language then certain optimizations become
-possible. Whole program optimization could determine that no weak references are take to a given
-type and the weak count could be omitted. The graph of references between types could be used to
-determine which references could possibly for cycles. Then some form of cycle breaking might become
-efficient enough to use so that weak references aren't necessary. Of course, that could lead to
-issues where devs just use reference counting for everything and it becomes just a slow garbage
-collector.
-
 ### Move and Copy Reference Types
 
 Copy constructors can be defined for reference types. However, would it be useful to have reference
