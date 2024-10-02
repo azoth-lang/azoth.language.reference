@@ -400,25 +400,6 @@ Disadvantages and Issues:
 Support in the standard library for numbers that are represented in the [Logarithmic number
 system](https://en.wikipedia.org/wiki/Logarithmic_number_system).
 
-### Big Integers are Default
-
-Make "`int`" and "`uint`" big integers with "`int32`" and "`uint32`" being added back. These big
-integers would pack into 64 bits most of the time and when they got bigger, change to 64 bit
-pointers. Given there is already overflow checks, the instructions for checking if a big integer is
-a pointer may not really be an issue. Also, on modern CPUs the performance issues are much more to
-do with waiting on other hardware. However, big integers that are a pointer could cause cash line
-misses and may require reference counting which could be costly.
-
-### Have Both Default and Sized Integers
-
-Currently, "`int`" and "`uint`" replace possible "`int32`" and "`uint32`" types. The language could
-have both as synonyms. This would allow for better conveying programmer intent. Programmers who
-weren't thinking about integer sizes could use "`int`" and "`uint`", programmers who consciously
-decided that 32 bits was the correct size for the situation could use "`int32`" and "`uint32`".
-However, this could lead to style splits with some devs claiming one should always use the explicit
-size variants. Furthermore, it would not be possible to produce a warning on their use, because it
-is only programmer intent.
-
 ### Relative Pointers
 
 JAI will likely have relative pointers to pack pointers into smaller spaces that the 64-bit address
