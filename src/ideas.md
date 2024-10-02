@@ -369,6 +369,30 @@ type would have to implement traits based on the type it contained.
 Perhaps the correct way to handle this is similar to Java with a separate wrapper type for each of
 the simple types.
 
+### No `new` Keyword
+
+It has become the fashion in new languages to drop the `new` keyword and simply use the type name as
+the constructor (e.g. Python, Kotlin, Scala). They then often have to introduce an `object` keyword
+for the equivalent of anonymous classes. Dropping the `new` keyword from Azoth with simplify several
+things but also have downsides.
+
+Advantages:
+
+* No need to support `new` on `struct`s to allow them to emulate classes. (Though perhaps that
+  shouldn't be allowed anyway since they don't behave fully like classes.)
+* Unifies factory functions and constructors. Constructors are just methods that happen to return a
+  new object.
+* `new` can be used only for method hiding (but may use `hides` instead.)
+
+Disadvantages and Issues:
+
+* Obscures where memory allocation happens
+* Requires `object` keyword or something for anonymous classes
+* Eliminates `new?` syntax for trying to allocate and returning `none` on failure (would need a
+  different syntax?)
+* Causes issues if allocation and abort are effect types. Constructors can always abort and always
+  allocate. But they are not obvious distinct from other functions.
+
 ## Types
 
 ### Logarithmic Numbers
@@ -620,6 +644,9 @@ The concat example could be `fn concat[~T](x: List[T], y: List[T]) -> List[T]`.
 
 Another important consideration is whether an existential type can be used for a field `var list:
 List[∃T]` and it can actually be assigned lists of different types.
+
+Another syntax would be to use `*` in place of `~`. That would not be ambiguous because `*` is not
+otherwise used as a unary operator.
 
 ## Misc
 
