@@ -11,6 +11,7 @@ Sections:
 * [Operators](#operators)
 * [Preprocessor](#preprocessor)
 * [Documentation Comments](#documentation-comments)
+* [Declarations](#declarations)
 * [Expressions](#expressions)
 * [Types](#types)
 * [Parameters](#parameters)
@@ -262,6 +263,20 @@ it should support a much wider of range syntax, something like [Markua](http://m
 Code in documentation comments should either be compiled, or have a way of causing it to be
 compiled.
 
+## Declarations
+
+### `type` Declarations
+
+Currently, there are type aliases (e.g. `alias type ...`) and there are associated types (e.g. `type
+...` inside of a type declaration). Perhaps one should be allowed to declare types outside of a type
+declaration. This would have the effect of introducing a new type that was distinct from the type it
+was set to. There are many questions about how that should work though. The reason that aliases are
+aliases is so that they don't cause issues where the new type doesn't interoperate with the types it
+is constructed from.
+
+Alternatively, type aliases could be declared without the `alias` keyword. Then within type
+declarations a pure alias could be declared using something like `const type` or `sealed type`.
+
 ## Expressions
 
 ### `else match` Expression
@@ -423,9 +438,9 @@ it could go through three states represented by types (i.e. `AvailableSocket`, `
 `ClosedSocket`). There would be methods that took the one and returned the other. For example, the
 `close()` method would consume the socket and then return a `ClosedSocket`. However, this may not
 require move reference types. Indeed, one may not want move for most methods on socket. The close
-method could be declared `fn close(self$owned) -> ClosedSocket$owned`. It would then take ownership
-of self. That is a little strange because one can't use the `move` keyword with the self reference.
-The dot operator would have to do this implicitly.
+method could be declared `fn close(iso self) -> iso ClosedSocket`. It would then take ownership of
+self. That is a little strange because one can't use the `move` keyword with the self reference. The
+dot operator would have to do this implicitly.
 
 ### Tuple Base Class
 
@@ -478,7 +493,8 @@ class Vehicle of plane | train | automobile {
 Expose types in the language for constants of known values. For example, `bool[true]` would be the
 type of a boolean known to be true. Likewise, `int[0]` the type of an int know to be zero at compile
 time. One possible use for this is in a units of measure library where `m^3` could be handled by
-overloading the `^` operator on `int[1]`, `int[2]`, `int[3]` etc.
+overloading the `^` operator on `int[1]`, `int[2]`, `int[3]` etc. Alternatively, the types could be
+`const[true]`, `const[1]`, etc. or `Const[true]`, `Const[1]`, etc.
 
 ### Units of Measure
 
@@ -667,4 +683,5 @@ implicitly initialized.
 Instead of using `get` and `set` for properties, use `read` and `write`. This corrects what Kevlin
 Henny talks about that "get" is side-effecting in English and isn't the opposite of "set".
 Alternatively, "assign" could be used. If assignment were turned into a set statement, then set
-might make sense again.
+might make sense again. However, it could be confusing since `read` is also the name of a reference
+capability in some situations.
