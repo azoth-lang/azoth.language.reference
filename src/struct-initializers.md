@@ -28,7 +28,7 @@ self` so no copying or initialization is necessary to invoke the initializer.
 
 ## Default Initializers
 
-A struct without any initializers will have a default constructor generated for it.
+A struct without any initializers will have a default initializer generated for it.
 
 ## Field Initialization Shorthand
 
@@ -42,8 +42,8 @@ public init(ref mut self, .field)
 
 ## Definite Assignment
 
-Like constructors, definite assignment of fields is enforced. Since a struct never has a base class.
-The transition point to fully initialized is always implicit.
+Like constructors, definite assignment of fields is enforced. Since a struct never has a base class,
+the transition point to fully initialized is always implicit.
 
 ## Copy Initializers
 

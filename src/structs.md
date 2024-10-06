@@ -48,6 +48,8 @@ compiler can then assume that values of this type will not break the isolation o
 
 ## Pseudo-Reference Structs
 
+**TODO:** Redo section now that structs have reference capabilities
+
 Sometimes it is useful to create a struct that acts as if it were a simple reference to an object on
 the heap down to even having a reference capability. For example, this is how array slices are
 implemented efficiently. To allow this, the struct must be distinguished from a regular struct which

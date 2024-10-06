@@ -24,22 +24,21 @@ may be uninitialized but prevents accessing outside of the array bounds.
 
 This allows arrays of values to be allocated directly on the stack or in another object.
 
-Initialization of this is possible because the self parameter is implicitly `ref var self` and the
-size is known at compile time. Thus the compiler can allocate the space directly on the stack or in
-the containing object and then call the initializer on it by passing a stack reference to the
-allocated memory.
+Initialization of this is possible because the self parameter is `ref self` and the size is known at
+compile time. Thus the compiler can allocate the space directly on the stack or in the containing
+object and then call the initializer on it by passing a stack reference to the allocated memory.
 
 ```azoth
 published move struct Raw_Inline_Array[Count: size, T]
 {
-    published init(mut self, ensureZeroed: bool) {...}
+    published init(ref mut self, ensureZeroed: bool) {...}
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
     published get count() => Count;
     // Overloading `self` on `ref` vs `iref` allows for determining the proper return type
     published unsafe fn at(ref mut self, index: size) -> ref var T {...};
     published unsafe fn at(iref mut self, index: size) -> iref var T {...};
-    published unsafe fn at(iref self, index: size) -> iref T {...};
     published unsafe fn at(ref self, index: size) -> ref T {...};
+    published unsafe fn at(iref self, index: size) -> iref T {...};
 }
 ```
 
@@ -47,14 +46,14 @@ published move struct Raw_Inline_Array[Count: size, T]
 
 This allows a list whose size can grow within a bounded limit to be allocated directly on the stack
 or in another object. Initialization of this is possible because the constructor self parameter is
-implicitly `ref var self` and the size is known at compile time. Thus the compiler can allocate the
-space directly on the stack or in the containing object and then call the initializer on it by
-passing a stack reference to the allocated memory.
+`ref self` and the size is known at compile time. Thus the compiler can allocate the space directly
+on the stack or in the containing object and then call the initializer on it by passing a stack
+reference to the allocated memory.
 
 ```azoth
 published move struct Raw_Inline_Bounded_List[Capacity: size, T]
 {
-    published init(mut self) {...}
+    published init(ref mut self) {...}
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
     published get capacity() => Capacity;
     published get count() => size;
@@ -63,8 +62,8 @@ published move struct Raw_Inline_Bounded_List[Capacity: size, T]
     // Overloading `self` on `ref` vs `iref` allows for determining the proper return type
     published unsafe fn at(ref mut self, index: size) -> ref var T {...};
     published unsafe fn at(iref mut self, index: size) -> iref var T {...};
-    published unsafe fn at(iref self, index: size) -> iref T {...};
     published unsafe fn at(ref self, index: size) -> ref T {...};
+    published unsafe fn at(iref self, index: size) -> iref T {...};
 }
 ```
 
