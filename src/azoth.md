@@ -78,10 +78,10 @@ Related types:
 
 ## Abort
 
-`abort(message: string) -> never` can be used to cause a program abort.
+`ABORT(message: string) -> never` can be used to cause a program abort.
 
 ## Unreachable
 
-`unreachable(message: string) -> never` or `unreachable() -> never` can be used to to indicate a
+`UNREACHABLE(message: string) -> never` or `UNREACHABLE() -> never` can be used to to indicate a
 point in the program that ought to be logically unreachable. If at execution time, it is reached
 then a program abort happens.
