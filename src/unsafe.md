@@ -47,7 +47,7 @@ unsafe?
 ## Trusted Packages
 
 Packages referenced from azothforge.com may be trusted or untrusted. By default all packages in the
-`system` namespace are trusted while all other packages are untrusted. This can be changed for
+`azoth` namespace are trusted while all other packages are untrusted. This can be changed for
 individual packages using the `trusted` attribute of the project file. Any function marked `unsafe`
 or `safe` in an untrusted package is untrusted. Note that this can propagate from one package to
 another. Any function that calls an untrusted function is untrusted. Calling an untrusted function
