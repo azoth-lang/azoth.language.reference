@@ -1,9 +1,9 @@
-# Empty Types
+# Extrema Types
 
-The empty types are those types for which there is no value of that type.
+The extrema types act in some ways as what is known in type theory as a top and bottom type.
 
 ```grammar
-empty_type
+extrema_type
     : "never"
     | "void"
     ;
@@ -13,16 +13,21 @@ empty_type
 
 The `never` type is the bottom type in Azoth. That is, it is a subtype of all other types. A
 function returning `never` or an expression of type `never` can't return a value. Instead it must
-either throw an exception, cause program abandonment, or never terminate. The never type is useful
-for functions which are known to never return. It is also the type of various expressions like
-`return`, `break`, `next`, and `throw` which don't evaluate to a value. This allows for their use in
-boolean or coalescing expressions.
+either throw an exception, cause program abandonment, or never terminate.
+
+The never type is useful in a number of circumstances. First, it is useful for functions and
+expressions which are known to never return. It is the type of various expressions like `return`,
+`break`, `next`, and `throw` which don't evaluate to a value. This allows for their use in boolean
+or coalescing expressions.
 
 The `never` type can be useful in cases where a type is expected but can't occur. For example, a
 function expecting a "`Result[T, Error]`" type which is either a value of type "`T`" or an error of
 type "`Error`", could be passed a value of type "`Result[T, never]`" if an error is not possible in
 this circumstance. The literal value "`none`" used with [optional types](optional-types.md) has the
 type "`never?`".
+
+Finally, `never` can be useful as the subtype of all types. For example, an immutable empty list can
+have the type `List[never]` so that it is a subtype of all other list types.
 
 ## `void` Type
 
@@ -45,3 +50,5 @@ Explicitly declaring a function as returning `void` is a non-fatal error.
 
 For purposes of covariance and contravariance, "`void`" acts like a top type. For example, if a base
 class function returns "`void`" then it can be overridden with a function returning any type.
+Likewise, when evaluating type constraints it is a supertype of all other types. This is what makes
+it an extrema type.

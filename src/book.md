@@ -27,7 +27,7 @@ new version. If something is missing, it may be documented in the [old version](
    * [Execution Order](execution-order.md)
    * [Compiler Diagnostics](compiler-diagnostics.md)
 4. [Types](types.md)
-   * [Empty Types](empty-types.md)
+   * [Extrema Types](extrema-types.md)
    * [Capability Types](capability-types.md)
    * [Value Types](value-types.md)
    * [Simple Types](simple-types.md)
