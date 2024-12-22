@@ -6,7 +6,9 @@ Azoth programs support documentation using documentation comments.
 
 ## Documentation Blocks
 
-A documentation block consists of one or more single line comments beginning with "`///`". The comment text is interpreted using a subset of Markdown. Documentation blocks must proceed a declaration they are documenting.
+A documentation block consists of one or more single line comments beginning with "`///`". The
+comment text is interpreted using a subset of Markdown. Documentation blocks must proceed a
+declaration they are documenting.
 
 ```grammar
 documentation_comment_block
@@ -29,11 +31,15 @@ public func() -> void
 
 ## Namespace Documentation
 
-Documentation for a namespace can be included by placing a file named "`README.md`" inside the directory for the namespace. The entire contents of the file are taken as the documentation for the namespace.
+Documentation for a namespace can be included by placing a file named "`README.md`" inside the
+directory for the namespace. The entire contents of the file are taken as the documentation for the
+namespace.
 
 ## Supported Markdown
 
-Documentation comments support a subset of [CommonMark](https://commonmark.org/), a strongly defined, highly compatible specification of Markdown. The following features of CommonMark are not supported:
+Documentation comments support a subset of [CommonMark](https://commonmark.org/), a strongly
+defined, highly compatible specification of Markdown. The following features of CommonMark are not
+supported:
 
 * Inline HTML
 * Trailing pound signs on ATX headings
@@ -42,11 +48,12 @@ Documentation comments support a subset of [CommonMark](https://commonmark.org/)
 * List items with "`+`"
 * Whitespace at the end of a line does not cause a hard line break
 
-Additionally, numbered lists will be supported, but there interpretation may be modified.
+Additionally, numbered lists will be supported, but their interpretation may be modified.
 
 ## Conventions
 
-Use top level Markdown headers in documentation comments (i.e. "`# Header`"). These will be converted to the apropriate level of headers when documentation is generated.
+Use top level Markdown headers in documentation comments (i.e. "`# Header`"). These will be
+converted to the appropriate level of headers when documentation is generated.
 
 Document conditions outside of the preconditions that will cause abandonment with:
 
