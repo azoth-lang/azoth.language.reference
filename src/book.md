@@ -113,7 +113,7 @@ new version. If something is missing, it may be documented in the [old version](
     * [Global Namespace](std-lib-global-namespace.md)
     * [`azoth` Namespace](azoth.md)
     * [`azoth.collections` Namespace](azoth.collections.md)
-    * [`azoth.collections.specialized.raw` Namespace](azoth.collections.specialized.raw.md)
+    * [`azoth.collections.raw` Namespace](azoth.collections.raw.md)
     * [`azoth.io` Namespace](azoth.io.md)
     * [`azoth.math` Namespace](azoth.math.md)
     * [`azoth.memory` Namespace](azoth.memory.md)

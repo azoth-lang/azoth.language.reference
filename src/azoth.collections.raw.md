@@ -1,6 +1,6 @@
-# `azoth.collections.specialized.raw` Namespace
+# `azoth.collections.raw` Namespace
 
-The `azoth.collections.specialized.raw` namespace contains special types that are declared by the
+The `azoth.collections.raw` namespace contains special types that are declared by the
 compiler and form the basis of memory allocations for all kinds of collections. These allow for the
 allocation of many values in contiguous chunks both on the heap and the stack.
 
