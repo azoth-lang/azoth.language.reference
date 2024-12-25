@@ -4,19 +4,19 @@
 
 The following naming conventions are enforced by compiler warnings.
 
-| Item                        | Convention                                         |
-| --------------------------- | -------------------------------------------------- |
-| Packages                    | `dotted.snake_case`                                |
-| Namespaces                  | plural `snake_case`                                |
-| Types (except copy structs) | `Pascal_Case_With_Underscores`                     |
-| Copy Structs                | `snake_case`                                       |
-| Type Parameters             | concise `Pascal_Case_With_Underscores`<sup>1</sup> |
-| Functions                   | `snake_case()`                                     |
-| Divergent Functions         | `ALL_CAPS()`                                       |
-| Local variables             | `snake_case`                                       |
-| Fields                      | `snake_case`                                       |
-| Constants                   | `PascalCase`<sup>2</sup>                           |
-| Global variables            | `ALL_CAPS`                                         |
+| Item                | Convention                                         |
+| ------------------- | -------------------------------------------------- |
+| Packages            | `dotted.snake_case`                                |
+| Namespaces          | plural `snake_case`                                |
+| Const Copy Structs  | `snake_case`                                       |
+| All Other Types     | `Pascal_Case_With_Underscores`                     |
+| Type Parameters     | concise `Pascal_Case_With_Underscores`<sup>1</sup> |
+| Functions           | `snake_case()`                                     |
+| Divergent Functions | `ALL_CAPS()`                                       |
+| Local variables     | `snake_case`                                       |
+| Fields              | `snake_case`                                       |
+| Constants           | `PascalCase`<sup>2</sup>                           |
+| Global variables    | `ALL_CAPS`                                         |
 
 <sup>1</sup> Type parameters are often single uppercase letters (i.e. "`T`").<br>
 <sup>2</sup> Acronyms are capitalized and run together (i.e. "`ScreenDPIToPrint`").
