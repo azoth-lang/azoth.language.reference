@@ -1,0 +1,1 @@
+# Closed Traits and Classes

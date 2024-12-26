@@ -57,42 +57,47 @@ new version. If something is missing, it may be documented in the [old version](
    * [Pattern Match Expressions](pattern-match-expressions.md)
    * [Initializers](initializers.md)
    * [Generators](generators.md)
+   * [Lambda Functions](lambda-functions.md)
+   * [Object Expressions](object-expressions.md)
 7. [Statements](statements.md)
    * [Variable Declarations](variable-declarations.md)
    * Local Constant Declarations
 8. [Namespaces and Import Directives](namespaces.md)
-9. Declarations
-   * Constant Declarations
-   * Type Aliases
-10. [Functions](functions.md)
-    * [Anonymous Functions](anonymous-functions.md)
+9. [Functions](functions.md)
     * [Optional Arguments](optional-arguments.md)
+10. [Traits](traits.md)
+    * [Move Traits](move-traits.md)
 11. Classes
     * [Class Declarations](class-declarations.md)
     * Members
     * [Fields](fields.md)
-    * [Constructors](class-constructors.md)
+    * [Constructors](class-constructors.md) TODO: change to initializers
     * [Destructors](destructors.md)
     * [Methods](methods.md)
     * [Associated Functions](associated-functions.md)
     * Properties
     * [Operator Overloading](operator-overloading.md)
     * [Partial Classes](partial-classes.md)
-    * [Object Literals](object-literals.md)
+    * [Object Declarations](object-declarations.md)
 12. [Structs](structs.md)
     * [Struct Declarations](struct-declarations.md)
     * [Struct Initializers](struct-initializers.md)
-    * [Struct Constructors](struct-constructors.md)
+    * [Struct Constructors](struct-constructors.md) TODO: remove
     * [Ref Structs](ref-structs.md)
-13. [Traits](traits.md)
-    * [Move Traits](move-traits.md)
-14. [Enumerations](enumerations.md)
-    * Enumeration Structs
-    * Enumeration Classes
-15. [Extensions](extensions.md)
+    * [Value Declarations](value-declarations.md)
+13. [Closed Types](closed-types.md)
+    * [Closed Traits and Classes](closed-traits-and-classes.md)
+    * [Closed Structs and Struct Traits](closed-structs-and-struct-traits.md)
+    * [Cases](cases.md)
+    * [Closed Type Idioms](closed-type-idioms.md)
+14. [Extensions](extensions.md)
+15. Other Declarations
+    * Constant Declarations
+    * [Aliases](aliases.md)
 16. Type Variables
     * Generics
-    * [Associated types](associated-types.md)
+    * [Self Type](self-type.md)
+    * [Associated Types](associated-types.md)
 17. [Structured Concurrency](structured-concurrency.md)
 18. [Design by Contract](contracts.md)
 19. [Error Handling](error-handling.md)
@@ -124,7 +129,6 @@ new version. If something is missing, it may be documented in the [old version](
 31. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
-    * [Aliases](planned-aliases.md)
     * [Additional Expressions](planned-expressions.md)
     * [Operator Features](planned-operators.md)
     * [Compile-time Function Execution](planned-ctfe.md)

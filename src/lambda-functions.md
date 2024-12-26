@@ -1,4 +1,4 @@
-# Anonymous Functions
+# Lambda Functions
 
 Anonymous functions allow the creation of unnamed functions inside another function.
 

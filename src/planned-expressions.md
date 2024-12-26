@@ -1,27 +1,5 @@
 # Additional Expressions
 
-## Multiline String Literals
-
-Multiline string literals start with three double quotes followed by only whitespace on the line.
-They continue until a line that begins with whitespace followed by three double quotes. The lines
-with the double quotes are not included. So the final line does not end with a line break. They can
-be indented. The indent of the first line is ignored, indentation beyond that is included in the
-string. Double quotes can be used in a multiline string. A line can be continued by ending it with a
-backslash. *Regardless of the line endings of the source file, lines in the string are terminated
-with '\n'.* Multiline string literals should also support string interpolation. (see [Swift
-Multiline String
-Literals](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html)
-for more information).
-
-```azoth
-let s = """
-    Indent to the left of this is ignored
-        This is indented one tab
-    This line continues \
-    onto the next line.
-    """;
-```
-
 ## Unchecked Expressions
 
 Inside an unchecked expression, the basic operators on integer types would be unchecked. Thus
