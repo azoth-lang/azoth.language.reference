@@ -1,6 +1,17 @@
 # Structured Concurrency
 
 **TODO:** Explain why structured concurrency and link to "Go Considered Harmful"
+**TODO:** back-pressure and throttling in async operations.
+
+## Principles
+
+Principle: Async Everywhere - use async in lots of places
+
+Operations that should be async, Disk, Network, Screen (writing to Console can be slower than
+writing to file), inter thread and process communication, and sleeping.
+
+* Principle: No Blocking Operations - it should be impossible to block a thread
+* Principle: Don't divide the world into red and green methods
 
 ## Async Values
 

@@ -20,6 +20,7 @@ new version. If something is missing, it may be documented in the [old version](
    * [Operators and Punctuators](operators-and-punctuators.md)
 3. Basic Concepts
    * [Syntactic Analysis](syntactic-analysis.md)
+   * [Reference Capabilities](reference-capabilities.md)
    * Declarations
    * [Member Access](member-access.md)
    * Signatures and Overloading
@@ -65,6 +66,7 @@ new version. If something is missing, it may be documented in the [old version](
 8. [Namespaces and Import Directives](namespaces.md)
 9. [Functions](functions.md)
     * [Optional Arguments](optional-arguments.md)
+    * Nested Functions
 10. [Traits](traits.md)
 11. Classes
     * [Class Declarations](class-declarations.md)

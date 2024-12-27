@@ -15,8 +15,6 @@ word list and be made available for use as identifiers.
 ```grammar
 reserved_word
     : reserved_type
-    | "alias"              // Planned Type Alias Feature
-    | "case"               // Useful for switch like constructs
     | "cast"               // Casting
     | "checked"            // Checked Operations
     | "const_cast"         // Casting
@@ -32,6 +30,7 @@ reserved_word
     | "from"               // Common Keyword
     | "guard"              // Swift style guard statements
     | "internal"           // Common Keyword
+    | "new"                // Common Keyword for Allocation
     | "null"               // Null value for pointers
     | "otherwise"          // Loop Else
     | "package"            // Qualify names with the current package (i.e. `package::.name`)

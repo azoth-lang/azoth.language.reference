@@ -23,7 +23,6 @@ public object Void_Type: Type
     public get type_parameters(self) -> const List[Type]
         => #[];
 }
-
 ```
 
 **TODO:** Could object declarations actually allow mutability if they are thread-safe?

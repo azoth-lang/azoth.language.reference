@@ -82,3 +82,5 @@ Hiding is the default. If neither `overrides` or `hides` is used on a method the
 method with the same name and parameter types. It is a non-fatal error to hide a method without
 declaring so with the `hides` keyword. This supports situations where methods are added to base
 classes in published packages.
+
+## Nested Methods

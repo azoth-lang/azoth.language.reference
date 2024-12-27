@@ -221,6 +221,22 @@ would be returned. This is equivalent to the `checked_`*x* set of functions avai
 that since operators are lifted to optional types, chaining these operators would be fine i.e. `x +?
 y +? z` would type check.
 
+## Operator for Await
+
+Given that async will be more pervasive in my language. Perhaps it makes sense to give `await` an
+operator. One idea is to use `!`. It conveys the "do it" sense. Indeed, Haskell uses it as the force
+evaluation operator. However, that conflicts with its use to mark things that could abort. Other
+options include `>>` and `|>`. Those are reversible which might be useful. Both give the sense of
+directing output or ordering. If the operator could be used postfix, that would also address any
+concerns about `await` being a prefix which is then hard to operate on the result of.
+
+## Use `|` as Remainder Operator
+
+Now that it isn't taken up by "or", the pipe could be used as the remainder operator, fitting the
+mathematical usage. However, that still seems a pretty rare operator. Perhaps it should be used for
+something else more common. There may also be conflicts with `|` used for union types and "or"
+patterns.
+
 ## Preprocessor
 
 C# offers a preprocessor which doesn't suffer from the issues of the C/C++ preprocessor. A
@@ -429,42 +445,14 @@ Azoth has sum types (`|`) and intersection types (`&`). For consistency with tho
 sense to make tuple types be product types. These could be constructed with the `*` operator. The
 issue with that is how would tuples of one item and empty tuples work?
 
-### Unify Union Types and Enum Classes
+### Closed Type Options
 
-Enum classes are very similar to union types where all the types implement/inherit a single class.
-Rather than having two separate features, perhaps union types should be the only way of declaring
-enum classes. This may make them more verbose so perhaps the syntax for union classes should reflect
-the syntax for union types instead.
-
-The Ceylon language has something like this:
-
-```ceylon
-// Traditional syntax for enumerated type, in this case, limiting the instances to three objects(for this purpose: Singletons)
-abstract class Vehicle(shared String name) of plane | train | automobile {}
-
-object plane extends Vehicle("plane") {}
-object train extends Vehicle("train") {}
-object automobile extends Vehicle("automobile") {}
-// Compile error: type is not a subtype of any case of enumerated supertype: 'boat' inherits 'Vehicle'
-//object boat extends Vehicle("boat") {}
-
-// New (as of Ceylon 1.2.0) constructor-based syntax
-class Vehicle of plane | train | automobile {
-    String name;
-
-    abstract new named(String pName) {
-        name = pName;
-    }
-
-    shared new plane extends named("plane") {}
-    shared new train extends named("train") {}
-    shared new automobile extends named("automobile") {}
-    // Compile error: value constructor does not occur in of clause of non-abstract enumerated class: 'boat' is not listed in the of clause of 'Vehicle'
-    //shared new boat extends named("boat") {}
-}
-```
+Provide a syntax for explicitly listing out all the options for a closed type. This ensures that
+more options aren't added in unexpected places in the codebase.
 
 ### Constant Types
+
+**TODO:** This has been adopted, document it better
 
 Expose types in the language for constants of known values. For example, `bool[true]` would be the
 type of a boolean known to be true. Likewise, `int[0]` the type of an int know to be zero at compile
@@ -482,6 +470,22 @@ call for types that hold a value and a unit. Other situations call for a type fo
 the units are always converted to some standard unit. Finally, sometimes the C# style ability to
 attach units to any numeric type will make the most sense. Note with the last one, the units aren't
 just part of the expression, but are part of each type declaration.
+
+### Use `_` or `*` for Wild Card Types
+
+Java style wild card types could be done using underscore.  For example, `List[_]` would be a list
+of anything. `List[_ <: Foo]` a list of things that inherit from `Foo`. Of course, then it isn't
+clear how to get the opposite type relation. `List[_ :> Foo]` seems strange. `List[_/Foo]` as in the
+wild card is above the `Foo`. Maybe the `in` and `out` keywords are the correct thing here. So
+`List[out Foo]` and `List[in Foo]` works pretty well. It is just missing the sense of wild card.
+That would be read as a list that I can take out `Foo`s from and a list that you can put `Foo`s in.
+Adding the underscore back could be `List[Foo out _]` and `List[Foo in _]` (note this order so that
+it is "get Foo out of _" and "put Foo in _" but that has reversed the sense).
+
+### Change `?` from Suffix to Prefix
+
+Some languages use the `?` as a prefix for optional types. While it looks a little strange, it
+resolves all ambiguity with all the other type prefixes. Also, `?T` can be read as "optional T".
 
 ## Parameters
 
@@ -661,3 +665,24 @@ Henny talks about that "get" is side-effecting in English and isn't the opposite
 Alternatively, "assign" could be used. If assignment were turned into a set statement, then set
 might make sense again. However, it could be confusing since `read` is also the name of a reference
 capability in some situations.
+
+### Copy with Change Syntax
+
+If immutability is used with true object orientation, there will be many more instances where a copy
+with only a few changes will be needed. There should be a short syntax for this. Similar to how Rust
+has the syntax for taking all the other fields of a struct from an existing one.
+
+### Interpolated String Localization
+
+Interpolated strings don't fit well with localization. The language would ideally steer people into
+the pit of success which would be an easy transition to localized strings. That would imply that
+interpolated strings are only for programmer output and not user display. That could be done by
+making interpolation always call the debug format. On the other hand almost all the programs I've
+written haven't needed localization and interpolation is such a good feature that it would be bad to
+not support it for user display strings.
+
+### Interval Literals
+
+Allows ranges or intervals to have literals that are math style interval syntax (e.g. `'[3..6)'` or
+`'[3,6)'`). The issue with this is that it puts the constant values inside of the literal. Using
+interpolation for that seems strange (e.g. `'[\(3)..\(6))'`).
