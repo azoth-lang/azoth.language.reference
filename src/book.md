@@ -55,7 +55,7 @@ new version. If something is missing, it may be documented in the [old version](
    * [Boolean Expression](boolean-expression.md)
    * [Interpolated Strings](interpolated-strings.md)
    * [Pattern Match Expressions](pattern-match-expressions.md)
-   * [Initializers](initializers.md)
+   * [Initializer Expressions](initializer-expressions.md)
    * [Generators](generators.md)
    * [Lambda Functions](lambda-functions.md)
    * [Object Expressions](object-expressions.md)
@@ -70,7 +70,7 @@ new version. If something is missing, it may be documented in the [old version](
     * [Class Declarations](class-declarations.md)
     * Members
     * [Fields](fields.md)
-    * [Constructors](class-constructors.md) TODO: change to initializers
+    * [Initializers](class-constructors.md) TODO: change to initializers
     * [Destructors](destructors.md)
     * [Methods](methods.md)
     * [Associated Functions](associated-functions.md)

@@ -1,4 +1,4 @@
-# Initializers
+# Initializer Expressions
 
 Azoth supports four different forms of initializers. Similar to user defined literals, these
 initializers do not determine the type being constructed. The type constructed is inferred. These
