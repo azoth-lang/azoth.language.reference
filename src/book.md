@@ -70,7 +70,7 @@ new version. If something is missing, it may be documented in the [old version](
     * [Class Declarations](class-declarations.md)
     * Members
     * [Fields](fields.md)
-    * [Initializers](class-constructors.md) TODO: change to initializers
+    * [Initializers](initializers.md) TODO: change to initializers
     * [Destructors](destructors.md)
     * [Methods](methods.md)
     * [Associated Functions](associated-functions.md)
