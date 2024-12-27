@@ -4,7 +4,7 @@
 
 Marking a class `const` indicates that all instances of this type will be constant. It constrains
 all constructors to return a `const` reference. Consequently it constrains all field bindings to be
-immutable (i.e. `let`) and have `const` reference types. The compiler will then treat all references
+immutable (i.e. `let`) and have `const` types. The compiler will then treat all references
 to that type as `const` except for a few special cases like the `self` reference of the constructor.
 
 **TODO:** should it be an error to use `const T` with a `const` type? That would avoid debates about
@@ -29,3 +29,39 @@ Note: it doesn't make sense to have an `iso class` because that would not obviou
 could contain movable value types and have constructors. Furthermore, presumably one would still
 want to allow non-`iso` references to these classes so it wouldn't be as if they were also `iso`.
 Finally, `move` is inherited by subtypes where as other class capabilities are not.
+
+## Empty Classes
+
+An empty class with no members can be abbreviated by replacing the class body with a semicolon (e.g.
+`public class Example;`). This is most useful with record classes.
+
+## Record Classes
+
+Record classes provide a shorthand for declaring record types. That is types that are the
+composition of a named, ordered sequence of other types. A record class is declared with a parameter
+list after the class name (e.g. `class Example(foo: int, bar: string)`). These parameters then
+become fields of the type. Declaring a record class implicitly declares three things in the class.
+Additional members can be declared in additional to the implicitly declared ones.
+
+First, each of the parameters is declared as a field of the class. For this reason, the parameters
+may not be `lent`. A parameter may be declared `var` in which case the corresponding field will be
+declared `var`. Of course a `const` class cannot have `var` fields. Each of the implicitly declared
+parameters is `public` unless the class is `published` in which case they are declared `published`.
+These fields can implicitly override abstract getters and setters. They cannot override or hide
+non-abstract ones.
+
+Second, an initializer is declared with corresponding field parameters (e.g. `init(.foo, .bar)` for
+the `Example` class). The implicitly declared initializer is `public` unless the class is
+`published` in which case it is declared `published`. This initializer is otherwise not special and
+additional initializers may be declared. Those initializers are not required to call the record
+initializer. They must simply follow the initialization safety rules of all initializers. It is not
+possible to add logic to this constructor or call a base class constructor. However, if an
+initializer with the same parameter types is declared, it replaces the initializer that would
+otherwise be generated. That initializer may contain logic and call a base or other initializer.
+
+Third, a pattern match deconstructor is declared corresponding the the parameters/fields (e.g.
+`operator is() -> Tuple[int, string]` for the `Example` class). This allows the record class to be
+deconstructed as part of an assignment or pattern match. If another deconstuctor is explicitly
+declared, the implicit one is still generated. It is not possible to replace this deconstructor. If
+control of the deconstructor is needed, then a regular class should be declared and members that
+would be implicitly declared by a record class can be manually written.

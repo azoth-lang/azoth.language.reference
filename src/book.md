@@ -66,7 +66,6 @@ new version. If something is missing, it may be documented in the [old version](
 9. [Functions](functions.md)
     * [Optional Arguments](optional-arguments.md)
 10. [Traits](traits.md)
-    * [Move Traits](move-traits.md)
 11. Classes
     * [Class Declarations](class-declarations.md)
     * Members
@@ -87,7 +86,7 @@ new version. If something is missing, it may be documented in the [old version](
     * [Value Declarations](value-declarations.md)
 13. [Closed Types](closed-types.md)
     * [Closed Traits and Classes](closed-traits-and-classes.md)
-    * [Closed Structs and Struct Traits](closed-structs-and-struct-traits.md)
+    * [Closed Structs](closed-structs.md)
     * [Cases](cases.md)
     * [Closed Type Idioms](closed-type-idioms.md)
 14. [Extensions](extensions.md)

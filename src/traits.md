@@ -33,3 +33,8 @@ trait_member
 A trait may be marked `const`. This indicates any subtype of it must be `const`. This allows the
 compiler to assume all references to such a trait are `const`. See constant classes and structs for
 more information.
+
+## Move Traits
+
+As with classes and structs, a trait may be declared as a `move` type. This requires that all
+subtypes of the trait be a `move` class, struct, or trait.

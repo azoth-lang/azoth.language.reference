@@ -3,9 +3,9 @@
 Types in Azoth are made a little more complex by one of the unique features of Azoth, namely
 reference capabilities. But that complexity gives a great amount of power and safety. There are
 three major categories of types in Azoth. They are *extrema types*, *value types* and *reference
-types*. The latter two of which have capabilities applied to them. In addition to those, Azoth
-completes the set of possible types with *optional types*, *function types*, *type expressions*
-(i.e. union and intersection types), and several other special types.
+types*. The latter two of which have capabilities applied to them. In addition to those, Azoth also
+supports *optional types*, *function types*, *type expressions* (i.e. union and intersection types),
+and other special types.
 
 The extrema types act in some ways as what is known in type theory as a top and bottom type. Value
 types are types whose values are passed by value (e.g. they are typically copied). Reference types
@@ -26,6 +26,8 @@ type
     | optional_type
     | function_type
     | type_expression
+    | stack_reference
+    | internal_reference
     | pointer_type
     ;
 ```

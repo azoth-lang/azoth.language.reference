@@ -1,8 +1,10 @@
-# Enumerations
+# Closed Types
 
-Enumerations are types that can have a number of "variants." These variants can be a simple set of
-constant values, or they could be distinct data types. Thus they provide a [discriminated
-union](https://en.wikipedia.org/wiki/Tagged_union) type. In type theory this is known as a sum type.
+Types can be marked `closed`. This means that the set of direct subtypes is closed and cannot be
+extended in other packages. This allows the compiler to do exhaustiveness checking when matching on
+these types. All sorts of types can be declared closed and this allows for many powerful variations.
+The `closed` modifier is not inherited. That is, it is perfectly acceptable for a non-closed type to
+subtype a closed type. However, it is often more useful to make entire hierarchies closed so that
+exhaustive matching covers multiple layers of the hierarchy.
 
-Both classes and structs can enumerations, and there are important differences in their behavior and
-use.
+**TODO:** maybe the keyword should be changed to `enum`?

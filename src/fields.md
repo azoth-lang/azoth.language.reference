@@ -1,6 +1,7 @@
 # Fields
 
-Fields are basically the same as variable bindings. If public, fields can be overridden in subclasses using accessors.
+Fields are basically the same as variable bindings. If public, fields can be overridden in
+subclasses using accessors.
 
 **TODO:** reference capabilities
 
@@ -8,4 +9,5 @@ Fields are basically the same as variable bindings. If public, fields can be ove
 
 ## Class Fields
 
-i.e. "static" fields
+i.e. "static" fields should be rare. Mostly can use `const`. However, there could be thread-safe
+static members or unsafe static members.
