@@ -10,7 +10,6 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Pseudo References](pseudo-references.md)
   * [Summary of Ownership](ownership-summary.md)
   * [Formal Description](borrow-checker.md)
-* [Enums](enums.md)
 * [Async and Await](async.md)
 * [Error Handling](error-handling.md)
 * [Generics](generics.md)
