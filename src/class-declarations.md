@@ -3,9 +3,9 @@
 ## Const Classes
 
 Marking a class `const` indicates that all instances of this type will be constant. It constrains
-all constructors to return a `const` reference. Consequently it constrains all field bindings to be
+all initializers to return a `const` reference. Consequently it constrains all field bindings to be
 immutable (i.e. `let`) and have `const` types. The compiler will then treat all references
-to that type as `const` except for a few special cases like the `self` reference of the constructor.
+to that type as `const` except for a few special cases like the `self` reference of the initializer.
 
 **TODO:** should it be an error to use `const T` with a `const` type? That would avoid debates about
 whether one should use `const`. However, it also means changing a type to `const` requires updating
@@ -26,7 +26,7 @@ or field.
 The move declaration of a class is inherited by all subtypes (i.e. all subtypes are also movable).
 
 Note: it doesn't make sense to have an `iso class` because that would not obviously imply that they
-could contain movable value types and have constructors. Furthermore, presumably one would still
+could contain movable value types and have initializers. Furthermore, presumably one would still
 want to allow non-`iso` references to these classes so it wouldn't be as if they were also `iso`.
 Finally, `move` is inherited by subtypes where as other class capabilities are not.
 

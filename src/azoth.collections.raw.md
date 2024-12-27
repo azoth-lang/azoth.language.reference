@@ -45,7 +45,7 @@ published move struct Raw_Inline_Array[Count: size, T]
 ## `Raw_Inline_Bounded_List[Capacity: size, T]`
 
 This allows a list whose size can grow within a bounded limit to be allocated directly on the stack
-or in another object. Initialization of this is possible because the constructor self parameter is
+or in another object. Initialization of this is possible because the initializer self parameter is
 `ref self` and the size is known at compile time. Thus the compiler can allocate the space directly
 on the stack or in the containing object and then call the initializer on it by passing a stack
 reference to the allocated memory.
@@ -79,7 +79,7 @@ used without first initializing them.
 
 While it is guaranteed that unmanaged types can be allocated uninitialized, no guarantee is made
 about whether other types will be zeroed. However, zeroing can improve safety by eliminating the
-chance that previously allocated and released values can be read. As such, a constructor parameter
+chance that previously allocated and released values can be read. As such, a initializer parameter
 is provided that allows for requesting that the memory be definitely zeroed.
 
 This type is rarely used, but is the foundation for other collection types. As with other objects,
@@ -91,7 +91,7 @@ small enough for this to be beneficial. The effective declarations of `Raw_Hybri
 ```azoth
 published class Raw_Hybrid_Array[F, T]
 {
-    published new(mute self, .fixed, .count, ensureZeroed: bool) {...}
+    published init(mute self, .fixed, .count, ensureZeroed: bool) {...}
     published var fixed: F;
     published let count: size;
     published unsafe fn at(mut self, index: size) -> iref var T {...};
@@ -100,7 +100,7 @@ published class Raw_Hybrid_Array[F, T]
 
 published class Raw_Hybrid_Array[F, Count: size, T]
 {
-    published new(mut self, .fixed, ensureZeroed: bool) {...}
+    published init(mut self, .fixed, ensureZeroed: bool) {...}
     published var fixed: F;
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
     published get count() => Count;
@@ -126,7 +126,7 @@ undefined. It may cause the garbage collector to crash or keep invalid memory "l
 ```azoth
 published class Raw_Hybrid_Bounded_List[F, T]
 {
-    published new(.fixed, .capacity) {...}
+    published init(.fixed, .capacity) {...}
     published var fixed: F;
     published let capacity: size;
     published get count() => size;
@@ -138,7 +138,7 @@ published class Raw_Hybrid_Bounded_List[F, T]
 
 published class Raw_Hybrid_Bounded_List[F, Capacity: size, T]
 {
-    published new(.fixed) {...}
+    published init(.fixed) {...}
     published var fixed: F;
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
     published get capacity() => Capacity;

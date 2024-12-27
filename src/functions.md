@@ -143,18 +143,18 @@ arguments can be passed in place of the `params` parameter. This could be zero a
 example(1, 2, 3, 4, 5);
 ```
 
-### Construction of the List
+### Initialization of the List
 
 When gathering the parameters into the collection type of the parameter, the compiler will generate
-code based on the available constructors and methods of the type. It will first look for a
-constructor taking `size, Raw_Array[T]` with any reference capability for the raw array. If one of
+code based on the available initializers and methods of the type. It will first look for a
+initializer taking `size, Raw_Array[T]` with any reference capability for the raw array. If one of
 those exists, it will construct a raw array of the values and pass the number of values and the raw
-array to that constructor. Even if that constructor is `unsafe` (which it should be), no safety
-error will be generated if it is outside an unsafe context. If no such constructor is present, it
-will look for a constructor named `capacity` taking a single argument of `size`. If it exists, it
-will construct the collection using that constructor passing the number of values, then call `add()`
-repeatedly, passing each value. If no such constructor is present, it will look for a default
-constructor, use it and add the values. If none of these exists, an error will be generated.
+array to that initializer. Even if that initializer is `unsafe` (which it should be), no safety
+error will be generated if it is outside an unsafe context. If no such initializer is present, it
+will look for a initializer named `capacity` taking a single argument of `size`. If it exists, it
+will construct the collection using that initializer passing the number of values, then call `add()`
+repeatedly, passing each value. If no such initializer is present, it will look for a default
+initializer, use it and add the values. If none of these exists, an error will be generated.
 
 ### Calling Variadic Functions with a List
 

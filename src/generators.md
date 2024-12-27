@@ -27,12 +27,10 @@ efficiently. Could we just use a sort of continuation passing style?
 ## Generator Start Control
 
 By default the body of a generator function does not start running until the first item is request.
-Sometimes this is not desireable and validation and initialization should be run when the function
-is called. This can be done with the optional `new yield` statement. When this statement is used.
+Sometimes this is not desirable and validation and initialization should be run when the function
+is called. This can be done with the optional `init yield` statement. When this statement is used.
 Any code before it is run when the function is initially called and code after it is part of the
 generator. This means other yield expressions cannot be used before it.
-
-**TODO:** should it switch to `init yield` if the iterator type is a struct?
 
 ## Generator Destruction
 
@@ -75,7 +73,7 @@ published trait Generator_Method_Builder[State_Machine, T, Throws]
     published type Generator_Type; // e.g. `Iterator[T]` for iterators
 
     /// Create the value returned from the generator function
-    published fn \new(state_machine: State_Machine) -> Generator_Type;
+    published fn \init(state_machine: State_Machine) -> Generator_Type;
 
     /// Called to prepare the output of a `yield` expression
     published fn \yield(state_machine: ref var State_Machine, value: T) -> Yield_Output;

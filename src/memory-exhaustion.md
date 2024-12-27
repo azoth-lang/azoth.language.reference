@@ -6,5 +6,5 @@ abort.
 To avoid out of memory errors when allocating, you can use the `new?` construction to receive `none`
 instead of triggering an out of memory error.
 
-**TODO:** how to handle when an out of memory error occurs inside the constructor of the type being
+**TODO:** how to handle when an out of memory error occurs inside the initializer of the type being
 constructed with `new?`. This should probably return `none`.

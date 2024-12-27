@@ -18,7 +18,7 @@ let ptr_y = @y; // points to `y` on the stack
 References can be safely cast to a pointer to `Any` (see below). This is used to good effect to compare two references for reference equality.
 
 ```azoth
-let f = new Foo();
+let f = Foo();
 let g = f;
 
 if f as @Any == g as @Any // reference equality
@@ -31,15 +31,18 @@ The address operator is read as either "address of x" or "pointer to x"
 
 ### Pointer Types
 
-Pointer types are simply prefixed with the `@` sign. The type is then read as either "address of T" or "pointer to T". Just as with references, pointers refer to immutable values by default and must use `mut` to allow mutation of the value. Pointer types can be freely combined with references to produce complex types.
+Pointer types are simply prefixed with the `@` sign. The type is then read as either "address of T"
+or "pointer to T". Just as with references, pointers refer to immutable values by default and must
+use `mut` to allow mutation of the value. Pointer types can be freely combined with references to
+produce complex types.
 
 ```azoth
 public struct Foo {}
 public struct Bar {}
 
-let f: Foo = new Foo();
+let f: Foo = Foo();
 let ptr_f: @Foo = @f;
-let b: mut Bar = new Bar();
+let b: mut Bar = Bar();
 let ptr_b: @mut Bar = @mut b;
 let x: int = 6;
 let ptr_x: @int = @x;
@@ -69,7 +72,7 @@ unsafe
     let x: int = 5;
     let ptr_x: @int = @x;
     let y: int = ^ptr_x;
-    let f: Foo = new Foo();
+    let f: Foo = Foo();
     let ptr_f: @Foo = @f;
     ptr_f^.method();
 }

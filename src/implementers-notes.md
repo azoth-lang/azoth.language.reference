@@ -114,9 +114,9 @@ For regular objects, it seems like zeroing may be necessary. There is simply no 
 ensure that the GC doesn't trace uninitialized references in fields during object construction. A
 scheme of delaying tracing while an object is being initialized would require convoluted stack
 management to keep all references live. Indeed, it would require special handling when calling base
-class constructors as those would return when the object is half initialized.
+class initializers as those would return when the object is half initialized.
 
-While there seem to be limited options for base class constructors, there are much better options
+While there seem to be limited options for base class initializers, there are much better options
 for memory buffers. The basic memory buffer that `List[T]` is built on is a fixed capacity buffer
 with a variable size. Only elements within the size will be traced by the GC. Thus elements can be
 left uninitialized until a value is assigned into them and then the buffer size can be increased to
@@ -152,7 +152,7 @@ how can these share a single implementation? The issue is that the fat pointer o
 must be preserved in order to pass along references as "`T`". However, the vtable pointed to could
 place the methods of the trait in different slots depending on which type it is. Ideally, that would
 not be the case, but under complex subtype relationships, it may be unavoidable. In that case, it
-may be necessary to pass an additional argument to the function or constructor which is an offset in
+may be necessary to pass an additional argument to the function or initializer which is an offset in
 the trait table of type "`T`" for the trait table for use as the super type (i.e. the information
 for upcasting). The generic type would then have to lookup that trait table. Note however, that for
 any given instance of "`T`" the new trait table pointer could be cached so that multiple calls do

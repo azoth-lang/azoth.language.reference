@@ -59,7 +59,7 @@ published fn function1()
 // Throws clause is inferred because it is omitted and this is an internal function
 internal fn function2()
 {
-    throw new exception();
+    throw exception();
 }
 ```
 
@@ -127,9 +127,9 @@ The fragile base class problem occurs when a class overrides a base class's meth
 by specifically marking methods that the base class will call subclass implementations with the
 `open` keyword.
 
-### Named Constructors
+### Named Initializers
 
-Constructors can be given names to indicate their purpose and meaning.
+Initializers can be given names to indicate their purpose and meaning.
 
 ## Uncommon Features
 

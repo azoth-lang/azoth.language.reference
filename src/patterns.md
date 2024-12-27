@@ -89,7 +89,7 @@ match x
 ## Type Patterns
 
 ```azoth
-let x = new Foo();
+let x = Foo();
 
 match x
 {
@@ -241,12 +241,12 @@ class Point
     public let x: int;
     public let y: int;
 
-    public new(.x, .y) { }
+    public init(.x, .y) { }
 }
 
 main() -> void
 {
-    let p = new Point(0, 7);
+    let p = Point(0, 7);
 
     let Point { x, y } = p;
     assert(0 == x);
@@ -289,7 +289,7 @@ class Foo
         return #(x, y);
     }
     match named(.x, .y); // matches can be named
-    new match (.x, .y) // declare both a constructor and a match method at once
+    init match (.x, .y) // declare both an initializer and a match method at once
     {
     }
 }
@@ -298,7 +298,7 @@ class Foo
 These are then matched as
 
 ```azoth
-let v = new Foo();
+let v = Foo();
 
 match v
 {
@@ -311,7 +311,7 @@ match v
 Should classes that are tuple like be supported as a shortcut for matching?
 
 ```azoth
-public class T(a: int, b: int) // declares fields `a` and `b`, constructor and match method all at once
+public class T(a: int, b: int) // declares fields `a` and `b`, initializer and match method all at once
 {
 }
 ```

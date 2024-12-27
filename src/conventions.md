@@ -69,7 +69,7 @@ screen, but rather, what humans can easily read and which parts of text humans f
 
 ## Other
 
-* Prefer named constructors to a method that makes an instance (for example making a child node,
+* Prefer named initializers to a method that makes an instance (for example making a child node,
   copy or converted value).
 * Use implicit self whenever possible and explicit self only when necessary.
 * Use spaces instead of tabs (need compiler warning for this).

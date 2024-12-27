@@ -75,7 +75,7 @@ with let transaction = db.begin_transaction()
 {
     transaction.update(...);
 
-    if something => throw new Error(); // will cause rollback
+    if something => throw Error(); // will cause rollback
 
     // reaching the end of the block successfully will commit the transaction
 }
@@ -107,7 +107,7 @@ published class Database
         try
         {
             defer if t.is_active => t.commit();
-            new yield; // Needed to force a call to begin?
+            init yield; // Needed to force a call to begin?
             yield return;
         }
         catch

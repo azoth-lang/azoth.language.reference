@@ -63,7 +63,7 @@ public operator[Other] _and_(self) -> fuzzy_bool?
 
 public operator and(self, other: fuzzy_bool) -> fuzzy_bool
 {
-    return new fuzzy_bool(value.min(other.value));
+    return fuzzy_bool(value.min(other.value));
 }
 
 public operator[Other] _or_(self) -> fuzzy_bool?
@@ -74,7 +74,7 @@ public operator[Other] _or_(self) -> fuzzy_bool?
 
 public operator _or_(self, other: fuzzy_bool) -> fuzzy_bool
 {
-    return new fuzzy_bool(value.max(other.value));
+    return fuzzy_bool(value.max(other.value));
 }
 ```
 

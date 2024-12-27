@@ -43,14 +43,14 @@ interfaces since what errors a function/method can throw is part of the interfac
 To throw an error use a throw expression.
 
 ```azoth
-throw new FileNotFoundException("Example.txt");
+throw FileNotFoundException("Example.txt");
 ```
 
 The type of a throw expression is `never` so it is a subtype of any type. This allows throw
 expressions to be used in interesting ways.
 
 ```azoth
-let x = ReadLine() ?? throw new UserInputException();
+let x = ReadLine() ?? throw UserInputException();
 ```
 
 ## Try Expressions
@@ -88,7 +88,7 @@ evaluate to the value of the catch expression.
 There can be multiple catch expressions and they can use expression blocks with braces. To rethrow
 an exception, it is fine to use throw on the caught error (there is no `throw;` statement like
 in other languages). Alternatively, you can wrap the error in a new type by passing the caught
-error to its constructor.
+error to its initializer.
 
 A catch expression can omit the variable binding if the error value is not needed. However, the type
 cannot be omitted. This is to discourage blanket catches of all errors.
@@ -103,7 +103,7 @@ let x = try foo()
 
         => "error value";
     }
-    catch ex: ParseException => throw new DataException(ex);
+    catch ex: ParseException => throw DataException(ex);
 ```
 
 ### Catch and Abort

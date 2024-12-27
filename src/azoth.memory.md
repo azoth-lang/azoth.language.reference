@@ -39,5 +39,5 @@ Structs can be allocated on the heap using the `azoth.memory.Boxed[T]` type. `Bo
 type and will automatically free the memory when it goes out of scope.
 
 ```azoth
-let x = new Boxed[Struct_Type]();
+let x = Boxed[Struct_Type]();
 ```

@@ -33,14 +33,14 @@ equivalent). Any generic parameter with this type is referred to as a "type para
 
 Objects representing the type of classes and structs have a type that is a subtype of "`Type`". When
 calling associated functions as "`Example.function()`", the expression "`Example`" has a type that
-is a subtype of "`Type`". Metatypes describe the associated functions and constructors on the type
+is a subtype of "`Type`". Metatypes describe the associated functions and initializers on the type
 object. The meta type of a type can be accessed using the "`Type`" property, for example
 "`Example.Type`".
 
 These types can be very confusing. For some, an example clarifies the relationship.
 
 ```azoth
-let example: Example = new Example();
+let example: Example = Example();
 let metaType: Example.Type = Example;
 let type: Type = metaType; // Example.Type <: Type
 ```

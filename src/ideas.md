@@ -112,21 +112,21 @@ Would a bidirectional reachability operator make any sense `<~>`?
 
 Mutability expressions and move expressions have been an ongoing source of confusion as I think
 about implementing the compiler. Specifically, the question is how to handle them around
-constructors and functions returning some form of ownership. Should `f(g())` require a mutability
+initializers and functions returning some form of ownership. Should `f(g())` require a mutability
 expression like `f(mut g())` if `f` is to mutate the value returned by `g`? Similarly, should
-`f(move new G())` require a move expression? The move seems unnecessary there. However, it could
-have effects on lifetimes. For example, in `f(new G(a))` will the reference to `a` be available
-after this call or could it still be held because ownership was taken and put somewhere? Another
-example is `f(g(mut a))`. Should it be possible for `f` to indirectly mutate `a` by taking
-mutability of the return value from `g`? It seems sufficient that `a` could be mutated in this
-expression without worrying too much exactly when. Also, requiring `mut` everywhere seems like it
-could get very old. An expression like `f(mut g(mut h(mut j(mut a)), mut k(mut b)))` is difficult to
-read. Shouldn't `f(g(h(j(mut a)), k(mut b)))` be sufficient? Another interesting example is
-`f(a.foo())` where `a` could be mutated in `f` because `foo()` returns a mutable type. But there,
-the real issue is not knowing `foo` is mutably borrowing it. It seems the only solution to that
-would be a separate access operator which takes the target mutability. What comes to mind first is
-`f(a!foo())`, but that does somewhat conflict with the `!` used for abort in `as!` and probably
-elsewhere. Other options `a|foo()`, `a~foo()`.
+`f(move G())` require a move expression? The move seems unnecessary there. However, it could have
+effects on lifetimes. For example, in `f(G(a))` will the reference to `a` be available after this
+call or could it still be held because ownership was taken and put somewhere? Another example is
+`f(g(mut a))`. Should it be possible for `f` to indirectly mutate `a` by taking mutability of the
+return value from `g`? It seems sufficient that `a` could be mutated in this expression without
+worrying too much exactly when. Also, requiring `mut` everywhere seems like it could get very old.
+An expression like `f(mut g(mut h(mut j(mut a)), mut k(mut b)))` is difficult to read. Shouldn't
+`f(g(h(j(mut a)), k(mut b)))` be sufficient? Another interesting example is `f(a.foo())` where `a`
+could be mutated in `f` because `foo()` returns a mutable type. But there, the real issue is not
+knowing `foo` is mutably borrowing it. It seems the only solution to that would be a separate access
+operator which takes the target mutability. What comes to mind first is `f(a!foo())`, but that does
+somewhat conflict with the `!` used for abort in `as!` and probably elsewhere. Other options
+`a|foo()`, `a~foo()`.
 
 One of the sources of confusion is the variable declaration shorthand which allows `let x = mut
 g()`. Here the `mut` seems to be applied to the result of the function making it seem that could and
@@ -135,7 +135,7 @@ perhaps should be done elsewhere.
 Given all this, for now, a simple scheme will be adopted. Mutability and move expressions can be
 applied only to variable usages and field accesses. It remains an open question if that should
 include property accesses since they are really function calls. However, they look like field
-access. Method calls and constructor calls will have mutable and ownership types that do not require
+access. Method calls and initializer calls will have mutable and ownership types that do not require
 `mut` or `move`. Variables with inferred types will continue to infer read-only even if assigned
 from mutable expressions. To enable easy mutable declaration and also remove the confusion around
 variable declaration, and simplify it, the special form `let x: mut = g()` will mean infer a mutable
@@ -367,7 +367,7 @@ trait. Boxing takes ownership of the value and creates an owned reference. Refer
 stack is done using the `ref` keyword.
 
 Perhaps the boxing conversion should be explicit. Boxing may allocate heap memory, something that is
-normally only done with `new`. While smaller simple types can be stored directly in the object
+normally only done with `init`. While smaller simple types can be stored directly in the object
 pointer of the reference, larger ones can't. Given that the size of `size` could be 32 bits, even
 `int64` may require heap allocation. Generics should be used instead of boxing. One possibility is
 to implement boxes using the standard library type `Box[S]`. There are two issues with that. First,
@@ -383,30 +383,6 @@ type would have to implement traits based on the type it contained.
 
 Perhaps the correct way to handle this is similar to Java with a separate wrapper type for each of
 the simple types.
-
-### No `new` Keyword
-
-It has become the fashion in new languages to drop the `new` keyword and simply use the type name as
-the constructor (e.g. Python, Kotlin, Scala). They then often have to introduce an `object` keyword
-for the equivalent of anonymous classes. Dropping the `new` keyword from Azoth with simplify several
-things but also have downsides.
-
-Advantages:
-
-* No need to support `new` on `struct`s to allow them to emulate classes. (Though perhaps that
-  shouldn't be allowed anyway since they don't behave fully like classes.)
-* Unifies factory functions and constructors. Constructors are just methods that happen to return a
-  new object.
-* `new` can be used only for method hiding (but may use `hides` instead.)
-
-Disadvantages and Issues:
-
-* Obscures where memory allocation happens
-* Requires `object` keyword or something for anonymous classes
-* Eliminates `new?` syntax for trying to allocate and returning `none` on failure (would need a
-  different syntax?)
-* Causes issues if allocation and abort are effect types. Constructors can always abort and always
-  allocate. But they are not obvious distinct from other functions.
 
 ## Types
 
@@ -430,7 +406,7 @@ used. It may be possible to implement relative pointers in the standard library 
 
 ### Move and Copy Reference Types
 
-Copy constructors can be defined for reference types. However, would it be useful to have reference
+Copy initializers can be defined for reference types. However, would it be useful to have reference
 types that are implicit copy? Would it be useful to have reference types that are move by default.
 It seems that this might be useful for implementing something like a type state. Consider a socket
 object. This should be a reference type because it is large and may have multiple subtypes. However,
@@ -671,10 +647,10 @@ let z = t.at[2]();
 Note that the "`at`" method can't be a meta-function because it must return a reference to a runtime
 value.
 
-### Default Value Constructors
+### Default Value Initializers
 
 Fields whose type is optional can be implicitly initialized with the value `none`. Perhaps there
-should be a special constructor that, if present, the compiler calls to implicitly initialize a
+should be a special initializer that, if present, the compiler calls to implicitly initialize a
 field. This would allow developers to create their own types like optional types which can be
 implicitly initialized.
 

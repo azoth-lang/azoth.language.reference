@@ -6,7 +6,7 @@ Generics over effects. For example (Code from Midori, syntax may differ):
 
     Map<T, U, effect E>(T[] ts, Func<T, U, E> func) -> U[] E
     {
-        U[] us = new U[ts.Length];
+        U[] us = U[ts.Length]();
         for (int i = 0; i < ts.Length; i++) {
             us[i] = effect(E) func(ts[i]);
         }
@@ -24,7 +24,7 @@ effects are inferred. Throws clauses are effects. The effects supported are:
   you could distinguish different kinds of abort? Like contracts vs arithmetic overflow?)
 * allocate? - whether memory can be allocated (besides the stack?)
 * io? - separate for network, file and console? other graphics?
-* init? - prevent constructors from calling other methods? see [No Leaky
+* init? - prevent initializers from calling other methods? see [No Leaky
   Abstractions](http://joeduffyblog.com/2016/11/30/15-years-of-concurrency/)
 * pure?
 * out of memory and stack overflow

@@ -51,7 +51,6 @@ keyword
     | "move"
     | "mut"
     | "namespace"
-    | "new"
     | "never"
     | "next"
     | "nint"

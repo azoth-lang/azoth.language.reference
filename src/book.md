@@ -81,7 +81,6 @@ new version. If something is missing, it may be documented in the [old version](
 12. [Structs](structs.md)
     * [Struct Declarations](struct-declarations.md)
     * [Struct Initializers](struct-initializers.md)
-    * [Struct Constructors](struct-constructors.md) TODO: remove
     * [Ref Structs](ref-structs.md)
     * [Value Declarations](value-declarations.md)
 13. [Closed Types](closed-types.md)

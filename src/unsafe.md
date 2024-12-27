@@ -41,7 +41,7 @@ It is a compile time error to mark a function `safe` that contains no unsafe con
 ## Unsafe and Safe Classes and Structs?
 
 **TODO:** should it be necessary to mark the class as a whole as safe or unsafe? Exactly where would
-the use of an unsafe type cause an error? Does an unsafe class mean all of its constructors are
+the use of an unsafe type cause an error? Does an unsafe class mean all of its initializers are
 unsafe?
 
 ## Trusted Packages
@@ -78,16 +78,16 @@ to `uninitialized` to indicate you didn't want to initialize it or that the curr
 thrown away. Accessing an unsafe reference is unsafe because the compiler can't guarantee it has
 been initialized.
 
-## Constructing and Destructing Values in Place
+## Initializing and Destructing Values in Place
 
-When allocating memory, you are responsible for constructing and destructing the values. This is
+When allocating memory, you are responsible for initializing and destructing the values. This is
 done with placement init and explicit delete.
 
 ```azoth
 let x: @mut Point = allocate[Point](2);
 unsafe
 {
-    // Call Constructors with Placement New
+    // Call Initializers with Placement Init
     init(x) Point(1, 3);
     init(x+1) Point(9, 4);
     // Call Destructors

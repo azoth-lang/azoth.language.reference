@@ -57,7 +57,7 @@ public struct containing
 }
 ```
 
-**TODO:** consistency would imply that it should be possible to call the base class constructor the
+**TODO:** consistency would imply that it should be possible to call the base class initializer the
 same way in a record type.
 
 A case declaration in a struct will be a `value` declaration unless one of the following is the

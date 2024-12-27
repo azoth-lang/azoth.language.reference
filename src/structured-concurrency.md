@@ -169,7 +169,7 @@ operator allocates a thread to the blocking operation which will be blocked unti
 returns.
 
 ```azoth
-async new Blocking_IO_Scope()
+async Blocking_IO_Scope()
 {
     return await go blocking_operation();
 }
