@@ -124,9 +124,10 @@ new version. If something is missing, it may be documented in the [old version](
     * [`azoth.memory` Namespace](azoth.memory.md)
     * [`azoth.text` Namespace](azoth.text.md)
 28. Reflection
-29. [Conventions](conventions.md)
-30. [Version Number Scheme](version-numbers.md)
-31. [Planned Features](planned-features.md)
+29. [Guaranteed Optimizations](guaranteed-0ptimizations.md)
+30. [Conventions](conventions.md)
+31. [Version Number Scheme](version-numbers.md)
+32. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
     * [Additional Expressions](planned-expressions.md)
