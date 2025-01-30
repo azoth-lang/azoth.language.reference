@@ -8,8 +8,8 @@ one can never reference a value on the stack that has gone out of scope. It shou
 while stack references allow values on the stack to be referenced, they can also refer to values on
 the heap inside of objects.
 
-It should be noted that while stack references must be held on the stack, they can still be included
-in value types via `ref structs`s (see [Ref Structs](ref-structs.md)).
+It should also be noted that while stack references must be held on the stack, they can still be
+included in value types via `ref structs`s (see [Ref Structs](ref-structs.md)).
 
 Note: stack references are basically equivalent to the `ref` and `in` keywords in C#.
 
@@ -25,7 +25,7 @@ stack_reference
 A readonly reference to a value type either on the stack or the heap. This allows passing value
 types without copying. Note that the value type could be a value on the stack, but it could also be
 a value inside an object on the heap or an element of an array or list. If a struct reference refers
-to a value on the heap, that that reference keeps the larger object it is referring into alive and
+to a value on the heap, then that reference keeps the larger object it is referring into alive and
 it cannot be garbage collected. Struct references cannot be combined with reference types because
 the double reference indirection would make no sense and serve no purpose. However, if via generics,
 `ref` is combined with a reference type `T` then the type `ref T` is instead taken as the type `T`.
@@ -47,9 +47,10 @@ A reference to a mutable variable on the stack or the heap. That variable may co
 type or a reference type. It is important to understand that the mutability of the variable here
 refers to the mutability of the variable binding. Thus all variable references must refer to a
 variable or field defined with the `var` keyword. That variable may have an immutable reference
-type. For example, `ref var const User` is a mutable reference to an immutable `User` object. Thus
-the variable could be assigned a new reference value to a different immutable `User` object, but the
-`User` object itself could not be mutated via this reference, or indeed any possible reference.
+type. For example, `ref var const User` is a reference to a `var` of referencing an immutable `User`
+object. Thus the variable could be assigned a new reference value to a different immutable `User`
+object, but the `User` object itself could not be mutated via this reference, or indeed any possible
+reference.
 
 ```grammar
 struct_reference

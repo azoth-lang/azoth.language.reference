@@ -56,3 +56,5 @@ and for assigning a new reference.
 Internal references are implicitly convertible to stack references. When this is done, the compiler
 will infer that the resulting stack reference is safe to return from the function as it refers to a
 value on the heap that will be kept alive as long as the reference exists.
+
+**TODO:** should this be subtype instead?

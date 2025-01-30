@@ -91,10 +91,14 @@ y = 8; // because of types involved, dereference is implied. The same thing does
 
 By default, all pointer types are non-nullable. That is, they may refer to invalid memory locations, but they can never be null. To create a nullable pointer type, use optional types. So a nullable pointer to `T` would be `@T?`. Note that the `@` has higher precedence than `?` so this is parsed as `(@T)?` rather than `@(T?)`.
 
-### Pointers to Any
+### Void Pointers
 
-There are special pointer types for pointers without reference to the type of data they hold. These are pointers to `Any`, `@Any` and `@mut Any`. They can't be dereferenced, but must be cast to some other pointer type to be used.
+There are special pointer types for pointers without reference to the type of data they hold. These
+are void pointers, `@void` and `@mut Any`. They can't be dereferenced, but must be cast to some
+other pointer type to be used.
 
 ### Ownership and Pointers
 
-A pointer doesn't "own" or even borrow the value it points to. The pointed to value will be disposed of whenever it would normally be disposed. Note, that the pointer type doesn't track ownership and it is up to the developer to ensure that the memory is deleted.
+A pointer doesn't "own" or even borrow the value it points to. The pointed to value will be disposed
+of whenever it would normally be disposed. Note, that the pointer type doesn't track ownership and
+it is up to the developer to ensure that the memory is deleted.
