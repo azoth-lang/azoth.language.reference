@@ -25,17 +25,6 @@ Note that you can't specify the mutability of `T`. That is inherent to the type 
 
 To the code using type parameter `T`, it behaves as value type with move semantics and no copy function. This only changes if there are generic constraints.
 
-## Constraints
-
-```azoth
-where T: class // Then `ref T` becomes invalid
-where T: struct
-where T: move struct
-where T: copy struct
-where T: copy() // T has a copy method, explicit or implicit. must be used explicitly though
-where T <: S // subtype
-```
-
 ## Type Lists
 
 In some cases, it is useful to have generic parameters actually provide a list of types. The visitor pattern is one such situation. To use a type list, mark a type parameter as being of the type `type...`. This indicates it is a tuple of types. **Conceptually we have something like `class Foo[T: L] forSome L where L: Tuple`.**

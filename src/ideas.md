@@ -293,6 +293,9 @@ is constructed from.
 Alternatively, type aliases could be declared without the `alias` keyword. Then within type
 declarations a pure alias could be declared using something like `const type` or `sealed type`.
 
+**TODO:** record classes and structs serve this purpose. Document in lang design and remove from
+here.
+
 ## Expressions
 
 ### `else match` Expression
@@ -650,6 +653,9 @@ let z = t.at[2]();
 
 Note that the "`at`" method can't be a meta-function because it must return a reference to a runtime
 value.
+
+**TODO:** I think this runs into the problems I thought of with having the return type be an
+arbitrary function of the type arguments. (Example bad case?)
 
 ### Default Value Initializers
 

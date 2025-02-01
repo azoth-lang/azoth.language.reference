@@ -95,7 +95,7 @@ new version. If something is missing, it may be documented in the [old version](
     * Constant Declarations
     * [Aliases](aliases.md)
 16. Type Variables
-    * Generics
+    * [Generics](generics.md)
     * [Self Type](self-type.md)
     * [Associated Types](associated-types.md)
 17. [Structured Concurrency](structured-concurrency.md)
