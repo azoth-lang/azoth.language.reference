@@ -41,7 +41,7 @@ new version. If something is missing, it may be documented in the [old version](
    * [Type Expressions](type-expressions.md)
    * [Pointer Types](pointer-types.md)
    * Generic Types
-   * [Stack References](stack-references.md)
+   * [Variable References](variable-references.md)
    * [Internal References](internal-references.md)
 5. [Conversions](conversions.md)
 6. [Expressions](expressions.md)
