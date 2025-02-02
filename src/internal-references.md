@@ -56,3 +56,8 @@ compiler will infer that the resulting variable reference is safe to return from
 refers to a value on the heap that will be kept alive as long as the reference exists.
 
 **TODO:** should this be subtype instead?
+
+## Equality
+
+Internal references cannot be compared for equality. If an equality operator is used on two `iref`
+types, they will be implicitly dereferenced and the operator evaluated on the result.

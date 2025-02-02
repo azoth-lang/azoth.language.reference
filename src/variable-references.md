@@ -73,9 +73,14 @@ variable `var y: int = 42;` then `let x = ref y;` declares a variable `x` of typ
 assigns it a reference to `y`. To reference a variable prefix the name with `ref var`. For example,
 `let z = ref var y;` declares a variable of type `ref var int` and assigns it a reference to `y`.
 
-Stack references can be assigned new references and new values. A `var a: ref var int` can be assign
+Variable references can be assigned new references and new values. A `var a: ref var int` can be assigned
 a new reference by assigning into it an expression of type `ref var int`, but the variable it
 references can be assigned by assigning into it an expression of type `int`. Likewise, to pass a
 variable reference as a parameter, simply pass any expression of the appropriate reference type
 which might be a variable with a variable reference type. A variable reference will be implicitly
 dereferenced in contexts where the referenced type is expected.
+
+## Equality
+
+Variable references cannot be compared for equality. If an equality operator is used on two `ref`
+types, they will be implicitly dereferenced and the operator evaluated on the result.
