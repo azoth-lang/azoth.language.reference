@@ -69,6 +69,9 @@ the range of the destination type and can be represented without loss of precisi
 conversion to "`float32`" and "`float64`" the value must not have more significant bits than can be
 represented by the type.
 
+**TODO:** this has been dropped with the change to make that part of constant folding and add
+`int[V]` types.
+
 ### User-defined Implicit Conversions
 
 **TODO**
