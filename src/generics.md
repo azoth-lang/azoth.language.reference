@@ -9,7 +9,7 @@ capability or capability set. If one is omitted, the default is `aliasable`.
 
 A type parameter can be independent. This means that accessing it from `self` does not apply the
 capability of `self` to it. Effectively, the declarer of the containing type "owns" that value. The
-default is not independent. Simple independence is `ind`. Additionally, there is `sharable ind`
+default is not independent. Simple independence is `ind`. Additionally, there is `shareable ind`
 which is a restricted form of independence.
 
 **TODO:** fully and carefully document shareable independence

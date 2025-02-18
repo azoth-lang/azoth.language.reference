@@ -192,6 +192,14 @@ may be disagreement about the correct precedence. This has been omitted from the
 avoid imposing a precedence relative to the "`and`" and "`or`" operators before operator partial
 ordering is supported.
 
+### "`implies`" Operator
+
+Eiffel has one. Being an operator allows it to short-circuit.
+
+### "`iff`" Operator
+
+`(a iff b) == not (a xor b)`
+
 ### "`^`" Exponent Operator
 
 When used as a binary operator "`^`" should be a right associative exponentiation operator. I had
