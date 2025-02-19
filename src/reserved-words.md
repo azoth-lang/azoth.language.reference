@@ -23,6 +23,7 @@ reserved_word
     | "defer"              // Swift style "`defer`" statements
     | "do"                 // "`do while`" loop or Swift style "`do`" block
     | "dynamic_cast"       // Casting
+    | "enum"               // Enumerations
     | "extend"             // Extensions
     | "extension"          // Extensions
     | "fallthrough"        // Useful for switch like constructs

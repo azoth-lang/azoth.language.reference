@@ -102,6 +102,9 @@ Any class type can be matched. If the type is not visible outside the package, t
 exhaustive because no subclasses can be added without rebuilding the package. This can also be
 achieved by marking the class "closed?"
 
+**TODO:** clarify how this works with capabilities. Should it be a bare type. But what about cases
+like `self |> ref var Foo` where the capability modifies what type you might be checking for?
+
 ## None Pattern
 
 ```grammar
@@ -194,6 +197,9 @@ How can this be overloaded to match other types?
 ```azoth
 let #(x, y) = #(1, 2)
 ```
+
+**TODO:** This should probably just be a destructure pattern `let x, y = #(1, 2)` because it applies
+to any type that can be destructured, not just tuples.
 
 ## Wildcard Pattern
 

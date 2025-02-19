@@ -69,6 +69,12 @@ prevent the method `z` from being called if `x` were `none`, rather than simply 
 
 Operators are lifted for optional types similar to how they are in C#.
 
+### Operators on Optional Booleans
+
+**TODO:** specify how operators work on optional booleans since there is sort of three value logic.
+This is a reason to have `iff` distinct from `==` since `none == none` but `none iff none` is
+`none`.
+
 ## Optional Types Precedence
 
 The optional type is immutable so `mut T?` must mean `(mut T)?`.
