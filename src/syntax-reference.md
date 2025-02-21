@@ -35,41 +35,41 @@ A brief statement of the syntax for easy reference.
 
 ## Operators
 
-| Operator           | Meaning                        |
-| ------------------ | ------------------------------ |
-| `x + y` †          | Addition                       |
-| `x - y` †          | Subtraction                    |
-| `x * y` †          | Multiplication                 |
-| `x / y` †          | Division                       |
-| `x.y`              | Member Access                  |
-| `^x`               | Dereference                    |
-| `x^.y`             | Deference and Access Member    |
-| `@x`               | Address Of (i.e. pointer to)   |
-| `x??y`             | Coalesce Operator              |
-| `x?.y`             | Conditional Access Operator    |
-| `..`               | Infinite Range                 |
-| `x..y`             | Inclusive Range                |
-| `x..`              | Inclusive Range to Infinity    |
-| `..y`              | Inclusive Range from Infinity  |
-| `x..<y` ‡          | Range Exclusive of End         |
-| `x<..y` ‡          | Range Exclusive of Start       |
-| `x<..<y` ‡         | Exclusive Range                |
-| `p::.n`            | Package Qualifier              |
-| `::.n`             | Global Qualifier               |
-| `x = y`            | Assignment                     |
-| `x == y`           | Equal                          |
-| `x ≠ y`, `x =/= y` | Not Equal                      |
-| `x < y`            | Less Than                      |
-| `x ≤ y`, `x <= y`  | Less Than or Equal             |
-| `x > y`            | Greater Than                   |
-| `x ≥ y`, `x >= y`  | Greater Than or Equal          |
-| `=> x`             | Result of Block or Expression  |
-| `x and y`          | Logical And (short circuiting) |
-| `x or y`           | Logical Or (short circuiting)  |
-| `not x`            | Logical Not                    |
-| `T1 \| T2`         | Sum Type                       |
-| `T1 & T2`          | Intersection Type              |
-| `T1 <: T2`         | Subtype                        |
+| Operator   | Meaning                        |
+| ---------- | ------------------------------ |
+| `x + y` †  | Addition                       |
+| `x - y` †  | Subtraction                    |
+| `x * y` †  | Multiplication                 |
+| `x / y` †  | Division                       |
+| `x.y`      | Member Access                  |
+| `^x`       | Dereference                    |
+| `x^.y`     | Deference and Access Member    |
+| `@x`       | Address Of (i.e. pointer to)   |
+| `x??y`     | Coalesce Operator              |
+| `x?.y`     | Conditional Access Operator    |
+| `..`       | Infinite Range                 |
+| `x..y`     | Inclusive Range                |
+| `x..`      | Inclusive Range to Infinity    |
+| `..y`      | Inclusive Range from Infinity  |
+| `x..<y` ‡  | Range Exclusive of End         |
+| `x<..y` ‡  | Range Exclusive of Start       |
+| `x<..<y` ‡ | Exclusive Range                |
+| `p::.n`    | Package Qualifier              |
+| `::.n`     | Global Qualifier               |
+| `x = y`    | Assignment                     |
+| `x == y`   | Equal                          |
+| `x =/= y`  | Not Equal                      |
+| `x < y`    | Less Than                      |
+| `x <= y`   | Less Than or Equal             |
+| `x > y`    | Greater Than                   |
+| `x >= y`   | Greater Than or Equal          |
+| `=> x`     | Result of Block or Expression  |
+| `x and y`  | Logical And (short circuiting) |
+| `x or y`   | Logical Or (short circuiting)  |
+| `not x`    | Logical Not                    |
+| `T1 \| T2` | Sum Type                       |
+| `T1 & T2`  | Intersection Type              |
+| `T1 <: T2` | Subtype                        |
 
 † Can be combined with assignment (i.e. `+=`) \
 ‡ All ranges can be infinite on either or both sides as shown for inclusive ranges

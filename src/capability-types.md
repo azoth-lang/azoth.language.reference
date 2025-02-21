@@ -115,15 +115,15 @@ explicit_capability
 
 capability_arrow
     : "|>"
-    | "▷" // U+25B7
     ;
 ```
 
-**TODO:** Perhaps this should be `explicit_capability "." type` (e.g. `const.T`) and `"Self" "."
-type` (e.g. `Self.Foo`) instead to reflect that the types are the result of member access? The main
+**TODO:** Perhaps this should be `explicit_capability "." type` (e.g. `const.T`) and `"self" "."
+type` (e.g. `self.Foo`) instead to reflect that the types are the result of member access? The main
 concerns are whether those would be obvious enough and whether there would be some ambiguity,
-particularly with the `Self.` form. It also depends on whether it is determined that `Self` should
-have a capability or not. It seems like `self.` would indeed be ambiguous.
+particularly with the `self.` form. If `self |> T` can occur in an expression then `self.T` would be
+confusing and ambiguous with a member access. However, associated members are accessed from bare
+types that don't have capabilities so that would seem to not be a problem.
 
 ## Capability Constraint Types
 
