@@ -198,7 +198,8 @@ Eiffel has one. Being an operator allows it to short-circuit.
 
 ### "`iff`" Operator
 
-`(a iff b) == not (a xor b)`
+`(a iff b) == not (a xor b)` This operator would be distinct from `==` because `none == none` for
+optional booleans but `none iff none` would be `none`.
 
 ### "`^`" Exponent Operator
 
