@@ -50,8 +50,7 @@ new version. If something is missing, it may be documented in the [old version](
    * [Loop Expressions](loop-expressions.md)
    * [With Expression](with-expression.md)
    * [Capability Expressions](capability-expressions.md)
-   * Operators
-     * Logical Operators
+   * [Operators](operators.md)
    * [Bitwise Operations](bitwise-operations.md)
    * [Boolean Expression](boolean-expression.md)
    * [Interpolated Strings](interpolated-strings.md)

@@ -15,6 +15,7 @@ embedded_expression
     | loop_expression
     | with_expression
     | capability_expression
+    | operator_expression
     | pattern_match_expression
     ;
 ```

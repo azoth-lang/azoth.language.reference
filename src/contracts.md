@@ -24,6 +24,9 @@ can be accessed by using `return` as a variable.
 have been mutated. That may be an unreasonable cost. It may also require copying that isn't
 otherwise possible in the language. Perhaps this could be available only for copy types?
 
+**TODO:** Eiffel makes `old` a unary operator with high precedence so the parens aren't needed. Then
+one would write `old self`.
+
 ## Invariants
 
 Invariants are declared on the class or struct level with the `invariant` keyword. These must hold
