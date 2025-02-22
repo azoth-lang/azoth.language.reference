@@ -40,7 +40,7 @@ public class Example
     public init #{} (params values: Array[int])
 
     // Dictionary Initializer with params initializer
-    public init #{#>} (params values: key_value_pair[int])
+    public init #{#>} (params values: key_value_pair[int, int])
 }
 ```
 

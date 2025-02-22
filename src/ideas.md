@@ -567,6 +567,34 @@ func(%arg_2 5, %arg_1 6);
 Between those two, `=>` seems the better choice. It is unfortunate that it can't then be used as a
 symbol literal. However, user literals could be used as a flexible symbol literal.
 
+The `=>` isn't great because it looks like the `=>` used for result expressions. However, as that is
+a unary operator or start of statement, and this is a binary operator, they are distinct. Some more
+options:
+
+```azoth
+#{x #> 1, y #> 2}
+#{x #= 1, y #= 2}
+func(arg_2 #= 5, arg_1 #= 6);
+#{x, 1; y, 2 }
+#{at(x) = 1, at(y) = 2 }
+#{x -> 1, y -> 2}
+#{(x, 1), (y, 2)} // While more verbose and mundane, it is very clear
+// if add the syntax of default methods so dictionary(key) works
+#{(x) = 1, (y) = 2 }
+#{.(x) = 1, .(y) = 2 }
+```
+
+There is a good argument online for using `=` for passing arguments for named parameters. However,
+it then doesn't fit with dictionary initializers. Also should the argument syntax be `func(arg_2 =
+5, arg_1 = 6);` or `func(.arg_2 = 5, .arg_1 = 6);`? I think without the `.` is better because it is
+easier to rename local variables to avoid conflicts than it is to rename fields. There is a
+fundamental difference between the dictionary initializer case and the named parameters case. In the
+dictionary, the left hand side is an expression. In the named parameters, the left hand side is a
+symbol.
+
+Idea: make `=>` a type constructor so that `T => S` is a key value pair of `T` and `S`. Then the
+type matches the dictionary initializer.
+
 ### "`out`" Parameters
 
 The `ref` types function as reference parameters. Does it make sense to add an `out` keyword like
