@@ -60,10 +60,8 @@ published move struct Raw_Inline_Bounded_List[Capacity: size, T]
     published fn add(ref mut self, value: T);
     published unsafe fn shorten(ref temp iso self, count: size); // temp iso to prevent a reference to the removed items(s)
     // Overloading `self` on `ref` vs `iref` allows for determining the proper return type
-    published unsafe fn at(ref mut self, index: size) -> ref var T {...};
-    published unsafe fn at(iref mut self, index: size) -> iref var T {...};
-    published unsafe fn at(ref self, index: size) -> ref T {...};
-    published unsafe fn at(iref self, index: size) -> iref T {...};
+    published unsafe fn at(ref readable self, index: size) -> self |> ref var T {...};
+    published unsafe fn at(iref readable self, index: size) -> self |> iref var T {...};
 }
 ```
 
@@ -89,23 +87,21 @@ small enough for this to be beneficial. The effective declarations of `Raw_Hybri
 `Raw_Hybrid_Array[F, Count: size, T]` are:
 
 ```azoth
-published class Raw_Hybrid_Array[F, T]
+published class Raw_Hybrid_Array[F, T ind]
 {
     published init(mute self, .fixed, .count, ensureZeroed: bool) {...}
     published var fixed: F;
     published let count: size;
-    published unsafe fn at(mut self, index: size) -> iref var T {...};
-    published unsafe fn at(self, index: size) -> iref T {...};
+    published unsafe fn at(readable self, index: size) -> self |> iref var T {...};
 }
 
-published class Raw_Hybrid_Array[F, Count: size, T]
+published class Raw_Hybrid_Array[F, Count: size, T ind]
 {
     published init(mut self, .fixed, ensureZeroed: bool) {...}
     published var fixed: F;
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
     published get count() => Count;
-    published unsafe fn at(mut self, index: size) -> iref var T {...};
-    published unsafe fn at(self, index: size) -> iref T {...};
+    published unsafe fn at(readable self, index: size) -> self |> iref var T {...};
 }
 ```
 
@@ -131,8 +127,7 @@ published class Raw_Hybrid_Bounded_List[F, T]
     published let capacity: size;
     published get count() => size;
     published unsafe fn shorten(count: size); // unsafe because there may be iref to them
-    published unsafe fn at(mut self, index: size) -> iref var T {...};
-    published unsafe fn at(self, index: size) -> iref T {...};
+    published unsafe fn at(readable self, index: size) -> self |> iref var T {...};
     published fn add(mut self, value: T);
 }
 

@@ -1,5 +1,18 @@
 # `azoth.collections` Namespace
 
+## `List[T]`
+
+A list could allow ref access to its elements via `iref` with something like the below. However, the
+overloads would need to be combined by creating a capability set that covered `temp iso` and `temp
+const`. Also, the compiler would need to be smart enough to realize that since `T` is independent as
+soon as the `iref` is discarded, there is no longer any sharing. But is that sufficient for member
+access given that `temp iso` and `temp const` can't always be achieved?
+
+```azoth
+    published fn at(temp iso self, index: size) -> self |> iref var T {...};
+    published fn at(temp const self, index: size) -> self |> iref T {...};
+```
+
 ## `azoth.collections.specialized.Array[n: size, T]`
 
 A fixed size safe array type.
