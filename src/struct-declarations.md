@@ -32,7 +32,7 @@ expectations of a trait using a `const self` parameter.
 
 ## Record Structs
 
-Record structs provide a shorthand for declaring record types.  That is types that are the
+Record structs provide a shorthand for declaring record types. That is types that are the
 composition of a named, ordered sequence of other types. They work just like record classes. A
 record struct is declared with a parameter list after the struct name (e.g. `struct Example(foo:
 int, bar: string)`). These parameters then become fields of the type. Declaring a record struct
@@ -46,10 +46,10 @@ parameters is `public` unless the struct is `published` in which case they are d
 These fields can implicitly override abstract getters and setters. They cannot override or hide
 non-abstract ones.
 
-Second, an initializer is declared with corresponding field parameters (e.g. `init(.foo, .bar)` for
-the `Example` struct). The implicitly declared initializer is `public` unless the struct is
-`published` in which case it is declared `published`. This initializer is otherwise not special and
-additional initializers may be declared. Those initializers are not required to call the record
+Second, an initializer is declared with corresponding field parameters (e.g. `init(mut self, .foo,
+.bar)` for the `Example` struct). The implicitly declared initializer is `public` unless the struct
+is `published` in which case it is declared `published`. This initializer is otherwise not special
+and additional initializers may be declared. Those initializers are not required to call the record
 initializer. They must simply follow the initialization safety rules of all initializers. It is not
 possible to add logic to this initializer or call a base class initializer. However, if an
 initializer with the same parameter types is declared, it replaces the initializer that would
