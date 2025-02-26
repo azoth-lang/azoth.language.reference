@@ -31,7 +31,7 @@ object and then call the initializer on it by passing a stack reference to the a
 ```azoth
 published move struct Raw_Inline_Array[Count: size, T]
 {
-    published init(ref mut self, ensureZeroed: bool) {...}
+    published unsafe init(ref mut self, ensure_zeroed: bool) {...}
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
     published get count() => Count;
     // Overloading `self` on `ref` vs `iref` allows for determining the proper return type
@@ -89,7 +89,7 @@ small enough for this to be beneficial. The effective declarations of `Raw_Hybri
 ```azoth
 published class Raw_Hybrid_Array[F, T ind]
 {
-    published init(mute self, .fixed, .count, ensureZeroed: bool) {...}
+    published unsafe init(mute self, .fixed, .count, ensure_zeroed: bool) {...}
     published var fixed: F;
     published let count: size;
     published unsafe fn at(readable self, index: size) -> self |> iref var T {...};
@@ -97,7 +97,7 @@ published class Raw_Hybrid_Array[F, T ind]
 
 published class Raw_Hybrid_Array[F, Count: size, T ind]
 {
-    published init(mut self, .fixed, ensureZeroed: bool) {...}
+    published unsafe init(mut self, .fixed, ensure_zeroed: bool) {...}
     published var fixed: F;
     // TODO should generic parameters be publicly exposed members and this getter wouldn't be needed?
     published get count() => Count;
