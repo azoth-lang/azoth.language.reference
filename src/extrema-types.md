@@ -52,3 +52,6 @@ For purposes of covariance and contravariance, "`void`" acts like a top type. Fo
 class function returns "`void`" then it can be overridden with a function returning any type.
 Likewise, when evaluating type constraints it is a supertype of all other types. This is what makes
 it an extrema type.
+
+**TODO:** reconsider `void` top type behavior. It seems like it should require an implicit
+conversion.

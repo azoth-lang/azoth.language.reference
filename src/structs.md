@@ -12,7 +12,7 @@ struct
 
 struct_capability
     : "const"
-    | // epsilon
+    | ε
     ;
 
 struct_kind

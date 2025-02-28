@@ -31,10 +31,20 @@ operator_expression
 | `x or y`, `x xor y`                                               | Logical Or                  |
 | `x implies y`, `x iff y`                                          | Implicative                 |
 | `x ?? y`                                                          | Coalesce                    |
-| `=` `+=` `-=` `*=` `/=` `??=`                                     | Assignment                  |
+| `=` `+=` `-=` `*=` `/=` `^=` `??=`                                | Assignment                  |
 
-**TODO:** Swift combines `as` and `is` in a level below range but above relational.
-**TODO:** Swift put `??` above relational. That seems wrong since comparisons are lifted to optional.
+**TODO:** Swift combines `as` and `is` in a level below range but above relational. \
+**TODO:** Swift put `??` above relational. That seems wrong since comparisons are lifted to
+optional. \
+**TODO:** Associativity, especially of `implies`. In math, the expression is often taken to be right
+associative. The operation is not associative. I've seen it suggested that similar to `<`, `a
+implies b implies c` ought to be treated as `(a implies b) and (b implies c)`. However, the
+comparison operators don't operate on `bool` while the logical connectives do. \
+**TODO:** since `iff` is symmetric and basically not `xor` maybe it should have the same precedence
+as `xor`. \
+**TODO:** with the addition of `xor` consider adding partial precedence. **TODO:** `x ^= y` could
+mean `x = x ^ y` or `^x = y`. The latter especially makes sense since the `^.` operator gives
+precedence for a suffix dereference. Perhaps it should be omitted?
 
 ## Equality Operators
 
@@ -65,6 +75,6 @@ operator_expression
   relational operators don't make sense. Grouping the logical operators like this at the bottom
   means, that they are all right below the relational operators, already at the level where we can
   expect boolean values. It also fits with the fact that `not` is a keyword that is separated from
-  the argument with a space unlike `!` which is usually written unseparated (i.e. `!x`).
+  the argument with a space unlike `!` which is usually written without a space (i.e. `!x`).
 
 ## Reference and Pointer Operators

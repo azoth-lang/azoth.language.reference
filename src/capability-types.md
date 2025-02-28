@@ -8,7 +8,7 @@ variables, parameters, and fields.
 ```grammar
 capability_type
     : capability value_type
-    | capability reference_type
+    | capability object_type
     ;
 ```
 
@@ -99,8 +99,8 @@ capability of `self`.
 
 ```grammar
 viewpoint_type
-    : explicit_capability capability_arrow type
-    | "self" capability_arrow type
+    : explicit_capability "|>" type
+    | "self" "|>" type
     ;
 
 explicit_capability
@@ -111,10 +111,6 @@ explicit_capability
     | "id"
     | "temp" "iso"
     | "temp" "const"
-    ;
-
-capability_arrow
-    : "|>"
     ;
 ```
 

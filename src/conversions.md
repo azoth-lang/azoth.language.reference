@@ -1,35 +1,55 @@
 # Conversions
 
-A *conversion* is a transformation of values from one type to another that allows expressions of the
-first type to used as the second type. Conversions can be *implicit* or *explicit*. Explicit
-conversions require an explicit conversion expression. For example, the type "`int32`" can be
-implicitly converted to "`int64`", so expressions of type "`int32`" can implicitly be treated as
+A *conversion* is a transformation of values from one type to another. Conversions can be *implicit*
+or *explicit*. Implicit conversions are inserted automatically by the compiler as necessary.
+Explicit conversions require an explicit conversion expression. For example, the type "`int32`" can
+be implicitly converted to "`int64`", so expressions of type "`int32`" can implicitly be treated as
 "`int64`". The opposite conversion, from "`int64`" to "`int32`", is explicit, so an explicit
 conversion is required.
 
 ```azoth
 let a: int32 = 123;
-let b: int64 = a;       // implicit conversion from int32 to int64
+let b: int64 = a; // implicit conversion from int32 to int64
 let c: int32 = b as! int32; // explicit conversion from int64 to int32
 ```
 
-Additionally, certain numeric conversions will not fail, but may lead to a loss of precision. These
-are described in [Explicit Numeric Conversions](#explicit-numeric-conversions) and can be performed
-using the "`as`" operator.
+Generally, numeric conversions that have no risk of failure or loss of precision are implicit.
+Conversions that could fail or lose data should be explicit. For example, certain numeric
+conversions will not fail, but may lead to a loss of precision. These are described in [Explicit
+Numeric Conversions](#explicit-numeric-conversions) and can be performed using the "`as`" operator.
 
-Some conversions are defined by the language. Programs may also define their own conversions (see
-[User-defined Conversions](#user-defined-conversions)).
+Some conversions are defined by the language. Programs may also define their own user-defined
+conversions.
 
-## Implicit conversions
+Note that when a subtyping relationship exists between two types, then no conversion is necessary.
+
+**TODO:** add handling of literal types (e.g. `int[V]`).
+
+## Standard Conversions
+
+A standard conversion is a conversion built-in conversion that is not an optional conversion. That
+is, user-defined conversions and conversions from `T` to `T?` are not standard conversions.
+
+## Implicit Conversions
 
 The following conversions are implicit conversions:
 
 * Implicit numeric conversions
 * Implicit optional conversions
-* Implicit constant expression conversions
+* Implicit lifted conversions
 * User-defined implicit conversions
 
-The "`as`" operator can be used to explicitly cause an implicit conversion.
+The "`as`" operator can be used to explicitly cause an implicit conversion. Since an implicit
+conversion cannot fail, the `as!` and `as?` operators cannot be used with implicit conversions.
+
+### Multiple Conversions
+
+An implicit conversion without a user-defined conversion will only ever involve one standard
+conversion but may have an arbitrary number of optional conversions applied.
+
+An implicit conversion with a user-defined conversion will only ever involve one user defined
+conversion. It may have one standard conversion before the user defined conversion and one after. In
+addition, it may have an arbitrary number of optional conversions applied.
 
 ### Implicit Numeric Conversions
 
@@ -38,39 +58,56 @@ safely performed with no loss of precision.
 
 The implicit numeric conversions are:
 
-| From      | To                                                                                           |
-| --------- | -------------------------------------------------------------------------------------------- |
-| `int8`    | `int16`, `int32`, `int64`, `int`, `float32`, `float64`                                       |
-| `byte`    | `int16`, `uint16`, `int32`, `uint32`, `int64`, `uint64`, `int`, `uint`, `float32`, `float64` |
-| `int16`   | `int32`, `int64`, `int`, `float32`, `float64`                                                |
-| `uint16`  | `int32`, `uint32`, `int64`, `uint64`, `int`, `uint`, `float32`, `float64`                    |
-| `int32`   | `int64`, `int`, `float64`                                                                    |
-| `uint32`  | `int64`, `int`, `uint`,`uint64`, `float64`                                                   |
-| `int64`   | `int`                                                                                        |
-| `uint64`  | `int`, `uint`                                                                                |
-| `uint`    | `int`                                                                                        |
-| `float32` | `float64`                                                                                    |
+| From      | To                                                                                                            |
+| --------- | ------------------------------------------------------------------------------------------------------------- |
+| `int`     | (none)                                                                                                        |
+| `uint`    | `int`                                                                                                         |
+| `int8`    | `nint`, `int16`, `int32`, `int64`, `int`, `float32`, `float64`                                                |
+| `byte`    | `nint`, `nuint`, `int16`, `uint16`, `int32`, `uint32`, `int64`, `uint64`, `int`, `uint`, `float32`, `float64` |
+| `int16`   | `nint`, `int32`, `int64`, `int`, `float32`, `float64`                                                         |
+| `uint16`  | `nuint`, `int32`, `uint32`, `int64`, `uint64`, `int`, `uint`, `float32`, `float64`                            |
+| `int32`   | `int64`, `int`, `float64`                                                                                     |
+| `uint32`  | `int64`, `int`, `uint`,`uint64`, `float64`                                                                    |
+| `int64`   | `int`                                                                                                         |
+| `uint64`  | `int`, `uint`                                                                                                 |
+| `nint`    | `int`                                                                                                         |
+| `nuint`   | `uint`, `int`                                                                                                 |
+| `size`    | `nuint`, `uint`, `int`,                                                                                       |
+| `offset`  | `nint`, `int`                                                                                                 |
+| `float32` | `float64`                                                                                                     |
+
+Note that conversions to native ints (i.e. `nint` and `nuint`) are possible because they are assumed
+to be at least 16-bit. Conversions to `size` and `offset` are not supported because `size` is
+further restricted and so only `byte` could be converted to it. Also, it maintains the separation of
+logic involving indexes from other math logic.
+
+Conversions to IEEE floating point types are implicit when no loss of precision is possible. The
+effective bits of precision for this are given in the table below.
+
+| Type       | Bits of Precision |
+| ---------- | ----------------- |
+| `float16`  | 11                |
+| `float32`  | 24                |
+| `float64`  | 53                |
+| `float128` | 113               |
+| `float256` | 237               |
 
 ### Implicit Optional conversions
 
-Given a value type `S` and reference type `T` such that `S <: T`, there are implicit boxing
-conversions from "`S?`" to "`T?`" and from "`S`" to "`T?`". There is also an implicit conversion
-from `S` to `S?`.
+For a reference type `R`, the reference type is a subtype of the optional type `R?`. However, that
+is true only for the first layer of optional type. Given an optional reference type `R?` it is not
+itself a reference type and thus `R?` is not a subtype of `R??`. For all types `T` other than
+reference types, there is an implicit conversion from `T` to `T?`.
 
-**TODO:** maybe boxing should be an explicit operation. Not a conversion but box some kind of `box
-x` expression.
+Note that a generic type parameter `T` is not known to be a reference type. So `T` to `T?` is an
+implicit conversion unless the generic type parameter has been constrained to be a reference type.
 
-### Implicit Constant Expression Conversions
+### Implicit Lifted Conversions
 
-A constant expression of the types "`int8`", "`byte`", "`int16`", "`uint16`", "`int32`", "`uint32`",
-"`int64`", "`uint64`", "`int`", "`uint`", "`size`", "`offset`", "`float32`", or "`float64`" can be
-implicitly converted to any other type in the list if the value of the constant expression is within
-the range of the destination type and can be represented without loss of precision. Thus for
-conversion to "`float32`" and "`float64`" the value must not have more significant bits than can be
-represented by the type.
-
-**TODO:** this has been dropped with the change to make that part of constant folding and add
-`int[V]` types.
+Given two types `S` and `T` such that `S <: T` then `S? <: T?`. That is, optional types are
+covariant to their underlying types. Put another way, the underlying type acts like an `out` generic
+parameter. If no subtype relationship exists, but instead there is an implicit conversion from `S`
+to `T`, then there is a lifted implicit conversion from `S?` to `T?`.
 
 ### User-defined Implicit Conversions
 
@@ -80,14 +117,19 @@ represented by the type.
 
 The following conversions are explicit conversions:
 
-* All implicit conversions
 * Explicit numeric conversions
 * Explicit boolean conversions
 * Explicit reference conversions
+* Explicit lifted conversions
+* Explicit boxing conversions
+* Explicit unboxing conversions
 * User-defined explicit conversions
 
-Explicit conversions can be performed with the "`as!`" or "`as?`" operators. The former causes an
-abort when the conversion fails at runtime, the latter produces the value "`none`".
+Explicit conversions may be failable or non-failable. Non-failable conversions can be performed with
+the `as` operator. This operator additionally allows one to explicitly use implicit conversions.
+Failable conversions can be performed with the "`as!`" or "`as?`" operators. The former causes an
+abort when the conversion fails at runtime, the latter produces the value "`none`". Thus an
+expression `x as? T` produces a value of the type `T?`.
 
 ### Explicit Numeric Conversions
 
@@ -95,21 +137,47 @@ The explicit numeric conversions are all the conversions between numeric types f
 conversion doesn't exist. An explicit numeric conversion fails if the value being converted is not
 in the range of the target type.
 
-Conversions from any integer numeric type including "`size`" and "`offset`" to "`float32`" or
-"`float64`" will not fail but may cause a loss of precision. These can be performed using the "`as`"
-operator.
+Conversions from any integer numeric type, including "`size`" and "`offset`", to "`float32`" or
+"`float64`" will not fail when the floating point type has fewer bits of precisions. However, they
+may cause a loss of precision. These can be performed using the "`as`" operator.
 
 ### Explicit Boolean Conversions
 
 Conversions from `bool` to any numeric type may be made explicitly with `false` converting to 0 and
-`true` converting to 1. These conversions cannot fail, but require explicit conversion.
+`true` converting to 1. These conversions cannot fail, but require explicit conversion with the `as`
+operator.
 
 ### Explicit Reference Conversions
 
 Given reference types "`S`" and "`T`", there is an explicit conversion from "`S`" to "`T`" unless it
-can be proven that there does not exist a type "`U`" where `U <: S` such that `U <: T`.
+can be proven that there does not exist a type "`U`" where `U <: S` such that `U <: T`. A further
+restriction is that if the type `S` is an `iso` move type then the type `T` must also be an `iso`
+move type. This restriction ensures that the `move` nature of the type cannot be lost so that the
+compiler can ensure the `move` value is deleted.
 
 **TODO:** maybe this should require a `cast[T](v)` instead to be more explicit?
+
+### Explicit Lifted Conversions
+
+Given two types `S` and `T` for which there is an explicit conversion from `S` to `T`, there is a
+lifted explicit conversion from `S?` to `T?`. The fallibility of this conversion matches that of the
+underlying conversion.
+
+### Explicit Boxing Conversions
+
+Given a value type `V` and a reference type `T` for which `V <: T`, there is an non-failable
+explicit boxing conversion from `V` to `T`. A boxing conversion allocates space on the heap and puts
+the value in that box. The boxed type implements all the traits that the value type implements. Most
+value types are copy types and are copied into the box. If they are mutable, then the boxed value is
+an independent mutable value. A move value type can be boxed with `move v as T`. This moves the
+value into the box. However, this is supported only when the type `T` is a move type.
+
+### Explicit Unboxing Conversions
+
+Given a value type `V` and a reference type `T` for which `V <: T`, there is an failable explicit
+unboxing conversion from `T` to `V`. For copy types, this copies the value out of the box. For move
+types, `move t as V` will move the value out of the box. Note, this is supported only if `t` is
+`iso`. Furthermore, do to `move` safety, the type `T` will have to be a `move` type.
 
 ### User-defined Explicit Conversions
 

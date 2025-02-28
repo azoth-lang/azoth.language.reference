@@ -49,24 +49,35 @@ the computer. Generally, these are represented as regular integers up to some si
 than the native pointer size of the machine, and then as a reference to an array on the heap for
 integers requiring larger bit sizes.
 
-### "`size`" and "`offset`" Types
-
-* `size`
-* `offset`
-
-The bit sizes of these are system dependent. "`size`" is an unsigned number large enough to hold the
-maximum size of an array in Azoth. The size type is used to index into collections. "`offset`" is a
-signed number, with the same range as "`size`", used to represent differences between array indexes
-and pointers. Generally the size type on an N-bit machine has the range 0 to 2^(N-1)+1. The offset
-type then has the range -2^(N-1) to 2^(N-1).
-
 ### "`nint`" and "`nuint`" Types
 
 * `nint`
 * `nuint`
 
-The bit sizes of these are system dependent. Each has the native bit length N of system. Thus the
-`nint` has the range -2^(N-1) to 2^(N-1)-1 and the `nuint` has the range 0 to 2^N.
+The bit sizes of these are system dependent. Each has the native word bit length N of the system.
+Typically this will be 16-bit, 32-bit, or 64-bit. It is assumed that the native bit length is at
+least 16 bits. The `nint` has the range -2^(N-1) to 2^(N-1)-1 inclusive. The `nuint` has the range 0
+to 2^N-1 inclusive.
+
+### "`size`" and "`offset`" Types
+
+* `size`
+* `offset`
+
+The numeric ranges of these are system dependent. "`size`" is an unsigned number large enough to
+hold the maximum size of an array in Azoth. The `size` type is used to index into collections.
+"`offset`" is a signed number, with the same positive and negative range as positive range of
+"`size`". It is used to represent differences between indexes and pointers. Generally the size type
+on an N-bit machine has the range 0 to 2^(N-1)+1 inclusive. The offset type then has the range
+-2^(N-1) to 2^(N-1)-1 inclusive. Note that this means that the `offset` type has the same range as
+`nint`, but the `size` type has a range constrained to a subset of `nuint` that doesn't correspond
+to a simple reduction in bits in a two's complement representation.
+
+The `size` and `offset` types are designed to reflect that fact that a negative index is invalid but
+that an offset ought to be able to represent the different between the first and last index.
+
+**TODO:** Different rules for arithmetic on them. For example `size + offset` ought to yield a
+`size`.
 
 ## Floating Point Types
 

@@ -29,7 +29,7 @@ if_expression
 else_clause
     : "else" expression_block
     | "else" if_expression
-    | // epsilon
+    | ε
     ;
 ```
 

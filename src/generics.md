@@ -39,10 +39,11 @@ does not require that the type be that.
 
 ## Constraints
 
-**TODO:** a better syntax for reference constraint than `T: class`
+**TODO:** a better syntax for reference constraint than `T: trait`. All classes also define traits
+so `trait` makes sense. However, function references are also reference types.
 
 ```azoth
-where T: class // Then `ref T` becomes invalid
+where T: trait // Then `ref T` becomes invalid
 where T: struct
 where T: move // T must be a move type
 where T: ref struct

@@ -5,11 +5,24 @@ contravariant in their parameter types and covariant in their return types.
 
 ```grammar
 function_type
-    : "(" type_list ")" "->" type
+    : function_capability "(" parameter_type_list ")" "->" type
     ;
 
-type_list
-    : type{",", 0, *}
+function_capability
+    : "move"
+    | "const"
+    | "mut"
+    | "id"
+    | ε
+    ;
+
+parameter_type_list
+    : parameter_type{",", 0, *}
+    ;
+
+parameter_type
+    : "lent"? type
+    ;
 ```
 
 **TODO:** function types may need something to indicate how they handle their closure/state.
@@ -35,10 +48,11 @@ allow some functions to be called even from within `id` contexts.
 function types that take no closure or context. Implement function types as a struct of the closure
 reference and the byte code function type with the closure as the first parameter. There may be an
 issue with the closure type though since the public type should not include the closure type.
-Options: use an associated type for the closure type (requires subtyping, requiring an extra
-reference layer?), have an existential type for the closure type (not sure existential types will be
-supported), use some sort of special erased type that only still has a capability and is unsafe
-(`Any` may not work because upcasting to it could change the vtable pointer?).
+Options: use an associated type for the closure type (requires subtyping, e.g. `Function[Closure,
+...] <: Function[...]`), have an existential type for the closure type (not sure existential types
+will be supported), use some sort of special erased type that only still has a capability and is
+unsafe (`Any` may not work because upcasting to it could change the vtable pointer?). This could
+also provide a way to have true function pointers for C interop with `@() -> void` etc.
 
 ## Function Type Subtyping
 

@@ -32,7 +32,9 @@ keyword
     | "freeze"
     | "get"
     | "if"
+    | "iff"
     | "implicit"
+    | "implies
     | "import"
     | "in"
     | "init"
@@ -89,5 +91,6 @@ keyword
     | "void"
     | "where"
     | "while"
+    | "xor"
     ;
 ```

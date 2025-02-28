@@ -13,9 +13,9 @@ included in value types via `ref structs`s (see [Ref Structs](ref-structs.md)).
 Note: variable references are basically equivalent to the `ref` and `in` keywords in C#.
 
 ```grammar
-stack_reference
-    : struct_reference
-    | variable_reference
+variable_reference
+    : variable_reference
+    | mutable_variable_reference
     ;
 ```
 
@@ -32,7 +32,7 @@ the type `T`. Variable reference types are very similar to the `in` parameter mo
 can be used as local variable types too.
 
 ```grammar
-struct_reference
+variable_reference
     : "ref" value_type
     ;
 ```
@@ -52,7 +52,7 @@ object, but the `User` object itself could not be mutated via this reference, or
 reference.
 
 ```grammar
-struct_reference
+mutable_variable_reference
     : "ref" "var" type
     ;
 ```
