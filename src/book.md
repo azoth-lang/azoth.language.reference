@@ -93,7 +93,7 @@ new version. If something is missing, it may be documented in the [old version](
 15. Other Declarations
     * Constant Declarations
     * [Aliases](aliases.md)
-16. Type Variables
+16. Type Variables and Generic Parameters
     * [Generics](generics.md)
     * [Self Type](self-type.md)
     * [Associated Types](associated-types.md)

@@ -40,11 +40,7 @@ let type: Type = metaType; // Example.type <: Type
 
 ## `Any` Type
 
-```grammar
-any_type
-    : "Any"
-    ;
-```
+All object and function types are a subtype of the "`Any`" type. Note that variable
+references are not subtypes of `Any`.
 
-All reference types (object, and function) are a subtype of the "`Any`" type. Note that variable
-references are not included in this.
+**TODO:** document that `Any` provides the reference hash function.

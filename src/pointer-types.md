@@ -15,6 +15,9 @@ pointer_type
     ;
 ```
 
+**TODO:** how do capabilities interact with pointer types? \
+**TODO:** how does calling methods on pointer types work?
+
 ## Unmanaged Types
 
 The unmanaged types are any of the simple types except `int` and `uint` and structs composed only of
