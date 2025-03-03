@@ -13,6 +13,8 @@ tuple_type
     ;
 ```
 
+**TODO:** allow large tuples to be partially reference types
+
 ## Tuple Size
 
 The number of values in a tuple can be accessed using the "`count`" field which is of type "`size`".
