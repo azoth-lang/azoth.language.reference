@@ -13,8 +13,8 @@ optional_type
 
 For all reference types `T` and `U` if `T <: U` then `T <: T? <: U?`. However, given value type `V`
 and reference type `R` such that `V <: R`, the type `V` is not a subtype of `V?` and `V?` is not a
-subtype of `R?`. There is however an implicit conversion from `V` to `V?` and an explicit boxing
-conversion from `V?` to `R?`.
+subtype of `R?`. There is however an implicit conversion from `V` to `V?` and an explicit lifted
+boxing conversion from `V?` to `R?`.
 
 If there is an implicit or explicit conversion from `V` to `W` then there is a corresponding lifted
 conversion from `V?` to `W?`.
