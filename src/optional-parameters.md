@@ -1,6 +1,6 @@
-# Optional Arguments
+# Optional Parameters
 
-Optional arguments allow arguments to be omitted and a default or contextual value will be used.
+Optional parameters allow arguments to be omitted and a default or contextual value will be used.
 
 ## Default Values
 
@@ -14,7 +14,7 @@ public fn example(answer: int = 42) { ... }
 example();
 ```
 
-## Contextual Arguments
+## Contextual Parameters
 
 A contextual parameter allows an argument to be omitted if the compiler can find a contextual value
 to pass instead. Contextual parameters are declared using an equal sign and the `context` keyword.
@@ -38,5 +38,5 @@ Contextual values come from three sources:
 3. The async scope and cancellation token of an `async` block are contextual values within the
    block.
 
-If no contextual value can be found for a contextual parameter, then it is an error. The programmer
+If no contextual value can be found for a contextual argument, then it is an error. The programmer
 must explicitly specify the argument.

@@ -5,6 +5,7 @@ new version. If something is missing, it may be documented in the [old version](
 
 1. [Introduction](introduction.md)
    * [Simplifying Decisions](simplifying-decisions.md)
+   * [Consistent Rules](consistent-rules.md)
 2. [Lexical Structure](lexical-structure.md)
    * [Packages](packages.md)
    * [Grammars](grammars.md)
@@ -64,7 +65,8 @@ new version. If something is missing, it may be documented in the [old version](
    * Local Constant Declarations
 8. [Namespaces and Import Directives](namespaces.md)
 9. [Functions](functions.md)
-    * [Optional Arguments](optional-arguments.md)
+    * [Optional Parameters](optional-parameters.md)
+    * [Named Arguments](named-arguments.md)
     * Nested Functions
 10. [Traits](traits.md)
 11. Classes

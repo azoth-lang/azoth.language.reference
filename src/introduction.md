@@ -3,11 +3,11 @@
 Azoth is a new language that is under development. It will be a general-purpose multi-paradigm
 language with structured concurrency and thread-safety. Documentation and resources can be found at
 [azoth-lang.org](http://azoth-lang.org). Azoth should be a compelling alternative to other
-high-level languages like C# and Java. It's focus on compile time safety aids in creating correct
-code. Other features of interest include:
+high-level languages like C#, Scala, and Java. It's focus on compile time safety aids in creating
+correct code. Other features of interest include:
 
 * Write Once, Compile Anywhere
-* Guaranteed Optimizations:
+* Guaranteed Optimizations
 * Asynchronous Everywhere
 * Type Inference
 * Generics with Partial Specialization
@@ -27,8 +27,8 @@ Features planned for future versions can be found in the planned features sectio
 
 This book serves is an informal reference to the Azoth language. It tries to be comprehensive by
 covering all features of the language. It can serve as an introduction to the language for
-programmers who are already familiar with another language like C#, Java or Rust. Features unique to
-Azoth are explained in more detail while features shared with other languages are only briefly
+programmers who are already familiar with another language like C#, Java, or Rust. Features unique
+to Azoth are explained in more detail while features shared with other languages are only briefly
 covered with a focus on stating how they work and any differences with other languages.
 
 ## Unique Features
@@ -65,13 +65,13 @@ internal fn function2()
 
 For more information see [Structured Error Handling](structured-errors.md).
 
-### Interfaces of Classes
+### Implicit Traits
 
 In many languages there is a distinction between an interface or trait that has no implementation
-and a class which can have an implementation. Azoth doesn't have separate interfaces. Instead, any
-class can implement the implicitly defined interface of another class. In a class declaration, the
-base class appears after the first colon and classes whose interface is being implemented appear
-after the subtype operator `<:`.
+and a class which can have an implementation. While Azoth does have both classes and traits, classes
+also define an implicit trait. Any class can implement the implicitly defined trait of another
+class. In a class declaration, the base class appears after the first colon and classes whose trait
+is being implemented appear after the subtype operator `<:`.
 
 ```azoth
 public class My_Class: Base_Class <: Some_Class, Another_Class
@@ -142,9 +142,9 @@ contribute to the distinctive flavor of the Azoth language.
 * All `for` loops are iterator based
 * Iterator performance often optimizes down to a C style for loop
 * Operator Overloading
-* Object Literals - allows creation of a single instance of an anonymous type
+* Object Literals: allows creation of a single instance of an anonymous type
 * Classes can be extended with additional methods in separate libraries
-* Partial Classes - supports code generation
+* Partial Classes: supports code generation
 * Both reference and value types
 * C# style generators with `yield` keyword
 * `unsafe` code blocks and low-level language features like raw pointers
