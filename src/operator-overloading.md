@@ -226,12 +226,12 @@ public struct Example
 
     public init(.value) { }
 
-    public implicit operator '_'(value: string) -> Example$forever
+    public implicit operator '_'(value: string) -> const Example
     {
         return Example(value);
     }
 
-    public implicit operator "_"(count: size, bytes: @byte) -> Example$forever
+    public implicit operator "_"(count: size, bytes: @byte) -> const Example
     {
         return Example(count, bytes);
     }
