@@ -3,6 +3,8 @@
 Note: This is the new version of the reference. Sections are being moved from the old version to the
 new version. If something is missing, it may be documented in the [old version](../old/book.md).
 
+**TODO:** Document sealed on classes and structs
+
 1. [Introduction](introduction.md)
    * [Simplifying Decisions](simplifying-decisions.md)
    * [Consistent Rules](consistent-rules.md)
