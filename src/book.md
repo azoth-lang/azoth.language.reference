@@ -75,7 +75,7 @@ new version. If something is missing, it may be documented in the [old version](
     * [Class Declarations](class-declarations.md)
     * Members
     * [Fields](fields.md)
-    * [Initializers](initializers.md) TODO: change to initializers
+    * [Initializers](class-initializers.md)
     * [Destructors](destructors.md)
     * [Methods](methods.md)
     * [Associated Functions](associated-functions.md)

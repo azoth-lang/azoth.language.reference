@@ -49,8 +49,8 @@ default copy initializer is generated that invokes the copy initializer on all f
 would simplify to a bitwise copy of the whole struct. However, sometimes it is necessary to
 customize the copy logic. This can be done by declaring a copy initializer.
 
-A copy initializer is declared with the special name `copy` and takes an argument of type `ref Self`
-or `ref mut Self`.
+A copy initializer is declared with the special name `copy` and takes aa argument of type`ref Self`
+or `ref mut Self` which can optionally be `lent`.
 
 ```azoth
 public init copy(ref mut self, value: ref Self)

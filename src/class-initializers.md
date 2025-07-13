@@ -131,7 +131,7 @@ definite assignment analysis that divides the initializer body into two parts. T
 in which some fields may be uninitialized and the final section in which all fields, including
 fields of subclasses are guaranteed to be initialized. The transition between these sections is the
 point at which a base class initializer is called. If a base class initializer is explicitly called,
-that calls determines the transition point. If the base class initializer is implicitly called, or
+that call determines the transition point. If the base class initializer is implicitly called, or
 there is no base class, the transition point occurs as the first point where every field is
 definitely assigned. The compiler inserts the implicit base class initializer call there.
 
@@ -158,7 +158,7 @@ definitely assigned.
 separation between these parts of the initializer.
 
 In the not fully initialized section, the self reference may only be used to assign into fields or
-access fields that have definitely been assigned. A reference to self may not be used or otherwise
+access fields that have definitely been assigned. A reference to self may not be used or passed
 to another function or method. At the end of this section, if any fields with optional types remain
 uninitialized, they are implicitly initialized to `none`.
 
