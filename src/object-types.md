@@ -43,4 +43,5 @@ let type: Type = metaType; // Example.type <: Type
 All object and function types are a subtype of the "`Any`" type. Note that variable
 references are not subtypes of `Any`.
 
-**TODO:** document that `Any` provides the reference hash function.
+**TODO:** document that `Any` provides the reference identity function.
+**TODO:** clarify whether `Any` is a class or trait (I think it is a class since structs shouldn't have `identity_hash()`), however, traits can have `Any` called on them

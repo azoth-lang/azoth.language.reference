@@ -65,3 +65,9 @@ be deconstructed as part of an assignment or pattern match. If another deconstuc
 declared, the implicit one is still generated. It is not possible to replace this deconstructor. If
 control of the deconstructor is needed, then a regular class should be declared and members that
 would be implicitly declared by a record class can be manually written.
+
+## Sealed Classes
+
+I class can be declared with the `sealed` modifier. This indicates that no subtypes of the type can
+be declared. Note this is distinct from `closed` which allows subtypes declared in the current
+package. A class cannot be declared both `sealed` and `closed`.

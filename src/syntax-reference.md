@@ -120,3 +120,9 @@ A brief statement of the syntax for easy reference.
 | Syntax                 | Meaning |
 | ---------------------- | ------- |
 | `#Attribute public...` |         |
+
+## Modifiers
+
+| Syntax   | Meaning                                                                    |
+| -------- | -------------------------------------------------------------------------- |
+| `sealed` | Indicates that a class cannot be subtyped or a method cannot be overridden |
