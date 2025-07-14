@@ -48,10 +48,7 @@ This is not an error. Effectively, the assignment is not performed.
 Functions declared without a return arrow (`->`) and return type are defaulted to returning `void`.
 Explicitly declaring a function as returning `void` is a non-fatal error.
 
-For purposes of covariance and contravariance, "`void`" acts like a top type. For example, if a base
-class function returns "`void`" then it can be overridden with a function returning any type.
-Likewise, when evaluating type constraints it is a supertype of all other types. This is what makes
-it an extrema type.
-
-**TODO:** reconsider `void` top type behavior. It seems like it should require an implicit
-conversion.
+The `void` type is not a supertype or subtype of any other type except for `never` which is a
+subtype of all types including `void`. However, there is an implicit conversion from any type to
+`void`. This implicit conversion allows one to explicitly override a `void` returning method with
+one that returns a value.
