@@ -22,7 +22,7 @@ Version numbers consist of four parts in order.
 * Versions are ordered by parts
 * Pre-release is separated from the version by `-`. Post-release by `+`. Both are unstable.
   Pre-release versions are before the main version. Post-release are after.
-* The hash is separated by `#` if a hash is present, two versions are equal only if there hashes are
+* The hash is separated by `#` if a hash is present, two versions are equal only if their hashes are
   equal. Hashes imply no version ordering.
 * Metadata is separated by `!` and isn't considered as part of ordering.
 

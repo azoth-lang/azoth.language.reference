@@ -15,7 +15,7 @@ public extend Class <: Trait
 ```
 
 To publish an extension outside of a package, one of the types involved must be declared in that
-package, or the package must be trusted. For example, a packaged can publish an extension to
+package, or the package must be trusted. For example, a package can publish an extension to
 existing types to make them implement a new trait if it declares that trait. However, to publish
 additional methods on the type that use only existing types, it must be trusted. This rule helps to
 prevent breaking changes and ambiguities. Note that a package can internally declare and use any

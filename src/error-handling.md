@@ -33,7 +33,6 @@ Given that bugs are inherently unrecoverable, Azoth treats them that way by *aba
 
 For a detailed analysis of error handling options, read about [The Error Model](http://joeduffyblog.com/2016/02/07/the-error-model/) of Midori by Joe Duffy.
 
-
 ## Unrecoverable Errors
 
 All bugs are unrecoverable errors and cause abandonment. Abandonment terminates the process without running any destructors or cleaning up anything. These bugs are caught and abandonment triggered by [contracts and assertions](contracts-assertions.md).
