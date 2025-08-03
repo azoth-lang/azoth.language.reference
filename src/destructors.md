@@ -20,7 +20,7 @@ destructor
 
 ## Finalizers
 
-Most garbage collected languages do not have destructors and instead have finalizer. A finalizer is
+Most garbage collected languages do not have destructors and instead have finalizers. A finalizer is
 run at an indeterminate time by the garbage collector after it has determined the object to be
 garbage. As such, finalizers have a host of problems including:
 

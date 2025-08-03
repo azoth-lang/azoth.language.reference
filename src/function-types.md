@@ -59,6 +59,8 @@ also provide a way to have true function pointers for C interop with `@() -> voi
 Function types are contravariant in their parameter types and covariant in their return types. That
 is if F1 <: F2 then for each parameter Px, F2.Px <: F1.Px. And F1.Return <: F2.Return.
 
+**TODO:** update to reflect that `lent` can no longer apply to returns
+
 The `lent` attribute of the parameters and returns also comes into play. If you translate `lent`
 into which parameters can be referenced by the return value, then for a function type to be a
 subtype of another it must be as or more restrictive in what parameters can be referenced by the

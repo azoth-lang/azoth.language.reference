@@ -7,32 +7,20 @@ the object which contains the data.
 
 ```grammar
 struct
-    : access_modifier struct_capability "ref"? struct_kind pseudo_reference "struct" identifier //...
+    : access_modifier "mut"? "move"? "ref"? "struct" identifier //...
     ;
-
-struct_capability
-    : "const"
-    | ε
-    ;
-
-struct_kind
-    : "move"
-    | "copy"
-    ;
-
-pseudo_reference
-    : "ref" "[" identifier "]"
 ```
 
 ## Struct Kinds
 
-There are two main kinds of structs. This kind determines the semantics of assigning values of that
-type. Additionally, there are enum structs documented in a separate section.
+There are two kinds of structs. This kind determines the semantics of assigning values of that type.
+By default structs are copied. However, you can declare a struct with `move` similar to `move`
+classes. This causes the struct to be moved instead of copied. This leaves behind an `id` struct.
 
 | Struct Type  | Declaration Syntax | Semantics                                                              |
 | ------------ | ------------------ | ---------------------------------------------------------------------- |
 | Move Structs | `move struct`      | Struct values "move" when assigned so that they can no longer be used. |
-| Copy Structs | `copy struct`      | Struct values are implicitly copied when assigned.                     |
+| Copy Structs | `struct`           | Struct values are implicitly copied when assigned.                     |
 
 The kind of struct determines the default assignment behavior, but it is often possible to
 explicitly cause the other behavior.
@@ -40,11 +28,10 @@ explicitly cause the other behavior.
 These kinds are independent of whether the struct is a `ref struct` (see [Ref
 Structs](ref-structs.md)).
 
-## Const Structs
+## Mutable Structs
 
-Similar to classes, structs can be declared with the `const` modifier. This indicates that all
-references inside of it must be `const` and that any field bindings are immutable (i.e. `let`). The
-compiler can then assume that values of this type will not break the isolation of a reference.
+Structs are implicitly declared as `const` types the way `const class` works. To have a non-const
+struct declare it `mut struct`.
 
 ## Pseudo-Reference Structs
 
