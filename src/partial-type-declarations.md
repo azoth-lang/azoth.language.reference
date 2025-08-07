@@ -1,3 +1,5 @@
-# Partial Classes
+# Partial Type declarations
 
-Partial classes work basically as they do in C#. Additionally, you can use `replace` to override a member declared in another copy of a partial class. This idea comes from proposals for C# 7.
+Classes, structs, and values can be declared `partial`. This works basically as is does in C#.
+Additionally, you can use `replace` to override a member declared in another copy of a partial
+class. This idea comes from proposals for C# 7.
