@@ -70,7 +70,7 @@ new version. If something is missing, it may be documented in the [old version](
     * [Named Arguments](named-arguments.md)
     * Nested Functions
 10. [Traits](traits.md)
-11. Classes
+11. [Classes](classes.md)
     * [Class Declarations](class-declarations.md)
     * Members
     * [Fields](fields.md)

@@ -15,20 +15,18 @@ Constantness is inherited. All subtypes of a constant type are required to be `c
 
 ## Move Classes
 
-Classes can be declared a movable classes. A movable class is allowed to contain fields whose types
-are movable value types and movable reference types. A movable class can have a destructor. The
-compiler ensures that for all moveable classes, isolation is recovered before the last reference
-leaves scope and that the destructor is called. Thus, while multiple references to a moveable
-reference type may exist at one time, there will always conceptually be one stack frame that "owns"
-the instance. To pass ownership one must `move` an `iso` reference to the instance to another method
-or field.
+Classes can be declared as movable classes. A movable class is allowed to contain fields whose types
+are movable types. A movable class can have a destructor. The compiler ensures that for all moveable
+classes, isolation is recovered before the last reference leaves scope and that the destructor is
+called. Thus, while multiple references to a moveable reference type may exist at one time, there
+will always conceptually be one stack frame that "owns" the instance. To pass ownership one must
+`move` an `iso` reference to the instance to another method or field.
 
 The move declaration of a class is inherited by all subtypes (i.e. all subtypes are also movable).
 
 Note: it doesn't make sense to have an `iso class` because that would not obviously imply that they
 could contain movable value types and have initializers. Furthermore, presumably one would still
-want to allow non-`iso` references to these classes so it wouldn't be as if they were also `iso`.
-Finally, `move` is inherited by subtypes where as other class capabilities are not.
+want to allow non-`iso` references to these classes so it wouldn't be as if they were always `iso`.
 
 ## Empty Classes
 

@@ -223,6 +223,13 @@ it would be valid in the future. However, the rules for this would probably be v
 * How are type parameters passed when calling an initializer given that they may be changed/reduced
   it seems they belong with the name not the type?
 * How can one combine specifying type parameters with returning a base type?
+* Can you declare initializers in traits? (This allows them to act more like base classes e.g. a
+  `Dictionary[Key, Value]` trait can have an initializer that returns the default dictionary
+  implementation.)
+* Since static methods can be overridden, can a named initializer override a static method in a
+  trait? Likewise can an initializer override an initializer in a trait? This would would avoid the
+  need to create static factory methods just to allow generics to construct types implementing a
+  trait.
 
 Idea:
 
