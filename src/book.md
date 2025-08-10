@@ -85,7 +85,6 @@ new version. If something is missing, it may be documented in the [old version](
 13. [Structs](structs.md)
     * [Struct Declarations](struct-declarations.md)
     * [Struct Initializers](struct-initializers.md)
-    * [Value Declarations](value-declarations.md)
 14. [Closed Types](closed-types.md)
     * [Closed Traits and Classes](closed-traits-and-classes.md)
     * [Closed Structs](closed-structs.md)

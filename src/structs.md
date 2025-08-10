@@ -7,7 +7,7 @@ the object which contains the data.
 
 ```grammar
 struct
-    : access_modifier "mut"? "move"? "ref"? "struct" identifier //...
+    : access_modifier "mut"? "move"? "struct" identifier //...
     ;
 ```
 
@@ -24,9 +24,6 @@ classes. This causes the struct to be moved instead of copied. This leaves behin
 
 The kind of struct determines the default assignment behavior, but it is often possible to
 explicitly cause the other behavior.
-
-These kinds are independent of whether the struct is a `ref struct` (see [Ref
-Structs](ref-structs.md)).
 
 ## Mutable Structs
 

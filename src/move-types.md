@@ -12,3 +12,6 @@ and parameter types. A move type is not allowed to be a field of a non-move type
 
 If a class or trait is declared as a `move` type then all subclasses or implementing traits must
 also be `move` types. All struct declarations are move types. Value types cannot be move types.
+
+**TODO:** maybe value types can be move types to allow pseudo reference values that act like move
+types.
