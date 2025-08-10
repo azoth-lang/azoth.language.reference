@@ -23,7 +23,7 @@ new version. If something is missing, it may be documented in the [old version](
    * [Syntactic Analysis](syntactic-analysis.md)
    * [Capabilities](capabilities.md)
    * [Move Types](move-types.md)
-   * [Kinds of Types](categories-of-types.md)
+   * [Categories of Types](categories-of-types.md)
    * Declarations
    * [Member Access](member-access.md)
    * Signatures and Overloading
@@ -81,7 +81,9 @@ new version. If something is missing, it may be documented in the [old version](
     * Properties
     * [Operator Overloading](operator-overloading.md)
     * [Object Declarations](object-declarations.md)
-12. Values
+12. [Values](values.md)
+    * [Value Declarations](value-declarations.md)
+    * [Value Initializers](value-initializers.md)
 13. [Structs](structs.md)
     * [Struct Declarations](struct-declarations.md)
     * [Struct Initializers](struct-initializers.md)

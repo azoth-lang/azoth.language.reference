@@ -44,7 +44,7 @@ Additional members can be declared in additional to the implicitly declared ones
 First, each of the parameters is declared as a field of the class. For this reason, the parameters
 may not be `lent`. A parameter may be declared `var` in which case the corresponding field will be
 declared `var`. Of course a `const` class cannot have `var` fields. Each of the implicitly declared
-parameters is `public` unless the class is `published` in which case they are declared `published`.
+fields is `public` unless the class is `published` in which case they are declared `published`.
 These fields can implicitly override abstract getters and setters. They cannot override or hide
 non-abstract ones.
 

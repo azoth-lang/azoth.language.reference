@@ -15,3 +15,6 @@ also be `move` types. All struct declarations are move types. Value types cannot
 
 **TODO:** maybe value types can be move types to allow pseudo reference values that act like move
 types.
+
+**TODO:** if move type memory is deallocated after destruction, then there must be no `id`
+references to it.
