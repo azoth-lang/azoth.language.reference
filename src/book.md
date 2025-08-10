@@ -21,7 +21,9 @@ new version. If something is missing, it may be documented in the [old version](
    * [Operators and Punctuators](operators-and-punctuators.md)
 3. Basic Concepts
    * [Syntactic Analysis](syntactic-analysis.md)
-   * [Reference Capabilities](reference-capabilities.md)
+   * [Capabilities](capabilities.md)
+   * [Move Types](move-types.md)
+   * [Kinds of Types](categories-of-types.md)
    * Declarations
    * [Member Access](member-access.md)
    * Signatures and Overloading
@@ -43,8 +45,6 @@ new version. If something is missing, it may be documented in the [old version](
    * [Type Expressions](type-expressions.md)
    * [Pointer Types](pointer-types.md)
    * Generic Types
-   * [Variable References](variable-references.md)
-   * [Internal References](internal-references.md)
 5. [Conversions](conversions.md)
 6. [Expressions](expressions.md)
    * [Expression Blocks](expression-blocks.md)
@@ -85,7 +85,6 @@ new version. If something is missing, it may be documented in the [old version](
 13. [Structs](structs.md)
     * [Struct Declarations](struct-declarations.md)
     * [Struct Initializers](struct-initializers.md)
-    * [Ref Structs](ref-structs.md)
     * [Value Declarations](value-declarations.md)
 14. [Closed Types](closed-types.md)
     * [Closed Traits and Classes](closed-traits-and-classes.md)

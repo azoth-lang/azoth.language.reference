@@ -4,22 +4,10 @@ For value type `V` and reference type `R`, the type parameter `T` can be assigne
 
 * `V`
 * `mut V`
-* `ref V`
-* `ref mut V`
-* `ref var V`
-* `ref var mut V`
 * `R`
 * `mut R`
-* `ref var R`
-* `ref var mut R`
 
 // TODO what about own?
-
-Types can then be constructed from `T` in any of the following ways:
-
-* `T`
-* `ref T`
-* `ref var T`
 
 Note that you can't specify the mutability of `T`. That is inherent to the type parameter.
 

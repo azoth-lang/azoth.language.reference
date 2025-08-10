@@ -1,6 +1,6 @@
-# Reference Capabilities
+# Capabilities
 
-## Why Reference Capabilities
+## Why Capabilities
 
 ### Fearless Concurrency
 

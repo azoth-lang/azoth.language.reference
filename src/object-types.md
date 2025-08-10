@@ -17,7 +17,7 @@ object_type
 An ordinary object type is a reference to an object. This object could be of a concrete class type
 or a trait type.
 
-## `Type` and `MetaType`
+## `Type` and `Metatype`
 
 The type "`Type`" is the type of all objects that represent types during reflection and in generics.
 The default type of a generic parameter is "`Type`" (thus "`foo[T]`" and "`foo[T: Type]` are
@@ -34,8 +34,8 @@ These types can be very confusing. For some, an example clarifies the relationsh
 
 ```azoth
 let example: Example = Example();
-let metaType: Example.type = Example;
-let type: Type = metaType; // Example.type <: Type
+let metatype: Example.type = Example;
+let type: Type = metatype; // Example.type <: Type
 ```
 
 ## `Any` Type

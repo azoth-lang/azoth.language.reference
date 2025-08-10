@@ -1,4 +1,4 @@
-## `never` Type
+# `never` Type
 
 ```grammar
 never_type
