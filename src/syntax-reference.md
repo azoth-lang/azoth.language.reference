@@ -104,16 +104,16 @@ A brief statement of the syntax for easy reference.
 
 ## Expressions
 
-| Syntax                           | Meaning                                 |
-| -------------------------------- | --------------------------------------- |
-| `break`, `break v`, `break $l v` | Break Loop Expression                   |
-| `next`, `next $l`                | Next Loop Iteration Expression          |
-| `#[x, y]`                        | List/Array Initializer                  |
-| `#{x, y}`                        | Set Initializer                         |
-| `#(x, y)`                        | Tuple Initializer                       |
-| `fn(x) { ... }`                  | Anonymous Function                      |
-| `fn(x) -> Type {...}`            | Anonymous Function with Return Type     |
-| `fn(x) => expression`            | Anonymous Function with Expression Body |
+| Syntax                              | Meaning                                 |
+| ----------------------------------- | --------------------------------------- |
+| `break`, `break v`, `break label v` | Break Loop Expression                   |
+| `next`, `next label`                | Next Loop Iteration Expression          |
+| `#[x, y]`                           | List/Array Initializer                  |
+| `#{x, y}`                           | Set Initializer                         |
+| `#(x, y)`                           | Tuple Initializer                       |
+| `fn(x) { ... }`                     | Anonymous Function                      |
+| `fn(x) -> Type {...}`               | Anonymous Function with Return Type     |
+| `fn(x) => expression`               | Anonymous Function with Expression Body |
 
 ## Attributes
 

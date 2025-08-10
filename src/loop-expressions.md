@@ -1,6 +1,7 @@
 # Loop Expressions
 
-Azoth has three loop constructs. They are "`loop`", "`while`" and "`foreach`". All loop bodies must be block statements.
+Azoth has three loop constructs. They are "`loop`", "`while`" and "`foreach`". All loop bodies must
+be block statements.
 
 ```grammar
 loop_expression
@@ -46,9 +47,13 @@ while condition
 }
 ```
 
-You might be tempted to write an infinite loop as "`while true`" however "`loop`" is better for this because the compiler treats them differently for definite assignment. Namely, a variable can be definitely assigned in a "`loop`" but will not be considered definitely assigned by a "`while true`" loop.
+You might be tempted to write an infinite loop as "`while true`" however "`loop`" is better for this
+because the compiler treats them differently for definite assignment. Namely, a variable can be
+definitely assigned in a "`loop`" but will not be considered definitely assigned by a "`while true`"
+loop.
 
-If you need something like a "`do {} while`" loop available in many other languages, the proper way to do that is:
+If you need something like a "`do {} while`" loop available in many other languages, the proper way
+to do that is:
 
 ```azoth
 loop
@@ -64,7 +69,7 @@ Foreach loops allow something to be done a set number of times or for a set of v
 
 ```grammar
 foreach_expression
-    : loop_label "foreach" "var"? pattern "in" embedded_expression block
+    : loop_label? "foreach" "var"? pattern "in" embedded_expression block
     ;
 ```
 
@@ -79,7 +84,8 @@ foreach x in 1..10
 
 The `foreach` loop can operate over any value that is iterable.
 
-Sometimes the actual value of the loop variable isn't needed. This can be denoted using the underscore.
+Sometimes the actual value of the loop variable isn't needed. This can be denoted using the
+underscore.
 
 ```azoth
 foreach _ in 1..10
@@ -90,7 +96,8 @@ foreach _ in 1..10
 
 ## Controlling Loop Iteration
 
-You can use `break` and `next` expressions to control loop iteration. Both "`break`" and "`next`" expressions have the type "`never`".
+You can use `break` and `next` expressions to control loop iteration. Both "`break`" and "`next`"
+expressions have the type "`never`".
 
 ```grammar
 break_expression
@@ -104,7 +111,9 @@ next_expression
 
 ## `break` Values
 
-The "`break`" expression can have a value. This value then becomes the value of the loop expression. All break expressions must have values of compatible types. The type of a "`loop`" expression is the type of the values.
+The "`break`" expression can have a value. This value then becomes the value of the loop expression.
+All break expressions must have values of compatible types. The type of a "`loop`" expression is the
+type of the values.
 
 Example:
 
@@ -119,7 +128,9 @@ let x = foreach x in items
         } ?? alternate_value;
 ```
 
-The  "`while`" and "`foreach`" loop return an optional value to indicate the loop body never executed. In that situations, the value of the loop expression is "`none`". This allows you to use the coalesce operator to easily specify a value for that case.
+The  "`while`" and "`foreach`" loop return an optional value to indicate the loop body never
+executed. In that situation, the value of the loop expression is "`none`". This allows you to use
+the coalesce operator to easily specify a value for that case.
 
 ```azoth
 let x = foreach y in items
@@ -133,28 +144,31 @@ let x = foreach y in items
 
 ## Loop Labels
 
-When using break or next it may be necessary to indicate which loop you are controlling. This can be done by labeling the loop.
-
-**TODO:** improve the loop label syntax. Possibly make it consistent with named arguments since it is a similar idea
+When using break or next it may be necessary to indicate which loop you are controlling. This can be
+done by labeling the loop.
 
 ```grammar
 loop_label
-    : "$" identifer ":"
+    : identifier ":"
     ;
 ```
 
 Example:
 
 ```azoth
-$outer: foreach x in 0..10
+outer: foreach x in 0..10
 {
-    $inner: foreach y in 0..10
+    inner: foreach y in 0..10
     {
-        if x % 2 == 0 => next $outer;
-        if y % 2 == 0 => next $inner;
+        if x % 2 == 0 => next outer;
+        if y % 2 == 0 => next inner;
         console.write_line("x = {x}, y = {y}");
     }
 }
 ```
 
-When loop labels are combined with break values, the label is placed before the value as `break $label value;`.
+When loop labels are combined with break values, the loop label is placed before the value as `break
+label value;`. If a break expression could be interpreted either as a break with a loop label or a
+break with a value, it is taken to be a break with a loop label. If this is not the intended
+meaning, a compiler error will likely result from the incorrect loop expression type. It can be
+fixed by renaming the loop label or local variable(s) to avoid ambiguity.
