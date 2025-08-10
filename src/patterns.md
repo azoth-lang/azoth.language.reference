@@ -102,8 +102,7 @@ Any class type can be matched. If the type is not visible outside the package, t
 exhaustive because no subclasses can be added without rebuilding the package. This can also be
 achieved by marking the class "closed?"
 
-**TODO:** clarify how this works with capabilities. Should it be a bare type. But what about cases
-like `self |> ref var Foo` where the capability modifies what type you might be checking for?
+**TODO:** clarify how this works with capabilities. Should it be a bare type?
 
 ## None Pattern
 

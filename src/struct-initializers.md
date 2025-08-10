@@ -7,11 +7,11 @@ can be used.
 ```azoth
 public move struct Example
 {
-    public init(self)
+    public init(mut self)
     {
     }
 
-    public init named(self)
+    public init named(mut self)
     {
     }
 }
@@ -29,7 +29,7 @@ A struct without any initializers will have a default initializer generated for 
 Just like class initializers, there is a shorthand for initializing fields.
 
 ```azoth
-public init(ref mut self, .field)
+public init(mut self, .field)
 {
 }
 ```

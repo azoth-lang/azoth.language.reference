@@ -24,18 +24,14 @@ true that `const List[Dog] <: const List[Animal]`.
 
 ## Default Constraints
 
-By default, a generic type parameter does not allow `move` types and `ref` types.
+By default, a generic type parameter does not allow `move` types.
 
-## Allowing Move and Variable Reference Types
+## Allowing Move Types
 
-A constraint like `where T: move` would imply that `T` *must* be a move type. Likewise, `where T:
-ref` implies that `T` must be a ref type. Indeed, `where T: ref struct` is the syntax for declaring
-that a type parameter must be a ref struct type.
-
-Instead, the keyword is placed before the type name (e.g. `where move T` or `where ref T`). This
-indicates that the type variable has the `move` or `ref` limitations applied to it. Since it has
-those limitations enforced, it can then accept types that require those limitations. However, it
-does not require that the type be that.
+A constraint like `where T: move` would imply that `T` *must* be a move type. Instead, the keyword
+is placed before the type name (e.g. `where move T`). This indicates that the type variable has the
+`move` limitations applied to it. Since it has those limitations enforced, it can then accept types
+that require those limitations. However, it does not require that the type be that.
 
 ## Constraints
 
@@ -43,10 +39,14 @@ does not require that the type be that.
 so `trait` makes sense. However, function references are also reference types.
 
 ```azoth
-where T: trait // Then `ref T` becomes invalid
-where T: struct
-where T: move // T must be a move type
-where T: ref struct
+where T: class  // T must be a class type declared with class or trait
+where T: value  // T must be a value type
+where T: struct // T must be a struct type (and hence is also a move type)
+where T: move   // T must be a move type
+
+// Unsure about these
+where T: reference // T must be a reference type including classes, functions, struct reference etc.
+where T: copy // T must be a copy type (i.e. value or iso struct)
 
 where T <: S // subtype
 ```

@@ -149,8 +149,6 @@ For value type `V` and reference type `R` the optional types have the following 
 | `R?`     | `R?`       |
 | `mut R?` | `(mut R)?` |
 
-**TODO:** give precedence relative to `ref` etc.
-
 ## Optional Type Implementation
 
 *This section is meant only as guidance how optional types might be implemented. The actual

@@ -118,13 +118,13 @@ operator.
 
 ```azoth
 // In `complex`
-public operator +_(ref self) -> complex
+public operator +_(self) -> complex
 {
     // return a copy, unchanged
     return self;
 }
 
-public operator -_(ref self) -> complex
+public operator -_(self) -> complex
 {
     return complex(-real, -imaginary);
 }
@@ -140,14 +140,14 @@ pointers. The dereference operator is a prefix operator, so its declaration has 
 placeholder after the operator.
 
 ```azoth
-public move struct unique_pointer[T]
-    where T: struct
+public move value unique_pointer[T]
+    where T: value
 {
     private let ptr: @T;
 
-    public safe operator ^_(ref self) -> ref T
+    public safe operator ^_(self) -> Ref[T]
     {
-        return unsafe(ref *ptr);
+        return unsafe(Ref(*ptr));
     }
 }
 ```
@@ -158,7 +158,7 @@ The binary arithmetic operators `+` , `-` , `*` , and `/` can be overloaded.
 
 ```azoth
 // In `complex`
-public operator _+_(ref self, other: ref complex) -> complex
+public operator _+_(self, other: complex) -> complex
 {
     return complex(real + other.real, imaginary + other.imaginary);
 }
@@ -169,13 +169,13 @@ self parameter may be the second parameter.
 
 ```azoth
 // In `complex`
-public operator _+_(ref self, other: float) -> complex
+public operator _+_(self, other: float) -> complex
 {
     return complex(real + other, imaginary);
 }
 
 // In `complex`
-public operator _+_(other: float, ref self) -> complex
+public operator _+_(other: float, self) -> complex
 {
     return complex(other + real, imaginary);
 }

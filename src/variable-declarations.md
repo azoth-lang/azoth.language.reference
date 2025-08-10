@@ -17,13 +17,9 @@ variable_declaration
 By default `let` and `var` statements are inferred to have a read only reference capability even if
 they are initialized with a mutable value. To bind a name to a mutable value the binding type must
 explicitly be declared as mutable. This can be done either by declaring the full type of the
-variable binding or with the shorthand syntax that allows for the declaration of a reference
-capability only. The reason bindings default to read only is so that mutability will always be
-explicit in Azoth programs. The designers of Azoth believe that immutability should be the default.
-
-Additionally, binding types are never inferred to be `iref` or `ref` types. This avoid unexpected
-behavior and confusing error messages when initializing a binding from a method returning a variable
-or internal reference. This is common given that most collections use `iref` to access elements.
+variable binding or with the shorthand syntax that allows for the declaration of a capability only.
+The reason bindings default to read only is so that mutability will always be explicit in Azoth
+programs. The designers of Azoth believe that immutability should be the default.
 
 ## Let Statements
 

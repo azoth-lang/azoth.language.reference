@@ -14,7 +14,6 @@ Sections:
 * [Declarations](#declarations)
 * [Expressions](#expressions)
 * [Types](#types)
-* [Parameters](#parameters)
 * [Generics](#generics)
 * [Misc](#misc)
 
@@ -527,14 +526,6 @@ it is "get Foo out of _" and "put Foo in _" but that has reversed the sense).
 
 Some languages use the `?` as a prefix for optional types. While it looks a little strange, it
 resolves all ambiguity with all the other type prefixes. Also, `?T` can be read as "optional T".
-
-## Parameters
-
-### "`out`" Parameters
-
-The `ref` types function as reference parameters. Does it make sense to add an `out` keyword like
-C#? Or does the ability to return tuples make `out` not useful enough? They might be really useful
-with external functions.
 
 ## Generics
 

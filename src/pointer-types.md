@@ -67,9 +67,10 @@ expression `@s.f` will produce a pointer to the field `f` in the value `s`.
 
 ### Fixed Statement
 
-To get the address of a field in an object on the heap or to convert a `ref` or `iref` to a `fixed`
-statement must be used to pin the object location while the pointer exists. Without this, the
-garbage collector could attempt to move the object thereby invalidating the pointer.
+To get the address of a field in an object on the heap or to convert a `Var[T]` or `Ref[T]` to an
+address a `fixed` statement must be used to pin the object location while the pointer exists.
+Without this, the garbage collector could attempt to move the object thereby invalidating the
+pointer.
 
 To take the address of an object field, simple use the `@` operator on a field of `self` inside the
 fixed statement:
@@ -84,7 +85,7 @@ fixed let ptr = @.f
 Note that this only works on `self` because accessing fields on other objects may happen through a
 property getter even if it is declared with field syntax.
 
-To cast a `ref` or `iref` to a pointer, do the conversion with `as` inside of a fixed statement.
+To cast a `Var[T]` or `Ref[T]` to a pointer, do the conversion with `as` inside of a fixed statement.
 Among other things, this allows for pointers to list and array members.
 
 ```azoth
@@ -110,7 +111,4 @@ let y = x^.value;
 
 Methods can be called on pointers using the `^.` operator. When doing so, the pointer is converted
 to the appropriate type for the self parameter. If the self parameter is passed by value then the
-value pointed to is copied and passed as `self`. If the `self` parameter is `ref` or `ref var` the
-pointer is converted to a `ref` (respecting mutability safety of course). Methods whose `self`
-parameter are `iref` cannot be called because it is not safe to convert a pointer to an `iref`.
-Parameters and return types of methods called through pointers can be any types.
+value pointed to is copied and passed as `self`.

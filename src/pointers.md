@@ -11,16 +11,13 @@ type and size at compile time. This is true of value types.
 
 ## Address Of
 
-A pointer to a value can be obtained using the address of operator `@`. For value types and
-references to variables, the address of operator takes the address of the variable so the pointer
-points to the variable which is typically on the stack. Taking the address of something is a safe
-operation.
+A pointer to a value can be obtained using the address of operator `@`. For value types, the address
+of operator takes the address of the variable so the pointer points to the variable which is
+typically on the stack. Taking the address of something is a safe operation.
 
 ```azoth
 let x = 6;
 let ptr_x = @x; // points to `x` on the stack
-let y = ref x;
-let ptr_y = @y; // points to `y` on the stack
 ```
 
 ## Pointer Types
@@ -29,6 +26,8 @@ Pointer types are simply prefixed with the `@` sign. The type is then read as ei
 or "pointer to T". Just as with references, pointers refer to immutable values by default and must
 use `mut` to allow mutation of the value. Pointer types can be freely combined with references to
 produce complex types.
+
+**TODO:** it seems from other places that this should be `@var` instead
 
 ```azoth
 public struct Foo {}

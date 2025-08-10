@@ -76,10 +76,10 @@ published trait Generator_Method_Builder[State_Machine, T, Throws]
     published fn \init(state_machine: State_Machine) -> Generator_Type;
 
     /// Called to prepare the output of a `yield` expression
-    published fn \yield(state_machine: ref var State_Machine, value: T) -> Yield_Output;
+    published fn \yield(state_machine: mut State_Machine, value: T) -> Yield_Output;
 
     /// Called to produce the output of a `yield return` expression
-    published fn \return(state_machine: ref var State_Machine) -> Yield_Output;
+    published fn \return(state_machine: mut State_Machine) -> Yield_Output;
 }
 
 published move trait Generator_State_Machine[Yield_Input, Yield_Input_Throws, Yield_Output, Yield_Output_Throws]
