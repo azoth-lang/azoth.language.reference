@@ -22,7 +22,10 @@ can be accessed by using `return` as a variable.
 
 **TODO:** is it really reasonable to preserve the prior state of arguments including self if they
 have been mutated. That may be an unreasonable cost. It may also require copying that isn't
-otherwise possible in the language. Perhaps this could be available only for copy types?
+otherwise possible in the language. Perhaps this could be available only for copy types? Perhaps the
+answer is that the types resulting from `old(x)` must be `const` or `id`. The `old(x)` expression is
+evaluated before the function is called and then the rest of the expression is evaluated using the
+previously captured values.
 
 **TODO:** Eiffel makes `old` a unary operator with high precedence so the parens aren't needed. Then
 one would write `old self`.

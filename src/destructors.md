@@ -14,9 +14,10 @@ be a move type itself.
 ```grammar
 destructor
     : "public" "delete" "(" "iso" "self" ")" expression_block // reference types
-    | "public" "delete" "(" "move" "self" ")" expression_block // value types
     ;
 ```
+
+**TODO:** should the destructor self parameter be `lent` so that it can't be resurrected?
 
 ## Finalizers
 

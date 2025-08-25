@@ -401,6 +401,7 @@ and unique that won't otherwise occur in an expression. Possible syntaxes with c
 #{"x"=:5, "y"=:6} // Looks like a type ascription with the value missing
 #{"x":=5, "y":=6} // Looks like a declaration with the type omitted
 #{"x"<-5, "y"<-6} // Direction feels wrong, a set maps from keys to values
+#{"x"|->5, "y"|->6} // fits with the mathematical map to operator
 #{"x"~5, "y"~6}
 #{"x"~~5, "y"~~6}
 #{"x"~>5, "y"~>6} // Gives another meaning to ~>
@@ -436,6 +437,8 @@ and unique that won't otherwise occur in an expression. Possible syntaxes with c
 #{("x") = 1, ("y") = 2 }
 #{.("x") = 1, .("y") = 2 }
 ```
+
+The best one currently might be `#{"x"|->5, "y"|->6}`
 
 Idea: make `=>` a type constructor so that `T => S` is a key value pair of `T` and `S`. Then the
 type matches the dictionary initializer. Or something similar with whatever is chosen.

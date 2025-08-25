@@ -34,7 +34,7 @@ be called once. One question is whether there needs to be a distinction between 
 read only functions.
 
 **Answer:** `mut () -> void` is needed because accessing something through a read only reference
-must now allow mutation. If it were possible to hide a function type inside a class and invoke it
+must not allow mutation. If it were possible to hide a function type inside a class and invoke it
 from a read only method, then it could cause mutation. This also implies that function type
 capabilities have different subtype relationship. `const <: read` as normal, but `read <: mut`, `mut
 <: move`. I think is a symptom of the fact that a function type is sort of a pair of a closure value

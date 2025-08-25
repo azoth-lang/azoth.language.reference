@@ -4,9 +4,9 @@
 
 These operators should support overloading. It isn't clear exactly how this should work. Presumably,
 the behavior of the two operators should somehow be linked. It is an outstanding question whether
-there are every situations where the two operators need to be overloaded fully independently. As a
+there are ever situations where the two operators need to be overloaded fully independently. As a
 general rule, having them independent would provide greater flexibility to developers who might find
-one or the other operators useful is a very different context.
+one or the other operators useful in a very different context.
 
 The first step of both is to evaluate their left hand side operand. The result of which is either a
 valid value to continue executing with, or a "none" value. In the case of the `?.` operator the

@@ -40,7 +40,7 @@ isolation is recovered.
 
 ### Move
 
-**TODO:** document how moves work and leave an `id` capability behind.
+**TODO:** document how moves work and leaves an `id` capability behind.
 
 ## Move Types
 

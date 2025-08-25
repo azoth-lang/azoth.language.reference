@@ -26,11 +26,11 @@ efficiently. Could we just use a sort of continuation passing style?
 
 ## Generator Start Control
 
-By default the body of a generator function does not start running until the first item is request.
-Sometimes this is not desirable and validation and initialization should be run when the function
-is called. This can be done with the optional `init yield` statement. When this statement is used.
-Any code before it is run when the function is initially called and code after it is part of the
-generator. This means other yield expressions cannot be used before it.
+By default the body of a generator function does not start running until the first item is
+requested. Sometimes this is not desirable and validation and initialization should be run when the
+function is called. This can be done with the optional `init yield` statement. When this statement
+is used. Any code before it is run when the function is initially called and code after it is part
+of the generator. This means other yield expressions cannot be used before it.
 
 ## Generator Destruction
 
