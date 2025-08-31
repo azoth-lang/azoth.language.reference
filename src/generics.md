@@ -12,7 +12,12 @@ capability of `self` to it. Effectively, the declarer of the containing type "ow
 default is not independent. Simple independence is `ind`. Additionally, there is `shareable ind`
 which is a restricted form of independence.
 
-**TODO:** fully and carefully document shareable independence
+**TODO:** fully and carefully document shareable independence. `shareable independent T` is a
+restriction on an independent type parameter which requires that changes in the capability do not
+modify the capability of of `shareable T`. This allows the dictionary to have a field of type
+`Hash_Equivalence[shareable Key]` even though `Key` is independent. The current syntax is confusing
+since it seems to imply that the parameter must have a shareable capability and that is not what it
+does. A better syntax is `independent(shareable) T`.
 
 ## Variance
 
