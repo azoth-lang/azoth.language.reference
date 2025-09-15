@@ -1,4 +1,4 @@
-# Move Types
+# Drop Types
 
 Some types are `move` types. A move type imposes limitations but also enables powerful
 functionality. Move types are how Azoth manages resources besides memory. They also provide

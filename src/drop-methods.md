@@ -1,6 +1,6 @@
-# Destructors
+# Drop Methods
 
-Classes and structs declared as `move` types may have a destructor. Because they are move types the
+Classes and structs declared as `drop` types may have a drop method. Because they are drop types the
 compiler enforces that there is either one owning reference for reference types or a single copy of
 the value for value types. Thus the compiler can determine when that instance goes out of scope and
 call the destructor on it. Note that this does not mean that the memory of an object or those
@@ -8,12 +8,12 @@ referenced is immediately freed. That is still the responsibility of the garbage
 destructors provide a means of managing other resources via the resources acquisition is
 initialization (RAII) pattern.
 
-Any class or struct with a field whose type has a destructor gets a default destructor and thus must
-be a move type itself.
+Any class or struct with a field whose type has a drop method gets a default drop method and thus
+must be a drop type itself.
 
 ```grammar
 destructor
-    : "public" "delete" "(" "iso" "self" ")" expression_block // reference types
+    : "public" "drop" "(" "iso" "self" ")" expression_block // reference types
     ;
 ```
 
@@ -33,9 +33,9 @@ garbage. As such, finalizers have a host of problems including:
 * may not be run during program termination
 
 Because of these issues, Azoth does not have finalizers. This is possible because it provides
-destructors as a means to manage non-memory resources in a reliable way.
+drop methods as a means to manage non-memory resources in a reliable way.
 
-## Default Destructors and Destruction
+## Default Drop Methods and Dropping
 
 Any type with fields that have destructors will get a default destructor if no destructor is
 declared. This destructor will call the destructors of all fields first and then the base class
@@ -46,11 +46,11 @@ call to the base class destructor, the destructors of all fields will be automat
 means that after the base class destructor is called, all move reference type fields have the `id`
 capability and all move value type fields cannot be accessed.
 
-## Exceptions in Destructors
+## Exceptions in Drop Methods
 
-All destructors implicitly are `no throw`. This is because destructors are called while exceptions
-are unwinding the stack. Thus if an exception were to be thrown from a destructor it might hide the
-original exception that is leading to the destructor being called.
+All drop methods implicitly are `no throw`. This is because drop methods are called while exceptions
+are unwinding the stack. Thus if an exception were to be thrown from a drop method it might hide the
+original exception that is leading to the drop method being called.
 
 **TODO:** Allow the destructor to receive info about an in progress error and allow destructors
 definitions to override the default of `no throw`

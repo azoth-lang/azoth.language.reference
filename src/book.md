@@ -22,7 +22,7 @@ new version. If something is missing, it may be documented in the [old version](
 3. Basic Concepts
    * [Syntactic Analysis](syntactic-analysis.md)
    * [Capabilities](capabilities.md)
-   * [Move Types](move-types.md)
+   * [Drop Types](Drop-types.md)
    * [Categories of Types](categories-of-types.md)
    * Declarations
    * [Member Access](member-access.md)
@@ -75,7 +75,7 @@ new version. If something is missing, it may be documented in the [old version](
     * Members
     * [Fields](fields.md)
     * [Initializers](class-initializers.md)
-    * [Destructors](destructors.md)
+    * [Drop Method](drop-methods.md)
     * [Methods](methods.md)
     * [Associated Functions](associated-functions.md)
     * Properties

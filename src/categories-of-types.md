@@ -97,12 +97,13 @@ the value it references on the stack since that reference would prevent recovery
 they are move types, values of hybrid types can never be `const`. Finally, to ensure the safety of
 references to the stack, for a hybrid type `H`, the type `id H` breaks isolation and causes sharing
 between object graphs. That is, for a hybrid type it is not possible to `move` it if there is an
-`id` reference to it. For that reason it is also not possible to destruct it when there is an `id`
+`id` reference to it. For that reason it is also not possible to drop it when there is an `id`
 reference to it. Likewise, these rules will ensure that all references to a hybrid type field are
 gone before that field is destructed.
 
 Like reference types, hybrid types support comparison for reference equality (i.e. `@==`) and the
-`identity_hash()` method. However, if a hybrid type value is moved, then the newly moved value will have a different identity hash.
+`identity_hash()` method. However, if a hybrid type value is moved, then the newly moved value will
+have a different identity hash.
 
 **TODO:** what is left behind when moving a hybrid type. I had thought it was an `id H`. However,
 that would not be safe because aliases to it could be created and there would be no mechanism to

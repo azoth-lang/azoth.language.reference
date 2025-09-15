@@ -13,20 +13,17 @@ any existing `const T` uses.
 
 Constantness is inherited. All subtypes of a constant type are required to be `const` themselves.
 
-## Move Classes
+## Drop Classes
 
-Classes can be declared as movable classes. A movable class is allowed to contain fields whose types
-are movable types. A movable class can have a destructor. The compiler ensures that for all moveable
-classes, isolation is recovered before the last reference leaves scope and that the destructor is
-called. Thus, while multiple references to a moveable reference type may exist at one time, there
-will always conceptually be one stack frame that "owns" the instance. To pass ownership one must
-`move` an `iso` reference to the instance to another method or field.
+Classes can be declared as drop classes. A drop class is allowed to contain fields whose types are
+drop types. A drop class can have a destructor. The compiler ensures that for all droppable classes,
+isolation is recovered before the last reference leaves scope and that the destructor is called.
+Thus, while multiple references to a droppable reference type may exist at one time, there will
+always conceptually be one stack frame that "owns" the instance. To pass ownership one must `move`
+an `iso` reference to the instance to another method or field.
 
-The move declaration of a class is inherited by all subtypes (i.e. all subtypes are also movable).
-
-Note: it doesn't make sense to have an `iso class` because that would not obviously imply that they
-could contain movable value types and have initializers. Furthermore, presumably one would still
-want to allow non-`iso` references to these classes so it wouldn't be as if they were always `iso`.
+The drop declaration of a class is inherited by all subtypes (i.e. all subtypes are also droppable).
+Subclasses must be declared `drop` as well.
 
 ## Empty Classes
 

@@ -27,12 +27,12 @@ can be useful for producing values with special behaviors. For example, this is 
 slicing works. An array is a pseudo reference that internally contains a length and a reference to
 the start of the array slice.
 
-### Move Value Types
+### Drop Value Types
 
 Since value types can act like references, it is critical that they be able to act like references
-to move types. This is what declaring a value `move` does. Obviously, their will be copies of the
+to drop types. This is what declaring a value `drop` does. Obviously, their will be copies of the
 value but moving it and recovering isolation will ensure that there is only one reference to the
-object referenced by the value and allow it to be destructed.
+object referenced by the value and allow it to be dropped.
 
 ## Record Values
 

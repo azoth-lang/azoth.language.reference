@@ -13,7 +13,7 @@ An object declaration is the same as a class declaration except:
 
 * The `object` keyword replaces the `class` keyword
 * They are implicitly `const`
-* They cannot be declared `move`, `sealed`, or `closed`
+* They cannot be declared `drop`, `sealed`, or `closed`
 * A single no-arg initializer is allowed and no named initializers are allowed. (This means that a
   record object must have no parameters.)
 

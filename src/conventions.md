@@ -8,7 +8,7 @@ The following naming conventions are enforced by compiler warnings.
 | ------------------- | -------------------------------------------------- |
 | Packages            | `dotted.snake_case`                                |
 | Namespaces          | plural `snake_case`                                |
-| Const Copy Structs  | `snake_case`                                       |
+| Const Value Types   | `snake_case`                                       |
 | All Other Types     | `Pascal_Case_With_Underscores`                     |
 | Type Parameters     | concise `Pascal_Case_With_Underscores`<sup>1</sup> |
 | Functions           | `snake_case()`                                     |

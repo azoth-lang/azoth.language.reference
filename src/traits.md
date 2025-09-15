@@ -34,7 +34,7 @@ A trait may be marked `const`. This indicates any subtype of it must be `const`.
 compiler to assume all references to such a trait are `const`. See constant classes and structs for
 more information.
 
-## Move Traits
+## Drop Traits
 
-As with classes and structs, a trait may be declared as a `move` type. This requires that all
-subtypes of the trait be a `move` class, struct, or trait.
+As with classes, structs and values, a trait may be declared as a `drop` type. This requires that
+all subtypes of the trait be a `drop` class, struct, value, or trait.
