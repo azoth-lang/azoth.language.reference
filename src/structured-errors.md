@@ -215,6 +215,6 @@ blocks it is necessary to place some code outside of the try block to enable it 
 the finally block. They can also necessitate initializing to null to allow the finally block to
 handle a case when the full variable isn't assigned before the finally block runs.
 
-**TODO:** defer statements may be unnecessary given the RAII pattern support provided by move types
-with destructors. If all resources are managed that way then defer may be so rarely needed that it
-would be better accomplished by a move type wrapping a lambda expression.
+**TODO:** defer statements may be unnecessary given the RAII pattern support provided by drop types
+with drop methods. If all resources are managed that way, then defer may be so rarely needed that it
+would be better accomplished by a drop type wrapping a lambda expression.

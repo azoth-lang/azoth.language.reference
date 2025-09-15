@@ -31,11 +31,11 @@ true that `const List[Dog] <: const List[Animal]`.
 
 By default, a generic type parameter does not allow `move` types.
 
-## Allowing Move Types
+## Allowing Drop Types
 
-A constraint like `where T: move` would imply that `T` *must* be a move type. Instead, the keyword
-is placed before the type name (e.g. `where move T`). This indicates that the type variable has the
-`move` limitations applied to it. Since it has those limitations enforced, it can then accept types
+A constraint like `where T: drop` would imply that `T` *must* be a drop type. Instead, the keyword
+is placed before the type name (e.g. `where drop T`). This indicates that the type variable has the
+`drop` limitations applied to it. Since it has those limitations enforced, it can then accept types
 that require those limitations. However, it does not require that the type be that.
 
 ## Constraints
@@ -46,8 +46,8 @@ so `trait` makes sense. However, function references are also reference types.
 ```azoth
 where T: class  // T must be a class type declared with class or trait
 where T: value  // T must be a value type
-where T: struct // T must be a struct type (and hence is also a move type)
-where T: move   // T must be a move type
+where T: struct // T must be a struct type
+where T: drop   // T must be a drop type
 
 // Unsure about these
 where T: reference // T must be a reference type including classes, functions, struct reference etc.
