@@ -25,7 +25,7 @@ access_modifier
     | "published" "protected"
     | "public"
     | "protected"
-    | // private
+    | ε // private
     ;
 ```
 
@@ -36,18 +36,23 @@ File visibility is good for code generation and local aliases.
 
 ## File Visibility
 
-Declarations visible within a file should not have name conflicts with other files? That allows you
-to use type alias features (e.g. `alias X = Foo;`) to pull in types equivalent to C# using alias
-directive (e.g. `using X = Foo;`).
+Declarations visible within a file will not have name conflicts with other files. For example a
+file-scoped `class Foo` in one file will not conflict with a file-scoped `class Foo` in another
+file. However, if either were public then the file-scoped one would report an error for a duplicate
+class name if they were declared in the same namespace. This feature allows one to use the type
+alias features (e.g. `type alias X = Foo;`) to give types local names in a way that is equivalent to
+C# using alias directive (e.g. `using X = Foo;`).
 
 ## Namespace Dependencies
 
-**TODO:** is it possible to mimic the restrictions created by projects in C# hiding members from
-each other? Note that before the stupid transitive reference thing, you could chain A references B
-references C. If you turn those each into sub-namespaces, the `protected` keyword would let you hide
-members of `B` from `C` in many circumstances (though you still need to expose some upward?). But
-members of `B` would then not be visible to `A`. (One way would be to nest `A.B.C` but that doesn't
-seem like a good idea.)
+**TODO:** this whole section is speculation on what might be needed.
+
+Is it possible to mimic the restrictions created by projects in C# hiding members from each other?
+Note that before the stupid transitive reference thing, you could chain A references B references C.
+If you turn those each into sub-namespaces, the `protected` keyword would let you hide members of
+`B` from `C` in many circumstances (though you still need to expose some upward?). But members of
+`B` would then not be visible to `A`. (One way would be to nest `A.B.C` but that doesn't seem like a
+good idea.)
 
 It is hoped that packages can be units of deployment, and don't need to be used just to control
 accessibility.

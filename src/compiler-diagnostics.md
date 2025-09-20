@@ -6,13 +6,15 @@ The Azoth compiler emits diagnostics for warnings, and both fatal and non-fatal 
 
 Fatal compiler errors prevent the package from being compiled or debugged.
 
-Errors should be categorized as fatal only when it is impossible for the compiler generate machine
-code. For example, a compiler error that a semicolon is missing should be non-fatal because the
-compiler can correctly compile the code by inserting the missing semicolon.
+Errors should be categorized as fatal only when it is impossible for the compiler to generate
+machine code. For example, an error that a semicolon is missing should be non-fatal because the
+compiler can correctly compile the code by inserting the missing semicolon. However, an that a
+return expression has the wrong type is fatal because the compiler cannot determine how it would
+convert the given type to the return type.
 
 ## Non-fatal Errors
 
-Non-fatal compiler errors still allow the package to be compiled for a debug build and or debugged.
+Non-fatal compiler errors still allow the package to be compiled for a debug build and debugged.
 However, non-fatal compiler errors prevent compiling the package for release.
 
 Errors should be categorized as non-fatal whenever possible. In addition, many diagnostics that

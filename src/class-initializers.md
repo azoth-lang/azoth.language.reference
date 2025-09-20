@@ -61,7 +61,7 @@ struct the initializer is declared in, nor a subtype or unrelated type.
 ```azoth
 public class Example: Base_Example
 {
-    public init(mut self) -> Base_Example
+    public init(mut self) -> mut Base_Example
     {
     }
 }
