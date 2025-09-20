@@ -57,7 +57,7 @@ definitions to override the default of `no throw`
 
 ## Base Class Destructors
 
-A base class destructor can be called similar to other base class methods with the `base.delete()`
+A base class destructor can be called similar to other base class methods with the `base.drop()`
 syntax.
 
 ## No Resurrection

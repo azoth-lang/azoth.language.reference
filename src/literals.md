@@ -340,8 +340,7 @@ be indented. The indent of the close quotes is ignored, indentation beyond that 
 string. Double quotes can be used in a multiline string. A line can be continued by ending it with a
 backslash. *Regardless of the line endings of the source file, lines in the string are terminated
 with '\n'.* Multiline string literals should also support string interpolation. (see [Swift
-Multiline String
-Literals](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html)
+Multiline String Literals](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html)
 for more information).
 
 ```azoth

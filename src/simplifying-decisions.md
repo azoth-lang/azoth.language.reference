@@ -5,10 +5,10 @@ an initial version that can be used to experiment with and learn from, it is nec
 some of those options for now. This section documents those decisions. They may be changed in the future
 if it becomes clear that the functionality offered would be valuable.
 
-## No Default Capability Declarations
+## No Exclusive Mutability
 
-It might seem reasonable for classes to declare a default reference capability. That is similar to
-the supported `const` classes and default reference capabilities are provided in Pony. However, that
-would cause confusion since the default is `read`. It would also require the use of the `read`
-keyword on some types to force the read-only capability when the default capability was different.
-For simplicity, default capability declarations will not be supported.
+It might make sense to have a capability that provides exclusive mutability while not guaranteeing
+isolation. In Pony this is called `trn`. In Azoth, it might be `xmut`. This capability would allow
+freezing. A temporary version of this capability would enable some mutable iterators to not require
+`temp iso`. They could instead take `temp xmut` and still allow other references to read from the
+collection while iterating.

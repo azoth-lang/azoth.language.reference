@@ -19,8 +19,10 @@ reserved_word
     | "checked"            // Checked Operations
     | "const_cast"         // Casting
     | "continue"           // Useful for control flow
+    | "copy"               // May be used for explicit copy operations
     | "default"            // Useful for switch like constructs and default values
     | "defer"              // Swift style "`defer`" statements
+    | "delete"             // May be useful for freeing memory
     | "do"                 // "`do while`" loop or Swift style "`do`" block
     | "dynamic_cast"       // Casting
     | "enum"               // Enumerations
@@ -44,13 +46,12 @@ reserved_word
     | "sizeof" | "size_of" // Size of Operator
     | "switch"             // Useful for switch like constructs
     | "symmetric"          // Symmetric operators
-    | "transmute"          // Reinterpret Cast
     | "then"               // Python style loop else
+    | "transmute"          // Reinterpret Cast
     | "type"               // Type aliases and declarations
     | "unchecked"          // Unchecked Operations
     | "unless"             // Ruby style `if not` statement or `unless break` for Python style loop else
     | "when"               // C# style exception filters
-    | "xor"                // Logical exclusive or operator
     | "yield"              // Generators
     ;
 ```

@@ -35,4 +35,4 @@ grammars operate over tokens, and symbols may be separated by whitespace.
 | `?`*description*`?`                                   | Matches a string according to the description                                                          |
 | `//` *comment* *newline*                              | A line comment                                                                                         |
 | `/*` *comment* `*/`                                   | A multi-line comment                                                                                   |
-| ε                                                     | Epsilon indicates and empty alternative. It matches nothing.                                           |
+| ε                                                     | Epsilon indicates an empty alternative. It matches nothing.                                            |

@@ -22,7 +22,7 @@ new version. If something is missing, it may be documented in the [old version](
 3. Basic Concepts
    * [Syntactic Analysis](syntactic-analysis.md)
    * [Capabilities](capabilities.md)
-   * [Drop Types](Drop-types.md)
+   * [Drop Types](drop-types.md)
    * [Categories of Types](categories-of-types.md)
    * Declarations
    * [Member Access](member-access.md)

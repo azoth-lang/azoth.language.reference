@@ -82,7 +82,7 @@ published trait Generator_Method_Builder[State_Machine, T, Throws]
     published fn \return(state_machine: mut State_Machine) -> Yield_Output;
 }
 
-published move trait Generator_State_Machine[Yield_Input, Yield_Input_Throws, Yield_Output, Yield_Output_Throws]
+published drop trait Generator_State_Machine[Yield_Input, Yield_Input_Throws, Yield_Output, Yield_Output_Throws]
 {
     /// `Yield_Input` of `void` indicates that no values are input and `never` indicates that this
     /// method cannot be called.
@@ -94,7 +94,7 @@ published move trait Generator_State_Machine[Yield_Input, Yield_Input_Throws, Yi
     published fn \throw(mut self, error: Yield_Input_Throws) -> Yield_Output
         throws Yield_Output_Throws;
 
-    published delete(move self)
+    published drop(lent self)
         throws Yield_Output_Throws;
 }
 ```
