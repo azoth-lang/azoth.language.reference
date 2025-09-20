@@ -13,7 +13,7 @@ public trait Example <: SomeClass
 
 ```grammar
 trait_declaration
-    : access_modifier "const"? "move"? "trait" identifier generic_parameters? base_types trait_body
+    : access_modifier "closed"? ("const"|"drop")? "trait" identifier generic_parameters? base_types trait_body
     ;
 
 trait_body

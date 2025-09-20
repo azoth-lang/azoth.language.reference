@@ -9,8 +9,11 @@ any reference to them will keep the containing object live and they will "go out
 object is dead and thus there is no reference that can reach the struct.
 
 Because isolation must be recovered, structs cannot be declared `const` and struct instances cannot
-be frozen. Additionally, `id` references to a struct having sharing tracked and are counted as
-breaking isolation.
+be frozen. However, a class containing an owned struct field can be frozen. This is because all
+references to the struct field will keep that struct alive and isolation does not need to be
+recovered when it goes out of scope. This any type `const Struct` must actually be a reference to a
+field. Additionally, `id` references to a struct have sharing tracked and are counted as breaking
+isolation. This ensures that an `id` reference can't outlive a struct on the stack.
 
 See the [Hybrid Types section of Categories of Types](categories-of-types.md#hybrid-types) for more
 information on the limitations and unique aspects of hybrid types.

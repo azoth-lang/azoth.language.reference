@@ -69,8 +69,9 @@ new version. If something is missing, it may be documented in the [old version](
     * [Optional Parameters](optional-parameters.md)
     * [Named Arguments](named-arguments.md)
     * Nested Functions
-10. [Traits](traits.md)
-11. [Classes](classes.md)
+10. Type Declarations
+11. [Traits](traits.md)
+12. [Classes](classes.md)
     * [Class Declarations](class-declarations.md)
     * Members
     * [Fields](fields.md)
@@ -81,42 +82,42 @@ new version. If something is missing, it may be documented in the [old version](
     * Properties
     * [Operator Overloading](operator-overloading.md)
     * [Object Declarations](object-declarations.md)
-12. [Values](values.md)
+13. [Values](values.md)
     * [Value Declarations](value-declarations.md)
     * [Value Initializers](value-initializers.md)
-13. [Structs](structs.md)
+14. [Structs](structs.md)
     * [Struct Declarations](struct-declarations.md)
     * [Struct Initializers](struct-initializers.md)
-14. [Closed Types](closed-types.md)
+15. [Closed Types](closed-types.md)
     * [Closed Traits and Classes](closed-traits-and-classes.md)
     * [Closed Structs](closed-structs.md)
     * [Cases](cases.md)
     * [Closed Type Idioms](closed-type-idioms.md)
-15. [Partial Type Declarations](partial-type-declarations.md)
-16. [Extensions](extensions.md)
-17. Other Declarations
+16. [Partial Type Declarations](partial-type-declarations.md)
+17. [Extensions](extensions.md)
+18. Other Declarations
     * Constant Declarations
     * [Aliases](aliases.md)
-18. Type Variables and Generic Parameters
+19. Type Variables and Generic Parameters
     * [Generics](generics.md)
     * [Self Type](self-type.md)
     * [Associated Types](associated-types.md)
-19. [Structured Concurrency](structured-concurrency.md)
-20. [Design by Contract](contracts.md)
-21. [Error Handling](error-handling.md)
+20. [Structured Concurrency](structured-concurrency.md)
+21. [Design by Contract](contracts.md)
+22. [Error Handling](error-handling.md)
     * [Aborting](aborting.md)
     * [Structured Error Handling](structured-errors.md)
     * [Out of Memory and Stack Overflow](memory-exhaustion.md)
     * [Assertions](assertions.md)
-22. [Effects](effects.md)
-23. Attributes
-24. [Patterns](patterns.md)
-25. [Unit Testing](unit-testing.md)
-26. [Unsafe Code](unsafe.md)
+23. [Effects](effects.md)
+24. Attributes
+25. [Patterns](patterns.md)
+26. [Unit Testing](unit-testing.md)
+27. [Unsafe Code](unsafe.md)
     * [Pointers](pointers.md)
-27. [External Declarations](external.md)
-28. [Documentation Comments](documentation-comments.md)
-29. Standard Library
+28. [External Declarations](external.md)
+29. [Documentation Comments](documentation-comments.md)
+30. Standard Library
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`azoth` Namespace](azoth.md)
@@ -126,11 +127,11 @@ new version. If something is missing, it may be documented in the [old version](
     * [`azoth.math` Namespace](azoth.math.md)
     * [`azoth.memory` Namespace](azoth.memory.md)
     * [`azoth.text` Namespace](azoth.text.md)
-30. Reflection
-31. [Guaranteed Optimizations](guaranteed-optimizations.md)
-32. [Conventions](conventions.md)
-33. [Version Number Scheme](version-numbers.md)
-34. [Planned Features](planned-features.md)
+31. Reflection
+32. [Guaranteed Optimizations](guaranteed-optimizations.md)
+33. [Conventions](conventions.md)
+34. [Version Number Scheme](version-numbers.md)
+35. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
     * [Additional Expressions](planned-expressions.md)
