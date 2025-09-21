@@ -20,9 +20,9 @@ or a trait type.
 ## `Type` and `Metatype`
 
 The type "`Type`" is the type of all objects that represent types during reflection and in generics.
-The default type of a generic parameter is "`Type`" (thus "`foo[T]`" and "`foo[T: Type]` are
-equivalent). Any generic parameter with this type is referred to as a "type parameter". Note that
-"`Type`" is a reference type. This was necessary to allow metatypes to be subtypes of it.
+The default type of a generic parameter is "`Type`" (thus "`class Foo[T]`" and "`class Foo[T: Type]`
+are equivalent). Any generic parameter with this type is referred to as a "type parameter". Note
+that "`Type`" is a reference type. This was necessary to allow metatypes to be subtypes of it.
 
 Objects representing the type of classes and structs have a type that is a subtype of "`Type`". When
 calling associated functions as "`Example.function()`", the expression "`Example`" has a type that
@@ -40,10 +40,5 @@ let type: Type = metatype; // Example.type <: Type
 
 ## `Any` Type
 
-All object and function types are a subtype of the "`Any`" type. Note that variable
-references are not subtypes of `Any`.
-
-**TODO:** document that `Any` provides the reference identity function.
-**TODO:** clarify whether `Any` is a class or trait (I think it is a class since structs shouldn't
-have `identity_hash()`). However, traits can have `identity_hash` called on them. Perhaps
-`identity_hash()` has a constraint `where Self: class`.
+All object and function types are a subtype of the "`Any`" type. The `Any` type is a trait that
+defines the `published sealed fn identity_hash(id self) -> nuint where Self: class | struct` method.

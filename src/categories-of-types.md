@@ -47,7 +47,7 @@ another, the value is copied so that there are now two copies of the value, one 
 place.
 
 Value types also allow the full flexibility of capabilities to apply. While they are not themselves
-references, they can contain references to which the capabilities apply.  The capabilities on value
+references, they can contain references to which the capabilities apply. The capabilities on value
 types act exactly as if the value was a reference. For example, an `iso Value` will become an `own
 Value` or `mut Value` when a copy is made the same way an isolated reference would when a copy of
 the reference was made.

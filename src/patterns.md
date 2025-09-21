@@ -191,14 +191,11 @@ match x {
 
 How can this be overloaded to match other types?
 
-## Tuple Patterns
+## Destructuring Patterns
 
 ```azoth
-let #(x, y) = #(1, 2)
+let x, y = #(1, 2)
 ```
-
-**TODO:** This should probably just be a destructure pattern `let x, y = #(1, 2)` because it applies
-to any type that can be destructured, not just tuples.
 
 ## Wildcard Pattern
 

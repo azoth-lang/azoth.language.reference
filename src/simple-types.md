@@ -92,7 +92,7 @@ floating_point_type
     ;
 ```
 
-Floating point operations never cause abandonment. In exceptional situations, they produce zero,
+Floating point operations never cause an abort. In exceptional situations, they produce zero,
 positive or negative infinity or not a number (NaN). Floating point operations may be performed with
 higher precision than the result type of the operation. Some hardware architectures support higher
 precision operations and implicitly perform all floating-point operations using this higher
@@ -105,8 +105,7 @@ finite result to be produced rather than infinity.
 ## "`bool`" Type
 
 The "`bool`" type represents boolean values. The possible values of a boolean are "`true`" and
-"`false`". The boolean logical operators "`and`" and "`or`" operate on boolean types. The condition
-of an "`if`" expression and "`while`" loop must evaluate to booleans.
+"`false`". The boolean logical operators "`and`" and "`or`" operate on boolean types.
 
 No standard conversions exist between "`bool`" and other types. The bool type is distinct and
 separate from the integer types. A bool value cannot be used in place of an integer value, and vice

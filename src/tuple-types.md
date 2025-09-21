@@ -3,9 +3,9 @@
 The tuple types are a family of generic types. Like the simple types, they are identified by the
 keyword "`Tuple`". A tuple is an ordered list of values that can be of different types.
 
-Tuples are value types. If all the type parameters are implicitly copyable, then the tuple is
-implicitly copyable. If all the type parameters are implicitly *or explicitly copyable* then the
-tuple is explicitly copyable. If any type parameter is not copyable, the tuple is a move type.
+Tuples are const value types. This does mean that a tuple cannot contain an `iso` or `owned` type.
+In fact, all generic arguments must be `aliasable`. Tuples are conditional drop types and can
+contain drop types.
 
 ```grammar
 tuple_type
@@ -29,17 +29,17 @@ let t = #(1, "something"); // t: Tuple[int, string]
 
 ## Destructing With `let`
 
-The individual fields of a tuple can be accessed using a destructuring let.
+The individual fields of a tuple can be accessed using a destructuring pattern.
 
 ```azoth
-let #(x, y, z) = #(1, 2, 3);
+let x, y, z = #(1, 2, 3);
 console.WriteLine("x = \(x)");
 ```
 
 ## Indexing Tuples
 
-Tuple fields are accessed by a zero based index. This is consistent with arrays which are zero
-based. Tuple values can be directly accessed as fields by escaping the index name.
+Tuple fields can also be accessed by a zero based index. This is consistent with collections which
+are zero based. Tuple values can be directly accessed as properties by escaping the index name.
 
 ```azoth
 let t = #(1, 2, 3);

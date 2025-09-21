@@ -36,8 +36,8 @@ new version. If something is missing, it may be documented in the [old version](
    * [Capability Types](capability-types.md)
    * [Value Types](value-types.md)
      * [Simple Types](simple-types.md)
-     * [Struct Types](struct-types.md)
      * [Tuple Types](tuple-types.md)
+   * [Struct Types](struct-types.md)
    * [Object Types](object-types.md)
    * Type Parameters
    * [Optional Types](optional-types.md)

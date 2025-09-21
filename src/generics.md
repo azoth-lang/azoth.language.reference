@@ -51,7 +51,6 @@ where T: drop   // T must be a drop type
 
 // Unsure about these
 where T: reference // T must be a reference type including classes, functions, struct reference etc.
-where T: copy // T must be a copy type (i.e. value or iso struct)
 
 where T <: S // subtype
 ```

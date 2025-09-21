@@ -138,7 +138,7 @@ be ill-typed or should it be allowed with any level of `none` being not true?
 
 ## Optional Types Precedence
 
-The optional type is immutable so `mut T?` must mean `(mut T)?`.
+The optional type is `const` so `mut T?` must mean `(mut T)?`.
 
 For value type `V` and reference type `R` the optional types have the following meanings.
 
