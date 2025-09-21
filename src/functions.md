@@ -66,15 +66,15 @@ never return by normal means. That could be because they always cause an abort (
 program), throw an exception, or loop forever.
 
 ```azoth
-public fn diverges() -> never
+public fn DIVERGES() -> never
 {
-    abort("Stop the program now");
+    ABORT("Stop the program now");
 }
 ```
 
-The function `abort` is a special function that crashes the program immediately, outputting the
-message passed to it. The `diverges` function never returns, because it crashes the program. This is
-indicated with the special return type `never`.
+The function `ABORT` is a special function that crashes the program immediately, outputting the
+message passed to it. The `DIVERGES` function never returns, because it crashes the program. This is
+indicated with the special return type `never` and the convention of naming it with all caps.
 
 A diverging function can be used where an expression of any type is expected. Thus the type `never`
 is a subtype of all other types. In formal type theory, it is the [bottom
@@ -83,7 +83,7 @@ expressions are expected to have the same type, but you want one to be an error.
 an [`if` expression](choice-expressions.md#if-expression), we might write:
 
 ```azoth
-let y: string = if condition => "We're good" else => abort();
+let y: string = if condition => "We're good" else => ABORT();
 ```
 
 The `never` type is a first class type and can be used anywhere a type can be. However, there can
@@ -155,6 +155,8 @@ will look for a initializer named `capacity` taking a single argument of `size`.
 will construct the collection using that initializer passing the number of values, then call `add()`
 repeatedly, passing each value. If no such initializer is present, it will look for a default
 initializer, use it and add the values. If none of these exists, an error will be generated.
+
+**TODO:** maybe there should be a `params` operator instead
 
 ### Calling Variadic Functions with a List
 

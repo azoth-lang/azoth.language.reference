@@ -69,6 +69,7 @@ new version. If something is missing, it may be documented in the [old version](
     * [Named Arguments](named-arguments.md)
     * Nested Functions
 10. Type Declarations
+    * Type Members
 11. [Traits](traits.md)
 12. [Classes](classes.md)
     * [Class Declarations](class-declarations.md)

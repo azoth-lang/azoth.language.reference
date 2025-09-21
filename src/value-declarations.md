@@ -8,7 +8,7 @@ values.
 
 ```grammar
 struct
-    : access_modifier ("move"|"const")? "value" identifier //...
+    : access_modifier ("drop"|"const")? "value" identifier //...
     ;
 ```
 

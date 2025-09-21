@@ -35,4 +35,5 @@ The empty statement is a special statement that has no effect. It may be useful 
 a statement is expected, but no action is desired.
 
 **TODO:** Perhaps there should be no empty statement. With curly brace blocks there may be no need
-for it. Rather, it may just be an opportunity for mistakes.
+for it. Rather, it may just be an opportunity for mistakes. It could also confuse the case of
+abstract implied by no method body.
