@@ -11,13 +11,11 @@ optional_type
 
 ## Subtyping and Conversions
 
-For all reference types `T` and `U` if `T <: U` then `T <: T? <: U?`. However, given value type `V`
-and reference type `R` such that `V <: R`, the type `V` is not a subtype of `V?` and `V?` is not a
-subtype of `R?`. There is however an implicit conversion from `V` to `V?` and an explicit lifted
-boxing conversion from `V?` to `R?`.
-
-If there is an implicit or explicit conversion from `V` to `W` then there is a corresponding lifted
-conversion from `V?` to `W?`.
+For all reference types `T` and `U` if `T <: U` then `T <: T? <: U?`. Given an optional type `X?`
+there is an implicit conversion to further nested types `X??`, `X???`, and so on. For value and
+hybrid types `V` there is an implicit conversion from `V` to `V?`. If there is an implicit or
+explicit conversion from `V` to `W` then there is a corresponding lifted conversion from `V?` to
+`W?`.
 
 ## The "`none`" Value
 
@@ -56,13 +54,13 @@ if x =/= none
 
 The coalescing operator `??` allows for the replacement of `none` with another value. If the
 expression to the left of the operator evaluates to a value other than `none` then the result of the
-coalescing operator is that value and the right hand expression is not evaluated. Otherwise, the
-result is the result of evaluating the right hand expression. Note that this is a short circuiting
+coalescing operator is that value and the right-hand expression is not evaluated. Otherwise, the
+result is the result of evaluating the right-hand expression. Note that this is a short circuiting
 evaluation. The coalescing operator can be combined with assignment as `??=` so that the left-hand
 side is evaluated and if it is `none` then the right-hand side is evaluated and assigned into the
-left-hand side.
-
-**TODO:** how does this operator work on multiple levels of optional (i.e. `T??`)?
+left-hand side. For nested optional types, the coalescing operator evaluates through multiple
+layers. Thus for a variable `x1: X??` and expression `x2: X` the expression `x1 ?? x2` has the type
+`X` and evaluates to the left-hand side if `x1` is not `none` and to the right-hand side otherwise.
 
 ## Conditional Access
 
@@ -71,13 +69,17 @@ operator evaluates the left hand side. If the left hand side evaluates to `none`
 hand side is not evaluated and the result of the expression is `none`. Otherwise, the member is
 accessed and evaluated. Note that this is a short circuiting evaluation so that `x?.y.z()` would
 prevent the method `z` from being called if `x` were `none`, rather than simply evaluating `x?.y` to
-`none` and then attempting to call `z()` on it.
+`none` and then attempting to call `z()` on it. As with the coalescing operator, this can evaluate
+through multiple layers of optional type.
 
 ## Operator Lifting
 
 For a type `T` with operators defined on it, many of those operators are lifted to operate on the
 type `T?`. The operators that can be lifted fall into three categories based on how they are lifted.
 The three categories are the arithmetic operators, comparison operators, and logical operators.
+Operators are lifted to multiple layers of optional type with a `none` at any layer being treated
+the same. This means that even when operating on multi-layer optionals the result will always be a
+single layer optional type.
 
 The arithmetic operators `+`, `-`, `*`, `/`, `+=`, `-=`, `*=`, `/=` (both unary and binary) are
 lifted so that if either argument is `none` the operator result is `none`.
@@ -124,30 +126,19 @@ example, it is still the case that `true or x` will not evaluate `x`, but `none 
 | `true`  | `none`  | `none`        |
 | `true`  | `true`  | `true`        |
 
-**TODO:** how does lifting work on multiple levels of optional (i.e. `T??`)?
-
 ## Conditioning on `bool?`
 
-The `if` and `while` expressions both have a condition which is normally a `bool`. They can also
-accept `bool?`. When conditioning on `bool?`, the value `true` is the only true value. This is what
-distinguishes the `bool?` logic as Kleene logic instead of Priest logic. This a value of `none` will
-cause the `else` to execute and a `while` to exit.
-
-**TODO:** how does condition work on multiple levels of optional (i.e. `bool??`)? Should it simply
-be ill-typed or should it be allowed with any level of `none` being not true?
+The `if` and `while` expressions both have a condition which is normally a `bool`. However, they
+actually operate on the `operator true`. This operator is lifted to optional types so that `none`
+has the value false. Thus, when conditioning on `bool?`, the value `true` is the only true value.
+This is what distinguishes the `bool?` logic as Kleene logic instead of Priest logic. That is a
+value of `none` will cause the `else` to execute and a `while` to exit. The `true` operator is
+lifted to multi-layer optionals.
 
 ## Optional Types Precedence
 
-The optional type is `const` so `mut T?` must mean `(mut T)?`.
-
-For value type `V` and reference type `R` the optional types have the following meanings.
-
-| Type     | Meaning    |
-| -------- | ---------- |
-| `V?`     | `V?`       |
-| `mut V?` | `(mut V)?` |
-| `R?`     | `R?`       |
-| `mut R?` | `(mut R)?` |
+The optional type a const value type with an independent parameter. This means that `mut T?` must
+mean `(mut T)?`.
 
 ## Optional Type Implementation
 
@@ -175,6 +166,11 @@ It should be noted that for a reference type `R`, the type `R?` is not a referen
 need the above representation. Thus for the type `R??`, the inner optional being `none` is
 represented by a zero reference, while the outer optional being `none` is represented by the value
 `1` in the `byte` following the reference bits.
+
+Optional booleans can be further optimized with a special case type. For this, `false` is zero,
+`true` is one and values above one are used to represent `none` at various layers of nested optional
+types. This makes the total size of most optional booleans still one byte and means that implicit
+conversion from `bool` to `bool?` is a no-op.
 
 The reasons this is a good representation are as follows:
 
