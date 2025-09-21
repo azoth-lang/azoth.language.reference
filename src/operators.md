@@ -42,9 +42,9 @@ implies b implies c` ought to be treated as `(a implies b) and (b implies c)`. H
 comparison operators don't operate on `bool` while the logical connectives do. \
 **TODO:** since `iff` is symmetric and basically not `xor` maybe it should have the same precedence
 as `xor`. \
-**TODO:** with the addition of `xor` consider adding partial precedence. **TODO:** `x ^= y` could
-mean `x = x ^ y` or `^x = y`. The latter especially makes sense since the `^.` operator gives
-precedence for a suffix dereference. Perhaps it should be omitted?
+**TODO:** with the addition of `xor` consider adding partial precedence. \
+**TODO:** `x ^= y` could mean `x = x ^ y` or `^x = y`. The latter especially makes sense since the
+`^.` operator gives precedence for a suffix dereference. Perhaps it should be omitted?
 
 ## Equality Operators
 

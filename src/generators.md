@@ -29,13 +29,15 @@ efficiently. Could we just use a sort of continuation passing style?
 By default the body of a generator function does not start running until the first item is
 requested. Sometimes this is not desirable and validation and initialization should be run when the
 function is called. This can be done with the optional `init yield` statement. When this statement
-is used. Any code before it is run when the function is initially called and code after it is part
+is used, any code before it is run when the function is initially called and code after it is part
 of the generator. This means other yield expressions cannot be used before it.
 
-## Generator Destruction
+## Generator Drop Types
 
-Generators create move types. When the generator is destructed, the current `yield` expression acts
-as if it were a `yield return;`. That is, any `yield` expression can be a return point.
+Generators can create drop types. When the generator is dropped, the current `yield` expression acts
+as if it were a `yield return;`. That is, any `yield` expression can be a return point. A generator
+must produce a drop type if there are any local variables that are drop types that must be dropped
+when the function or method exits.
 
 ## Generator Method Builders
 
@@ -50,9 +52,9 @@ this via a factory method generic over the state machine type and by providing a
 to adapt the yield expressions to the type.
 
 ```azoth
-/// The generator method builder parameterized on the type of the compiler generated state machine
-/// the type parameter of the return type (e.g. `T` in `Iterator[T]`) and the throws type of the
-/// generator function (i.e. the type in the `throws` clause).
+/// The generator method builder is parameterized on the type of the compiler generated state
+/// machine, the type parameter of the return type (e.g. `T` in `Iterator[T]`) and the throws type
+/// of the generator function (i.e. the type in the `throws` clause).
 /// For non-generic return types, there is a builder overload without the `T` type parameter.
 published trait Generator_Method_Builder[State_Machine, T, Throws]
     where State_Machine : struct <: Generator_State_Machine[Yield_Input, Yield_Input_Throws, Yield_Output, Yield_Output_Throws]

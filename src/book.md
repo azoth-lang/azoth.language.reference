@@ -54,7 +54,6 @@ new version. If something is missing, it may be documented in the [old version](
    * [Capability Expressions](capability-expressions.md)
    * [Operators](operators.md)
    * [Bitwise Operations](bitwise-operations.md)
-   * [Boolean Expression](boolean-expression.md)
    * [Interpolated Strings](interpolated-strings.md)
    * [Pattern Match Expressions](pattern-match-expressions.md)
    * [Initializer Expressions](initializer-expressions.md)

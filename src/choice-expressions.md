@@ -12,18 +12,19 @@ choice_expression
 
 ## `if` Expression
 
-An if expression evaluates a condition. If that condition is true, the first expression block is
-executed. If that condition evaluates to false, then the else clause is evaluated if it is present.
-The type of an if expression with no else clause and expression block type "`T`" is "`T?`" unless
-"`T`" is "`void`" in which case the if expression has type "`void`". When the condition is true, the
-value of the expression is the value of the expression block. When the condition is false, the value
-is "`none`". The type of an if expression with an else clause is the type both the expression block
+An if expression evaluates a condition. That condition is not of type `bool`, it is evaluated to a
+boolean using the `true` operator. If the condition is true, the first expression block is executed.
+If the condition evaluates to false, then the else clause is evaluated if it is present. The type of
+an if expression with no else clause and expression block type "`T`" is "`T?`" unless "`T`" is
+"`void`" in which case the if expression has type "`void`". When the condition is true, the value of
+the expression is the value of the expression block. When the condition is false, the value is
+"`none`". The type of an if expression with an else clause is the type both the expression block
 type and else clause type can be assigned to. If the condition is true, the value of the if
 expression is the value of the expression block, otherwise it is the value of the else clause.
 
 ```grammar
 if_expression
-    : "if" boolean_expression expression_block else_clause
+    : "if" expression expression_block else_clause
     ;
 
 else_clause

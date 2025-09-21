@@ -1,7 +1,7 @@
 # Pattern Match Expressions
 
 Pattern match expressions are used to determine if a value matches a pattern and can introduce
-naming bindings as well. The allow refutable patterns in a non-binding context. The result of the
+naming bindings as well. They allow refutable patterns in a non-binding context. The result of the
 expression is a `bool` indicating whether the pattern matches the expression.
 
 ```grammar

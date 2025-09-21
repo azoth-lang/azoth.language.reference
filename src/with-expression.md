@@ -1,10 +1,10 @@
 # With Expression
 
-A with expression provides two benefits. It introduces a contextual value. See [contextual
+A with-expression provides two benefits. It introduces a contextual value. See [contextual
 arguments](optional-arguments.md#contextual-arguments) for more information on contextual values.
 It also helps to manage resources.
 
-With expressions come in two forms. An anonymous with expression and a named with expression that
+With expressions come in two forms. An anonymous with-expression and a named with-expression that
 declares a name for the context object.
 
 ```grammar
@@ -17,9 +17,9 @@ with_expression
 The with expression cannot be declared with `var` because that would make no sense with the
 contextual value and would defeat the scoped based resource management.
 
-## With Statements?
+## With Statements
 
-A way to declare a context variable until the end of the current scope?
+A way to declare a context variable until the end of the current scope.
 
 ```grammar
 with_statement
@@ -32,14 +32,14 @@ with_statement
 
 If the type defines an `exit_normally(self)` method it will be called when the with block exits
 normally. If it defines an `exit_errored[T](self, error: T)` method it will be called when the with
-block is exited via an exception. If the type has a destructor it will be called after the exit
+block is exited via an exception. If the type has a drop method it will be called after the exit
 method whenever the block exits.
 
 **TODO:** is this the best way to do this? Perhaps they should be overloads of a `with` operator?
 
 **TODO:** what about handling different kinds of error types? Overloads of exit_errored?
 
-**TODO:** maybe destructors should support parameters and be used instead?
+**TODO:** maybe drop methods should support parameters and be used instead?
 
 ## Use Cases
 
@@ -122,7 +122,7 @@ published class Database
 ### Cancellation Scopes
 
 While async blocks can establish cancellation contexts, a `with` statement can also be used in cases
-where simple cancellation is desired instead without the need for async execution.
+where simple cancellation is desired instead, without the need for async execution.
 
 ```azoth
 with Cancellation.after(5 s)

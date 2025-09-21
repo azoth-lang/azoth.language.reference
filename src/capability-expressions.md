@@ -1,7 +1,7 @@
 # Capability Expressions
 
-The [reference capability types](reference-capabailities.md) require some special expressions to
-work with them. However, these also find use with movable types.
+The [capability types](capability-types.md) require some special expressions to work with them.
+However, these also find use with drop types.
 
 ```grammar
 capability_expression
@@ -14,8 +14,8 @@ capability_expression
 ## Move Expression
 
 A move expression allows for moving the value out of a variable or field. This is useful both for
-move types and to recover isolation on reference types. Without a move expression, ownership cannot
-be passed from a variable or field to a called function.
+drop types and to recover isolation on reference types. Without a move expression, ownership cannot
+be passed from a variable to a called function.
 
 ```grammar
 move_expression
@@ -25,7 +25,7 @@ move_expression
 ```
 
 For variables, if it is a reference type then the flow typing of that variable is changed to `id`.
-If it is a value type, then the variable becomes inaccessible on all code paths after the move. The
+If it is a hybrid type, then the variable becomes inaccessible on all code paths after the move. The
 compiler issues fatal errors for attempts to access a potentially moved value type.
 
 For fields, the field must be an optional type and have a mutable binding. The value will be moved

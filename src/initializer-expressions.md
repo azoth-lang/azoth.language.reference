@@ -14,7 +14,7 @@ values are bracketed with. The four types of initializer expressions are:
 | Set         | `#{x, y}`           |
 | Dictionary  | `#{x #> 1, y #> 2}` |
 
-**TODO:** syntax for dictionary still not certain.
+**TODO:** syntax for dictionary is still not certain.
 
 ## Initialization
 

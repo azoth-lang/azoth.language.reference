@@ -27,8 +27,8 @@ Note that when a subtyping relationship exists between two types, then no conver
 
 ## Standard Conversions
 
-A standard conversion is a conversion built-in conversion that is not an optional conversion. That
-is, user-defined conversions and conversions from `T` to `T?` are not standard conversions.
+A standard conversion is a built-in conversion that is not an optional conversion. That is,
+user-defined conversions and conversions from `V` to `V?` are not standard conversions.
 
 ## Implicit Conversions
 
@@ -151,9 +151,9 @@ operator.
 
 Given reference types "`S`" and "`T`", there is an explicit conversion from "`S`" to "`T`" unless it
 can be proven that there does not exist a type "`U`" where `U <: S` such that `U <: T`. A further
-restriction is that if the type `S` is an `iso` move type then the type `T` must also be an `iso`
-move type. This restriction ensures that the `move` nature of the type cannot be lost so that the
-compiler can ensure the `move` value is deleted.
+restriction is that if the type `S` is an `iso` or `own` drop type then the type `T` must also be an
+`iso` or `own` drop type. This restriction ensures that the `move` nature of the type cannot be lost
+so that the compiler can ensure the `move` value is deleted.
 
 **TODO:** maybe this should require a `cast[T](v)` instead to be more explicit?
 
@@ -165,19 +165,18 @@ underlying conversion.
 
 ### Explicit Boxing Conversions
 
-Given a value type `V` and a reference type `T` for which `V <: T`, there is an non-failable
-explicit boxing conversion from `V` to `T`. A boxing conversion allocates space on the heap and puts
-the value in that box. The boxed type implements all the traits that the value type implements. Most
-value types are copy types and are copied into the box. If they are mutable, then the boxed value is
-an independent mutable value. A move value type can be boxed with `move v as T`. This moves the
-value into the box. However, this is supported only when the type `T` is a move type.
+Given a value or struct type `V` and a trait type `T` for which `V` implements `T`, there is an
+non-failable explicit boxing conversion from `V` to `T`. A boxing conversion allocates space on the
+heap and puts the value in that box. The boxed type implements all the traits that the value or
+struct type implements. Value types are copied into the box. Struct types are moved into the box. A
+drop type can be boxed with `move v as T`. This moves the value into the box. However, this is
+supported only when the type `T` is a drop type.
 
 ### Explicit Unboxing Conversions
 
-Given a value type `V` and a reference type `T` for which `V <: T`, there is an failable explicit
-unboxing conversion from `T` to `V`. For copy types, this copies the value out of the box. For move
-types, `move t as V` will move the value out of the box. Note, this is supported only if `t` is
-`iso`. Furthermore, do to `move` safety, the type `T` will have to be a `move` type.
+Given a value or struct type `V` and a trait type `T` for which `V` implements `T`, there is an
+failable explicit unboxing conversion from `T` to `V`. For value types, this copies the value out of
+the box. For struct and drop types, `move t as V` will move the value out of the box.
 
 ### User-defined Explicit Conversions
 

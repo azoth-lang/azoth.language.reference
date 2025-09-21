@@ -9,13 +9,58 @@ Sections:
 * [Reachability](#reachability)
 * [Mutability and Move](#mutability-and-move)
 * [Operators](#operators)
+  * [Symmetric Operators](#symmetric-operators)
+  * [Comparison Chaining](#comparison-chaining)
+  * [Advanced Operator Overloading](#advanced-operator-overloading)
+  * [Operator Partial Order](#operator-partial-order)
+  * ["`xor`" Operator](#xor-operator)
+  * ["`implies`" Operator](#implies-operator)
+  * ["`iff`" Operator](#iff-operator)
+  * ["`^`" Exponent Operator](#-exponent-operator)
+  * [Dot Product and Cross Product Operators](#dot-product-and-cross-product-operators)
+  * [Use `<<` and `>>` as Operators](#use--and--as-operators)
+  * [Checked Underflow](#checked-underflow)
+  * [Checked Arithmetic Operators](#checked-arithmetic-operators)
+* [Operator for Await](#operator-for-await)
+* [Use `|` as Remainder Operator](#use--as-remainder-operator)
 * [Preprocessor](#preprocessor)
 * [Documentation Comments](#documentation-comments)
+  * [Extended Markdown](#extended-markdown)
+  * [Compile Code in Documentation Comments](#compile-code-in-documentation-comments)
 * [Declarations](#declarations)
+  * [`type` Declarations](#type-declarations)
 * [Expressions](#expressions)
+  * [`else match` Expression](#else-match-expression)
+  * [`repeat {} while condition;` Loops](#repeat--while-condition-loops)
+  * [Loop Else](#loop-else)
+  * [Change Block Delimiters](#change-block-delimiters)
+  * [`set` Expressions/Statements](#set-expressionsstatements)
+  * [Dictionary Initializers](#dictionary-initializers)
 * [Types](#types)
+  * [Logarithmic Numbers](#logarithmic-numbers)
+  * [Relative Pointers](#relative-pointers)
+  * [Move and Copy Reference Types](#move-and-copy-reference-types)
+  * [Tuple Base Class](#tuple-base-class)
+  * [Product Types for Tuples](#product-types-for-tuples)
+  * [Closed Type Options](#closed-type-options)
+  * [Constant Types](#constant-types)
+  * [Units of Measure](#units-of-measure)
+  * [Use `_` or `*` for Wild Card Types](#use-_-or--for-wild-card-types)
+  * [Change `?` from Suffix to Prefix](#change--from-suffix-to-prefix)
 * [Generics](#generics)
+  * [Default To Inferred](#default-to-inferred)
+  * [Reified Generics](#reified-generics)
+  * [Inline Generic Constraints](#inline-generic-constraints)
+  * [Existential Types](#existential-types)
 * [Misc](#misc)
+  * [Package Wide Namespace Alias](#package-wide-namespace-alias)
+  * [Allow `!` at the End of Function Names](#allow--at-the-end-of-function-names)
+  * [Indexing Tuples with `at[]()`](#indexing-tuples-with-at)
+  * [Default Value Initializers](#default-value-initializers)
+  * [Use `read` and `write` for Properties](#use-read-and-write-for-properties)
+  * [Copy with Change Syntax](#copy-with-change-syntax)
+  * [Interpolated String Localization](#interpolated-string-localization)
+  * [Interval Literals](#interval-literals)
 
 ## Reference Capabilities
 
@@ -383,7 +428,7 @@ public fn function()    {
 Instead of allowing assignment expressions anywhere. Use a set expression "`set x = 5`". This makes
 a set as long as a redeclaration with "`let`". It allows the single equals sign "`=`" to be used as
 both assignment and comparison operations. Finally, it prevents any ambiguity for destructuring
-assignments "`set #(x, y) = function()`". If this was done, then `/=` could be used for the not
+assignments "`set x, y = function()`". If this was done, then `/=` could be used for the not
 equal operator since it would be distinct from divide assign, though that could still be confusing
 to users.
 

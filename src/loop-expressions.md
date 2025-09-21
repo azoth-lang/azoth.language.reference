@@ -32,9 +32,11 @@ loop
 
 ## `while`
 
+The condition expression of a while loop is evaluated to a boolean using the `true` operator.
+
 ```grammar
 while_expression
-    : loop_label? "while" boolean_expression block
+    : loop_label? "while" expression block
     ;
 ```
 
@@ -82,7 +84,8 @@ foreach x in 1..10
 }
 ```
 
-The `foreach` loop can operate over any value that is iterable.
+The `foreach` loop can operate over any value that implements the `foreach` operator producing a
+value that implements the `next` operator or any value that implements the `next` operator.
 
 Sometimes the actual value of the loop variable isn't needed. This can be denoted using the
 underscore.
