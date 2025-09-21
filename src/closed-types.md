@@ -6,5 +6,3 @@ these types. All sorts of types can be declared closed and this allows for many 
 The `closed` modifier is not inherited. That is, it is perfectly acceptable for a non-closed type to
 subtype a closed type. However, it is often more useful to make entire hierarchies closed so that
 exhaustive matching covers multiple layers of the hierarchy.
-
-**TODO:** maybe the keyword should be changed to `enum`?

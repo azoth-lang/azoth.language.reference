@@ -68,19 +68,17 @@ new version. If something is missing, it may be documented in the [old version](
     * [Optional Parameters](optional-parameters.md)
     * [Named Arguments](named-arguments.md)
     * Nested Functions
-10. Type Declarations
-    * Type Members
+10. [Type Declarations](type-declarations.md)
+    * [Type Members](type-members.md)
+      * [Associated Functions](associated-functions.md)
+      * [Drop Methods](drop-methods.md)
+      * [Fields and Properties](fields-and-properties.md)
+      * [Methods](methods.md)
+      * [Operator Overloading](operator-overloading.md)
 11. [Traits](traits.md)
 12. [Classes](classes.md)
     * [Class Declarations](class-declarations.md)
-    * Members
-    * [Fields](fields.md)
-    * [Initializers](class-initializers.md)
-    * [Drop Method](drop-methods.md)
-    * [Methods](methods.md)
-    * [Associated Functions](associated-functions.md)
-    * Properties
-    * [Operator Overloading](operator-overloading.md)
+    * [Class Initializers](class-initializers.md)
     * [Object Declarations](object-declarations.md)
 13. [Values](values.md)
     * [Value Declarations](value-declarations.md)
@@ -90,7 +88,7 @@ new version. If something is missing, it may be documented in the [old version](
     * [Struct Initializers](struct-initializers.md)
 15. [Closed Types](closed-types.md)
     * [Closed Traits and Classes](closed-traits-and-classes.md)
-    * [Closed Structs](closed-structs.md)
+    * [Closed Values and Structs](closed-structs.md)
     * [Cases](cases.md)
     * [Closed Type Idioms](closed-type-idioms.md)
 16. [Partial Type Declarations](partial-type-declarations.md)

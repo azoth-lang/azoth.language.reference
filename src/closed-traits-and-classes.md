@@ -6,10 +6,10 @@ class or trait `A`, only classes and traits in the same package may list it as t
 implemented types. This applies equally to object and value declarations.
 
 It should be noted that while a closed class or trait cannot be directly subtyped, it can be
-indirectly subtyped. For example, given `closed trait A` and `trait B <: A` in a given package,
-another package can declare `class C <: B`. Thus `C` is a subtype of `A` even though it does not
-directly subtype it. This is allowed because an exhaustive match is still possible on `A` by having
-a single `B` case that covers all subtypes of `B`.
+indirectly subtyped. For example, given `published closed trait A` and `published trait B <: A` in a
+given package, another package can declare `class C <: B`. Thus `C` is a subtype of `A` even though
+it does not directly subtype it. This is allowed because an exhaustive match is still possible on
+`A` by having a single `B` case that covers all subtypes of `B`.
 
 It should also be noted that if a non-abstract class is declared `closed` then it is possible for
 instances of that type to be created and matching on the type will require a case to match such

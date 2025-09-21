@@ -1,6 +1,6 @@
-# Closed Structs and Struct Traits
+# Closed Values and Structs
 
-Structs can be marked with the `closed` modifier. This transforms them into discriminated unions and
+Values and structs can be marked with the `closed` modifier. This transforms them into discriminated unions and
 allows them to effectively be subtyped. The "subtypes" become members of the discriminated union.
 
 A `closed` struct can only have a fixed set of subtype values or structs. These are declared with

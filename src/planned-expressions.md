@@ -2,6 +2,8 @@
 
 ## Unchecked Expressions
 
+**TODO:** could this be replaced with a with-expression (e.g. `with unchcked() { }`)? The `unchecked` function could be declared `unsafe`. Or maybe `unchecked` could be a value
+
 Inside an unchecked expression, the basic operators on integer types would be unchecked. Thus
 overflow on "`+`", "`-`", "`*`" and "`/`" would not be checked. Note that wrapping on division can
 occur for `MIN / -1` on signed types. Because the result is `-MIN` which is too large of a positive

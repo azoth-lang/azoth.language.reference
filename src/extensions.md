@@ -2,10 +2,10 @@
 
 ## Type Extensions
 
-A type (i.e. class, trait, or struct) can be extended with additional traits and methods using an
-extension. Extensions modify the original type and as such the namespace they are declared in
-doesn't matter except that the extension must be visible to the consuming code. Extensions modify
-types. That is why the `class`, `trait`, or `struct` keyword is omitted. As such they can do things
+A type (i.e. class, trait, value, or struct) can be extended with additional traits and methods
+using an extension. Extensions modify the original type and as such the namespace they are declared
+in doesn't matter except that the extension must be visible to the consuming code. Extensions modify
+types. That is why the `class`, `trait`, `value`, or `struct` keyword is omitted. As such they can do things
 that aren't possible with regular declarations.
 
 ```azoth
@@ -60,7 +60,7 @@ public fn example(self: int, x:int) -> int => self + 2 * x;
 Swift protocols mix required methods which "dispatch dynamically" with extensions which "dispatch
 statically". That seems really confusing. This is connected to the idea in Rust that you don't
 arbitrarily extend structs, but rather, you implement traits for them. That provides structure to
-the idea of dispatch. You are adding that functionality only when you can see it has having that
+the idea of dispatch. You are adding that functionality only when you can see it as having that
 type.
 
 Another way to think of this is the difference between interface methods in C# and extension

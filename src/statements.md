@@ -1,14 +1,13 @@
 # Statements
 
 Blocks contain statements. Statements include variable declarations, constant declarations, and
-expression statements. There is also a special empty statement.
+expression statements.
 
 ```grammar
 statement
     : variable_declaration
     | constant_declarations
     | expression_statement
-    | ";" // empty statement
     ;
 ```
 
@@ -29,11 +28,10 @@ expression_statement
     ;
 ```
 
-## Empty Statement
+## No Empty Statement
 
-The empty statement is a special statement that has no effect. It may be useful in situations where
-a statement is expected, but no action is desired.
-
-**TODO:** Perhaps there should be no empty statement. With curly brace blocks there may be no need
-for it. Rather, it may just be an opportunity for mistakes. It could also confuse the case of
-abstract implied by no method body.
+Many languages allow an empty statement consisting of only a semicolon. This fits with the fact that
+control flow constructs operate on statements by allowing them to be empty. In Azoth, this is
+accomplished with an empty block (i.e. `{ }`). Empty statements are disallowed to help avoid
+confusion about abstract members. An abstract method `fn example(self);` could never be mistaken for
+a method with an empty statement body because there is no empty statement.

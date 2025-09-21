@@ -7,16 +7,12 @@ all initializers to return a `const` reference. Consequently it constrains all f
 immutable (i.e. `let`) and have `const` types. The compiler will then treat all references
 to that type as `const` except for a few special cases like the `self` reference of the initializer.
 
-**TODO:** should it be an error to use `const T` with a `const` type? That would avoid debates about
-whether one should use `const`. However, it also means changing a type to `const` requires updating
-any existing `const T` uses.
-
 Constantness is inherited. All subtypes of a constant type are required to be `const` themselves.
 
 ## Drop Classes
 
 Classes can be declared as drop classes. A drop class is allowed to contain fields whose types are
-drop types. A drop class can have a destructor. The compiler ensures that for all droppable classes,
+drop types. A drop class can have a drop method. The compiler ensures that for all droppable classes,
 isolation is recovered before the last reference leaves scope and that the destructor is called.
 Thus, while multiple references to a droppable reference type may exist at one time, there will
 always conceptually be one stack frame that "owns" the instance. To pass ownership one must `move`
