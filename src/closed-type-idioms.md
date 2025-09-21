@@ -14,13 +14,13 @@ The enum idiom provides a short way to declare enumerations in Azoth. Enumeratio
 value types or reference types. While most enumerations are value types, it can be useful to have
 reference type enumerations to subtype other reference types.
 
-A value type enum is simply declared using a `closed struct` with `case`s. The cases can be be
-parameterized or not. Such enums can have initializers and methods. Due to the closed struct
-optimization, they can have any number of fields without increasing the size of enum instances.
-Initializers can be private to further prevent accidental additions.
+A value type enum is simply declared using a `const closed value` with `case`s. Such enums can have
+initializers and methods. Due to the closed object value optimization, they can have any number of
+fields without increasing the size of enum instances. Initializers can be private to further prevent
+accidental additions.
 
 ```azoth
-public closed struct day_of_week
+public const closed value day_of_week
 {
     case Monday;
     case Tuesday;
@@ -35,11 +35,10 @@ public closed struct day_of_week
 }
 ```
 
-A reference type enum is simply declared using a `closed const class` with `case`s. Again, the cases
-can be parameterized or not. However, this allows them to be part of a larger reference type
-hierarchy. Initializers can be private to further prevent accidental additions. Consider this
-example adapted from one often used for Java. (Though this code could be improved using units of
-measure.)
+A reference type enum is simply declared using a `closed const class` with `case`s. This allows them
+to be part of a larger reference type hierarchy. Initializers can be private to further prevent
+accidental additions. Consider this example adapted from one often used for Java. (Though this code
+could be improved using units of measure.)
 
 ```azoth
 /// universal gravitational constant (m^3/kg/s)
@@ -88,17 +87,17 @@ public fn main(args: const Array[string], console: mut Console) -> byte {
 **TODO:** this example demonstrates the need for an easy way to get all values and convert to
 string.
 
-## Discriminated Unions of Structs
+## Discriminated Unions of Values
 
 While simple enums are very useful, discriminated unions which union together multiple value types
 into a single type are even more powerful. This is why Rust and Swift allow their enums to be
 discriminated unions.
 
-In Azoth, an idiomatic discriminated union is simply declared with `closed struct` and `case`s
+In Azoth, an idiomatic discriminated union is simply declared with `closed value` and `case`s
 taking record parameters.
 
 ```azoth
-public closed struct trait Barcode
+public closed value Barcode
 {
     case Missing;
     case UPC(Start: byte, Left: uint16, Right: uint16, End: byte);
@@ -106,4 +105,4 @@ public closed struct trait Barcode
 }
 ```
 
-The cases can be individual values or full structs. Cases do not have to use record syntax.
+The cases can be objects or full values. Cases do not have to use record syntax.

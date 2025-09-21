@@ -37,12 +37,22 @@ Because `drop` type instances can never be `const`, `drop` type declarations can
 
 ## Closed Types
 
-Types can be declared `closed`. This limits how they can be subtyped and allows values and structs
-to be subtyped when they otherwise can't. Closed types enable exhaustive matching on type. They are
-a complex enough topic that they are described in their own section, see [Closed
-Types](closed-types.md).
+Types can be marked `closed`. This means that the set of direct subtypes is closed and cannot be
+extended in other packages. This allows the compiler to do exhaustiveness checking when matching on
+these types. All sorts of types can be declared closed and this allows for many powerful variations.
+The `closed` modifier is not inherited. That is, it is perfectly acceptable for a non-closed type to
+subtype a closed type. However, it is often more useful to make entire hierarchies closed so that
+exhaustive matching covers multiple layers of the hierarchy. Since values and structs cannot
+normally be subtyped, marking them closed allows them to be subtyped however the result isn't
+totally independent types, but rather a discriminated union of types.
 
 ## Empty Types
 
 An empty type with no members can be abbreviated by replacing the body with a semicolon (e.g.
 `public class Example;`). This is most useful with record types.
+
+## Nested Types
+
+Types can be declared inside of other types. When this is done they are independent types that have
+access to protected members and the outer types generic parameters. Nested types are associated
+members.

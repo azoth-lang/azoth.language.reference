@@ -38,3 +38,8 @@ more information.
 
 As with classes, structs and values, a trait may be declared as a `drop` type. This requires that
 all subtypes of the trait be a `drop` class, struct, value, or trait.
+
+## Closed Traits
+
+A trait marked closed can only be directly subtyped in the same package. This enables exhaustiveness
+checking when matching on the trait. For more information see [Closed Classes](closed-classes.md).

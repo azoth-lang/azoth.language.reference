@@ -23,6 +23,7 @@ Associated Members:
 * Associated Functions
 * Associated Types
 * Associated Constants
+* Nested Types
 
 ## Abstract Members
 
@@ -33,7 +34,8 @@ structs are abstract only if they are closed.
 
 Associated members can also be abstract. If a type has abstract associated members then this
 restricts the use of that type. It cannot be used as a generic argument to a generic parameter in
-any situation where it might be possible for the abstract member to be used.
+any situation where it might be possible for the abstract member to be used. (Exact rules still to
+be determined, see https://github.com/dotnet/csharplang/discussions/8922)
 
 Abstract associated members must be marked with the `abstract` modifier.
 

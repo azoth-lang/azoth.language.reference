@@ -5,12 +5,12 @@ new namespaces.
 
 ## Type Aliases
 
-A type alias is declared with `alias type` followed by the alias name and any type parameters. This
+A type alias is declared with `type alias` followed by the alias name and any type parameters. This
 is assigned to another type. Any constraints on the type parameters come last. It does not create a
 separate type only a synonym for an existing type.
 
 ```azoth
-public alias type Promise_Result[T] = Promise[Result[T]]
+public type alias Promise_Result[T] = Promise[Result[T]]
     where T <: Example;
 ```
 
@@ -26,10 +26,11 @@ accessed from the type not from any instances.
 
 A function alias creates an alias for a function. When declaring a function alias it is not possible
 to change the parameter types. Thus they are not listed in the alias declaration. However, they are
-listed when stating the function being aliased in order to disambiguate overloads. An alias does however let one modify generic parameters. Function aliases can be overloaded.
+listed when stating the function being aliased in order to disambiguate overloads. An alias does
+however let one modify generic parameters. Function aliases can be overloaded.
 
 ```azoth
-public alias fn example[T] = example[T, T](T, T)
+public fn alias example[T] = example[T, T](T, T)
     where T <: Example;
 ```
 
