@@ -3,7 +3,7 @@
 ## Open Methods
 
 By default, when one method calls another method on the same instance, the version of the method
-declared in that class will be called rather than any overridden versions of that method. This helps
+declared in that type will be called rather than any overridden versions of that method. This helps
 prevent the fragile base class problem where overriding a method unexpectedly changes the behavior
 of a non-overridden method because it is implemented in terms of that method. This can also manifest
 when a base class method is changed to be implemented in terms of another method.
@@ -91,5 +91,5 @@ Methods can be declared inside of other methods. When this is done, they are onl
 enclosing method. They do not have access to any variables in the scope of the containing method. If
 that is desired, a lambda function must be used. However, they do have a `self` parameter and can
 thereby access the current instance. They are called like other methods using either explicit or
-implicit self. It is a non-fatal error for a nested function to occur before the return statement of
-the enclosing function or method.
+implicit self. It is a non-fatal error for a nested method to occur before the return statement of
+the enclosing method. Nested methods must be declared private.

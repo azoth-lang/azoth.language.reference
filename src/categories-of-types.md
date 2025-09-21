@@ -116,9 +116,9 @@ have a different identity hash.
 When a hybrid type is moved, the pervious variable binding type changes to `void` and reports errors
 for "use of moved value".
 
-New hybrid types are declared with struct declarations. All struct declarations are `move struct`
-since all hybrid types are move types. A struct declaration is a sort of template for constructing
-instances of the struct. There are not other hybrid types than those created with struct declarations.
+New hybrid types are declared with struct declarations. A struct declaration is a sort of template
+for constructing instances of the struct. There are not other hybrid types than those created with
+struct declarations.
 
 ### Uses of Hybrid Types
 

@@ -21,11 +21,6 @@ an `iso` reference to the instance to another method or field.
 The drop declaration of a class is inherited by all subtypes (i.e. all subtypes are also droppable).
 Subclasses must be declared `drop` as well.
 
-## Empty Classes
-
-An empty class with no members can be abbreviated by replacing the class body with a semicolon (e.g.
-`public class Example;`). This is most useful with record classes.
-
 ## Record Classes
 
 Record classes provide a shorthand for declaring record types. That is types that are the

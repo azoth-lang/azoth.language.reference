@@ -41,3 +41,8 @@ Types can be declared `closed`. This limits how they can be subtyped and allows 
 to be subtyped when they otherwise can't. Closed types enable exhaustive matching on type. They are
 a complex enough topic that they are described in their own section, see [Closed
 Types](closed-types.md).
+
+## Empty Types
+
+An empty type with no members can be abbreviated by replacing the body with a semicolon (e.g.
+`public class Example;`). This is most useful with record types.

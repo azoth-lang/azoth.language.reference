@@ -67,6 +67,8 @@ literal_operator
     ;
 ```
 
+**TODO:** can operators be associated functions? functions outside of types?
+
 ## Overloadable Operators
 
 Most overloadable operators act as simple methods. However, some operators require special handling

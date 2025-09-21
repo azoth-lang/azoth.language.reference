@@ -22,6 +22,7 @@ Associated Members:
 * Initializers
 * Associated Functions
 * Associated Types
+* Associated Constants
 
 ## Abstract Members
 

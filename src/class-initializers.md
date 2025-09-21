@@ -189,16 +189,14 @@ Exceptions in initializers can be complex and easily lead to issues. For this re
 are implicitly `no throw` instead of the default inferred throws. However, initializers can throw
 exceptions if they are declared to throw them.
 
-**TODO:** confirm this section is still correct.
+If an exception is thrown in a initializer, the drop method will not be run on the instance except
+as part of stack unwinding as described next. Exceptions thrown in or before a base or self
+initializer call simply unwind the stack, dropping any initialized field values as if they were
+local variables. Exceptions thrown after the completion of a base or self initializer call invoke
+the *base* class's drop method on this instance at the point of unwinding past the base class call
+(since it is now a fully constructed instance of the base class).
 
-If an exception is thrown in a initializer, destructors will not be run on the instance except as
-part of stack unwinding as described below. Exceptions thrown in or before a base or self
-initializer call simply unwind the stack, deleting any initialized field values. Exceptions thrown
-after the completion of a base or self initializer call invoke the *base* class's destructor on this
-instance at the point of unwinding past the base class call (since it is now a fully constructed
-instance of the base class).
-
-Note that the current class's destructor is never called so it is imperative that any resources be
+Note that the current class's drop method is never called so it is imperative that any resources be
 properly released by the initializer.
 
 If you catch an exception from a self or base initializer call. You must re-throw it, because the
@@ -215,23 +213,3 @@ to itself. Yet, it is not completely initialized yet, so this is not safe. It mi
 the reference capabilities to provide a way out of this. There could be a reference capability which
 does not allow for any methods or fields to be accessed but can only be stored with the promise that
 it would be valid in the future. However, the rules for this would probably be very complicated.
-
-## Open Issues
-
-* If some type parameters are specified, what does that do to the type parameters when initializing?
-* Can the initializer method be generic so it can control type parameters?
-* How are type parameters passed when calling an initializer given that they may be changed/reduced
-  it seems they belong with the name not the type?
-* How can one combine specifying type parameters with returning a base type?
-* Can you declare initializers in traits? (This allows them to act more like base classes e.g. a
-  `Dictionary[Key, Value]` trait can have an initializer that returns the default dictionary
-  implementation.)
-* Since static methods can be overridden, can a named initializer override a static method in a
-  trait? Likewise can an initializer override an initializer in a trait? This would would avoid the
-  need to create static factory methods just to allow generics to construct types implementing a
-  trait.
-
-Idea:
-
-* Perhaps it is like the initializer is a static method on a non-generic version of the type that
-  has all the same type parameters by defaults?
