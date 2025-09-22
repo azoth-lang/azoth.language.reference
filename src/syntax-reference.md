@@ -88,7 +88,7 @@ A brief statement of the syntax for easy reference.
 | `Type[T, R]`                   | Generic parameters and compile time code execution |
 | `@T`                           | Non-null Pointer to `T`    (i.e. Address of `T`)   |
 | `@T?`                          | Nullable Pointer to `T`                            |
-| `@void`, `@mut void`           | Void Pointers?                                     |
+| `@void`, `@mut void`           | Void Pointers                                      |
 | `(Type1, Type2) -> ReturnType` | Function Type                                      |
 
 ## Statements

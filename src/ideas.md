@@ -67,6 +67,7 @@ Sections:
   * [Copy with Change Syntax](#copy-with-change-syntax)
   * [Interpolated String Localization](#interpolated-string-localization)
   * [Interval Literals](#interval-literals)
+  * [Arrays via Existential Types](#arrays-via-existential-types)
 
 ## Reference Capabilities
 
@@ -794,3 +795,9 @@ not support it for user display strings.
 Allows ranges or intervals to have literals that are math style interval syntax (e.g. `'[3..6)'` or
 `'[3,6)'`). The issue with this is that it puts the constant values inside of the literal. Using
 interpolation for that seems strange (e.g. `'[\(3)..\(6))'`).
+
+### Arrays via Existential Types
+
+One could imagine that all array instances actually have a type `Array[Count: size, T]` for some
+concrete size. Arrays with an unknown/dynamic size are accomplished through an existential type
+``type alias Array[T] = Array[C, T] forsome C`.

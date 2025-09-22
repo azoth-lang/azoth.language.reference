@@ -1,6 +1,7 @@
 # Appendix: Influences
 
-This appendix lists various languages and papers that have influenced the design and implementation of the Azoth language. This is not an exhaustive list.
+This appendix lists various languages and papers that have influenced the design and implementation
+of the Azoth language. This is not an exhaustive list.
 
 * [Rust](https://www.rust-lang.org/)
   * Borrow Checking

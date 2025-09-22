@@ -45,7 +45,7 @@ supported:
 * Trailing pound signs on ATX headings
 * Setext headings
 * Indented code blocks
-* List items with "`+`"
+* List items with "`+`" or "`-`"
 * Whitespace at the end of a line does not cause a hard line break
 
 Additionally, numbered lists will be supported, but their interpretation may be modified.

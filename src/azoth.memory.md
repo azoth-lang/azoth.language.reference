@@ -32,12 +32,3 @@ x = reallocate[Point](x, 8, 2); // resize to 8, only copy 2 items
 x = reallocate[Point](x, 2); // just drops memory contents after first two
 free(x);
 ```
-
-## Allocating Structs on the Heap
-
-Structs can be allocated on the heap using the `azoth.memory.Boxed[T]` type. `Boxed[T]` is a move
-type and will automatically free the memory when it goes out of scope.
-
-```azoth
-let x = Boxed[Struct_Type]();
-```

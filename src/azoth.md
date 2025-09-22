@@ -1,9 +1,9 @@
 # `azoth` Namespace
 
-## `azoth.CancellationToken`
+## `azoth.Cancellation_Token`
 
 Cancellation tokens are used to manage cancellation. A function that supports cancellation should
-take a `CancellationToken` as the last parameter as a context parameter. The `throw_if_cancelled()`
+take a `Cancellation_Token` as the last parameter as a context parameter. The `throw_if_cancelled()`
 method should be used to check whether cancellation has been requested and throw `Cancelled` if it
 has. Cancellation tokens internally are built around two mechanisms for cancellation. A deadline
 being reached on a monotonic clock and arbitrary cancellation predicates.

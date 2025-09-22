@@ -4,15 +4,15 @@ Sometimes, low level control of memory and pointers is needed. For this purpose,
 used. Pointers are very similar to pointers in languages like C, C++ and Rust. Many operations on
 pointers are inherently dangerous and require an unsafe context.
 
-Only pointers to value types can be declared. Because reference types allow for a subtype
-relationship, references are "fat." Meaning they contain both a pointer to the data and a pointer to
-a vtable. Pointers don't support this, they are "thin." Thus it must be possible to know the exact
-type and size at compile time. This is true of value types.
+Only pointers to unmanaged struct or value types can be declared. Because reference types allow for
+a subtype relationship, references are "fat." Meaning they contain both a pointer to the data and a
+pointer to a vtable. Pointers don't support this, they are "thin." Thus it must be possible to know
+the exact type and size at compile time. This is true of value and struct types.
 
 ## Address Of
 
-A pointer to a value can be obtained using the address of operator `@`. For value types, the address
-of operator takes the address of the variable so the pointer points to the variable which is
+A pointer to a value can be obtained using the address of operator `@`. For struct types, the
+address of operator takes the address of the variable so the pointer points to the variable which is
 typically on the stack. Taking the address of something is a safe operation.
 
 ```azoth
@@ -24,10 +24,8 @@ let ptr_x = @x; // points to `x` on the stack
 
 Pointer types are simply prefixed with the `@` sign. The type is then read as either "address of T"
 or "pointer to T". Just as with references, pointers refer to immutable values by default and must
-use `mut` to allow mutation of the value. Pointer types can be freely combined with references to
+use `var` to allow mutation of the value. Pointer types can be freely combined with references to
 produce complex types.
-
-**TODO:** it seems from other places that this should be `@var` instead
 
 ```azoth
 public struct Foo {}
@@ -43,16 +41,6 @@ var y: int = 7;
 let ptr_y: @mut int = @mut y; // similar to taking `ref var`
 let r: ref var int = ref var y;
 let ptr_r: @ ref var int = @r;
-```
-
-## Converting References to Pointers
-
-Given an existing reference to a value type, it can also be cast to a pointer.
-
-```azoth
-let x: int = 5;
-let ref_x: ref int = ref x;
-let ptr_x: @int = ref_x as @int;
 ```
 
 ## Dereferencing Pointers
@@ -71,16 +59,6 @@ unsafe
     let ptr_f: @Foo = @f;
     ptr_f^.method();
 }
-```
-
-The dereference operator can also be used to dereference variable references if needed. This is a
-safe operation since variable references are always valid.
-
-```azoth
-var x: int = 6;
-let y: ref var int = ref var x;
-^y = 7; // assigns 7 into x
-y = 8; // because of types involved, dereference is implied. The same thing doesn't happen with pointers
 ```
 
 ## Nullable Pointers

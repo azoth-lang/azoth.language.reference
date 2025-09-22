@@ -16,12 +16,12 @@ x = unsafe(/* unsafe expression */);
 
 An unsafe context is necessary to:
 
-1. Access or modify a pointer
+1. Deference a pointer
 2. Access or update a mutable static variable
 3. Call unsafe functions
-4. Call untrusted functions (see [Trusted Packages](#TrustedPackages))
+4. Call untrusted functions (see [Trusted Packages](#trusted-packages))
 
-It is a compile time error to perform any of those operations outside of an unsafe context.
+It is a non-fatal error to perform any of those operations outside of an unsafe context.
 
 ## Unsafe and Safe Functions
 
@@ -36,7 +36,7 @@ guarantees that it contains a valid utf8 encoding. If there were a slice method 
 string slice that may not be valid utf8 because it didn't check if the index split a code point,
 that method should be marked `unsafe`.
 
-It is a compile time error to mark a function `safe` that contains no unsafe contexts.
+It is a non-fatal error to mark a function `safe` that contains no unsafe contexts.
 
 ## Unsafe and Safe Classes and Structs?
 
@@ -46,12 +46,12 @@ unsafe?
 
 ## Trusted Packages
 
-Packages referenced from azothforge.com may be trusted or untrusted. By default all packages in the
-`azoth` namespace are trusted while all other packages are untrusted. This can be changed for
-individual packages using the `trusted` attribute of the project file. Any function marked `unsafe`
-or `safe` in an untrusted package is untrusted. Note that this can propagate from one package to
-another. Any function that calls an untrusted function is untrusted. Calling an untrusted function
-requires an unsafe context.
+Packages referenced from online may be trusted or untrusted. By default all packages in the `azoth`
+namespace are trusted while all other packages are untrusted. This can be changed for individual
+packages using the `trusted` attribute of the project file. Any function marked `unsafe` or `safe`
+in an untrusted package is untrusted. Note that this can propagate from one package to another. Any
+function that calls an untrusted function is untrusted. Calling an untrusted function requires an
+unsafe context.
 
 ## Docs
 

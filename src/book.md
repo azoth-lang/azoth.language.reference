@@ -107,15 +107,14 @@ new version. If something is missing, it may be documented in the [old version](
     * [Structured Error Handling](structured-errors.md)
     * [Out of Memory and Stack Overflow](memory-exhaustion.md)
     * [Assertions](assertions.md)
-24. [Effects](effects.md)
-25. Attributes
-26. [Patterns](patterns.md)
-27. [Unit Testing](unit-testing.md)
-28. [Unsafe Code](unsafe.md)
+24. Attributes
+25. [Patterns](patterns.md)
+26. [Unit Testing](unit-testing.md)
+27. [Unsafe Code](unsafe.md)
     * [Pointers](pointers.md)
-29. [External Declarations](external.md)
-30. [Documentation Comments](documentation-comments.md)
-31. Standard Library
+28. [External Declarations](external.md)
+29. [Documentation Comments](documentation-comments.md)
+30. Standard Library
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`azoth` Namespace](azoth.md)
@@ -125,11 +124,11 @@ new version. If something is missing, it may be documented in the [old version](
     * [`azoth.math` Namespace](azoth.math.md)
     * [`azoth.memory` Namespace](azoth.memory.md)
     * [`azoth.text` Namespace](azoth.text.md)
-32. Reflection
-33. [Guaranteed Optimizations](guaranteed-optimizations.md)
-34. [Conventions](conventions.md)
-35. [Version Number Scheme](version-numbers.md)
-36. [Planned Features](planned-features.md)
+31. Reflection
+32. [Guaranteed Optimizations](guaranteed-optimizations.md)
+33. [Conventions](conventions.md)
+34. [Version Number Scheme](version-numbers.md)
+35. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
     * [Additional Expressions](planned-expressions.md)
@@ -140,6 +139,7 @@ new version. If something is missing, it may be documented in the [old version](
 Appendices:
 
 * [Ideas](ideas.md)
+* [Effects](effects.md)
 * [Glossary](glossary.md)
 * [Implementer's Notes](implementers-notes.md)
 * [Influences](influences.md)
