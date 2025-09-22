@@ -95,7 +95,7 @@ new version. If something is missing, it may be documented in the [old version](
     * [Closed Type Idioms](closed-type-idioms.md)
 17. [Partial Type Declarations](partial-type-declarations.md)
 18. [Extensions](extensions.md)
-19. [Aliases](aliases.md)
+19. [Type Aliases](type-aliases.md)
 20. Type Variables and Generic Parameters
     * [Generics](generics.md)
     * [Self Type](self-type.md)

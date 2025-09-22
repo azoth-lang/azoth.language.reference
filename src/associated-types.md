@@ -2,9 +2,9 @@
 
 **TODO:** expand these notes.
 
-Associated types are direct type declarations within a trait, class, or struct and are therefore
-"virtual". Abstract types can have abstract associated types. In an abstract class this is `public
-abstract type T;`. In a trait, the `abstract` keyword is not needed.
+Associated types are direct type alias declarations within a trait, class, value, or struct and are
+therefore "virtual". Abstract types can have abstract associated types. In an abstract class this is
+`public abstract type alias T;`.
 
 Associated types can have type constraints placed on them with `where`. For consistency, one cannot
 just declare supertypes on them (i.e. `public type T <: Base` must be written `public type T where T

@@ -43,12 +43,12 @@ call to the base class drop method, the drop methods of all fields will be autom
 
 ## Exceptions in Drop Methods
 
-All drop methods implicitly are `no throw`. This is because drop methods are called while exceptions
-are unwinding the stack. Thus if an exception were to be thrown from a drop method it might hide the
-original exception that is leading to the drop method being called.
+All drop methods implicitly are `throws never`. This is because drop methods are called while
+exceptions are unwinding the stack. Thus if an exception were to be thrown from a drop method it
+might hide the original exception that is leading to the drop method being called.
 
 **TODO:** Allow the drop method to receive info about an in progress error and allow drop method
-definitions to override the default of `no throw`
+definitions to override the default of `throws never`
 
 ## Base Class Drop Method
 

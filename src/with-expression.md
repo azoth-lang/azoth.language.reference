@@ -106,14 +106,14 @@ published class Database
         var t = self.start_transaction();
         try
         {
-            defer if t.is_active => t.commit();
             init yield; // Needed to force a call to begin?
-            yield return;
+            yield;
+            if t.is_active => t.commit();
         }
-        catch
+        catch ex: Any // TODO what about value thrown value types?
         {
             t.rollback();
-            throw;
+            throw ex;
         }
     }
 }

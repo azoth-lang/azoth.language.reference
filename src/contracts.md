@@ -32,8 +32,8 @@ one would write `old self`.
 
 ## Invariants
 
-Invariants are declared on the class or struct level with the `invariant` keyword. These must hold
-before and after every public method call on the type.
+Invariants are declared on the trait, class, value or struct level with the `invariant` keyword.
+These must hold before and after every public method call on the type.
 
 **TODO:** Midori has `protected` and `private` invariants that held for protected and private
 methods respectively.

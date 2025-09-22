@@ -186,8 +186,8 @@ something.
 ## Exceptions
 
 Exceptions in initializers can be complex and easily lead to issues. For this reason initializers
-are implicitly `no throw` instead of the default inferred throws. However, initializers can throw
-exceptions if they are declared to throw them.
+are implicitly `throws never` instead of the default inferred throws. However, initializers can
+throw exceptions if they are declared to throw them.
 
 If an exception is thrown in a initializer, the drop method will not be run on the instance except
 as part of stack unwinding as described next. Exceptions thrown in or before a base or self

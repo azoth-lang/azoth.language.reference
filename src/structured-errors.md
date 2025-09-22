@@ -7,8 +7,8 @@ other languages and lacks the stack traces that other languages provide.
 ## Typed Effect
 
 Errors are treated as a typed effect. What errors a function or method can throw are declared on the
-method with the `throws` effect. Functions that do no throw errors can be indicated with the `throws
-never` effect. See the [Effects](effects.md) section for more information.
+method with the `throws` effect. Functions that do not throw errors can be indicated with the
+`throws never` effect. See the [Effects](effects.md) section for more information.
 
 ## Throws Declaration
 
@@ -118,7 +118,7 @@ let x = try foo() catch! SomeException;
 
 **TODO:** given throws clause inference, it may not make sense to include this. The cases where one
 would want to convert an error to an abort should be basically cases when the error is unreachable
-and so `unreachable()` should probably be used instead.
+and so `UNREACHABLE()` should probably be used instead.
 
 ### Catch to None
 
@@ -159,7 +159,7 @@ let x = try foo()
 
 ## Try/Catch Statements
 
-Try and catch can also be used as a statement. Note that this does not remove the need mark
+Try and catch can also be used as a statement. Note that this does not remove the need to mark
 individual expressions with `try`. Instead, it allows for handling exceptions within an entire block
 of code. For a try/catch statement the `try` must be followed by a block and each `catch` must be
 followed by a block. Note that `rethrow` expressions are unchanged.
@@ -204,17 +204,3 @@ stacktrace stored in the exception this is possible. In cases where even more pe
 throwing value types can further improve performance. Throwing a value type removes the overhead of
 allocating memory while preserving the ability to include values specific to the error. It can also
 allow efficient error processing without type checks by using enumerated value types.
-
-## Defer
-
-Azoth does not have finally blocks as C# and Java do. Instead, it takes inspiration from Swift and
-has `defer` statements. A defer statement specifies an expression to be run any time the current
-scope is exited. This allows for cleanup operations to be preformed. It has the advantage over
-finally blocks that it has access to any values created so far in the scope. Often with finally
-blocks it is necessary to place some code outside of the try block to enable it to be accessed from
-the finally block. They can also necessitate initializing to null to allow the finally block to
-handle a case when the full variable isn't assigned before the finally block runs.
-
-**TODO:** defer statements may be unnecessary given the RAII pattern support provided by drop types
-with drop methods. If all resources are managed that way, then defer may be so rarely needed that it
-would be better accomplished by a drop type wrapping a lambda expression.

@@ -29,6 +29,10 @@ Sections:
   * [Compile Code in Documentation Comments](#compile-code-in-documentation-comments)
 * [Declarations](#declarations)
   * [`type` Declarations](#type-declarations)
+  * [Extension Members](#extension-members)
+    * [Extension Members Notes](#extension-members-notes)
+  * [Function Aliases](#function-aliases)
+  * [Method Aliases](#method-aliases)
 * [Expressions](#expressions)
   * [`else match` Expression](#else-match-expression)
   * [`repeat {} while condition;` Loops](#repeat--while-condition-loops)
@@ -36,6 +40,8 @@ Sections:
   * [Change Block Delimiters](#change-block-delimiters)
   * [`set` Expressions/Statements](#set-expressionsstatements)
   * [Dictionary Initializers](#dictionary-initializers)
+* [Statements](#statements)
+  * [Defer](#defer)
 * [Types](#types)
   * [Logarithmic Numbers](#logarithmic-numbers)
   * [Relative Pointers](#relative-pointers)
@@ -349,6 +355,75 @@ declarations a pure alias could be declared using something like `const type` or
 **TODO:** record classes and structs serve this purpose. Document in lang design and remove from
 here.
 
+### Extension Members
+
+Extension members act like extension methods in C# they are statically dispatched. They are declared
+outside of any type. They are in scope only if the namespace they are declared in is imported. (Note
+that by default all namespaces are searched. However, `using` statements can modify that.) Extension
+methods are distinguished by being declared with a first parameter of `self`.
+
+```azoth
+public fn example(self: int, x:int) -> int => self + 2 * x;
+```
+
+**TODO:** should their be a different way to call extension methods (e.g. `obj..method()`)?
+
+**TODO:** are extension members needed in the language given that type extension is available?
+
+#### Extension Members Notes
+
+Swift protocols mix required methods which "dispatch dynamically" with extensions which "dispatch
+statically". That seems really confusing. This is connected to the idea in Rust that you don't
+arbitrarily extend structs, but rather, you implement traits for them. That provides structure to
+the idea of dispatch. You are adding that functionality only when you can see it as having that
+type.
+
+Another way to think of this is the difference between interface methods in C# and extension
+methods. That makes it seem like the two should be clearly different syntaxes. Luckily, we have a
+ready made syntax for this. Consider the following function outside any class.
+
+```azoth
+public fn my_method(self: Example) -> int
+{
+    return self.field * 2;
+}
+```
+
+That clearly looks like an extension that is outside of the class and would be statically
+dispatched. It could be invoked using regular function syntax by qualifying it with the namespace.
+This even allows extension properties and operators! (Though operators should perhaps just be static
+functions instead.)
+
+```azoth
+public get property(self: Example) -> int
+{
+    return self.field * 2;
+}
+
+public operator +(self: int, x: Example) -> int
+{
+    // ...
+}
+```
+
+### Function Aliases
+
+**TODO:** is this worth the complexity of adding?
+
+A function alias creates an alias for a function. When declaring a function alias it is not possible
+to change the parameter types. Thus they are not listed in the alias declaration. However, they are
+listed when stating the function being aliased in order to disambiguate overloads. An alias does
+however let one modify generic parameters. Function aliases can be overloaded.
+
+```azoth
+public fn alias example[T] = example[T, T](T, T)
+    where T <: Example;
+```
+
+### Method Aliases
+
+**TODO:** should method aliases be supported as a symmetry with function aliases.
+
 ## Expressions
 
 ### `else match` Expression
@@ -487,6 +562,22 @@ The best one currently might be `#{"x"|->5, "y"|->6}`
 
 Idea: make `=>` a type constructor so that `T => S` is a key value pair of `T` and `S`. Then the
 type matches the dictionary initializer. Or something similar with whatever is chosen.
+
+## Statements
+
+### Defer
+
+Azoth does not have finally blocks as C# and Java do. Instead, it takes inspiration from Swift and
+has `defer` statements. A defer statement specifies an expression to be run any time the current
+scope is exited. This allows for cleanup operations to be preformed. It has the advantage over
+finally blocks that it has access to any values created so far in the scope. Often with finally
+blocks it is necessary to place some code outside of the try block to enable it to be accessed from
+the finally block. They can also necessitate initializing to null to allow the finally block to
+handle a case when the full variable isn't assigned before the finally block runs.
+
+**TODO:** defer statements may be unnecessary given the RAII pattern support provided by drop types
+with drop methods. If all resources are managed that way, then defer may be so rarely needed that it
+would be better accomplished by a drop type wrapping a lambda expression.
 
 ## Types
 
