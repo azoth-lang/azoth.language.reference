@@ -5,9 +5,7 @@ future. Sometimes, it clarifies why a particular feature is currently not in the
 
 Sections:
 
-* [Reference Capabilities](#reference-capabilities)
 * [Reachability](#reachability)
-* [Mutability and Move](#mutability-and-move)
 * [Operators](#operators)
   * [Symmetric Operators](#symmetric-operators)
   * [Comparison Chaining](#comparison-chaining)
@@ -45,7 +43,6 @@ Sections:
 * [Types](#types)
   * [Logarithmic Numbers](#logarithmic-numbers)
   * [Relative Pointers](#relative-pointers)
-  * [Move and Copy Reference Types](#move-and-copy-reference-types)
   * [Tuple Base Class](#tuple-base-class)
   * [Product Types for Tuples](#product-types-for-tuples)
   * [Closed Type Options](#closed-type-options)
@@ -63,57 +60,13 @@ Sections:
   * [Allow `!` at the End of Function Names](#allow--at-the-end-of-function-names)
   * [Indexing Tuples with `at[]()`](#indexing-tuples-with-at)
   * [Default Value Initializers](#default-value-initializers)
-  * [Use `read` and `write` for Properties](#use-read-and-write-for-properties)
   * [Copy with Change Syntax](#copy-with-change-syntax)
   * [Interpolated String Localization](#interpolated-string-localization)
-  * [Interval Literals](#interval-literals)
   * [Arrays via Existential Types](#arrays-via-existential-types)
 
-## Reference Capabilities
-
-As part of the memory management system, there will be reference capabilities. However, it isn't
-clear what the correct set of reference capabilities is. For now, implement extra ones and see which
-ones work well. Then reduce and possibly rename them. In the table below, the `B` right stands for
-"Bounded". It means there is a reference leaving the ownership boundary and so the lifetime of this
-reference is bounded. Given how many of these there are, initially the `leaked` and `held iso`
-capabilities won't be implemented because they are unlikely to be useful.
-
-| Rights  | Name                         | Syntax                           |
-| ------- | ---------------------------- | -------------------------------- |
-| IRWI̅R̅W̅B | Owning Writable              | `owned mut T`                    |
-| IRWI̅R̅W̅  | Isolated Writable            | `iso mut T`                      |
-| IRWĨR̅W̅B | Potentially Owning Writable  | `held mut T`  (alt. `uni mut T`) |
-| IRWĨR̅W̅  | Leaked or Isolated Writeable | `held iso mut T`                 |
-| IRWR̅W̅B  | Borrowed                     | `mut T`                          |
-| IRWR̅W̅   | Leaked                       | `leaked mut T`                   |
-| IRI̅R̅W̅B  | Owning Read-only             | `owned T`                        |
-| IRI̅R̅W̅   | Isolated Read-only           | `iso T`                          |
-| IRI͠RW̅B  | Potentially Owning Read-only | `held T`     (alt. `uni T`)      |
-| IRI͠RW̅   | Leaked or Isolated Read-only | `held iso T`                     |
-| IRW̅B    | Shared                       | `T`                              |
-| IRW̅     | Leaked Read-only (const)     | `leaked T`                       |
-| IB      | Id                           | `id T`                           |
-| I       | Id of Leaked                 | `leaked id T`                    |
-
-These capabilities can be assigned/passed from one to another by a set of operations which influence
-how the source type is treated while the new reference exists. The table below summarizes the kinds
-of assignment.
-
-| Action | Syntax   | Description                                                                                                  |
-| ------ | -------- | ------------------------------------------------------------------------------------------------------------ |
-| Move   | `move x` | Move the value out of the source variable. The source variable is no longer usable. Ownership is transferred |
-| Borrow | `mut x`  | Borrow the value (writable). Source variable becomes `id T` as long as reference exists.                     |
-| Share  | `x`      | Share the value (read-only). Source variable becomes shared `T` as long as reference exists.                 |
-| Tag    | `tag x`  | Create an id for this object. Source variable unaffected except lifetime                                     |
-
-If isolated is a needed but rare reference capability. It could be represented in a different way.
-As an owned reference that explicitly doesn't have a bounds. The syntax could be `owned T ~> none`
-and `owned mut T ~> none`. The same idea could be extended to leaked identity `id T ~> none`. This
-seems a little strange, so alternatively, leaked could be `id T <~ forever`, `mut T <~ forever`, and
-`T <~ forever`. The idea is that this indicates a reference can hold onto them for an unlimited
-amount of time.
-
 ## Reachability
+
+**TODO:** redo section to reflect current state
 
 In addition to reference capabilities, the reachability system enforces memory safety. In Rust,
 borrow checking is treated as part of type checking. I think it is less confusing to think of
@@ -159,45 +112,11 @@ because fields can be overridden and may act like functions.
 
 Would a bidirectional reachability operator make any sense `<~>`?
 
-## Mutability and Move
-
-Mutability expressions and move expressions have been an ongoing source of confusion as I think
-about implementing the compiler. Specifically, the question is how to handle them around
-initializers and functions returning some form of ownership. Should `f(g())` require a mutability
-expression like `f(mut g())` if `f` is to mutate the value returned by `g`? Similarly, should
-`f(move G())` require a move expression? The move seems unnecessary there. However, it could have
-effects on lifetimes. For example, in `f(G(a))` will the reference to `a` be available after this
-call or could it still be held because ownership was taken and put somewhere? Another example is
-`f(g(mut a))`. Should it be possible for `f` to indirectly mutate `a` by taking mutability of the
-return value from `g`? It seems sufficient that `a` could be mutated in this expression without
-worrying too much exactly when. Also, requiring `mut` everywhere seems like it could get very old.
-An expression like `f(mut g(mut h(mut j(mut a)), mut k(mut b)))` is difficult to read. Shouldn't
-`f(g(h(j(mut a)), k(mut b)))` be sufficient? Another interesting example is `f(a.foo())` where `a`
-could be mutated in `f` because `foo()` returns a mutable type. But there, the real issue is not
-knowing `foo` is mutably borrowing it. It seems the only solution to that would be a separate access
-operator which takes the target mutability. What comes to mind first is `f(a!foo())`, but that does
-somewhat conflict with the `!` used for abort in `as!` and probably elsewhere. Other options
-`a|foo()`, `a~foo()`.
-
-One of the sources of confusion is the variable declaration shorthand which allows `let x = mut
-g()`. Here the `mut` seems to be applied to the result of the function making it seem that could and
-perhaps should be done elsewhere.
-
-Given all this, for now, a simple scheme will be adopted. Mutability and move expressions can be
-applied only to variable usages and field accesses. It remains an open question if that should
-include property accesses since they are really function calls. However, they look like field
-access. Method calls and initializer calls will have mutable and ownership types that do not require
-`mut` or `move`. Variables with inferred types will continue to infer read-only even if assigned
-from mutable expressions. To enable easy mutable declaration and also remove the confusion around
-variable declaration, and simplify it, the special form `let x: mut = g()` will mean infer a mutable
-type. Some thought has been given to dropping the colon or otherwise changing this. However, all the
-other syntax for this are less clear and confusing in some regard.
-
 ## Operators
 
 ### Symmetric Operators
 
-Allow binary operator overloads to be declared as "symmetric". This allows them to be called with
+Allow binary operator overloads to be declared as `symmetric`. This allows them to be called with
 their arguments in either order. Thus when overloading an operator for two different types, one
 doesn't need to overload it twice, once for each order of types, but can simply write one function
 which will be used for both orders. This idea comes from JAI where not only operators, but any
@@ -343,12 +262,12 @@ compiled.
 
 ### `type` Declarations
 
-Currently, there are type aliases (e.g. `alias type ...`) and there are associated types (e.g. `type
-...` inside of a type declaration). Perhaps one should be allowed to declare types outside of a type
-declaration. This would have the effect of introducing a new type that was distinct from the type it
-was set to. There are many questions about how that should work though. The reason that aliases are
-aliases is so that they don't cause issues where the new type doesn't interoperate with the types it
-is constructed from.
+Currently, there are type aliases (e.g. `type alias ...`) and there are associated types (e.g. `type
+alias ...` inside of a type declaration). Perhaps one should be allowed to declare types outside of
+a type declaration. This would have the effect of introducing a new type that was distinct from the
+type it was set to. There are many questions about how that should work though. The reason that
+aliases are aliases is so that they don't cause issues where the new type doesn't interoperate with
+the types it is constructed from.
 
 Alternatively, type aliases could be declared without the `alias` keyword. Then within type
 declarations a pure alias could be declared using something like `const type` or `sealed type`.
@@ -559,9 +478,9 @@ and unique that won't otherwise occur in an expression. Possible syntaxes with c
 #{.("x") = 1, .("y") = 2 }
 ```
 
-The best one currently might be `#{"x"|->5, "y"|->6}`
+The best one currently might be `#{"x"|->5, "y"|->6}` or `#{"x"#>5, "y"#>6}`
 
-Idea: make `=>` a type constructor so that `T => S` is a key value pair of `T` and `S`. Then the
+Idea: make `|->` a type constructor so that `T |-> S` is a key value pair of `T` and `S`. Then the
 type matches the dictionary initializer. Or something similar with whatever is chosen.
 
 ## Statements
@@ -600,20 +519,6 @@ cause overflow if the address pointed to is outside of what the relative pointer
 versions of JAI used "`*~s32 Node`" for a 32-bit relative pointer to a node. Notice a signed int is
 used. It may be possible to implement relative pointers in the standard library using structs.
 
-### Move and Copy Reference Types
-
-Copy initializers can be defined for reference types. However, would it be useful to have reference
-types that are implicit copy? Would it be useful to have reference types that are move by default.
-It seems that this might be useful for implementing something like a type state. Consider a socket
-object. This should be a reference type because it is large and may have multiple subtypes. However,
-it could go through three states represented by types (i.e. `AvailableSocket`, `OpenSocket`,
-`ClosedSocket`). There would be methods that took the one and returned the other. For example, the
-`close()` method would consume the socket and then return a `ClosedSocket`. However, this may not
-require move reference types. Indeed, one may not want move for most methods on socket. The close
-method could be declared `fn close(iso self) -> iso ClosedSocket`. It would then take ownership of
-self. That is a little strange because one can't use the `move` keyword with the self reference. The
-dot operator would have to do this implicitly.
-
 ### Tuple Base Class
 
 It probably makes sense to have all tuple types implement a common interface. C# has them implement
@@ -621,7 +526,7 @@ several interfaces about structural equality.
 
 ### Product Types for Tuples
 
-Azoth has sum types (`|`) and intersection types (`&`). For consistency with those, it may make
+Azoth has union types (`|`) and intersection types (`&`). For consistency with those, it may make
 sense to make tuple types be product types. These could be constructed with the `*` operator. The
 issue with that is how would tuples of one item and empty tuples work?
 
@@ -653,7 +558,7 @@ just part of the expression, but are part of each type declaration.
 
 ### Use `_` or `*` for Wild Card Types
 
-Java style wild card types could be done using underscore.  For example, `List[_]` would be a list
+Java style wild card types could be done using underscore. For example, `List[_]` would be a list
 of anything. `List[_ <: Foo]` a list of things that inherit from `Foo`. Of course, then it isn't
 clear how to get the opposite type relation. `List[_ :> Foo]` seems strange. `List[_/Foo]` as in the
 wild card is above the `Foo`. Maybe the `in` and `out` keywords are the correct thing here. So
@@ -767,14 +672,6 @@ should be a special initializer that, if present, the compiler calls to implicit
 field. This would allow developers to create their own types like optional types which can be
 implicitly initialized.
 
-### Use `read` and `write` for Properties
-
-Instead of using `get` and `set` for properties, use `read` and `write`. This corrects what Kevlin
-Henny talks about that "get" is side-effecting in English and isn't the opposite of "set".
-Alternatively, "assign" could be used. If assignment were turned into a set statement, then set
-might make sense again. However, it could be confusing since `read` is also the name of a reference
-capability in some situations.
-
 ### Copy with Change Syntax
 
 If immutability is used with true object orientation, there will be many more instances where a copy
@@ -789,12 +686,6 @@ interpolated strings are only for programmer output and not user display. That c
 making interpolation always call the debug format. On the other hand almost all the programs I've
 written haven't needed localization and interpolation is such a good feature that it would be bad to
 not support it for user display strings.
-
-### Interval Literals
-
-Allows ranges or intervals to have literals that are math style interval syntax (e.g. `'[3..6)'` or
-`'[3,6)'`). The issue with this is that it puts the constant values inside of the literal. Using
-interpolation for that seems strange (e.g. `'[\(3)..\(6))'`).
 
 ### Arrays via Existential Types
 
