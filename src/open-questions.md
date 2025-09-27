@@ -42,3 +42,8 @@ Idea:
 
 How do types like lockless collections declare that they are mutable but still safe to send between
 threads?
+
+## Declaring Initializers for Initializer Expressions
+
+How should a type declare that it supports a particular initializer expression. Is this a special
+initializer syntax or is it some kind of operator overload.

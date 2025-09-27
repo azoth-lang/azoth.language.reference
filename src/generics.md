@@ -16,16 +16,18 @@ Independent generic parameters always allow `any` capability. However, this flex
 use in some scenarios. To support these use cases an independent generic parameter can have its
 variation constrained to prevent breaking constrained types. The parameter is still allowed to start
 with any capability. This just restricts how that capability can be changed by flow typing. For
-example, the key type of a dictionary is declared `sendable independent Key`. Whatever the
-capability the key is initially declared with the constrained type `sendable Key` must remain valid
-for it. In the case of `sendable` this specifically restricts a `const` key type from being upcast
+example, the key type of a dictionary is declared `independent(shareable) Key`. Whatever the
+capability the key is initially declared with the constrained type `shareable Key` must remain valid
+for it. In the case of `shareable` this specifically restricts a `const` key type from being upcast
 to an `id` key type. Just like with constrained types, it must always be possible for the capability
 to be upcast to the capability set, so only capability sets containing `id` can be used to constrain
 an independent parameter. It is important to remember that this constraint is *not* a constraint on
-which capabilities can be used like a regular generic parameter constraint.
+which capabilities can be used like a regular generic parameter constraint. That is why the syntax
+treats it as a parameter to the independence.
 
-**TODO:** The current syntax is confusing since it seems to imply that the parameter must have a
-shareable capability and that is not what it does. A alternate syntax is `independent(shareable) T`.
+**TODO:** A better syntax would still be good. This parameter like syntax seems to be the better
+compared to putting the capability set before or after the independent keyword, but it still isn't
+particularly obvious.
 
 ## Variance
 
