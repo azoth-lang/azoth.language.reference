@@ -46,6 +46,7 @@ new version. If something is missing, it may be documented in the [old version](
    * [Type Expressions](type-expressions.md)
    * [Pointer Types](pointer-types.md)
    * Generic Types
+   * [Type System](type-system.md)
 5. [Conversions](conversions.md)
 6. [Expressions](expressions.md)
    * [Expression Blocks](expression-blocks.md)
