@@ -17,7 +17,6 @@ Rules:
   the expression
 * Punctuation using colon ('`:`') is about types (except for loop labels)
   * The colon ('`:`') indicates that something is of the type or kind to the right of the colon
-  * The subtype operator (`<:`) indicates that one type is a subtype of another type
   * The one exception to this rule is that loop labels use colon `label: foreach ...`
 * A prefixed-dot (e.g. `.x`) accesses a member on the entity that is determined by the context
 * Backslash ('`\`') always escapes the thing it precedes

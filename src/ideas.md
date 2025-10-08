@@ -337,7 +337,7 @@ however let one modify generic parameters. Function aliases can be overloaded.
 
 ```azoth
 public fn alias example[T] = example[T, T](T, T)
-    where T <: Example;
+    where T: Example;
 ```
 
 ### Method Aliases
@@ -597,7 +597,7 @@ given type because the compiler knew exactly all the steps/operations needed.
 ### Inline Generic Constraints
 
 One could use the subtype operator to allow inline generic constraints. So instead of `class Foo[T]
-where T <: Bar` one could write `class F[T <: Bar]`. The drawback of this is what Rust noticed that
+where T: Bar` one could write `class F[T: Bar]`. The drawback of this is what Rust noticed that
 generic parameters can get really cluttered and confusing.
 
 ### Existential Types

@@ -75,7 +75,6 @@ A brief statement of the syntax for easy reference.
 | `not x`       | Logical Not                       |
 | `T1 \| T2`    | Sum Type                          |
 | `T1 & T2`     | Intersection Type                 |
-| `T1 <: T2`    | Subtype                           |
 
 † Can be combined with assignment (i.e. `+=`) \
 ‡ All ranges can be infinite on either or both sides as shown for inclusive ranges

@@ -126,7 +126,7 @@ public trait Default
 This same mechanism can be used to implement specialization. Assuming generics can only be overloaded on number of parameters then a `List[T]` could be specialized like so:
 
 ```azoth
-public class List[T] <: List[T]
+public class List[T]: List[T]
     where let T = bool
 {
     // special implementation

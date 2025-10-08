@@ -6,8 +6,8 @@ the same package may list it as their supertype or implemented type. This applie
 declarations.
 
 It should be noted that while a closed class cannot be directly subtyped, it can be indirectly
-subtyped. For example, given `published closed class A` and `published class B <: A` in a given
-package, another package can declare `class C <: B`. Thus `C` is a subtype of `A` even though it
+subtyped. For example, given `published closed class A` and `published class B: A` in a given
+package, another package can declare `class C: B`. Thus `C` is a subtype of `A` even though it
 does not directly subtype it. This is allowed because an exhaustive match is still possible on `A`
 by having a single `B` case that covers all subtypes of `B`.
 

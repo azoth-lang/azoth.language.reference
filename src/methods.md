@@ -46,7 +46,7 @@ public class B
   protected fn test(c: Cat) { ... }
 }
 
-public class C: B
+public class C inherits B
 {
   public fn example(a: Animal) -> int
     overrides protected test(Cat) -> void
@@ -66,7 +66,7 @@ public class B
   protected fn test(c: Cat) { ... }
 }
 
-public class C: B
+public class C inherits B
 {
   protected fn test(c: Cat) overrides
   { ... }

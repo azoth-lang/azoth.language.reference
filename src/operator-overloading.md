@@ -82,7 +82,7 @@ special handling.
 | `+` , `-` , `*` , `/`                  | The arithmetic operators can be overloaded                                   |
 | `+=` , `-=` , `*=` , `/=`              | The arithmetic assignment operators can be overloaded for greater efficiency |
 | `..` , `<..` , `..<` , `<..<`          | The range operators can each be overloaded independently                     |
-| `::` , `^.` , `<:` , `\|` , `&`        | These binary operators can't be overloaded                                   |
+| `::` , `^.` , `\|` , `&`        | These binary operators can't be overloaded                                   |
 | `as` , `as!` , `as?`                   | The conversion operators are not overloadable                                |
 | `==` , `=/=` , `<` , `>` , `<=` , `>=` | The comparison operators can be overloaded in pairs                          |
 | `and` , `or`, `?.`, `??` , `.`         | Support for overloading these operators is planned for future releases       |
@@ -93,7 +93,7 @@ special handling.
 These types are used for the examples in the following sections.
 
 ```azoth
-public copy struct complex
+public copy value complex
 {
     public let real: float;
     public let imaginary: float;
@@ -101,7 +101,7 @@ public copy struct complex
     public init(.real, .imaginary) { }
 }
 
-public copy struct fuzzy_bool
+public copy value fuzzy_bool
 {
     public let value: float;
 
@@ -142,7 +142,7 @@ pointers. The dereference operator is a prefix operator, so its declaration has 
 placeholder after the operator.
 
 ```azoth
-public move value unique_pointer[T]
+public drop value unique_pointer[T]
     where T: value
 {
     private let ptr: @T;
@@ -222,20 +222,16 @@ string literals respectively. As described in the literals section, the resultin
 around the underscore between the delimiters.
 
 ```azoth
-public struct Example
+public const value example
 {
     public let value: string;
 
-    public init(.value) { }
+    public init(self, .value) { }
 
-    public implicit operator '_'(value: string) -> const Example
-    {
-        return Example(value);
-    }
+    public implicit operator '_'(value: string) -> const example
+      => example(value);
 
-    public implicit operator "_"(count: size, bytes: @byte) -> const Example
-    {
-        return Example(count, bytes);
-    }
+    public implicit operator "_"(count: size, bytes: @byte) -> const example
+      => example(count, bytes);
 }
 ```

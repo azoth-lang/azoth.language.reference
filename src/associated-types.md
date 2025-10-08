@@ -7,8 +7,8 @@ therefore "virtual". Abstract types can have abstract associated types. In an ab
 `public abstract type alias T;`.
 
 Associated types can have type constraints placed on them with `where`. For consistency, one cannot
-just declare supertypes on them (i.e. `public type T <: Base` must be written `public type T where T
-<: Base`).
+just declare supertypes on them (i.e. `public type T: Base` must be written `public type T where T:
+Base`).
 
 By default, associated types are invariant type variables. Therefore they cannot be changed in
 subtypes after they have been assigned. However, they can be marked `in` or `out` to make them

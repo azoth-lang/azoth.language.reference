@@ -57,7 +57,7 @@ to adapt the yield expressions to the type.
 /// of the generator function (i.e. the type in the `throws` clause).
 /// For non-generic return types, there is a builder overload without the `T` type parameter.
 published trait Generator_Method_Builder[State_Machine, T, Throws]
-    where State_Machine : struct <: Generator_State_Machine[Yield_Input, Yield_Input_Throws, Yield_Output, Yield_Output_Throws]
+    where State_Machine: struct, Generator_State_Machine[Yield_Input, Yield_Input_Throws, Yield_Output, Yield_Output_Throws]
 {
     /// The type that the yield expression returns from the caller
     published type Yield_Input; // e.g. `void` for iterators

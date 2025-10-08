@@ -5,7 +5,7 @@ initializer still has two phases and enforces definite assignment of fields befo
 can be used.
 
 ```azoth
-public move struct Example
+public drop struct Example
 {
     public init(mut self)
     {

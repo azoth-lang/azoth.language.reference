@@ -28,8 +28,8 @@ declaration. In a case declaration, the containing class name is implicit. Any r
 listed after the case name. Parameters to the base initializer are separated from the name with a
 colon and listed in parenthesis. Traits and members can still be optionally declared or omitted the
 same as an object declaration. When the case generates a class, it inherit from the containing class
-(e.g. `:` rather than `<:`). To override this, list the containing type as a supertype in the traits
-list.
+(e.g. `inherits` rather than `:`). To override this, list the containing type as a supertype in the
+traits list.
 
 ```azoth
 public class Containing
@@ -41,7 +41,7 @@ public class Containing
     case Case2(foo: int): (62);
 
     // A class case that implements the trait
-    case Case2 <: Containing;
+    case Case2: Containing;
 }
 ```
 
@@ -71,16 +71,16 @@ from the name with a colon and listed in parenthesis. Traits and members can sti
 declared or omitted the same as a struct declaration.
 
 ```azoth
-public struct Containing
+public closed struct Containing
 {
     // Instead of this
-    public struct Value1: Containing <: Trait
+    public struct Value1 inherits Containing : Trait
     {
         public init(.foo) { base.init(42); }
     }
 
     // Shorten it to this
-    case Value1: (42) <: Trait
+    case Value1: (42) : Trait
     {
         // members here
     }

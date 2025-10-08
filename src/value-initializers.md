@@ -8,7 +8,7 @@ Like with class initializers, they have a self parameter. However, this paramete
 and then the `self` value is returned by value.
 
 ```azoth
-public const value Example
+public const value example
 {
     public init(self)
     {
@@ -19,8 +19,8 @@ public const value Example
     }
 }
 
-let x = Example();
-let y = Example.named();
+let x = example();
+let y = example.named();
 ```
 
 ## Default Initializers

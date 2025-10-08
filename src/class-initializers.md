@@ -59,7 +59,7 @@ least one type parameter specified. That is, the return type may not be the type
 struct the initializer is declared in, nor a subtype or unrelated type.
 
 ```azoth
-public class Example: Base_Example
+public class Example inherits Base_Example
 {
     public init(mut self) -> mut Base_Example
     {

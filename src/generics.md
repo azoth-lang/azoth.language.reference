@@ -64,5 +64,5 @@ where T: drop   // T must be a drop type
 // Unsure about these
 where T: reference // T must be a reference type including classes, functions, struct reference etc.
 
-where T <: S // subtype
+where T: S // subtype
 ```

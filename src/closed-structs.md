@@ -25,5 +25,5 @@ public closed struct Game_Entity
 }
 
 // Struct declared outside of the closed struct
-public value Wall: { /* ... */ }
+public struct Wall: { /* ... */ }
 ```

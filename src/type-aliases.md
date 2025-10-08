@@ -10,7 +10,7 @@ does not create a separate type only a synonym for an existing type.
 
 ```azoth
 public type alias Promise_Result[T] = Promise[Result[T]]
-    where T <: Example;
+    where T: Example;
 ```
 
 Private aliases are useful for creating local shorthands for long types. However, an alias can be

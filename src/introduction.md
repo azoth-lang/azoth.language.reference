@@ -121,17 +121,17 @@ For more information see [Structured Error Handling](structured-errors.md).
 In many languages there is a distinction between an interface or trait that has no implementation
 and a class which can have an implementation. While Azoth does have both classes and traits, classes
 also define an implicit trait. Any class can implement the implicitly defined trait of another
-class. In a class declaration, the base class appears after the first colon and classes whose trait
-is being implemented appear after the subtype operator `<:` along with any traits being implemented.
+class. In a class declaration, the base class appears after the `inherits` keyword and classes whose
+trait is being implemented appear after the colon along with any traits being implemented.
 
 ```azoth
-public class My_Class: Base_Class <: Some_Class, Some_Trait
+public class My_Class inherits Base_Class : Some_Class, Some_Trait
 {
 }
 ```
 
 This simplifies the type hierarchy and eliminates the practice often needed in C# and Java of
-defining a matching interface for many classes. The feature also necessitates several of Azoth's
+defining a matching interface for many classes. This feature also necessitates several of Azoth's
 other unique features. Private members are accessible only from the same instance, not by other
 instances of the same class. Public fields can be overridden by properties in subclasses, so there
 is no need to declare properties for every field.

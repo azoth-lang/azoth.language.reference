@@ -9,7 +9,7 @@ types. That is why the `class`, `trait`, `value`, or `struct` keyword is omitted
 do things that aren't possible with regular declarations.
 
 ```azoth
-public extend Class <: Trait
+public extend Class: Trait
 {
 }
 ```
@@ -26,10 +26,10 @@ specific reference capabilities etc.
 
 ```azoth
 // All constant references can be shared between threads.
-public extend const Any <: Sendable { }
+public extend const Any: Sendable { }
 
 // All references are nonzero
-public extend[T] T <: Nonzero
+public extend[T] T: Nonzero
     where T: reference { }
 ```
 

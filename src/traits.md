@@ -6,7 +6,7 @@ multiple traits by listing them in the base type list. Traits can be subtypes of
 members that do not provide implementations are not marked "`abstract`".
 
 ```azoth
-public trait Example <: SomeClass
+public trait Example: SomeClass
 {
 }
 ```
