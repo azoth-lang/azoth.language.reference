@@ -30,6 +30,7 @@ Contents:
   * [Constraining Independent Generic Parameters](#constraining-independent-generic-parameters)
 * [Composing Capabilities](#composing-capabilities)
   * [Viewpoint Types](#viewpoint-types)
+    * [Capability Composition](#capability-composition)
   * [Constrained Types](#constrained-types)
 * [Sharing Sets](#sharing-sets)
 
@@ -269,6 +270,25 @@ For a generic type `T`, the type `self.T` gives the type that results from acces
 `T` with whatever capability it has from the self instance with whatever capability it has. Methods
 with a specific capability for `self` do not allow this. Only methods with `self` constrained to a
 capability set allow such types.
+
+#### Capability Composition
+
+* `id._` is disallowed[^1]
+* `_.id -> id`
+* `const.mut -> const`
+* `const.read -> const`
+* `mut.const -> const`
+* `read.const -> const`
+* `const.const -> const`
+* `read.mut -> read`
+* `mut.read -> read`
+* `read.read -> read`
+* `mut.mut -> mut`
+
+[^1]: While this is true when composing types with the `.` operator, a field declared with `let` and
+    `const` can be accessed from an `id` value and produce `const`. Since such a field always
+    produces `const` when accessed regardless of the viewpoint, this doesn't need viewpoint types to
+    work with it.
 
 ### Constrained Types
 

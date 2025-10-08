@@ -99,7 +99,7 @@ slice is an interior reference into the middle of an array.
 
 Due to their unique nature, hybrid types impose several limitations. Hybrid types support the
 special capability `own`. When an `iso` hybrid type value is aliased, it will become `own`. The
-compiler will ensure that owned hybrid type values hav isolation recovered before the value goes out
+compiler will ensure that owned hybrid type values have isolation recovered before the value goes out
 of scope. This ensures that no hybrid type reference can outlive the value it references on the
 stack since that reference would prevent recovery of isolation. To ensure the safety of references
 to the stack, for a hybrid type `H`, the type `id H` breaks isolation and causes sharing between
@@ -108,6 +108,13 @@ reference to it. For that reason it is also not possible to drop it when there i
 to it. It might be thought that `const` could simply be disallowed for hybrid types. However, since
 `const` is transitive and a hybrid type could be a field in an object, it is always possible that
 the object becomes `const` and the field is therefore `const`.
+
+**TODO:** it might be possible to outlaw `id H` though since combining capabilities doesn't produce
+it. However, that might cause problems for generics where something like `shareable T` could result
+in `id T`. Still if it were possible to outlaw and if `const H` could only come from a containing
+object being frozen, then it might be possible to say that `id` and `const` still don't have to be
+tracked for hybrid types since `id` doesn't get created and `const` could only refer to a value on
+the heap. (One would need to outlaw moving a `const H` value from the heap to the stack.)
 
 Like reference types, hybrid types support comparison for reference equality (i.e. `@==`) and the
 `identity_hash()` method. However, if a hybrid type value is moved, then the newly moved value will

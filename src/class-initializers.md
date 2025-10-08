@@ -79,6 +79,18 @@ a read only reference to self. The reason for this is that when initializing fro
 must be possible to store references to constant data into fields of the instance that would be
 mutable if the initializer were `mut self`.
 
+**TODO:** if the `self` reference is `read`, that wouldn't technically mean that there couldn't be a
+mutable reference to it elsewhere would would make assigning read only reference into it unsafe.
+Perhaps the parameter actually needs to be `const self`? That would also enforce that one actually
+needed to initialize the fields to `const` values. However, that would also seem to imply there can
+be zero mutation after the call to the base initializer. Would there also be cases where one wanted
+to construct and assign fields with mutable values that would only be frozen when the constructor
+was complete?
+
+**TODO:** can a `mut self` constructor of a `const class` use `self` after calling the base
+initializer to pass a mutable reference to such a class to something? That seems very strange and
+like it violates the spirit of every instance being read only.
+
 The initializer `self` parameter has special reference capabilities. As described in the sections
 below, it doesn't allow passing a non-fully initialized `self` to another method or function.
 Additionally, a read only self parameter still treats `var` fields as assignable during the first
