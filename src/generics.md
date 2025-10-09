@@ -55,8 +55,10 @@ that require those limitations. However, it does not require that the type be th
 **TODO:** a better syntax for reference constraint than `T: trait`. All classes also define traits
 so `trait` makes sense. However, function references are also reference types.
 
+**TODO:** a constraint that only blocks `own` and `iso` structs while still allowing references and values
+
 ```azoth
-where T: class  // T must be a class type declared with class or trait
+where T: trait  // T must be a trait type declared with class or trait
 where T: value  // T must be a value type
 where T: struct // T must be a struct type
 where T: drop   // T must be a drop type
@@ -64,5 +66,5 @@ where T: drop   // T must be a drop type
 // Unsure about these
 where T: reference // T must be a reference type including classes, functions, struct reference etc.
 
-where T: S // subtype
+where T: S // conforms to or subtype
 ```
