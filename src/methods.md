@@ -93,3 +93,23 @@ that is desired, a lambda function must be used. However, they do have a `self` 
 thereby access the current instance. They are called like other methods using either explicit or
 implicit self. It is a non-fatal error for a nested method to occur before the return statement of
 the enclosing method. Nested methods must be declared private.
+
+## Required Methods
+
+Methods can be marked `required`. This means that when inheriting from the class, they must be
+overridden. This allows such a method with return type `Self` to return a concrete type `Foo` that
+is a subtype of the declaring class without needing to worry that it isn't a subtype of any
+subclasses. Instead, those subclasses will have to override the method and provide an
+implementation. This can also be used on methods not returning `Self` to provide a default or
+partial implementation the subclasses must opt into or call.
+
+* A `required` method cannot be `abstract`
+* In a subclass a `required` method must be overridden. The override does not itself need to be
+  `required`.
+* A `sealed` class cannot have `required` methods.
+* A `required` method implementation returning a `Self` type, treats the return type as a synonym
+  for the containing type name. Note though that for the `Instance` type it makes the associated
+  type also equal to the containing type rather than an existential type. Thus it effectively
+  restricts the return type to be exactly the containing type.
+* When calling a base required method from the overriding method, the return type of the base method
+  is treated as the base type.
