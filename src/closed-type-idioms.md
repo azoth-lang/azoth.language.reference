@@ -44,7 +44,7 @@ could be improved using units of measure.)
 /// universal gravitational constant (m^3/kg/s)
 public const G: float64 = 6.67300E-11;
 
-public closed const class Planet <: Celestial_Body
+public closed const class Planet: Celestial_Body
 {
     case Mercury: (3.303e+23, 2.4397e6);
     case Venus:   (4.869e+24, 6.0518e6);

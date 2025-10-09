@@ -4,7 +4,7 @@ Initializers are class and struct members that provide the actions for initializ
 are declared using initializer declarations.
 
 Initializers may be either named or unnamed. An unnamed initializer is identified only by the type
-it constructs and the types of its parameters. A named initializer also has a name, similar to a
+it initializes and the types of its parameters. A named initializer also has a name, similar to a
 method name. Just like methods, named initializers may be overloaded based on the number and type of
 parameters.
 
@@ -69,6 +69,8 @@ public class Example inherits Base_Example
 
 It is illegal to simply repeat the class or struct name or to use a subtype or unrelated type.
 
+**TODO:** currently, the return type can be `iso Self` if the parameters allow it.
+
 ## Self Parameter
 
 Initializers, like methods, have a self parameter. For classes, this is typically `mut self`
@@ -80,7 +82,7 @@ must be possible to store references to constant data into fields of the instanc
 mutable if the initializer were `mut self`.
 
 **TODO:** if the `self` reference is `read`, that wouldn't technically mean that there couldn't be a
-mutable reference to it elsewhere would would make assigning read only reference into it unsafe.
+mutable reference to it elsewhere that would make assigning read only reference into it unsafe.
 Perhaps the parameter actually needs to be `const self`? That would also enforce that one actually
 needed to initialize the fields to `const` values. However, that would also seem to imply there can
 be zero mutation after the call to the base initializer. Would there also be cases where one wanted

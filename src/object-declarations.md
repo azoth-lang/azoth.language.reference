@@ -24,8 +24,10 @@ An object declaration is the same as a class declaration except:
   the base class name. If this is done, that is the object's no-arg initializer. (This is consistent
   with the object expression syntax.)
 
+**TODO:** should there be a way to have object declarations that don't create types to act as true static classes?
+
 ```azoth
-public object Void_Type: Type
+public object Void_Type inherits Type
 {
     public get type_parameters(self) -> const List[Type]
         => #[];

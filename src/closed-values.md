@@ -28,7 +28,7 @@ public const closed value release_stage
 }
 
 // Object declared outside of struct
-public object PreAlpha: release_stage(true);
+public object PreAlpha inherits release_stage(true);
 
 public const closed value token
 {
