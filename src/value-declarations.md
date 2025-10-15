@@ -41,7 +41,7 @@ composition of a named, ordered sequence of other types. They work just like rec
 record value is declared with a parameter list after the struct name (e.g. `move struct
 Example(foo: int, bar: string)`). These parameters then become fields of the type. Declaring a
 record value implicitly declares three things in the value. Additional members can be declared in
-additional to the implicitly declared ones.
+addition to the implicitly declared ones.
 
 First, each of the parameters is declared as a field of the struct. For this reason, the parameters
 may not be `lent`. A value type cannot have `var` fields so the parameters cannot be declared `var`.

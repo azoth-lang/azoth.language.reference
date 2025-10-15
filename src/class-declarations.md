@@ -27,7 +27,7 @@ Record classes provide a shorthand for declaring record types. That is types tha
 composition of a named, ordered sequence of other types. A record class is declared with a parameter
 list after the class name (e.g. `class Example(foo: int, bar: string)`). These parameters then
 become fields of the type. Declaring a record class implicitly declares three things in the class.
-Additional members can be declared in additional to the implicitly declared ones.
+Additional members can be declared in addition to the implicitly declared ones.
 
 First, each of the parameters is declared as a field of the class. For this reason, the parameters
 may not be `lent`. A parameter may be declared `var` in which case the corresponding field will be

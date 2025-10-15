@@ -12,7 +12,7 @@ Record structs provide a shorthand for declaring record types. That is types tha
 composition of a named, ordered sequence of other types. They work just like record classes. A
 record struct is declared with a parameter list after the struct name (e.g. `struct Example(foo:
 int, bar: string)`). These parameters then become fields of the type. Declaring a record struct
-implicitly declares three things in the struct. Additional members can be declared in additional to
+implicitly declares three things in the struct. Additional members can be declared in addition to
 the implicitly declared ones.
 
 First, each of the parameters is declared as a field of the struct. For this reason, the parameters
