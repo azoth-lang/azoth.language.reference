@@ -28,6 +28,7 @@ How to overload short-circuiting operators and other advanced operators.
   trait? Likewise can an initializer override an initializer in a trait? This would would avoid the
   need to create static factory methods just to allow generics to construct types implementing a
   trait.
+* What is the return type of an initializer and is implicit recovery allowed after one?
 
 Idea:
 
@@ -39,7 +40,15 @@ Idea:
 How do types like lockless collections declare that they are mutable but still safe to send between
 threads?
 
-## Declaring Initializers for Initializer Expressions
+## Function Types
 
-How should a type declare that it supports a particular initializer expression. Is this a special
-initializer syntax or is it some kind of operator overload.
+How exactly do function types work and how does that interact with generic constraints on
+capabilities?
+
+## Lent Generic Arguments
+
+How can one make something generic over whether an argument is lent?
+
+## Explicit Boxing
+
+Should explicit boxing conversions be allowed?
