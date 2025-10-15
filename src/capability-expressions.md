@@ -6,6 +6,8 @@ However, these also find use with drop types.
 ```grammar
 capability_expression
     : move_expression
+    | move_assign_expression
+    | move_own_expression
     | freeze_expression
     ;
 ```
@@ -29,6 +31,31 @@ compiler issues fatal errors for attempts to access a potentially moved value ty
 
 For fields, the field must be an optional type and have a mutable binding. The value will be moved
 from the field leaving the value `none` in the field.
+
+## Move Assignment Expression
+
+Moving a value out of a field leaves the default value. However, if a type doesn't have a default
+value or the desired value isn't the default value, then a move assign expression can be used. This
+expression allows for moving a value out of a field and swapping in another value to replace it. Of
+course, that other value must be `iso` of the correct type.
+
+```grammar
+move_assign_expression
+    | "move" embedded_expression "." identifier = expression
+    ;
+```
+
+## Move Ownership Expression
+
+For object drop types it is possible to transfer ownership without recovering isolation. This is
+done with the move ownership expression. Note that ownership cannot be transferred out of a field
+this way.
+
+```grammar
+move_own_expression
+    : "move own" identifier
+    ;
+```
 
 ## Freeze Expression
 

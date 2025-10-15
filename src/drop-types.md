@@ -3,9 +3,9 @@
 Some types are `drop` types. A drop type imposes limitations but also enables powerful
 functionality. Drop types are how Azoth manages resources besides memory. A drop type ensures that
 the compiler is able to determine a point where every instance of the type goes out of scope. At
-that point, the the drop type's drop method is called allowing for the release of non-memory
-resources. Drop types can be fields of other drop types or be variable and parameter types. A drop
-type is not allowed to be a field of a non-drop type.
+that point, the drop type's drop method is called allowing for the release of non-memory resources.
+Drop types can be fields of other drop types or be variable and parameter types. A drop type is not
+allowed to be a field of a non-drop type.
 
 **TODO:** explain moving and recovery of isolation.
 
@@ -18,12 +18,12 @@ Drop types support the additional special capability `own` which indicates what 
 value. For local variable and parameter bindings, when the owning binding goes out of scope, that
 value is dropped. To support this, the compiler inserts an implicit move at the point the variable
 goes out of scope. This means that the compiler must be able to recover isolation of the value at
-this point. That ensures that no references to a dropped value with persist after it is dropped
+this point. That ensures that no references to a dropped value will persist after it is dropped
 (other than `id` references which are safe).
 
 If one does not want a value to be dropped when it goes out of scope, then one must move ownership
-with the `move` keyword. For example, this can be used to return ownership of a drop type to the
-caller of a function.
+with a `move` or `move own` expression. For example, this can be used to return ownership of a drop
+type to the caller of a function.
 
 When a drop type is a field of another drop type, there is no point at which the field goes out of
 scope. Instead, there will be a chain of drop types from some drop type that is on the stack to this

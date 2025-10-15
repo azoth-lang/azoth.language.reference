@@ -68,3 +68,24 @@ where T: reference // T must be a reference type including classes, functions, s
 
 where T: S // conforms to or subtype
 ```
+
+### Constraints Allowing Optional
+
+```azoth
+where T: object? // T must be a possibly optional object type declared with class or trait
+where T: value?  // T must be a possibly optional value type
+where T: struct? // T must be a possibly optional struct type
+
+// Unsure about these
+where T: reference // T must be a reference type including classes, functions, struct reference etc.
+
+where T: S? // conforms to or subtype, possibly optional
+```
+
+### Disallow Constraints
+
+```azoth
+where T: not object
+where T: not value
+where T: not struct
+```

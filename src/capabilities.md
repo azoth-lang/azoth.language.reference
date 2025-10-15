@@ -10,6 +10,7 @@ Contents:
   * [Resource Management](#resource-management)
 * [Basic Capabilities](#basic-capabilities)
   * [Default Capabilities](#default-capabilities)
+  * [Identity Capability](#identity-capability)
 * [Advanced Capabilities](#advanced-capabilities)
   * [Isolated Capability](#isolated-capability)
   * [Owned Capability](#owned-capability)
@@ -70,35 +71,63 @@ value. They are:
 The default capability of a type depends on whether the type is declared `const`. Types declared
 `const` default to `const` capability. All other types default to `read` capability.
 
+### Identity Capability
+
+For object and value types, the `id` capability allows accessing `let` fields with `const` types.
+This is safe because accessing them does not allow the observation of any mutation on the instance.
+
+For object types, the `id` capability also allows calling `o.identity_hash()` and using `@==` and
+`@=/=` to compare reference identity.
+
+For struct types, it is possible for an `id` reference to refer to a struct that has gone out of
+scope and is no longer on the stack. Thus it is not safe to access `let` fields and so that is not
+allowed. Additionally, the infrastructure that enables object types to have a stable
+`identity_hash()` even as the GC relocates objects is not available so calling it is not allowed.
+Once can still use `@==` and `@=/=` to compare them for reference equality. However, it is
+theoretically possible for a struct to be allocated in the same location on the static as a struct
+that previously went out of scope. In that case, the two `id` references will compare as `@==` true.
+
 ## Advanced Capabilities
 
 ### Isolated Capability
 
-An `iso` capability indicated an isolated reference or value. This means that this is the only value
+An `iso` capability indicates an isolated reference or value. This means that this is the only value
 that can access the subgraph of objects reachable from this value. There is no other reference into
 this subgraph. Note that objects in the subgraph can contain `const` and `id` references out to
-other values. Those do not break the isolation boundary.
+other values. Those do not break the isolation boundary. An `iso` type is an affine type meaning
+that the value can be used at most once.
 
-Isolation is a transient property. A variable or field with an isolated capability will start
+Isolated fields maintain the isolation of the referenced value. Because of this, it is not possible
+to get an alias to them. Instead one must move the value out of the field to operate on it. Because
+of this, `let` fields that are `iso` cannot be manipulated. There is no way to move the value out of
+the field. If the type supports a default initializer (`operator init`) then one can `move .field`
+to move the value out of the field and the default value will be left behind. For optional types,
+`none` is the default value so one can move out of optional fields leaving behind `none`. If the
+type doesn't have a default initializer or another value is desired, one can use an assignment move
+expression to move the value out of the field while simultaneously providing a new value (e.g. `let
+f = move .field = new Foo();`).
+
+Since `iso` types are affine and can be used only once, flow typing is used to allow for working
+with local variables and parameters that are `iso`. Such a local variable or parameter will start
 isolated, however the moment that it is accessed, a temporary alias will be created and the variable
-or field will no longer be isolated. Flow typing means that from that point forward in the code, the
-variable or field effectively has the capability `own` or `mut` if the type is not capable of being
-`own`. This means that all isolated values effectively allow mutation.
+will no longer be isolated. Flow typing means that from that point forward in the code, the variable
+has the capability `own` or `mut` if the type is not capable of being `own`. This means that all
+isolated values effectively allow mutation.
 
-Since isolation is a transient property, in order to pass an isolated value, one must either have an
+Since isolation is a affine type, in order to pass an isolated value, one must either have an
 isolated temporary, or must recover isolation. Consider a function `fn take(e: iso Example)`. Given
-another function `fn produce() -> iso Example`, then `take(produce)` is valid because the temporary
-reference to `Example` is `iso` and is consumed by passing it to `take()`. Here no special operation
-is needed. However, if one declares a variable `let v: iso Example = ...` then calling `take()` on
-`v` will pose a problem because the moment `v` is referenced, there will be two aliases to the value
-and it will no longer be isolated. In order to support this, one must *recover* isolation. This is
-done with the `move` keyword as `take(move v)`. The expression `move v` will recover isolation,
-change the type of `v` and evaluate to an isolated value. Isolation can only be recovered if the
-compiler can prove that there can be no other references to the value other than local variables
-whose type can be changed to ensure isolation. The type of the local variable changes depending on
-what kind of type it is. If `Example` is a reference or value type, it changes to `id Example`. If
-`Example` is a struct and the variable has the capability `iso` or `own` then the variable type
-changes to `void` and accessing it produces an error for a "use of a moved value".
+another function `fn produce() -> iso Example`, then `take(produce())` is valid because the
+temporary reference to `Example` is `iso` and is consumed by passing it to `take()`. Here no special
+operation is needed. However, if one declares a variable `let v: iso Example = ...` then calling
+`take()` on `v` will pose a problem because the moment `v` is referenced, there will be two aliases
+to the value and it will no longer be isolated. In order to support this, one must *recover*
+isolation. This is done with the `move` keyword as `take(move v)`. The expression `move v` will
+recover isolation, change the type of `v` and evaluate to an isolated value. Isolation can only be
+recovered if the compiler can prove that there can be no other references to the value other than
+local variables whose type can be changed to ensure isolation. The type of the local variable
+changes depending on what kind of type it is. If `Example` is a reference or value type, it changes
+to `id Example`. If `Example` is a struct and the variable has the capability `iso` or `own` then
+the variable type changes to `void` and accessing it produces an error for a "use of a moved value".
 
 The move operation can be implicit when it is necessary on the self parameter of a method.
 Otherwise, it must always be explicit.
@@ -106,20 +135,22 @@ Otherwise, it must always be explicit.
 ### Owned Capability
 
 Some types support an additional capability. Drop types and struct types support the owned
-capability. The `own` capability indicates that this value is no longer isolated, but the variable
+capability. The `own` capability indicates that this value is may not be isolated, but the variable
 binding still has ownership of the value. For drop types, this will be used to ensure that the value
 is dropped before it goes out of scope. For struct types, this is used to ensure that references to
-the struct do not outlive the binding where the struct value is stored. For types that support the
-owned capability, an isolated reference is promoted to `own` when an alias is made.
+the struct do not outlive the binding where the struct value is stored. For structs, it also
+indicates that the struct value is stored inline with the binding (for structs, other capabilities
+like `mut` create a reference to a struct instead). For types that support the owned capability, an
+isolated reference is promoted to `own` when an alias is made.
 
 Changing which binding owns a value is done with the `move` keyword. Moving a struct value requires
 recovering isolation just like `move` does for types that cannot be owned. For reference types which
 can be owned, it is possible to pass ownership even though isolation cannot be recovered. In this
-case, the two operations are distinguished by specifying what capability is being moved (e.g. `move
-iso v` or `move own v`). In that case, the reference left behind remains `mut`.
+case, the moving of only ownership is distinguished by using `move own` instead of just `move`. When
+moving ownership only, the reference left behind remains `mut`.
 
 **TODO:** it would be good if the move type could be inferred. If that is possible, specify the
-rules and remove `move iso` vs `move own`.
+rules and remove `move own`.
 
 ### Temporary Capabilities
 
@@ -136,7 +167,9 @@ There are two special init capabilities. They are init `mut` and init read. Neit
 explicitly declared in Azoth. The self parameter of initializers has one of these capabilities
 depending on whether it is declared `mut` or read. The `self` parameter has this capability until
 the call to the base initializer completes. The init capability allows for initializing fields but
-it also prevents the value from being passed to other methods before it is fully initialized.
+it also prevents the value from being passed to other methods before it is fully initialized. Once
+the base initializer is called, the `self` parameter has the declared capability without `init`
+(i.e. either `mut` or `read`).
 
 ## Const Types
 
@@ -218,13 +251,15 @@ for an associated type `A` it must still be used with capabilities (e.g. `mut A`
 Capabilities are grouped into overlapping capability sets which are used to restrict which
 capabilities can occur in certain places. The capability sets are:
 
-* `readable`: able to be read from. (`own`, `mut`, `const`, `temp const`, `read`)
+* `readable`: able to be read from *without conversion*. (`mut`, `const`, `temp const`, `read`)
 * `shareable`: able to be safely shared between threads. (`const`, `id`)
 * `aliasable`: able to be aliased by a value with the same capability. (`mut`, `const`, `temp const`, `read`, `id`)
 * `sendable`: able to be sent between threads. (`iso`, `const`, `id`)
 * `readonly`: able to be read from but not able to mutate. (`const`, `temp const`, `read`, `id`)
 * `temporary`: a temporary capability (`temp iso`, `temp const`)
 * `any`: any capability (`iso`, `temp iso`, `own`, `mut`, `const`, `temp const`, `read`, `id`)
+
+**TODO:** maybe `temporary` should be removed. It doesn't seem useful.
 
 ### Constraining Generic Parameters
 
@@ -247,9 +282,9 @@ use in some scenarios. To support these use cases an independent generic paramet
 variation constrained to prevent breaking constrained types (see [Constrained
 Types](#constrained-types)). The parameter is still allowed to start with any capability. This just
 restricts how that capability can be changed by flow typing. For example, the key type of a
-dictionary is declared `sendable independent Key`. Whatever the capability the key is initially
-declared with the constrained type `sendable Key` must remain valid for it. In the case of
-`sendable` this specifically restricts a `const` key type from being upcast to an `id` key type.
+dictionary is declared `independent(shareable) Key`. Whatever the capability the key is initially
+declared with the constrained type `shareable Key` must remain valid for it. In the case of
+`shareable` this specifically restricts a `const` key type from being upcast to an `id` key type.
 Just like with constrained types, it must always be possible for the capability to be upcast to the
 capability set, so only capability sets containing `id` can be used to constrain an independent
 parameter. It is important to remember that this constraint is *not* a constraint on which
@@ -289,6 +324,9 @@ capability set allow such types.
     `const` can be accessed from an `id` value and produce `const`. Since such a field always
     produces `const` when accessed regardless of the viewpoint, this doesn't need viewpoint types to
     work with it.
+
+**TODO:** are compositions involving `iso` and `own` needed? Midori didn't have them because it
+didn't allow `iso` as a generic argument.
 
 ### Constrained Types
 

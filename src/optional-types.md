@@ -1,7 +1,7 @@
 # Optional Types
 
 Optional types can have all values of an underlying type plus an additional value "`none`". The
-underlying type can be any type including value or reference types.
+underlying type can be any type including object, value or struct types.
 
 ```grammar
 optional_type
@@ -11,7 +11,7 @@ optional_type
 
 ## Subtyping and Conversions
 
-For all reference types `T` and `U` if `T <: U` then `T <: T? <: U?`. Given an optional type `X?`
+For all object types `T` and `U` if `T <: U` then `T <: T? <: U?`. Given an optional type `X?`
 there is an implicit conversion to further nested types `X??`, `X???`, and so on. For value and
 hybrid types `V` there is an implicit conversion from `V` to `V?`. If there is an implicit or
 explicit conversion from `V` to `W` then there is a corresponding lifted conversion from `V?` to
@@ -61,6 +61,9 @@ side is evaluated and if it is `none` then the right-hand side is evaluated and 
 left-hand side. For nested optional types, the coalescing operator evaluates through multiple
 layers. Thus for a variable `x1: X??` and expression `x2: X` the expression `x1 ?? x2` has the type
 `X` and evaluates to the left-hand side if `x1` is not `none` and to the right-hand side otherwise.
+
+**TODO:** there needs to be a way to evaluate only one layer. Perhaps `??` is one layer and `??*` or
+`???` is multiple.
 
 ## Conditional Access
 
@@ -128,17 +131,30 @@ example, it is still the case that `true or x` will not evaluate `x`, but `none 
 
 ## Conditioning on `bool?`
 
-The `if` and `while` expressions both have a condition which is normally a `bool`. However, they
-actually operate on the `operator true`. This operator is lifted to optional types so that `none`
-has the value false. Thus, when conditioning on `bool?`, the value `true` is the only true value.
-This is what distinguishes the `bool?` logic as Kleene logic instead of Priest logic. That is a
-value of `none` will cause the `else` to execute and a `while` to exit. The `true` operator is
-lifted to multi-layer optionals.
+The `if` and `while` expressions both have a condition which is a `bool` or `bool?`. If the
+condition evaluates to `true` then the body is evaluated. `if`/`else` expressions only accept
+`bool`. This is because the value `true` is the only true value. This is what distinguishes the
+`bool?` logic as Kleene logic instead of Priest logic. That is a value of `none` a `while` to exit.
+Multi-layer conditionals like `bool??` cannot be used as a condition and must be transformed to
+`bool` or `bool?`.
 
-## Optional Types Precedence
+## Optional Type Capabilities
 
-The optional type a const value type with an independent parameter. This means that `mut T?` must
-mean `(mut T)?`.
+Optional types are a wrapper for a bare type that exposes the capability of the underlying type. Thus `own T?` is logically `own (T?)` and can be used as a generic argument where an `own` type is expected.
+
+## Optional Types and Generics
+
+By default, the constraints `where T: object`, `where T: value`, and `where T: struct` do not allow
+optional types. To allow optional types use `where T: object?`, `where T: value?`, and `where T:
+struct?` to allow optionals of the various kinds. Likewise, `where T: Trait` does not allow optional
+types unless there is already a constraint that allows optional types. To allow optionals, use
+`where T: Trait?`.
+
+Note that `where T: drop` does permit optional types since the drop operation will automatically
+handle optional types.
+
+If optional types are allowed, then multi-layer optional types are allowed and automatically
+unwrapped through multiple layers when needed.
 
 ## Optional Type Implementation
 

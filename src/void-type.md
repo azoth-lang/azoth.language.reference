@@ -26,4 +26,5 @@ Explicitly declaring a function as returning `void` is a non-fatal error.
 The `void` type is not a supertype or subtype of any other type except for `never` which is a
 subtype of all types including `void`. However, there is an implicit conversion from any type to
 `void`. This implicit conversion allows one to explicitly override a `void` returning method with
-one that returns a value.
+one that returns a value. Additionally, `void` can be used as a generic argument for an object,
+value, or struct type. Thus it is in all three type categories.

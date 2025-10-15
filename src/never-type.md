@@ -23,3 +23,5 @@ type "`never?`".
 
 Finally, `never` can be useful as the subtype of all types. For example, an immutable empty list can
 have the type `List[never]` so that it is a subtype of all other list types.
+
+**TODO:** should `nothing` be an alias for `never`?

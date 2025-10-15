@@ -2,10 +2,6 @@
 
 This section documents some open questions in the design of Azoth.
 
-## User Defined Conversion Syntax
-
-The syntax for declaring user defined conversions as not be specified.
-
 ## Java-style Inner Classes
 
 In Java, an inner class as an implicit reference to the outer class. In C# that isn't needed,
