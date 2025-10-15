@@ -16,38 +16,41 @@ values are bracketed with. The four types of initializer expressions are:
 
 **TODO:** syntax for dictionary is still not certain.
 
-## Initialization
+## Initialization Operators
 
-Initializer expressions invoke special initializers whose names mirror the syntax. Their arguments
-can be one of a number of forms.
+Initializer expressions invoke special initialization operators whose names mirror the syntax. Their
+arguments can be one of a number of forms.
 
 ```azoth
 public class Example
 {
     // Tuple Initializer with Regular parameters
-    public init #() (x: int, y: int)
+    public operator #(_) (x: int, y: int)
+    {
+        // construct
+    }
+
+    // Tuple Initializer with type list parameters
+    public operator[T...] #(_) (values: T...)
     {
         // construct
     }
 
     // List Initializer with params initializer
-    public init #[] (params values: Array[int])
+    public operator #[_] (params values: Array[int])
     {
         // construct
     }
 
     // Set Initializer with params initializer
-    public init #{} (params values: Array[int])
+    public operator #{_} (params values: Array[int])
 
     // Dictionary Initializer with params initializer
-    public init #{#>} (params values: key_value_pair[int, int])
+    public operator #{_#>_} (params values: Iterator[key_value_pair[int, int]])
 }
 ```
 
-**TODO:** should these be operators instead of initializers to avoid yet another special syntax?
-That does conflict with the typed initialization syntax given below.
+## Params Initializers
 
-## Typed Initialization Syntax
-
-If needed or desired for clarity, these initializers can be called as regular initializers (e.g.
-`Example(x, y)`).
+Types that provide initialization operators should typically provide `params` initializers as well
+so that they can be explicitly initialized when type inference fails (e.g. `Example(x, y)`).

@@ -78,6 +78,7 @@ new version. If something is missing, it may be documented in the [old version](
       * [Fields and Properties](fields-and-properties.md)
       * [Methods](methods.md)
       * [Operator Overloading](operator-overloading.md)
+      * [Keyword Operator Overloading](keyword-operator-overloading.md)
 12. [Traits](traits.md)
 13. [Classes](classes.md)
     * [Class Declarations](class-declarations.md)

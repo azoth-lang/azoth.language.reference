@@ -35,7 +35,9 @@ normally. If it defines an `exit_errored[T](self, error: T)` method it will be c
 block is exited via an exception. If the type has a drop method it will be called after the exit
 method whenever the block exits.
 
-**TODO:** is this the best way to do this? Perhaps they should be overloads of a `with` operator?
+**TODO:** these should be keyword operator overloads of `with`, `drop` or some other operator instead
+
+**TODO:** should there be an "enter" operation defined by a `with` operator
 
 **TODO:** what about handling different kinds of error types? Overloads of exit_errored?
 

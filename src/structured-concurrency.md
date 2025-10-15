@@ -44,6 +44,8 @@ For convenience, that pattern is defined mirrored in the `Async_Scope[Promise]` 
 
 **TODO:** define what methods must exist on an async scope.
 
+**TODO:** use keyword operator overloading to define async scope pattern
+
 ### Default Async Scope
 
 **TODO:** define how the compiler selects the async scope when none is provided.
@@ -127,6 +129,8 @@ declared as [contextual arguments](optional-arguments.md#contextual-arguments). 
 may be passed as the argument to an async parameter.
 
 ## Awaiting Promises
+
+**TODO:** use keyword operator overloading to define awaitable pattern
 
 Async operations return promise-like objects which must implement the awaitable pattern. For
 convenience, that pattern is defined mirrored in the `Awaitable` and `Awaitable[T]` traits. A

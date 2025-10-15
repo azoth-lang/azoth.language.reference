@@ -32,7 +32,8 @@ loop
 
 ## `while`
 
-The condition expression of a while loop is evaluated to a boolean using the `true` operator.
+The condition expression of a while loop is evaluated to a `bool?` using the `true` operator. The
+body is executed as long as the condition evaluates to `true`.
 
 ```grammar
 while_expression

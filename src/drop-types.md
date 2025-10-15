@@ -53,6 +53,6 @@ an instance even after the value is dropped.
 
 Types which may or may not have to manage ownership of a drop type are conditional drop types. For
 example, a collection may contain elements that are drop types and be responsible for dropping them.
-Conditional drop types are declared with the `drop?` modifier. They are drop types only if one of
-their independent generic parameters is a drop type. Conditional drop types cannot be declared
-`const` and instances can become constant only when that instance is not a drop type.
+Conditional drop types are declared with the `drop[T]` modifier. They are drop types only if one of
+the types in the type list is a drop type. Conditional drop types cannot be declared `const` and
+instances can become constant only when that instance is not a drop type.

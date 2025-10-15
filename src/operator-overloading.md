@@ -1,5 +1,8 @@
 # Operator Overloading
 
+**TODO:** clarify whether these are instance or associated members and specify when they must be one
+or the other. Also, can operators be declared as stand alone functions?
+
 An *operator overload* is a method that defines the meaning of an operator expression when applied
 to instances of the class. Operators are declared similarly to functions using operator
 declarations. These declarations use `_` as a placeholder to indicate the positions of the operands.
@@ -67,8 +70,6 @@ literal_operator
     ;
 ```
 
-**TODO:** can operators be associated functions? functions outside of types?
-
 ## Overloadable Operators
 
 Most overloadable operators act as simple methods. However, some operators require special handling
@@ -82,7 +83,7 @@ special handling.
 | `+` , `-` , `*` , `/`                  | The arithmetic operators can be overloaded                                   |
 | `+=` , `-=` , `*=` , `/=`              | The arithmetic assignment operators can be overloaded for greater efficiency |
 | `..` , `<..` , `..<` , `<..<`          | The range operators can each be overloaded independently                     |
-| `::` , `^.` , `\|` , `&`        | These binary operators can't be overloaded                                   |
+| `::` , `^.` , `\|` , `&`               | These binary operators can't be overloaded                                   |
 | `as` , `as!` , `as?`                   | The conversion operators are not overloadable                                |
 | `==` , `=/=` , `<` , `>` , `<=` , `>=` | The comparison operators can be overloaded in pairs                          |
 | `and` , `or`, `?.`, `??` , `.`         | Support for overloading these operators is planned for future releases       |
@@ -213,25 +214,3 @@ For operators that have multiple syntax forms, these are all treated as equivale
 
 Note: The `obsolete` attribute can be used to mark a member of the pair as uncallable if it is
 explicitly desired not to implement the other member of the pair.
-
-## Literal Operators
-
-The literal operators `'_'` and `"_"` allow for the construction of values from user defined and
-string literals respectively. As described in the literals section, the resulting type must be
-`const`. This operator must be an implicit pure function. For simplicity, no spaces are allowed
-around the underscore between the delimiters.
-
-```azoth
-public const value example
-{
-    public let value: string;
-
-    public init(self, .value) { }
-
-    public implicit operator '_'(value: string) -> const example
-      => example(value);
-
-    public implicit operator "_"(count: size, bytes: @byte) -> const example
-      => example(count, bytes);
-}
-```

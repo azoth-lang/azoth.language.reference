@@ -7,7 +7,6 @@ However, these also find use with drop types.
 capability_expression
     : move_expression
     | freeze_expression
-    | id_expression
     ;
 ```
 

@@ -24,3 +24,8 @@ accounted for. These union traits must have the correct relationships to each ot
 one union contains a subset of the types of another union then its union trait must be a subtype of
 the other union trait. Additionally, for unions of values or structs, methods may need to be made
 generic over the type so that they still take the type by value.
+
+## Intersection Types
+
+Like union types it should be possible to transform intersection types by introducing new traits
+which implement all the intersected types and which any type in the intersection implements.

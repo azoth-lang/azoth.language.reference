@@ -41,6 +41,8 @@ when the function or method exits.
 
 ## Generator Method Builders
 
+**TODO:** should these instead be based on keyword operator overloads?
+
 The compiler transforms generator functions similar to how the C# compiler accomplishes this by
 creating a class with a state machine in it. However, this process is controlled similar to how the
 async transform is controlled in C#. An attribute with a type can be placed either on the generator

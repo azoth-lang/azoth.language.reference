@@ -143,21 +143,6 @@ arguments can be passed in place of the `params` parameter. This could be zero a
 example(1, 2, 3, 4, 5);
 ```
 
-### Initialization of the List
-
-When gathering the parameters into the collection type of the parameter, the compiler will generate
-code based on the available initializers and methods of the type. It will first look for a
-initializer taking `size, Raw_Array[T]` with any reference capability for the raw array. If one of
-those exists, it will construct a raw array of the values and pass the number of values and the raw
-array to that initializer. Even if that initializer is `unsafe` (which it should be), no safety
-error will be generated if it is outside an unsafe context. If no such initializer is present, it
-will look for a initializer named `capacity` taking a single argument of `size`. If it exists, it
-will construct the collection using that initializer passing the number of values, then call `add()`
-repeatedly, passing each value. If no such initializer is present, it will look for a default
-initializer, use it and add the values. If none of these exists, an error will be generated.
-
-**TODO:** maybe there should be a `params` operator instead
-
 ### Calling Variadic Functions with a List
 
 Sometimes you wish to pass a pre-existing list of values in place of the variable number of
@@ -169,6 +154,11 @@ argument and the expected collection type.
 let numbers = #[1, 2, 3, 4];
 example(params numbers)
 ```
+
+### Initialization of the Params Value
+
+When passing `params`, the compiler invokes the `params` operator of the type to construct the
+`params` value.
 
 ## Params Tuple
 

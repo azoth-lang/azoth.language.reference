@@ -25,9 +25,8 @@ declared outside of the closed type.
 A class or trait can be subtyped with a class, trait, or object declaration. However for simplicity
  and because of the expected use case, a case declaration can only result in an object or class
 declaration. In a case declaration, the containing class name is implicit. Any record parameters are
-listed after the case name. Parameters to the base initializer are separated from the name with a
-colon and listed in parenthesis. Traits and members can still be optionally declared or omitted the
-same as an object declaration. When the case generates a class, it inherit from the containing class
+listed after the case name. Traits and members can still be optionally declared or omitted the same
+as an object declaration. When the case generates a class, it inherit from the containing class
 (e.g. `inherits` rather than `:`). To override this, list the containing type as a supertype in the
 traits list.
 
@@ -35,10 +34,10 @@ traits list.
 public class Containing
 {
     // An object case
-    case Case1: (42);
+    case Case1;
 
     // A class case
-    case Case2(foo: int): (62);
+    case Case2(foo: int);
 
     // A class case that implements the trait
     case Case2: Containing;
@@ -74,16 +73,10 @@ declared or omitted the same as a struct declaration.
 public closed struct Containing
 {
     // Instead of this
-    public struct Value1 inherits Containing : Trait
-    {
-        public init(.foo) { base.init(42); }
-    }
+    public struct Value1 inherits Containing : Trait;
 
     // Shorten it to this
-    case Value1: (42) : Trait
-    {
-        // members here
-    }
+    case Value1: Trait;
 }
 ```
 
@@ -91,4 +84,4 @@ public closed struct Containing
 
 Accessibility modifiers can be applied to cases in which case they replace the default modifier.
 Other modifiers compatible with the fact that cases are `sealed` can be applied. These include
-`const` and `drop`. The modifiers `abstract`, `sealed`, and `closed` are not allowed.
+`drop`. The modifiers `abstract`, `sealed`, and `closed` are not allowed.
