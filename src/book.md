@@ -87,6 +87,7 @@ new version. If something is missing, it may be documented in the [old version](
 14. [Values](values.md)
     * [Value Declarations](value-declarations.md)
     * [Value Initializers](value-initializers.md)
+    * [Unit Value Declarations](unit-value-declarations.md)
     * [Closed Values](closed-values.md)
 15. [Structs](structs.md)
     * [Struct Declarations](struct-declarations.md)

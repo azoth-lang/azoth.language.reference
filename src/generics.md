@@ -58,7 +58,7 @@ so `trait` makes sense. However, function references are also reference types.
 **TODO:** a constraint that only blocks `own` and `iso` structs while still allowing references and values
 
 ```azoth
-where T: trait  // T must be a trait type declared with class or trait
+where T: object // T must be a object type declared with class or trait
 where T: value  // T must be a value type
 where T: struct // T must be a struct type
 where T: drop   // T must be a drop type
