@@ -594,6 +594,9 @@ JAI to some extent. As an example of how this could be used, given a function th
 to serialize a type to JSON, one could reify it to get a JSON serializer that was optimized for the
 given type because the compiler knew exactly all the steps/operations needed.
 
+One way to implement this might be to use a `#Reified` attribute on a function alias that specifies
+the generic type. But that would imply it only gets called when called through the alias
+
 ### Inline Generic Constraints
 
 One could use the subtype operator to allow inline generic constraints. So instead of `class Foo[T]
