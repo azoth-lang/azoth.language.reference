@@ -1,28 +1,66 @@
 # Function Types
 
-Function types are a composite type composed of the parameter and return types of a function. In
-addition to this, they account for which parameters are lent and for the reference capability of any
-possible closure. Note that function types are contravariant in their parameter types and covariant
-in their return types.
+Function types are object types. Conceptually, it is an object with an invoke method. The function
+type is determined by the parameters and return type of that method including the capability on the
+`self` parameter. The object (i.e. the `self` parameter) is the closure that was captured with the
+function. Function types are contravariant in their `self` capability and parameter types. They are
+covariant in their return types. Typically, the capability used with the value matches the self
+capability. This ensures that the function can be invoked. However, those two capabilities are
+technically independent. If the object capability is not a subtype of the self parameter capability
+then the function cannot be invoked. The unique nature of having two important capabilities and
+being contravariant in the self parameter capability is supported by having different default
+capabilities for function types.
 
-Because the closure is effectively passed as a parameter to the function, this makes the closure
-capability contravariant and effectively flips the subtyping relationship for the closure
-capability. This is reflected in the syntax by listing the capability as if it were the first
-parameter. It is not the capability of what you can do to the function object. It is the capability
-of what the function can do to its closure. This also leads to a different set of capabilities
-making sense.
+Additionally, function types may or may not be drop types depending on whether the closure contains
+any drop types. If the function `self` parameter is `iso` then invoking the function will drop the
+closure. Otherwise, the closure will be dropped when the function goes out of scope.
+
+**TODO:** should their be `unsafe` function types for referencing `unsafe` functions?
+
+**TODO:** maybe function types should default to `mut` to allow subtyping to work better?
+
+**TODO:** this design isn't good because the equivalent of `FnOnce` should allow any other function
+to be passed where it is expected. But an `iso` function consumes the self argument in a way that
+prevents it.
+
+Contents:
+
+* [Default Capabilities](#default-capabilities)
+* [Function Type Syntax](#function-type-syntax)
+* [Function Type Subtyping](#function-type-subtyping)
+* [Most Common Function Types](#most-common-function-types)
+* [Function Type Behavior](#function-type-behavior)
+* [Implementation](#implementation)
+
+## Default Capabilities
+
+The default self parameter capability is `id`. This is because it is simultaneously the subtype of
+all self parameter capabilities and safe to send between threads. Thus it is the most flexible. Note
+that because `let` `const` fields can be accessed through an `id` reference, it is actually possible
+for such a closure to capture constant values.
+
+The default capability of the function type is the capability of the self parameter type.
+
+## Function Type Syntax
+
+Function types are preceded by a capability like all object types. They are then a list of parameter
+types in parentheses followed by an arrow and the return type. Additionally, the capability of the
+`self` parameter is listed as if it were the first parameter unless it is `id` which is the default.
+If a capability for the function is omitted, the default is the capability of the self parameter.
+
+It is not necessary to explicitly denote which functions are drop types. For any such function,
+there will be a single `own` instance that has ownership. This indicates that the function is a drop type.
 
 ```grammar
 function_type
-    :  "(" function_capability ("," parameter_type_list)? ")" "->" type
-    |  "(" parameter_type_list? ")" "->" type // read function omits the capability and comma
+    : capability "(" function_capability ("," parameter_type_list)? ")" "->" type
+    | capability "(" parameter_type_list? ")" "->" type // id self function omits the capability and comma
     ;
 
 function_capability
     : "iso"
-    | "own"
     | "mut"
-    | "const"
+    | "read"
     ;
 
 parameter_type_list
@@ -34,19 +72,46 @@ parameter_type
     ;
 ```
 
-**TODO:** Are temp capabilities and `id` also needed?
+Note that for the self parameter only the capabilities `iso`, `mut`, `read`, and the default of `id`
+are allowed. The `const` capability is not included because there is no need for it when `id` is
+more flexible while still being sendable.
 
-**TODO:** maybe `iso` should mean the closure is `iso` and so other references aren't allowed and it
-is safe to pass the function reference between threads?
+**TODO:** are temp capabilities on the self parameter also needed?
 
-**TODO:** Maybe `own` should instead be a prefix `drop` making it a drop type.
+## Function Type Subtyping
 
-**TODO:** how is ownership tracked for `drop` functions?
+Function types are contravariant in their parameter types and covariant in their return types. That
+is if `F1 <: F2` then for each parameter `Px`, `F2.Px <: F1.Px` and `F1.Return <: F2.Return`. It is
+also contravariant in the self parameter type `iso <: mut <: read <: id`.
 
-**TODO:** Maybe `id` should no allow invocation, but exists as the capability after a function
-reference is moved? This would probably mean `id` goes in front.
+The `lent` attribute of the parameters also comes into play. For `F1 <: F2`, any lent parameters of
+`F2` must also be lent in `F1`. The inverse is not the case. A subtype function can have more lent
+parameters since this is an additional restriction on the behavior of the function.
 
-**TODO:** should their be `unsafe` function types for referencing `unsafe` functions?
+Function types are, of course, covariant in their capability as all object types are. Since this is
+typically identical with the self parameter capability, it is effectively invariant if you want to
+maintain the ability to invoke the function.
+
+## Most Common Function Types
+
+While the combination of the capability of the function type and the self parameter provides lots of
+possibilities, most of the time that is not used. Generally, a function type will be one of:
+
+* `(T...) -> TReturn`
+* `(read, T...) -> TReturn`
+* `(mut, T...) -> TReturn`
+* `(iso, T...) -> TReturn`
+* `own (T...) -> TReturn`
+* `own (read, T...) -> TReturn`
+* `own (mut, T...) -> TReturn`
+* `own (iso, T...) -> TReturn`
+
+## Function Type Behavior
+
+A function with an `iso` self parameter can be called only once. The closure is consumed by calling
+it.
+
+## Implementation
 
 **Idea:** In the bytecode, don't have full blown closures and function types. Instead, have only
 function types that take no closure or context. Implement function types as a struct of the closure
@@ -57,42 +122,3 @@ Options: use an associated type for the closure type (requires subtyping, e.g. `
 will be supported), use some sort of special erased type that only still has a capability and is
 unsafe (`Any` may not work because upcasting to it could change the vtable pointer?). This could
 also provide a way to have true function pointers for C interop with `@() -> void` etc.
-
-## Function Type Capabilities
-
-The capabilities of a function type are really the capability of the closure passed to the function.
-There are five function type capabilities.
-
-The `iso` capability indicates that the closure will be consumed by the function. Thus the closure
-is or contains isolated values. An `iso` function can only be invoked once. Calling it effectively
-moves the function reference into the called function leaving behind `void`. The closure may still
-contain mutable references and calling the function may mutate objects reachable from the closure.
-
-The `own` capability indicates that the closure has drop types in it and it makes the function a
-drop type. The closure may still contain mutable references and calling the function may mutate
-objects reachable from the closure.
-
-The `mut` capability indicates that the closure contains `mut` types and calling the function may
-mutate objects reachable from the closure.
-
-The read capability indicates that the closure is read and calling the function will not mutate any
-objects reachable from the closure.
-
-The `const` capability indicates that the closure contains only `const` and `id` values. Calling it
-will not not mutate any objects reachable from the closure. Furthermore, it is safe to pass `const`
-function references between threads.
-
-## Function Type Subtyping
-
-Function types are contravariant in their parameter types and covariant in their return types. That
-is if `F1 <: F2` then for each parameter `Px`, `F2.Px <: F1.Px`. And `F1.Return <: F2.Return`.
-
-The `lent` attribute of the parameters also comes into play. For `F1 <: F2`, any lent parameters of
-`F2` must also be lent in `F1`. The inverse is not the case. A subtype function can have more lent
-parameters since this is an additional restriction on the behavior of the function.
-
-The capability of a function is essentially contravariant thus for function types `const <: read <:
-mut <: iso` and `mut <: own`. Note that `own` is not a subtype of `iso` because `own` makes a
-function a drop type while `iso` doesn't. Also, this is not fully contravariant because `const <:
-read`. This is because the function reference also has a hidden reference to the closure. That
-closure must be `const` to be passed between threads.

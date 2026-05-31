@@ -25,7 +25,7 @@ an independent parameter. It is important to remember that this constraint is *n
 which capabilities can be used like a regular generic parameter constraint. That is why the syntax
 treats it as a parameter to the independence.
 
-**TODO:** A better syntax would still be good. This parameter like syntax seems to be the better
+**TODO:** A better syntax would still be good. This parameter like syntax seems to be better
 compared to putting the capability set before or after the independent keyword, but it still isn't
 particularly obvious.
 

@@ -14,7 +14,7 @@ struct
 
 ## Capabilities when Copying
 
-Capabilities on value types are handles the same when copying a value as if a reference was being
+Capabilities on value types are handled the same when copying a value as if a reference was being
 copied. For example, if a value is `iso` and is copied, then the alias and the original will now be
 `mut`. This behavior is consistent with references and safe for the references inside of the value.
 
