@@ -83,8 +83,8 @@ For struct types, it is possible for an `id` reference to refer to a struct that
 scope and is no longer on the stack. Thus it is not safe to access `let` fields and so that is not
 allowed. Additionally, the infrastructure that enables object types to have a stable
 `identity_hash()` even as the GC relocates objects is not available so calling it is not allowed.
-Once can still use `@==` and `@=/=` to compare them for reference equality. However, it is
-theoretically possible for a struct to be allocated in the same location on the static as a struct
+One can still use `@==` and `@=/=` to compare them for reference equality. However, it is
+theoretically possible for a struct to be allocated in the same location on the stack as a struct
 that previously went out of scope. In that case, the two `id` references will compare as `@==` true.
 
 ## Advanced Capabilities
@@ -135,7 +135,7 @@ Otherwise, it must always be explicit.
 ### Owned Capability
 
 Some types support an additional capability. Drop types and struct types support the owned
-capability. The `own` capability indicates that this value is may not be isolated, but the variable
+capability. The `own` capability indicates that this value may not be isolated, but the variable
 binding still has ownership of the value. For drop types, this will be used to ensure that the value
 is dropped before it goes out of scope. For struct types, this is used to ensure that references to
 the struct do not outlive the binding where the struct value is stored. For structs, it also
@@ -263,8 +263,8 @@ capabilities can occur in certain places. The capability sets are:
 
 ### Constraining Generic Parameters
 
-Generic parameters can have their allows capabilities restricted by specifying a capability set or a
-specific capability before the generic parameter (e.g. `Example[readable T]`). Only the given
+Generic parameters can have their allowed capabilities restricted by specifying a capability set or
+a specific capability before the generic parameter (e.g. `Example[readable T]`). Only the given
 capabilities can be used when specifying that generic argument. If no constraint is specified, the
 default constraint is `aliasable`.
 
@@ -330,8 +330,8 @@ didn't allow `iso` as a generic argument.
 
 ### Constrained Types
 
-When working with generic types, it is sometime necessary to express the concept that a generic type
-has been cast up to a capability in a set. This is done by prefixing the generic type with the
+When working with generic types, it is sometimes necessary to express the concept that a generic
+type has been cast up to a capability in a set. This is done by prefixing the generic type with the
 capability set, i.e. *`<capability-set>`*` T`. This gives a new type whose capability is in the
 given set. Since it must always be possible to do this, only capability sets that contain `id` can
 be used in this way.
@@ -353,7 +353,7 @@ this function `example(foo)` the compiler must assume that it is possible that e
 instance references the `Bar` instance or vice versa. It therefore places those two references in
 the same sharing set. It would then be impossible to move or freeze either of those values until the
 other goes out of scope since as long as the other is in scope, it is possible that it violates the
-isolation of the other. If on the other hand, `example` where declared with a `lent` parameter then
+isolation of the other. If, on the other hand, `example` were declared with a `lent` parameter then
 the compiler could assume that the two instances did not reference each other and would not have to
 place them in the same sharing set. I full description of this analysis would be too complicated to
 give here, but this gives a basic idea of how the analysis works.

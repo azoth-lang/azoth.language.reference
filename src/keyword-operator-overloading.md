@@ -36,7 +36,7 @@ i.e. `#(_)`, `#[_]`, `#{_}`, `#{_#>_}`
 ## Default Initializer
 
 Overload operator `init` to declare a default initializer value that will be used to initialize
-fields of the given type if they are not explicitly initialized. This should produce and "empty"
+fields of the given type if they are not explicitly initialized. This should produce an "empty"
 value. For example lists default initialize to the empty string and collections default initialize
 to empty collections.
 

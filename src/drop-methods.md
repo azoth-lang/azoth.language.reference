@@ -1,10 +1,10 @@
 # Drop Methods
 
 Classes, values, and structs declared as `drop` types may have a drop method. Because they are drop
-types the compiler enforces that there is either one owning value. Thus the compiler can determine
-when that value goes out of scope and call the drop method on it. Note that this does not mean that
-the memory of an object or those referenced is immediately freed. That is still the responsibility
-of the garbage collector. Rather, drop methods provide a means of managing other resources via the
+types the compiler enforces that there is one owning value. Thus the compiler can determine when
+that value goes out of scope and call the drop method on it. Note that this does not mean that the
+memory of an object or those referenced are immediately freed. That is still the responsibility of
+the garbage collector. Rather, drop methods provide a means of managing other resources via the
 resources acquisition is initialization (RAII) pattern.
 
 Any class, value, or struct with a field whose type is a drop type gets a default drop method and

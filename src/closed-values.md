@@ -41,7 +41,7 @@ public const closed value token
 
 Unit values typically have size zero. However, when they inherit from a closed value they have the
 size of that closed value. However, they affect the size of the closed value in a more complex way
-that subtype values.
+than subtype values.
 
 Even if a closed value has fields, if all subtypes are unit values, then those fields do not need to
 be stored in the value. Instead, only a discriminator is stored which allows for determining the

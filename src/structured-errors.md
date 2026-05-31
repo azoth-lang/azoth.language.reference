@@ -188,7 +188,7 @@ there could be a catch block below.
 
 Structured error handling does not capture stack traces for errors. Stack traces are most useful for
 unexpected errors that are actually unrecoverable. Structured error handling is for recoverable
-errors. As such, it is expected that every error throw will be caught and properly handled. Because
+errors. As such, it is expected that every error thrown will be caught and properly handled. Because
 of that along with the high overhead of capturing stack traces Azoth does not capture stack traces
 for thrown errors. However, debuggers and other tools may capture stack traces for them for
 debugging purposes.
