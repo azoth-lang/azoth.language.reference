@@ -29,10 +29,11 @@ an explicit return type to override a `void` method with one returning a value.
 
 A method or property can override or hide one or more methods or properties in the base class and
 traits. These are declared with `overrides` and `hides` declarations after the method or property
-signature. Members implicitly replace base members with the same name, parameters, and a covariant
-return type. In this implicit case, the default behavior depends on whether the member being
-replaced is abstract or not. Note that members do not implicitly replace base members whose
-parameter types are different. In that case, an overload is added.
+signature. Their can be multiple of each and they can be mixed in any order. Members implicitly
+replace base members with the same name, parameters, and a covariant return type. In this implicit
+case, the default behavior depends on whether the member being replaced is abstract or not. Note
+that members do not implicitly replace base members whose parameter types are different. In that
+case, an overload is added.
 
 If the member being replaced is abstract, then the new member implicitly overrides it. If the member
 access modifiers do not match, that is a non-fatal error.
