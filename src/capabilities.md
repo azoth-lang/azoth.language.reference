@@ -187,6 +187,8 @@ are:
 * `iso <: const <: read`
 * `const <: temp const <: read`
 * `iso <: temp iso <: mut`
+* `temp iso <: temp const`
+* `init mut <: init read`
 
 Note that `temp iso` is not a subtype of `own`.
 
