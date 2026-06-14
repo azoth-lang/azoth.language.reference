@@ -25,7 +25,26 @@ this does not include implicit conversions or boxing conversions. Other types ar
 an implicit conversion from all types to `void`. So the `overrides` keyword can be used along with
 an explicit return type to override a `void` method with one returning a value.
 
-## Overriding
+## Overriding and Hiding
+
+A method or property can override or hide one or more methods or properties in the base class and
+traits. These are declared with `overrides` and `hides` declarations after the method or property
+signature. Members implicitly replace base members with the same name, parameters, and a covariant
+return type. In this implicit case, the default behavior depends on whether the member being
+replaced is abstract or not. Note that members do not implicitly replace base members whose
+parameter types are different. In that case, an overload is added.
+
+If the member being replaced is abstract, then the new member implicitly overrides it. If the member
+access modifiers do not match, that is a non-fatal error.
+
+If the member being replaced is not abstract, then it hides the base method with the same name and
+parameter types. It is a non-fatal error to hide a method without declaring so with the `hides`
+keyword. This supports situations where methods are added to base classes in published packages.
+Note that a base method being changed from abstract to non-abstract will change the default behavior
+to hides. However, that will produce a non-fatal error so the developer can address the change by
+adding the `overrides` keyword to maintain the intended override.
+
+### Overriding
 
 When overriding a method, it is possible to do one or more of:
 
@@ -73,17 +92,12 @@ public class C inherits B
 }
 ```
 
-## Hiding
+### Hiding
 
 Hiding a method in a base class means that the base class method is not overridden. If it is called,
 its implementation will still run. But when using that method on the subclass, a different
 implementation will be called. Hiding, like overriding, allows the visibility, name, and parameter
-types to be changed.
-
-Hiding is the default. If neither `overrides` or `hides` is used on a method then it hides the base
-method with the same name and parameter types. It is a non-fatal error to hide a method without
-declaring so with the `hides` keyword. This supports situations where methods are added to base
-classes in published packages.
+types to be changed. Hiding is declared the same as overriding, but with the `hides` keyword.
 
 ## Nested Methods
 

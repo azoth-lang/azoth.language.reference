@@ -46,8 +46,8 @@ assignment to a setter is automatically supplied by the language rather than by 
 ## Associated Properties
 
 There are no associated fields. Having one would violate thread safety and require initialization at
-an indeterminate time. Many cases what is desired is actually an associated constant. However, one
-can declare associated properties by declaring getters and setters without `self` parameters.
+an indeterminate time. In many cases what is desired is actually an associated constant. However,
+one can declare associated properties by declaring getters and setters without `self` parameters.
 
 ## Unique Names
 
