@@ -13,4 +13,5 @@ that can have associated members but no instances. (In C# static classes cannot 
 arguments.) Two possible syntaxes are `module` and `type`. Though the latter would require that
 associated types be declared as `type alias`. But perhaps a modifier to the class declaration would
 be best. However, this may not be needed. In C# they exist primarily as a way to have free standing
-functions. But in Azoth functions can exist outside of classes.
+functions. But in Azoth functions can exist outside of classes. **The proper declaration is a
+`sealed abstract` class.**
